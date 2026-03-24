@@ -1,0 +1,162 @@
+{
+  "_comment": "Keyword ranking tracker config. match_names = substrings to find our business in Google results (case-insensitive). match_domains = domain fragments. keywords = daily tracked list per business.",
+  "businesses": {
+
+    "spi_fun_rentals": {
+      "name": "SPI Fun Rentals",
+      "match_names": ["spi fun rental", "spi fun", "island surf rental"],
+      "match_domains": ["spifunrentals.com"],
+      "keywords": [
+        "golf cart rental south padre island",
+        "scooter rental south padre island",
+        "fun rentals spi",
+        "slingshot rental south padre island",
+        "beach bike rental south padre island",
+        "kayak rental south padre island",
+        "paddleboard rental south padre island",
+        "e-bike rental south padre island",
+        "moped rental south padre island",
+        "polaris slingshot rental spi",
+        "renta de motos south padre island",
+        "spring break rentals south padre island",
+        "beach equipment rental south padre island",
+        "golf cart spi"
+      ]
+    },
+
+    "sugar_shack": {
+      "name": "The Sugar Shack",
+      "match_names": ["sugar shack", "the sugar shack"],
+      "match_domains": [],
+      "keywords": [
+        "candy store south padre island",
+        "sweet shop south padre island",
+        "candy shop spi",
+        "fudge south padre island",
+        "taffy south padre island",
+        "sugar shack spi",
+        "souvenir shop south padre island",
+        "chocolate south padre island",
+        "gifts south padre island",
+        "snacks south padre island"
+      ]
+    },
+
+    "island_arcade": {
+      "name": "Island Arcade SPI",
+      "match_names": ["island arcade", "island arcade spi"],
+      "match_domains": [],
+      "keywords": [
+        "arcade south padre island",
+        "game room south padre island",
+        "arcade spi",
+        "family entertainment south padre island",
+        "kids activities south padre island",
+        "indoor games south padre island",
+        "amusement south padre island",
+        "things to do south padre island kids",
+        "fun for kids south padre island",
+        "video games south padre island"
+      ]
+    },
+
+    "island_candy": {
+      "name": "Island Candy",
+      "match_names": ["island candy"],
+      "match_domains": [],
+      "keywords": [
+        "ice cream south padre island",
+        "soft serve ice cream south padre island",
+        "candy store south padre island",
+        "sweet treats south padre island",
+        "shaved ice south padre island",
+        "helados south padre island",
+        "dulces south padre island",
+        "desserts south padre island",
+        "snow cones south padre island",
+        "island candy spi",
+        "frozen treats spi",
+        "candy and ice cream south padre island"
+      ]
+    },
+
+    "custom_designs_tx": {
+      "name": "Custom Designs TX",
+      "match_names": ["custom designs", "custom designs tx"],
+      "match_domains": ["customdesignstx.com"],
+      "keywords": [
+        "security camera installation mcallen tx",
+        "cctv installation mcallen tx",
+        "home security system mcallen",
+        "alarm system installation mcallen tx",
+        "home theater installation mcallen",
+        "security cameras for business mcallen",
+        "smart home installation mcallen",
+        "camaras de seguridad mcallen",
+        "audio video installation mcallen tx",
+        "surveillance system mcallen",
+        "instalacion de alarmas mcallen",
+        "home automation mcallen tx"
+      ]
+    },
+
+    "optimum_clinic": {
+      "name": "Optimum Health & Wellness Clinic",
+      "match_names": ["optimum health", "optimum wellness", "optimum clinic"],
+      "match_domains": ["optimumhealthwellness.com"],
+      "keywords": [
+        "urgent care pharr tx",
+        "walk in clinic pharr",
+        "clinica de urgencias pharr",
+        "after hours clinic pharr",
+        "no insurance urgent care pharr",
+        "clinica nocturna pharr",
+        "cash pay clinic pharr tx",
+        "night clinic pharr",
+        "urgent care open late pharr",
+        "consulta medica sin seguro pharr",
+        "family medical clinic pharr",
+        "affordable urgent care pharr"
+      ]
+    },
+
+    "juan": {
+      "name": "Juan Elizondo RE/MAX Elite",
+      "match_names": ["juan elizondo", "juan jose elizondo"],
+      "match_domains": ["juanjoseelizondo.com"],
+      "keywords": [
+        "homes for sale mcallen tx",
+        "real estate agent mcallen",
+        "realtor mcallen tx",
+        "casas en venta mcallen",
+        "commercial real estate mcallen tx",
+        "land for sale mcallen tx",
+        "remax mcallen tx",
+        "agente inmobiliario mcallen",
+        "new homes mcallen tx",
+        "mcallen tx real estate listings",
+        "buy house mcallen tx",
+        "terrenos en venta mcallen"
+      ]
+    },
+
+    "optimum_foundation": {
+      "name": "Optimum Health and Wellness Foundation",
+      "match_names": ["optimum health", "optimum foundation", "optimum wellness foundation"],
+      "match_domains": [],
+      "keywords": [
+        "nonprofit health clinic hidalgo county",
+        "community health pharr tx",
+        "affordable healthcare pharr",
+        "health foundation pharr tx",
+        "free health clinic pharr tx",
+        "health services nonprofit rgv",
+        "community clinic pharr",
+        "health education pharr tx",
+        "wellness foundation hidalgo county",
+        "health resources pharr tx"
+      ]
+    }
+
+  }
+}

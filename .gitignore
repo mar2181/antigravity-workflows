@@ -1,0 +1,107 @@
+# ============================================
+# ANTIGRAVITY WORKFLOWS — .gitignore
+# Protects all personal data, credentials,
+# browser sessions, and generated output
+# ============================================
+
+# --- Credentials & Secrets ---
+.env
+*.env
+*credentials*.json
+*token*.json
+*secret*
+fb_api_credentials.json
+token_mario_gbp.json
+client_contacts.json
+
+# --- Browser Session Profiles (personal login state) ---
+facebook_sniffer_profile/
+facebook_mario_profile/
+gbp_mario_profile/
+gbp_sniffer_profile/
+
+# --- Generated Output (regenerated daily) ---
+blog_posts/
+competitor_reports/
+morning_briefs/
+screenpipe_reports/
+client_reports/
+progress_reports/
+3d_models/
+all_ads_images/
+insta360_exports/
+
+# --- Large Binary Assets (videos, photos, 40GB+) ---
+*/assets/
+sugar_shack/assets/
+island_arcade/assets/
+island_candy/assets/
+juan/assets/
+spi_fun_rentals/assets/
+custom_designs_tx/assets/
+optimum_clinic/assets/
+optimum_foundation/assets/
+*.mp4
+*.avi
+*.mov
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.bmp
+*.tiff
+
+# --- Debug Screenshots ---
+debug_snap_*.png
+debug_*.png
+FINAL_*.png
+PROOF_*.png
+JUAN_*.png
+OPTIMUM_*.png
+fb_buttons.txt
+
+# --- State Files (machine-specific runtime) ---
+keyword_rankings_state.json
+all_ads_manifest.json
+gbp_state.json
+mc_audit_queue.json
+ai_angles_queue.json
+march14_posts_manifest.json
+
+# --- Database Files ---
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# --- Python Cache ---
+__pycache__/
+*.pyc
+*.pyo
+
+# --- Node ---
+node_modules/
+package-lock.json
+
+# --- OS Files ---
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Gravity-Claw MCP (has its own sensitive data) ---
+# Include source but exclude runtime/credentials
+gravity-claw/.env
+gravity-claw/*.db
+gravity-claw/*.db-wal
+gravity-claw/*.db-shm
+gravity-claw/node_modules/
+gravity-claw/*.log
+gravity-claw/bot.log
+gravity-claw/bot_new.log
+gravity-claw/output.log
+gravity-claw/verification.log
+gravity-claw/test_voice.log
+gravity-claw/tsc.log
+gravity-claw/sse_stream.log

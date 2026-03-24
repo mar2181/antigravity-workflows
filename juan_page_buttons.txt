@@ -1,0 +1,13 @@
+URL: https://www.facebook.com/JuanElizondoRemax/
+
+BUTTONS:
+  text='' | aria='Back to previous page' | placeholder=''
+  text='' | aria='Exit typeahead' | placeholder=''
+  text='' | aria='Menu' | placeholder=''
+  text='' | aria='Messenger' | placeholder=''
+  text='' | aria='Notifications, 40 unread' | placeholder=''
+  text='Number of unread notifications
+20+' | aria='Notifications, 40 unread' | placeholder=''
+  text='' | aria='Your profile' | placeholder=''
+  text='Go back' | aria='' | placeholder=''
+  text='' | aria='New message' | placeholder=''

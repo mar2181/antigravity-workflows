@@ -1,0 +1,247 @@
+"""
+Post Sugar Shack Ad #1 — Road Trip Fuel
+Auth: Yehuda's account (quepadre@live.com) via facebook_sniffer_profile
+Page: https://www.facebook.com/profile.php?id=61557735298128
+"""
+import sys, os, time
+sys.stdout.reconfigure(encoding='utf-8')
+from playwright.sync_api import sync_playwright
+
+AUTH_PROFILE = os.path.join(os.path.dirname(__file__), "facebook_sniffer_profile")
+PAGE_URL     = "https://www.facebook.com/profile.php?id=61557735298128"
+IMAGE_PATH   = r"C:\Users\mario\sugar_shack_ad_images\ad_1_road_trip_fuel.png"
+
+MESSAGE = """You\u2019ve been driving for 4 hours. The kids are restless.
+You NEED this stop. \U0001f36c
+
+Welcome to The Sugar Shack\u2014the best 20-minute break
+your spring break road trip will have.
+
+\u2705 Fresh hand-picked candies (not the gas station garbage)
+\u2705 Bulk options = actually affordable
+\u2705 Every kid gets to CHOOSE their own treasure
+\u2705 Parents get 5 minutes of peace and quiet browsing
+
+One little sugar boost = happy family for the next 2 hours of driving.
+
+We\u2019re located RIGHT on Padre Blvd\u2014can\u2019t miss us.
+
+FIND US TODAY | GET DIRECTIONS
+
+\U0001f4cd 910 Padre Blvd, South Padre Island
+\U0001f4de (956) 524-8009
+
+#FamilyRoadTrip #SpringBreak #SouthPadreIsland"""
+
+with sync_playwright() as p:
+    print("[1] Launching browser (Yehuda/sniffer profile)...")
+    ctx = p.chromium.launch_persistent_context(
+        user_data_dir=AUTH_PROFILE,
+        headless=False,
+        viewport={"width": 1920, "height": 1080}
+    )
+    page = ctx.pages[0] if ctx.pages else ctx.new_page()
+
+    try: page.keyboard.press("Escape")
+    except: pass
+
+    print("[2] Loading Facebook...")
+    page.goto("https://www.facebook.com/")
+    time.sleep(4)
+
+    if "login" in page.url.lower() or page.query_selector("[name='email']"):
+        print("[ERROR] Not logged in. Run reauth_facebook_sniffer.py first.")
+        ctx.close()
+        sys.exit(1)
+    print(f"    Logged in: {page.url}")
+
+    print("[3] Navigating to Sugar Shack page...")
+    page.goto(PAGE_URL)
+    time.sleep(5)
+    print(f"    URL: {page.url}")
+
+    # Switch to Sugar Shack page profile if needed
+    print("[4] Checking for Switch button...")
+    try:
+        page.wait_for_load_state("networkidle", timeout=8000)
+    except:
+        time.sleep(3)
+    time.sleep(2)
+
+    for sel in ["[aria-label='Switch']", "div[role='button']:has-text('Switch Now')", "div[role='button']:has-text('Switch')"]:
+        try:
+            btn = page.locator(sel).first
+            if btn.is_visible():
+                btn.click()
+                print(f"    [OK] Clicked Switch: {sel}")
+                time.sleep(3)
+                for confirm in ["[role='dialog'] div[role='button']:has-text('Switch')", "[role='dialog'] [aria-label='Switch']"]:
+                    try:
+                        cb = page.locator(confirm).first
+                        if cb.is_visible():
+                            cb.click()
+                            print("    [OK] Switch confirmed")
+                            time.sleep(3)
+                            break
+                    except: pass
+                try:
+                    page.wait_for_load_state("networkidle", timeout=8000)
+                except:
+                    time.sleep(4)
+                break
+        except: pass
+
+    print(f"    URL after switch: {page.url}")
+
+    print("[4b] Scrolling to composer...")
+    time.sleep(2)
+    try:
+        page.evaluate("window.scrollBy(0, 400)")
+    except: pass
+    time.sleep(2)
+
+    print("[5] Opening composer...")
+    composer_opened = False
+    for sel in [
+        "div[role='button']:has-text('Create post')",
+        "[aria-label='Create post']",
+        "div[role='button']:has-text(\"\u2019s on your mind\")",
+        "div[role='button']:has-text(\"What\u2019s on your mind\")",
+        "div[role='button']:has-text(\"What's on your mind\")",
+        "div[role='button']:has-text('Write something')",
+        "div[role='button']:has-text('What')",
+    ]:
+        try:
+            el = page.query_selector(sel)
+            if el and el.is_visible():
+                el.click()
+                time.sleep(2)
+                print(f"    [OK] Opened: {sel}")
+                composer_opened = True
+                break
+        except: pass
+
+    if not composer_opened:
+        print("    [ERROR] Composer not found")
+        ctx.close()
+        sys.exit(1)
+
+    try:
+        page.wait_for_selector("[role='dialog']", timeout=5000)
+        print("    [OK] Dialog open")
+    except:
+        print("    [WARNING] No dialog — continuing")
+
+    print("[6] Uploading image...")
+    uploaded = False
+    for sel in [
+        "[role='dialog'] [aria-label='Photo/video']",
+        "[aria-label='Photo/video']",
+    ]:
+        try:
+            btn = page.locator(sel).first
+            btn.wait_for(state="visible", timeout=5000)
+            with page.expect_file_chooser(timeout=6000) as fc_info:
+                btn.click()
+            fc_info.value.set_files(IMAGE_PATH)
+            time.sleep(5)
+            print(f"    [OK] Uploaded")
+            uploaded = True
+            break
+        except Exception as e:
+            print(f"    [{sel}] failed: {e}")
+
+    if not uploaded:
+        print("    [ERROR] Upload failed")
+        ctx.close()
+        sys.exit(1)
+
+    print("[7] Typing message...")
+    typed = False
+    for sel in [
+        "[role='dialog'] div[role='textbox']",
+        "[role='dialog'] [contenteditable='true']",
+    ]:
+        try:
+            el = page.locator(sel).first
+            el.wait_for(state="visible", timeout=6000)
+            el.click()
+            time.sleep(0.5)
+            el.press_sequentially(MESSAGE, delay=5)
+            print("    [OK] Message typed")
+            typed = True
+            break
+        except Exception as e:
+            print(f"    [{sel}] failed: {e}")
+
+    if not typed:
+        print("    [ERROR] Could not type message")
+        ctx.close()
+        sys.exit(1)
+
+    # Dismiss hashtag autocomplete before clicking Next
+    try:
+        page.keyboard.press("Escape")
+        time.sleep(1)
+    except: pass
+
+    print("[8] Clicking Next...")
+    for sel in [
+        "[role='dialog'] [aria-label='Next'][role='button']",
+        "[role='dialog'] div[role='button']:has-text('Next')",
+    ]:
+        try:
+            btn = page.locator(sel).first
+            btn.wait_for(state="visible", timeout=5000)
+            btn.click()
+            print(f"    [OK] Clicked Next: {sel}")
+            break
+        except Exception as e:
+            print(f"    {sel}: {e}")
+
+    print("    Waiting for second screen...")
+    time.sleep(5)
+
+    print("[9] Clicking final Post button...")
+    posted = False
+    for sel in [
+        "[role='dialog'] [aria-label='Post'][role='button']",
+        "[role='dialog'] div[role='button']:has-text('Post')",
+        "div[role='button']:has-text('Post')",
+        "[aria-label='Post']",
+    ]:
+        try:
+            btn = page.locator(sel).first
+            btn.wait_for(state="visible", timeout=6000)
+            btn.click()
+            print(f"    [OK] Posted via: {sel}")
+            posted = True
+            time.sleep(4)
+            break
+        except Exception as e:
+            print(f"    {sel}: {e}")
+
+    # Dismiss "Speak With People Directly" popup — REQUIRED to finalize post
+    time.sleep(2)
+    for dismiss_sel in [
+        "div[role='button']:has-text('Not now')",
+        "[aria-label='Not now']",
+        "div[role='button']:has-text('Close')",
+        "[aria-label='Close']",
+    ]:
+        try:
+            btn = page.locator(dismiss_sel).first
+            if btn.is_visible():
+                btn.click()
+                print(f"    [OK] Dismissed popup: {dismiss_sel}")
+                time.sleep(2)
+                break
+        except: pass
+
+    if posted:
+        print("\n[SUCCESS] Sugar Shack Ad #1 (Road Trip Fuel) posted!")
+    else:
+        print("\n[ERROR] Post button not found")
+
+    time.sleep(4)
+    ctx.close()

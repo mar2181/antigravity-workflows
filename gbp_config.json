@@ -1,0 +1,88 @@
+{
+  "places_api_key": "AIzaSyA8RahcIF1Vf8YQoXjTZcHA_ONQn-uJ0DI",
+  "accounts": {
+    "sugar_shack": {
+      "name": "The Sugar Shack",
+      "expected_name": "The Sugar Shack",
+      "business_id": "13038061471302579308",
+      "chrome_port": 9223,
+      "search_query": "The Sugar Shack South Padre Island TX",
+      "places_query": "The Sugar Shack South Padre Island TX",
+      "phone": "+19565248009",
+      "access": true
+    },
+    "island_candy": {
+      "name": "Island Candy",
+      "expected_name": "Island Candy",
+      "business_id": "4798477906868509722",
+      "chrome_port": 9223,
+      "search_query": "Island Candy South Padre Island TX arcade",
+      "places_query": "Island Candy South Padre Island TX",
+      "phone": "+19564335599",
+      "address": "2311 Padre Blvd, South Padre Island, TX 78597",
+      "hours": "Closes 10 PM",
+      "access": true
+    },
+    "island_arcade": {
+      "name": "Island Arcade SPI",
+      "expected_name": "Island Arcade",
+      "business_id": null,
+      "chrome_port": 9223,
+      "search_query": "Island Arcade SPI South Padre Island TX",
+      "places_query": "Island Arcade SPI South Padre Island TX",
+      "phone": "+19564335549",
+      "access": false,
+      "note": "DUPLICATE on Yehuda account — GBP management blocked"
+    },
+    "spi_fun_rentals": {
+      "name": "SPI Fun Rental & Island Surf Rental",
+      "expected_name": "SPI Fun Rentals",
+      "business_id": "4078292116476913317",
+      "chrome_port": 9224,
+      "search_query": "SPI Fun Rentals South Padre Island TX",
+      "places_query": "SPI Fun Rentals South Padre Island TX",
+      "phone": null,
+      "access": false,
+      "note": "DUPLICATE — needs resolution before posting"
+    },
+    "custom_designs": {
+      "name": "Custom Designs TX",
+      "expected_name": "Custom Designs",
+      "business_id": "13185634142027650449",
+      "chrome_port": 9224,
+      "search_query": "Custom Designs TX McAllen",
+      "places_query": null,
+      "phone": "+19566242463",
+      "access": true,
+      "note": "Not findable via Places API text search — use phone-anchored Playwright scrape"
+    },
+    "juan": {
+      "name": "Juan Jose Elizondo Realtor",
+      "expected_name": "Juan Elizondo",
+      "business_id": "1252262715358516402",
+      "chrome_port": 9224,
+      "search_query": "Juan Elizondo RE/MAX McAllen TX",
+      "places_query": null,
+      "phone": null,
+      "access": false,
+      "note": "SUSPENDED — needs reinstatement before posting"
+    },
+    "optimum_clinic": {
+      "name": "Optimum Health & Wellness Clinic",
+      "expected_name": "Optimum Health",
+      "business_id": "14383080170528725192",
+      "chrome_port": 9224,
+      "search_query": "Optimum Health Wellness Clinic Pharr TX",
+      "places_query": "Optimum Health Wellness Clinic Pharr TX",
+      "phone": "+19566273258",
+      "access": false,
+      "note": "DUPLICATE — needs resolution before posting"
+    },
+    "optimum_foundation": { "name": "Optimum Foundation", "expected_name": "Optimum Foundation", "places_query": null, "access": false, "note": "Not yet mapped" }
+  },
+  "chrome_profiles": {
+    "9223": "Yehuda account — Sugar Shack, Island Candy (both verified)",
+    "9224": "Mario account — Custom Designs TX (verified), Juan (suspended), Optimum (duplicate), SPI (duplicate)",
+    "9222": "OLD/WRONG Mario profile — do not use for GBP"
+  }
+}

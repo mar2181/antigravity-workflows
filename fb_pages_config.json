@@ -1,0 +1,52 @@
+{
+  "pages": {
+    "juan": {
+      "name": "Juan Jose Elizondo Re/Max Elite",
+      "url": "https://www.facebook.com/ElizondoReMax/",
+      "page_id": "316634185463817",
+      "phone": "(956) 522-1481",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "graph_api"
+    },
+    "optimum_clinic": {
+      "name": "Optimum Health and Wellness Clinic",
+      "url": "https://www.facebook.com/profile.php?id=61588407637377",
+      "page_id": "61588407637377",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "graph_api"
+    },
+    "spi": {
+      "name": "SPI Fund Rentals",
+      "url": "https://www.facebook.com/spifunrentals",
+      "page_id": "spifunrentals"
+    },
+    "island_arcade": {
+      "name": "Island Arcade South Padre Island Texas",
+      "url": "https://www.facebook.com/profile.php?id=100090911360621",
+      "page_id": "100090911360621"
+    },
+    "sugar_shack": {
+      "name": "The Sugar Shack",
+      "url": "https://www.facebook.com/profile.php?id=61557735298128",
+      "page_id": "61557735298128"
+    },
+    "island_candy": {
+      "name": "Island Candy",
+      "url": "https://www.facebook.com/profile.php?id=100090560413893",
+      "page_id": "100090560413893"
+    },
+    "custom_designs_tx": {
+      "name": "Custom Designs TX",
+      "url": "https://www.facebook.com/profile.php?id=61553759342111",
+      "page_id": "61553759342111",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "playwright"
+    }
+  },
+  "auth_profile": "facebook_sniffer_profile",
+  "headless": false,
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  }
+}
