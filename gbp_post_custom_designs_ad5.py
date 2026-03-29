@@ -31,6 +31,60 @@ TEXT = (
 def log(msg): print(f"[gbp_custom_designs_ad5] {msg}", flush=True)
 
 
+async def _click_skip_in_copy_dialog(page):
+    """CRITICAL: After clicking Post, Google shows 'Copy post to other profiles' dialog.
+    The Skip button is a <button> with text 'Skip' inside an IFRAME (not the main page).
+    We MUST click Skip to finalize the post. Without this, the post is NOT published.
+
+    Strategy: search ALL frames for a button whose text is exactly 'Skip'.
+    Do NOT break early on Close/Back buttons — those are on the outer page and do nothing."""
+    log("STEP: Dismissing 'Copy post' dialog (clicking Skip in iframe)...")
+
+    for attempt in range(3):
+        for frame in page.frames:
+            try:
+                result = await frame.evaluate("""() => {
+                    const btns = Array.from(document.querySelectorAll('button'));
+                    for (let b of btns) {
+                        if (b.textContent.trim() === 'Skip' && b.offsetParent !== null) {
+                            b.click();
+                            return true;
+                        }
+                    }
+                    return false;
+                }""")
+                if result:
+                    log(f"SUCCESS: Clicked Skip in iframe — post is now published")
+                    await page.wait_for_timeout(3000)
+                    return True
+            except Exception:
+                pass
+
+        try:
+            result = await page.evaluate("""() => {
+                const btns = Array.from(document.querySelectorAll('button'));
+                for (let b of btns) {
+                    if (b.textContent.trim() === 'Skip' && b.offsetParent !== null) {
+                        b.click();
+                        return true;
+                    }
+                }
+                return false;
+            }""")
+            if result:
+                log(f"SUCCESS: Clicked Skip on main page — post is now published")
+                await page.wait_for_timeout(3000)
+                return True
+        except Exception:
+            pass
+
+        log(f"Skip not found yet (attempt {attempt+1}/3), waiting...")
+        await page.wait_for_timeout(2000)
+
+    log("FAILED: Could not find Skip button after 3 attempts — POST MAY NOT BE PUBLISHED")
+    return False
+
+
 async def post():
     from playwright.async_api import async_playwright
     async with async_playwright() as p:
@@ -40,6 +94,14 @@ async def post():
         )
         page = context.pages[0] if context.pages else await context.new_page()
         try:
+            # Clear any stale dialogs from previous runs
+            try:
+                await page.keyboard.press("Escape")
+                await page.keyboard.press("Escape")
+                await page.wait_for_timeout(500)
+            except Exception:
+                pass
+
             log("Navigating to business.google.com/locations...")
             await page.goto("https://business.google.com/locations", wait_until="domcontentloaded", timeout=30000)
             await page.wait_for_timeout(3000)
@@ -134,17 +196,15 @@ async def post():
             await page.wait_for_timeout(1000)
             await page.screenshot(path=str(SCRIPT_DIR / "gbp_cd5_step4.png"))
 
-            # Click Post
-            log("Clicking Post...")
-            published = False
+            # Click Post (opens "Copy post" dialog — does NOT publish yet)
+            log("Clicking Post button (opens Copy dialog)...")
             try:
                 post_btn = modal_frame.locator('button:has-text("Post")').last
                 await post_btn.wait_for(timeout=5000)
                 await post_btn.click()
-                published = True
-                log("Clicked Post button")
+                log("Clicked Post — now need to handle Copy dialog")
             except Exception as e:
-                log(f"Post button error: {e}")
+                log(f"Post button error: {e}, trying JS fallback...")
                 for frame in page.frames:
                     try:
                         result = await frame.evaluate("""() => {
@@ -153,15 +213,22 @@ async def post():
                             return false;
                         }""")
                         if result:
-                            published = True
                             log("Post clicked via JS fallback")
                             break
                     except Exception:
                         pass
 
-            await page.wait_for_timeout(4000)
-            await page.screenshot(path=str(SCRIPT_DIR / "gbp_cd5_step5_final.png"), full_page=True)
-            log(f"{'✅ Posted!' if published else '⚠️ Check screenshots.'}")
+            await page.wait_for_timeout(6000)
+            await page.screenshot(path=str(SCRIPT_DIR / "gbp_cd5_step5_copy_dialog.png"))
+
+            # CRITICAL: Click Skip in the Copy post dialog to actually publish
+            published = await _click_skip_in_copy_dialog(page)
+
+            await page.screenshot(path=str(SCRIPT_DIR / "gbp_cd5_step6_final.png"), full_page=True)
+            if published:
+                log("POST CONFIRMED: Custom Designs ad5 GBP update is live")
+            else:
+                log("WARNING: Post may not have published — check GBP manually")
             return published
         except Exception as e:
             log(f"❌ Error: {e}")

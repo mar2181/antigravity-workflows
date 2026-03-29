@@ -1032,6 +1032,190 @@ def _fetch_screenpipe_last_activity() -> dict:
     }
 
 
+def _fetch_claw_pending() -> dict:
+    """Fetch pending CLAW items count from Supabase via claw_bridge.
+    Returns {"total": int, "by_client": {name: count}, "by_type": {type: count}, "items": [...]}."""
+    try:
+        from claw_bridge import get_pending, BUSINESS_NAMES as _BN
+    except ImportError:
+        return {}
+    try:
+        items = get_pending()
+    except Exception:
+        return {}
+    if not items:
+        return {"total": 0, "by_client": {}, "by_type": {}, "items": []}
+
+    by_client = {}
+    by_type = {}
+    for item in items:
+        c = _BN.get(item.get("client_key", ""), item.get("client_key", "unknown"))
+        t = item.get("item_type", "unknown")
+        by_client[c] = by_client.get(c, 0) + 1
+        by_type[t] = by_type.get(t, 0) + 1
+
+    return {
+        "total": len(items),
+        "by_client": by_client,
+        "by_type": by_type,
+        "items": items[:10],  # first 10 for display
+    }
+
+
+# ─── Screenpipe Audio Insights (UC-5) ─────────────────────────────────────────
+
+def _fetch_audio_insights() -> dict:
+    """Query Screenpipe audio transcriptions from last 24h, tag by client,
+    extract action items and strategy notes.
+    Returns {"segments": int, "duration_min": float, "client_mentions": {key: count},
+             "action_items": [str], "strategy_notes": [str]} or empty dict."""
+    try:
+        import urllib.request as _req
+        import urllib.parse as _parse
+        from screenpipe_verifier import screenpipe_healthy, SCREENPIPE_BASE
+    except ImportError:
+        return {}
+    if not screenpipe_healthy():
+        return {}
+
+    from datetime import timezone as _tz
+    yesterday = datetime.now(_tz.utc) - timedelta(days=1)
+    start = yesterday.replace(hour=0, minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%SZ")
+    end = yesterday.replace(hour=23, minute=59, second=59).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    try:
+        params = _parse.urlencode({
+            "content_type": "audio",
+            "limit": "500",
+            "start_time": start,
+            "end_time": end,
+            "min_length": "20",
+        })
+        url = f"{SCREENPIPE_BASE}/search?{params}"
+        resp = _req.urlopen(url, timeout=15)
+        data = json.loads(resp.read())
+    except Exception:
+        return {}
+
+    audio_items = data.get("data", [])
+    if not audio_items:
+        return {"segments": 0, "duration_min": 0, "client_mentions": {},
+                "action_items": [], "strategy_notes": []}
+
+    # Client keyword map (same as screenpipe_audio_miner.py)
+    client_kw = {
+        "sugar_shack": ["sugar shack", "candy store", "candy shop", "taffy", "fudge"],
+        "island_arcade": ["island arcade", "arcade", "claw machine", "game room"],
+        "island_candy": ["island candy", "ice cream", "frozen treats", "gelato"],
+        "juan": ["juan elizondo", "remax", "re/max", "real estate", "commercial property"],
+        "spi_fun_rentals": ["spi fun rentals", "golf cart", "beach rental"],
+        "custom_designs_tx": ["custom designs", "security camera", "alarm", "home theater", "surveillance"],
+        "optimum_clinic": ["optimum clinic", "optimum health", "cash clinic", "night clinic"],
+        "optimum_foundation": ["optimum foundation", "wound care", "nonprofit", "regenerative"],
+    }
+    action_triggers = ["i need to", "we need to", "we should", "don't forget",
+                       "make sure", "remind me", "todo", "let's do", "have to",
+                       "schedule", "deadline", "by friday", "by monday", "by tomorrow"]
+    strategy_triggers = ["the strategy", "our angle", "competitor", "ad copy",
+                         "campaign", "marketing", "engagement", "facebook",
+                         "google business", "reviews", "seo", "content", "blog post"]
+
+    client_counts = {}
+    action_items = []
+    strategy_notes = []
+    total_dur = 0
+    seen_actions = set()
+    seen_strategy = set()
+
+    for item in audio_items:
+        content = item.get("content", {})
+        text = content.get("transcription", "") or content.get("text", "")
+        if not text or len(text.strip()) < 15:
+            continue
+        start_t = content.get("start_time", 0) or 0
+        end_t = content.get("end_time", 0) or 0
+        total_dur += max(0, end_t - start_t)
+        text_lower = text.lower()
+
+        # Tag clients
+        for ckey, keywords in client_kw.items():
+            if any(kw in text_lower for kw in keywords):
+                client_counts[ckey] = client_counts.get(ckey, 0) + 1
+
+        # Action items
+        for trigger in action_triggers:
+            idx = text_lower.find(trigger)
+            if idx >= 0:
+                s = max(0, text_lower.rfind(".", 0, idx) + 1)
+                e = text_lower.find(".", idx)
+                if e < 0:
+                    e = min(len(text), idx + 150)
+                sentence = text[s:e].strip()
+                if len(sentence) > 15 and sentence[:50].lower() not in seen_actions:
+                    seen_actions.add(sentence[:50].lower())
+                    action_items.append(sentence[:200])
+                break
+
+        # Strategy notes
+        if any(t in text_lower for t in strategy_triggers):
+            short = text[:250].replace("\n", " ").strip()
+            if short[:50].lower() not in seen_strategy:
+                seen_strategy.add(short[:50].lower())
+                strategy_notes.append(short)
+
+    return {
+        "segments": len(audio_items),
+        "duration_min": round(total_dur / 60, 1),
+        "client_mentions": client_counts,
+        "action_items": action_items[:10],
+        "strategy_notes": strategy_notes[:10],
+    }
+
+
+# ─── Engagement Correlation (UC-6) ───────────────────────────────────────────
+
+def _fetch_engagement_correlation() -> dict:
+    """Pull attention ↔ engagement correlation from engagement_logger.
+    Returns the correlation dict or empty dict on failure."""
+    try:
+        from engagement_logger import correlate_attention_engagement
+    except ImportError:
+        return {}
+    try:
+        return correlate_attention_engagement(days_back=7)
+    except Exception:
+        return {}
+
+
+# ─── Image Bucket Health Check (UC-7) ────────────────────────────────────────
+
+def _check_image_buckets() -> dict:
+    """Count ad images per client in ~/clientkey_ad_images/ folders.
+    Returns {"clients": {client_key: {"count": int, "path": str}}, "low": [client_keys with < 5 images]}."""
+    home = Path.home()
+    folder_map = {
+        "sugar_shack": home / "sugar_shack_ad_images",
+        "island_arcade": home / "island_arcade_ad_images",
+        "island_candy": home / "island_candy_ad_images",
+        "juan": home / "juan_remax_ad_images",
+        "spi_fun_rentals": home / "spi_fun_rentals_ad_images",
+        "custom_designs_tx": home / "custom_designs_ad_images",
+        "optimum_clinic": home / "optimum_clinic_ad_images",
+        "optimum_foundation": home / "optimum_foundation_ad_images",
+    }
+    clients = {}
+    low = []
+    for biz_key, folder in folder_map.items():
+        count = 0
+        if folder.exists():
+            count = sum(1 for f in folder.iterdir()
+                        if f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"))
+        clients[biz_key] = {"count": count, "path": str(folder)}
+        if count < 5:
+            low.append(biz_key)
+    return {"clients": clients, "low": low}
+
+
 # ─── Business Data Aggregator ─────────────────────────────────────────────────
 
 def collect_business_data(business_key: str, state: dict) -> dict:
@@ -1141,7 +1325,7 @@ def generate_action_items(all_data: list, seasonal: list, kw_rankings: dict = No
 
 # ─── Markdown Report ──────────────────────────────────────────────────────────
 
-def generate_markdown(all_data: list, action_items: list, seasonal: list, today: date, competitor_report: str, gbp_data: dict = None, fb_health: list = None, fb_competitor_data: dict = None, competitor_state: dict = None, adlibrary_data: dict = None, ai_analysis: list = None, review_data: dict = None, delta_data: dict = None, calendar_data: dict = None, gmail_data: dict = None, attention_data: dict = None, time_breakdown_data: dict = None, last_activity_data: dict = None) -> str:
+def generate_markdown(all_data: list, action_items: list, seasonal: list, today: date, competitor_report: str, gbp_data: dict = None, fb_health: list = None, fb_competitor_data: dict = None, competitor_state: dict = None, adlibrary_data: dict = None, ai_analysis: list = None, review_data: dict = None, delta_data: dict = None, calendar_data: dict = None, gmail_data: dict = None, attention_data: dict = None, time_breakdown_data: dict = None, last_activity_data: dict = None, claw_data: dict = None, audio_data: dict = None, correlation_data: dict = None, image_buckets: dict = None, openclaw_health: dict = None) -> str:
     lines = []
     weekday = today.strftime("%A")
 
@@ -1260,6 +1444,96 @@ def generate_markdown(all_data: list, action_items: list, seasonal: list, today:
                 bar = "#" * max(1, int(info["pct"] / 5))
                 lines.append(f"- {app_name}: {info['minutes']:.0f} min ({info['pct']:.0f}%) {bar}")
             lines += ["", "---", ""]
+
+    # OpenClaw Local Worker Status
+    if openclaw_health:
+        _wk = openclaw_health.get("worker", {})
+        _q = _wk.get("queue", {})
+        _ollama = openclaw_health.get("ollama", {})
+        _or = openclaw_health.get("openrouter", {})
+        lines.append(f"## OpenClaw Local Worker")
+        lines.append("")
+        lines.append(f"- **Default model:** {openclaw_health.get('default_model', '?')}")
+        lines.append(f"- **OpenRouter:** {'connected' if _or.get('connected') else 'offline'}")
+        lines.append(f"- **Ollama:** {'connected' if _ollama.get('connected') else 'offline'} "
+                      f"({len(_ollama.get('models', []))} models)")
+        lines.append(f"- **Tasks completed:** {_wk.get('tasks_completed', 0)} | "
+                      f"Pending: {_q.get('pending', 0)} | Failed: {_q.get('failed', 0)}")
+        lines.append("")
+        lines.append("```bash")
+        lines.append("python openclaw_dispatch.py --health   # detailed health")
+        lines.append("python openclaw_dispatch.py --stats    # processing stats")
+        lines.append("```")
+        lines += ["", "---", ""]
+
+    # CLAW Pending Items
+    if claw_data and claw_data.get("total", 0) > 0:
+        lines.append(f"## CLAW Pending Items ({claw_data['total']} awaiting approval)")
+        lines.append("")
+        if claw_data.get("by_client"):
+            for client_name, count in sorted(claw_data["by_client"].items(), key=lambda x: -x[1]):
+                lines.append(f"- **{client_name}**: {count}")
+        if claw_data.get("by_type"):
+            types_str = ", ".join(f"{t} ({c})" for t, c in sorted(claw_data["by_type"].items(), key=lambda x: -x[1]))
+            lines.append(f"- Types: {types_str}")
+        lines.append("")
+        lines.append("```bash")
+        lines.append("python claw_bridge.py              # view all pending")
+        lines.append("python claw_bridge.py --approve 5  # approve item #5")
+        lines.append("```")
+        lines += ["", "---", ""]
+
+    # Voice Notes Summary (Audio Miner)
+    if audio_data and audio_data.get("segments", 0) > 0:
+        lines.append(f"## Voice Notes Summary ({audio_data['segments']} audio segments, {audio_data['duration_min']:.0f} min)")
+        lines.append("")
+        if audio_data.get("client_mentions"):
+            lines.append("**Client mentions in audio:**")
+            for ckey, count in sorted(audio_data["client_mentions"].items(), key=lambda x: -x[1]):
+                name = BUSINESS_NAMES.get(ckey, ckey)
+                lines.append(f"- {name}: {count}")
+            lines.append("")
+        if audio_data.get("action_items"):
+            lines.append("**Action items from voice:**")
+            for item in audio_data["action_items"][:5]:
+                lines.append(f"- {item}")
+            lines.append("")
+        if audio_data.get("strategy_notes"):
+            lines.append("**Strategy notes from voice:**")
+            for note in audio_data["strategy_notes"][:5]:
+                lines.append(f"- {note[:200]}")
+            lines.append("")
+        lines += ["---", ""]
+
+    # Attention ↔ Engagement Correlation
+    if correlation_data and correlation_data.get("clients"):
+        lines.append(f"## Attention vs Engagement ({correlation_data.get('period_days', 7)}d)")
+        lines.append("")
+        lines.append(f"| Client | Screen Time | Posts | Avg Score | Status |")
+        lines.append(f"|---|---|---|---|---|")
+        for biz_key, c in sorted(correlation_data["clients"].items(), key=lambda x: x[1]["attention_rank"]):
+            status_icon = {"aligned": "=", "over-indexed": ">>", "under-indexed": "<<", "no-data": "—"}.get(c["correlation"], "?")
+            lines.append(f"| {c['name']} | {c['attention_mentions']} | {c['posts_count']} | {c['avg_engagement']:.0f} | {status_icon} {c['correlation']} |")
+        if correlation_data.get("insight"):
+            lines.append("")
+            lines.append(f"> {correlation_data['insight']}")
+        lines += ["", "---", ""]
+
+    # Image Bucket Health
+    if image_buckets and image_buckets.get("low"):
+        lines.append("## Image Buckets — Low Stock Warning")
+        lines.append("")
+        for biz_key in image_buckets["low"]:
+            info = image_buckets["clients"].get(biz_key, {})
+            name = BUSINESS_NAMES.get(biz_key, biz_key)
+            count = info.get("count", 0)
+            if count == 0:
+                lines.append(f"- **{name}**: EMPTY — no ad images available")
+            else:
+                lines.append(f"- **{name}**: only {count} images (< 5)")
+        lines.append("")
+        lines.append("Run the client's ad skill to generate more images, or use fal.ai directly.")
+        lines += ["", "---", ""]
 
     # Action Items
     lines.append("## Action Items (Read This First)")
@@ -1617,7 +1891,7 @@ def priority_badge(priority: str) -> str:
     return f'<span style="background:{color};color:#fff;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:700;margin-right:8px">{label}</span>'
 
 
-def generate_html(all_data: list, action_items: list, seasonal: list, today: date, competitor_report: str, gbp_data: dict = None, fb_health: list = None, fb_competitor_data: dict = None, competitor_state: dict = None, delta_data: dict = None, calendar_data: dict = None, gmail_data: dict = None, attention_data: dict = None, time_breakdown_data: dict = None, last_activity_data: dict = None) -> str:
+def generate_html(all_data: list, action_items: list, seasonal: list, today: date, competitor_report: str, gbp_data: dict = None, fb_health: list = None, fb_competitor_data: dict = None, competitor_state: dict = None, delta_data: dict = None, calendar_data: dict = None, gmail_data: dict = None, attention_data: dict = None, time_breakdown_data: dict = None, last_activity_data: dict = None, claw_data: dict = None, audio_data: dict = None, correlation_data: dict = None, image_buckets: dict = None) -> str:
     weekday = today.strftime("%A")
     date_str = today.strftime("%B %d, %Y")
 
@@ -2075,6 +2349,86 @@ def generate_html(all_data: list, action_items: list, seasonal: list, today: dat
                             f'<span style="color:#8b949e;font-size:12px">{info["minutes"]:.0f} min ({info["pct"]:.0f}%)</span></div>')
             time_breakdown_html = tb_bars
 
+    # Build CLAW pending items HTML
+    claw_html = ""
+    if claw_data and claw_data.get("total", 0) > 0:
+        claw_rows = ""
+        if claw_data.get("by_client"):
+            for client_name, count in sorted(claw_data["by_client"].items(), key=lambda x: -x[1]):
+                claw_rows += (f'<div style="display:flex;justify-content:space-between;padding:6px 0;'
+                              f'border-bottom:1px solid #21262d">'
+                              f'<span style="color:#c9d1d9">{client_name}</span>'
+                              f'<span style="color:#f0883e;font-weight:600">{count}</span></div>')
+        if claw_data.get("by_type"):
+            types_str = ", ".join(f"{t} ({c})" for t, c in sorted(claw_data["by_type"].items(), key=lambda x: -x[1]))
+            claw_rows += f'<div style="color:#8b949e;font-size:12px;margin-top:8px">Types: {types_str}</div>'
+        claw_rows += ('<div style="color:#8b949e;font-size:12px;margin-top:10px">'
+                      '<code style="background:#21262d;color:#79c0ff;padding:2px 6px;border-radius:4px;font-size:12px">'
+                      'python claw_bridge.py</code> to review</div>')
+        claw_html = claw_rows
+
+    # Build Voice Notes (Audio Miner) HTML
+    audio_html = ""
+    if audio_data and audio_data.get("segments", 0) > 0:
+        audio_parts = ""
+        if audio_data.get("client_mentions"):
+            audio_parts += '<div style="margin-bottom:10px;color:#8b949e;font-size:12px;font-weight:600">CLIENT MENTIONS</div>'
+            for ckey, count in sorted(audio_data["client_mentions"].items(), key=lambda x: -x[1]):
+                name = BUSINESS_NAMES.get(ckey, ckey)
+                audio_parts += (f'<div style="display:flex;justify-content:space-between;padding:4px 0;'
+                                f'border-bottom:1px solid #21262d">'
+                                f'<span style="color:#c9d1d9">{name}</span>'
+                                f'<span style="color:#d2a8ff;font-weight:600">{count}</span></div>')
+        if audio_data.get("action_items"):
+            audio_parts += '<div style="margin:12px 0 6px;color:#8b949e;font-size:12px;font-weight:600">ACTION ITEMS FROM VOICE</div>'
+            for item in audio_data["action_items"][:5]:
+                audio_parts += (f'<div style="padding:4px 0;color:#f0883e;font-size:13px">'
+                                f'&bull; {item[:200]}</div>')
+        if audio_data.get("strategy_notes"):
+            audio_parts += '<div style="margin:12px 0 6px;color:#8b949e;font-size:12px;font-weight:600">STRATEGY NOTES</div>'
+            for note in audio_data["strategy_notes"][:5]:
+                audio_parts += (f'<div style="padding:4px 0;color:#79c0ff;font-size:13px">'
+                                f'&bull; {note[:200]}</div>')
+        audio_html = audio_parts
+
+    # Build Attention ↔ Engagement Correlation HTML
+    correlation_html = ""
+    if correlation_data and correlation_data.get("clients"):
+        corr_rows = ""
+        status_colors = {"aligned": "#3fb950", "over-indexed": "#f0883e", "under-indexed": "#79c0ff", "no-data": "#484f58"}
+        for biz_key, c in sorted(correlation_data["clients"].items(), key=lambda x: x[1]["attention_rank"]):
+            color = status_colors.get(c["correlation"], "#8b949e")
+            corr_rows += (f'<div style="display:flex;justify-content:space-between;padding:6px 0;'
+                          f'border-bottom:1px solid #21262d;font-size:13px">'
+                          f'<span style="color:#c9d1d9;width:180px">{c["name"]}</span>'
+                          f'<span style="color:#8b949e;width:70px;text-align:right">{c["attention_mentions"]} attn</span>'
+                          f'<span style="color:#8b949e;width:55px;text-align:right">{c["posts_count"]} posts</span>'
+                          f'<span style="color:#8b949e;width:60px;text-align:right">{c["avg_engagement"]:.0f} eng</span>'
+                          f'<span style="color:{color};width:100px;text-align:right;font-weight:600">{c["correlation"]}</span>'
+                          f'</div>')
+        if correlation_data.get("insight"):
+            corr_rows += (f'<div style="margin-top:10px;padding:8px 12px;background:#21262d;border-radius:4px;'
+                          f'color:#d2a8ff;font-size:12px;font-style:italic">{correlation_data["insight"]}</div>')
+        correlation_html = corr_rows
+
+    # Build Image Bucket HTML
+    image_bucket_html = ""
+    if image_buckets and image_buckets.get("low"):
+        rows = ""
+        for biz_key in image_buckets["low"]:
+            info = image_buckets["clients"].get(biz_key, {})
+            name = BUSINESS_NAMES.get(biz_key, biz_key)
+            count = info.get("count", 0)
+            color = "#f85149" if count == 0 else "#f0883e"
+            label = "EMPTY" if count == 0 else f"{count} images"
+            rows += (f'<div style="display:flex;justify-content:space-between;padding:6px 0;'
+                     f'border-bottom:1px solid #21262d">'
+                     f'<span style="color:#c9d1d9">{name}</span>'
+                     f'<span style="color:{color};font-weight:600">{label}</span></div>')
+        rows += ('<div style="color:#8b949e;font-size:12px;margin-top:8px">'
+                 'Run the client ad skill or fal.ai to replenish.</div>')
+        image_bucket_html = rows
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2141,6 +2495,34 @@ def generate_html(all_data: list, action_items: list, seasonal: list, today: dat
     <h2>&#9201; Yesterday's Time Breakdown ({sum(v["minutes"] for v in time_breakdown_data.values()):.0f} min)</h2>
     <div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:14px 18px;font-size:14px">
       {time_breakdown_html}
+    </div>
+  </div>'''}
+
+  {"" if not claw_html else f'''<div class="section">
+    <h2>&#128230; CLAW Pending Items ({claw_data.get("total", 0)} awaiting approval)</h2>
+    <div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f0883e;border-radius:6px;padding:14px 18px;font-size:14px">
+      {claw_html}
+    </div>
+  </div>'''}
+
+  {"" if not audio_html else f'''<div class="section">
+    <h2>&#127908; Voice Notes Summary ({audio_data.get("segments", 0)} segments, {audio_data.get("duration_min", 0):.0f} min)</h2>
+    <div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #d2a8ff;border-radius:6px;padding:14px 18px;font-size:14px">
+      {audio_html}
+    </div>
+  </div>'''}
+
+  {"" if not correlation_html else f'''<div class="section">
+    <h2>&#128200; Attention vs Engagement ({correlation_data.get("period_days", 7)}d)</h2>
+    <div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:6px;padding:14px 18px;font-size:14px">
+      {correlation_html}
+    </div>
+  </div>'''}
+
+  {"" if not image_bucket_html else f'''<div class="section">
+    <h2>&#127912; Image Buckets — Low Stock Warning</h2>
+    <div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #f85149;border-radius:6px;padding:14px 18px;font-size:14px">
+      {image_bucket_html}
     </div>
   </div>'''}
 
@@ -2510,15 +2892,83 @@ def run_brief(businesses: list, text_only: bool = False, open_browser: bool = Fa
     except Exception as e:
         print(f"skipped: {e}")
 
+    # Fetch CLAW pending items
+    claw_data = None
+    try:
+        print("  Checking CLAW pending items...", end=" ")
+        claw_data = _fetch_claw_pending()
+        if claw_data and claw_data.get("total"):
+            print(f"done ({claw_data['total']} items pending approval)")
+        else:
+            print("none pending")
+    except Exception as e:
+        print(f"skipped: {e}")
+
+    # Check OpenClaw local worker status
+    openclaw_health = None
+    try:
+        print("  Checking OpenClaw local worker...", end=" ")
+        import urllib.request as _ur
+        _resp = _ur.urlopen("http://127.0.0.1:8080/health", timeout=3)
+        openclaw_health = json.loads(_resp.read())
+        _stats = openclaw_health.get("worker", {})
+        print(f"running (default: {openclaw_health.get('default_model', '?')}, "
+              f"completed: {_stats.get('tasks_completed', 0)}, "
+              f"queue: {_stats.get('queue', {}).get('pending', 0)} pending)")
+    except Exception as e:
+        print(f"offline ({e})")
+
+    # Fetch Screenpipe audio insights
+    audio_data = None
+    try:
+        print("  Mining audio transcriptions...", end=" ")
+        audio_data = _fetch_audio_insights()
+        if audio_data and audio_data.get("segments"):
+            mentions = sum(audio_data.get("client_mentions", {}).values())
+            actions = len(audio_data.get("action_items", []))
+            print(f"done ({audio_data['segments']} segments, {mentions} client mentions, {actions} action items)")
+        else:
+            print("no audio data for yesterday")
+    except Exception as e:
+        print(f"skipped: {e}")
+
+    # Fetch engagement correlation
+    correlation_data = None
+    try:
+        print("  Running attention ↔ engagement correlation...", end=" ")
+        correlation_data = _fetch_engagement_correlation()
+        if correlation_data and correlation_data.get("clients"):
+            aligned = sum(1 for c in correlation_data["clients"].values() if c["correlation"] == "aligned")
+            total = len(correlation_data["clients"])
+            print(f"done ({aligned}/{total} clients aligned)")
+        else:
+            print("no data")
+    except Exception as e:
+        print(f"skipped: {e}")
+
+    # Check image buckets
+    image_buckets = None
+    try:
+        print("  Checking image buckets...", end=" ")
+        image_buckets = _check_image_buckets()
+        low = image_buckets.get("low", [])
+        if low:
+            names = [BUSINESS_NAMES.get(k, k) for k in low]
+            print(f"WARNING: {len(low)} clients low — {', '.join(names)}")
+        else:
+            print("all clients stocked")
+    except Exception as e:
+        print(f"skipped: {e}")
+
     # Generate markdown
-    md_content = generate_markdown(all_data, action_items, seasonal, today, competitor_report, gbp_data, fb_health, fb_competitor_data, competitor_state=state, adlibrary_data=adlibrary_data, ai_analysis=ai_analysis, review_data=review_data, delta_data=delta_data, calendar_data=calendar_data, gmail_data=gmail_data, attention_data=attention_data, time_breakdown_data=time_breakdown_data, last_activity_data=last_activity_data)
+    md_content = generate_markdown(all_data, action_items, seasonal, today, competitor_report, gbp_data, fb_health, fb_competitor_data, competitor_state=state, adlibrary_data=adlibrary_data, ai_analysis=ai_analysis, review_data=review_data, delta_data=delta_data, calendar_data=calendar_data, gmail_data=gmail_data, attention_data=attention_data, time_breakdown_data=time_breakdown_data, last_activity_data=last_activity_data, claw_data=claw_data, audio_data=audio_data, correlation_data=correlation_data, image_buckets=image_buckets, openclaw_health=openclaw_health)
     md_path = BRIEFS_DIR / f"{date_str}.md"
     md_path.write_text(md_content, encoding="utf-8")
     print(f"\n[Markdown: {md_path}]")
 
     # Generate HTML
     if not text_only:
-        html_content = generate_html(all_data, action_items, seasonal, today, competitor_report, gbp_data, fb_health, fb_competitor_data, competitor_state=state, delta_data=delta_data, calendar_data=calendar_data, gmail_data=gmail_data, attention_data=attention_data, time_breakdown_data=time_breakdown_data, last_activity_data=last_activity_data)
+        html_content = generate_html(all_data, action_items, seasonal, today, competitor_report, gbp_data, fb_health, fb_competitor_data, competitor_state=state, delta_data=delta_data, calendar_data=calendar_data, gmail_data=gmail_data, attention_data=attention_data, time_breakdown_data=time_breakdown_data, last_activity_data=last_activity_data, claw_data=claw_data, audio_data=audio_data, correlation_data=correlation_data, image_buckets=image_buckets)
         html_path = BRIEFS_DIR / f"{date_str}.html"
         html_path.write_text(html_content, encoding="utf-8")
         print(f"[HTML:     {html_path}]")

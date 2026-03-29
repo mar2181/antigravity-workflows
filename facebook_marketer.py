@@ -404,6 +404,55 @@ class FacebookMarketer:
             return True
 
         self._snap("05_composer_attempt1_failed")
+
+        # Attempt 1.5: detect "Manage Page" admin view and click sidebar Switch button
+        try:
+            sidebar_switch = self.page.locator("a:has-text('Switch'), div[role='button']:has-text('Switch')").filter(has_text="Switch")
+            # Look specifically near bottom of left sidebar — "Switch into ... Page"
+            manage_page_text = self.page.locator("text=Manage Page").first
+            if manage_page_text.is_visible(timeout=2000):
+                print("[DETECT] In 'Manage Page' admin view — clicking sidebar Switch to enter page profile...")
+                # Find the Switch link/button in the sidebar area
+                switch_links = self.page.locator("a:has-text('Switch')").all()
+                for sw in switch_links:
+                    try:
+                        if sw.is_visible():
+                            sw.click()
+                            time.sleep(3)
+                            print("[OK] Clicked sidebar Switch link")
+                            self._snap("05b_after_sidebar_switch")
+                            break
+                    except Exception:
+                        continue
+                else:
+                    # Try role=button Switch
+                    switch_btns = self.page.locator("div[role='button']:has-text('Switch')").all()
+                    for sb in switch_btns:
+                        try:
+                            if sb.is_visible():
+                                sb.click()
+                                time.sleep(3)
+                                print("[OK] Clicked sidebar Switch button")
+                                self._snap("05b_after_sidebar_switch")
+                                break
+                        except Exception:
+                            continue
+
+                # After switching, navigate to page feed
+                if self.current_page_key:
+                    page_url = self.config["pages"][self.current_page_key]["url"]
+                    self.page.goto(page_url)
+                    time.sleep(4)
+                    self._snap("05c_after_switch_navigate")
+
+                # Try composer again
+                if _try_click_composer(dismiss_first=True):
+                    self._snap("05d_composer_open_after_switch")
+                    print("[OK] Composer is open (after sidebar switch)")
+                    return True
+        except Exception as e:
+            print(f"[DEBUG] Sidebar switch attempt: {e}")
+
         # Attempt 2: navigate back to the page URL (reload drifts to notifications after profile switch)
         print("[WARNING] Could not find composer button, re-navigating to page and retrying...")
         if self.current_page_key:

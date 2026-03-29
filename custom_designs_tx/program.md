@@ -171,6 +171,11 @@ python ad_copy_optimizer.py custom_designs_tx --angle "smart home security upgra
 | 8 | cat6 wiring installer mcallen tx | Technical SEO | ⬜ Not started |
 | 9 | home theater cost mcallen tx | Cost/research | ⬜ Not started |
 | 10 | smart home installation cost texas | Cost/research | ⬜ Not started |
+| **Location Pages** | | | |
+| L1 | security camera installation edinburg tx | Location SEO | ✅ Generated 2026-03-27 |
+| L2 | security camera installation mission tx | Location SEO | ✅ Generated 2026-03-27 |
+| L3 | security camera installation pharr tx | Location SEO | ✅ Generated 2026-03-27 |
+| L4 | security camera installation harlingen tx | Location SEO | ✅ Generated 2026-03-27 |
 
 ---
 

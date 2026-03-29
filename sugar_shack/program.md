@@ -41,6 +41,7 @@
 
 | Date | Ad Angle | Offer Mentioned | Format | Engagement | Notes |
 |------|----------|----------------|--------|------------|-------|
+| 2026-03-29 | Road Trip Fuel | "Your road trip isn't complete without a stop" | Image (mission_control_road_trip_fuel.png) | Posting | ✅ LIVE — Posted from Mission Control library at 3:55 PM |
 | 2026-03-14 | Sweet Memories / childhood candy wonder | "Come in, fill a bag" | Image (v2 — dad+daughter in store) | Pending | Spring break family angle; v2 image regenerated |
 | 2026-03-14 | Spring Break Ready (march14) | "Come in, fill a bag" | Image (march14_spring_break) | Pending | Bulk candy + road trip energy |
 | 2026-03-15 | Bulk Candy Budget (ad_4) | "Stop by, fill a bag" | Image (ad_4_bulk_candy_budget.png) | Pending | Family budget angle; per-piece pricing callout |

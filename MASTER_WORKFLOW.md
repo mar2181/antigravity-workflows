@@ -1,7 +1,7 @@
 # ANTIGRAVITY DIGITAL — MASTER WORKFLOW REFERENCE
 > **Every new Claude session should read this file first.**
 > Location: `C:/Users/mario/.gemini/antigravity/tools/execution/MASTER_WORKFLOW.md`
-> Last updated: 2026-03-23
+> Last updated: 2026-03-25
 
 ---
 
@@ -478,6 +478,79 @@ python engagement_logger.py sugar_shack --screenpipe    # auto-capture from scre
 - `verify_and_notify_fb(page_key, text_snippet)` — auto-verify FB posts
 - `check_session_expired()` — detect login walls
 - `get_screen_context_at_failure()` — grab OCR context for debugging
+
+### NEW Screenpipe Pipes (Added 2026-03-25)
+
+```bash
+# ── AUDIO MINING (transcription intelligence) ────────────────────────────────
+python screenpipe_audio_miner.py                       # mine last 24h of audio for client mentions + action items
+python screenpipe_audio_miner.py --hours 8             # last 8 hours
+python screenpipe_audio_miner.py --client sugar_shack  # filter to one client
+python screenpipe_audio_miner.py --telegram            # send summary to Telegram
+
+# ── WEEKLY AGGREGATION ───────────────────────────────────────────────────────
+python screenpipe_weekly_report.py                     # aggregate last 7 days into trend report
+python screenpipe_weekly_report.py --days 14           # 14-day window
+python screenpipe_weekly_report.py --telegram          # send to Telegram
+```
+
+**Reports:**
+- Audio miner → `screenpipe_reports/YYYY-MM-DD/audio-miner.md` + `.html`
+- Weekly report → `screenpipe_reports/weekly_YYYY-MM-DD_to_YYYY-MM-DD.md` + `.html`
+
+### CLAW Bridge — Cloud ↔ Local Content Pipeline (Built 2026-03-25)
+
+Genspark CLAW cloud computer generates content (review responses, ad copy, blog drafts, social posts, images). Items flow through Supabase to the local machine for Mario's approval.
+
+```
+CLAW Cloud → push_to_mario() → Supabase (claw_pending_items) → morning_brief.py → Mario approves → claw_bridge.py --approve
+```
+
+```bash
+# ── LOCAL COMMANDS ──────────────────────────────────────────────────────────
+python claw_bridge.py                     # show all pending items
+python claw_bridge.py --count             # pending count (used by morning brief)
+python claw_bridge.py --approve 5         # approve item #5
+python claw_bridge.py --reject 5 --notes "wrong tone"
+python claw_bridge.py --approve-all --client sugar_shack
+python claw_bridge.py --export            # export approved items to local files
+```
+
+**Supabase table:** `claw_pending_items` (project `svgsbaahxiaeljmfykzp`)
+**Valid client_key values:** `sugar_shack`, `island_arcade`, `island_candy`, `juan`, `spi_fun_rentals`, `custom_designs_tx`, `optimum_clinic`, `optimum_foundation`
+**Valid item_type values:** `review_response`, `ad_copy`, `blog_draft`, `social_post`, `image`
+**Instructions for CLAW:** `CLAW_BRIDGE_INSTRUCTIONS.md` (contains `push_to_mario()` function + examples)
+**Morning brief:** Auto-shows pending count + per-client breakdown
+
+### Hidden Automations Discovered (2026-03-25 Screenpipe Audit)
+
+| Automation | Where | Status |
+|---|---|---|
+| **CLAW Review Response Drafter** | CLAW cloud: `/home/work/.openclaw/workspace/automation/review_response/` | ✅ Now bridged to local via Supabase |
+| **CLAW Pending Items (60+)** | CLAW cloud → Supabase → local | ✅ Bridge built, shows in morning brief |
+| **DBS Framework Skill Builder** | CLAW cloud + Skills 2.0 vault | Documented — next-gen skill creation (100% pass rate vs 10% without) |
+| **Daily Client Performance Generator** | Antigravity local | Active — FB posting with debug snapshots |
+| **Client Image Buckets** | CLAW cloud | ⚠️ 6/8 clients have 0 images — needs batch generation |
+| **Audio Intelligence Mining** | Local: `screenpipe_audio_miner.py` | ✅ Built + wired into morning brief |
+| **Engagement Correlation Loop** | Local: `engagement_logger.py` | ✅ Correlates screen time → post performance |
+
+### Morning Brief Intelligence Sources (All Automated)
+
+The morning brief (`morning_brief.py --open`) now pulls from **all** these sources:
+
+| Source | Data | Added |
+|---|---|---|
+| `program.md` files (×8) | Posting logs, priorities, what's working | Original |
+| `engagement_history.json` | Top-performing ad angles per client | Original |
+| `competitor_reports/` | GBP ratings, FB Ad Library, AI analysis | Original |
+| Google Calendar (GWS) | Today's events | 2026-03 |
+| Gmail (GWS) | Unread + urgent emails | 2026-03 |
+| Facebook health check | Session status per page | 2026-03 |
+| Screenpipe OCR attention | Client screen time distribution | 2026-03 |
+| Screenpipe time breakdown | App usage (minutes per app) | 2026-03 |
+| Screenpipe last activity | "Where you left off" | 2026-03 |
+| CLAW bridge (Supabase) | Pending approval items from cloud | 2026-03-25 |
+| Screenpipe audio mining | Voice notes, action items, strategy mentions | 2026-03-25 |
 
 ---
 

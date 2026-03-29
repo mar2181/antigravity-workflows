@@ -461,6 +461,126 @@ def screenpipe_log(business_key: str, angle: str = "", minutes: int = 5):
         update_whats_working(business_key, analysis)
 
 
+# ─── Attention ↔ Engagement Correlation ──────────────────────────────────────
+
+def correlate_attention_engagement(days_back: int = 7) -> dict:
+    """Correlate Screenpipe client attention (screen time) with engagement scores.
+
+    Returns: {
+        "period_days": int,
+        "clients": {
+            client_key: {
+                "name": str,
+                "attention_mentions": int,
+                "posts_count": int,
+                "avg_engagement": float,
+                "attention_rank": int,
+                "engagement_rank": int,
+                "correlation": "aligned" | "over-indexed" | "under-indexed" | "no-data"
+            }
+        },
+        "insight": str  # one-line summary
+    }
+    """
+    try:
+        import urllib.request as _req
+        from screenpipe_verifier import screenpipe_healthy, SCREENPIPE_BASE
+    except ImportError:
+        return {}
+    if not screenpipe_healthy():
+        return {}
+
+    from datetime import timezone as _tz
+    now = datetime.now(_tz.utc)
+    start = (now - timedelta(days=days_back)).strftime("%Y-%m-%dT00:00:00Z")
+    end = now.strftime("%Y-%m-%dT23:59:59Z")
+
+    # Gather screen attention per client from Screenpipe OCR
+    search_terms = {
+        "sugar_shack": "Sugar Shack",
+        "island_arcade": "Island Arcade",
+        "island_candy": "Island Candy",
+        "juan": "Juan Elizondo",
+        "spi_fun_rentals": "SPI Fun Rentals",
+        "custom_designs_tx": "Custom Designs",
+        "optimum_clinic": "Optimum",
+        "optimum_foundation": "Optimum Foundation",
+    }
+
+    attention = {}
+    for biz_key, term in search_terms.items():
+        try:
+            import urllib.parse as _parse
+            params = _parse.urlencode({
+                "q": term, "content_type": "ocr", "limit": "500",
+                "start_time": start, "end_time": end,
+            })
+            resp = _req.urlopen(f"{SCREENPIPE_BASE}/search?{params}", timeout=10)
+            data = json.loads(resp.read())
+            attention[biz_key] = len(data.get("data", []))
+        except Exception:
+            attention[biz_key] = 0
+
+    # Gather engagement per client from history (same period)
+    cutoff = (now - timedelta(days=days_back)).strftime("%Y-%m-%d")
+    engagement = {}
+    for biz_key in BUSINESS_DIRS:
+        history = load_history(biz_key)
+        recent = [e for e in history if e.get("date", "") >= cutoff]
+        if recent:
+            avg = sum(e.get("score", 0) for e in recent) / len(recent)
+            engagement[biz_key] = {"count": len(recent), "avg": avg}
+        else:
+            engagement[biz_key] = {"count": 0, "avg": 0}
+
+    # Rank both dimensions
+    attn_ranked = sorted(attention.items(), key=lambda x: -x[1])
+    eng_ranked = sorted(engagement.items(), key=lambda x: -x[1]["avg"])
+    attn_rank = {k: i + 1 for i, (k, _) in enumerate(attn_ranked)}
+    eng_rank = {k: i + 1 for i, (k, _) in enumerate(eng_ranked)}
+
+    clients = {}
+    for biz_key in BUSINESS_DIRS:
+        a_rank = attn_rank.get(biz_key, 8)
+        e_rank = eng_rank.get(biz_key, 8)
+        eng_data = engagement.get(biz_key, {"count": 0, "avg": 0})
+
+        if eng_data["count"] == 0:
+            corr = "no-data"
+        elif abs(a_rank - e_rank) <= 2:
+            corr = "aligned"
+        elif a_rank < e_rank:
+            corr = "over-indexed"   # lots of attention, low engagement
+        else:
+            corr = "under-indexed"  # low attention, high engagement
+
+        clients[biz_key] = {
+            "name": BUSINESS_NAMES.get(biz_key, biz_key),
+            "attention_mentions": attention.get(biz_key, 0),
+            "posts_count": eng_data["count"],
+            "avg_engagement": round(eng_data["avg"], 1),
+            "attention_rank": a_rank,
+            "engagement_rank": e_rank,
+            "correlation": corr,
+        }
+
+    # Build insight
+    over = [c["name"] for c in clients.values() if c["correlation"] == "over-indexed"]
+    under = [c["name"] for c in clients.values() if c["correlation"] == "under-indexed"]
+    if over:
+        insight = f"Over-indexed (high attention, low engagement): {', '.join(over)}. Consider changing content angles."
+    elif under:
+        insight = f"Under-indexed (low attention, high engagement): {', '.join(under)}. Double down on what's working."
+    else:
+        insight = "Attention and engagement are generally aligned across clients."
+
+    return {
+        "period_days": days_back,
+        "clients": clients,
+        "insight": insight,
+    }
+
+
 # ─── CLI ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -503,7 +623,31 @@ def main():
         type=int, default=5,
         help="How far back Screenpipe should search (default: 5 min)",
     )
+    parser.add_argument(
+        "--correlate",
+        action="store_true",
+        help="Run attention ↔ engagement correlation analysis (requires Screenpipe)",
+    )
+    parser.add_argument(
+        "--correlate-days",
+        type=int, default=7,
+        help="Days to look back for correlation analysis (default: 7)",
+    )
     args = parser.parse_args()
+
+    if args.correlate:
+        result = correlate_attention_engagement(days_back=args.correlate_days)
+        if not result:
+            print("Correlation unavailable (Screenpipe not running or no data).")
+            return
+        print(f"\n=== Attention ↔ Engagement Correlation ({result['period_days']}d) ===\n")
+        print(f"{'Client':<30} {'Attention':>9} {'Posts':>5} {'Avg Eng':>8} {'A-Rank':>6} {'E-Rank':>6} {'Status':<15}")
+        print("-" * 90)
+        for biz_key, c in sorted(result["clients"].items(), key=lambda x: x[1]["attention_rank"]):
+            print(f"{c['name']:<30} {c['attention_mentions']:>9} {c['posts_count']:>5} "
+                  f"{c['avg_engagement']:>8.1f} {c['attention_rank']:>6} {c['engagement_rank']:>6} {c['correlation']:<15}")
+        print(f"\nInsight: {result['insight']}")
+        return
 
     if args.screenpipe:
         angle = args.add or ""

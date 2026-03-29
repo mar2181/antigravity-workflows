@@ -1,0 +1,93 @@
+{
+  "work_queue": [
+    {
+      "client": "sugar_shack",
+      "keyword": "candy shop spi",
+      "current_rank": null,
+      "search_volume": "medium",
+      "opportunity_score": 30.0,
+      "status": "EXECUTED",
+      "action_type": "gbp_posts",
+      "action_content": "[DRY RUN - not generated]",
+      "pre_action_rank": null,
+      "post_action_rank": null,
+      "delta": null,
+      "gbp_scores": {
+        "description_score": 45,
+        "posts_score": 30,
+        "qa_score": 40,
+        "photo_score": 50,
+        "weakest_signal": "posts",
+        "reasoning": "DRY RUN - simulated scoring"
+      },
+      "created_at": "2026-03-29T17:05:59.583477",
+      "executed_at": "2026-03-29T17:06:02.696901",
+      "execution_result": {
+        "success": true,
+        "dry_run": true
+      }
+    },
+    {
+      "client": "sugar_shack",
+      "keyword": "souvenir shop south padre island",
+      "current_rank": null,
+      "search_volume": "medium",
+      "opportunity_score": 30.0,
+      "status": "EXECUTED",
+      "action_type": "gbp_posts",
+      "action_content": "[DRY RUN - not generated]",
+      "pre_action_rank": null,
+      "post_action_rank": null,
+      "delta": null,
+      "gbp_scores": {
+        "description_score": 45,
+        "posts_score": 30,
+        "qa_score": 40,
+        "photo_score": 50,
+        "weakest_signal": "posts",
+        "reasoning": "DRY RUN - simulated scoring"
+      },
+      "created_at": "2026-03-29T17:05:59.583477",
+      "executed_at": "2026-03-29T17:06:02.696901",
+      "execution_result": {
+        "success": true,
+        "dry_run": true
+      }
+    },
+    {
+      "client": "sugar_shack",
+      "keyword": "gifts south padre island",
+      "current_rank": null,
+      "search_volume": "medium",
+      "opportunity_score": 30.0,
+      "status": "EXECUTED",
+      "action_type": "gbp_posts",
+      "action_content": "[DRY RUN - not generated]",
+      "pre_action_rank": null,
+      "post_action_rank": null,
+      "delta": null,
+      "gbp_scores": {
+        "description_score": 45,
+        "posts_score": 30,
+        "qa_score": 40,
+        "photo_score": 50,
+        "weakest_signal": "posts",
+        "reasoning": "DRY RUN - simulated scoring"
+      },
+      "created_at": "2026-03-29T17:05:59.583477",
+      "executed_at": "2026-03-29T17:06:02.696901",
+      "execution_result": {
+        "success": true,
+        "dry_run": true
+      }
+    }
+  ],
+  "winning_patterns": {},
+  "action_history": [],
+  "last_analyzed": "2026-03-29T17:05:59.583477",
+  "last_generated": "2026-03-29T17:06:01.925471",
+  "last_executed": "2026-03-29T17:06:02.696901",
+  "last_tracked": null,
+  "created_at": "2026-03-29T00:00:00",
+  "dry_run": true
+}

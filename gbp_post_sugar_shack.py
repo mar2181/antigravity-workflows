@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""gbp_post_sugar_shack.py — Post latest blog GBP content to Sugar Shack GBP (Yehuda account)"""
+"""gbp_post_sugar_shack.py — Post latest blog GBP content to Sugar Shack GBP (Yehuda account)
+
+IMPORTANT: After clicking Post, Google shows a "Copy post" dialog in an IFRAME.
+The Skip button lives in that iframe (usually frame index 2), NOT the main page.
+We must search ALL frames for a <button> with text "Skip" and click it to finalize.
+Without this step, the post is NOT published. Do NOT remove this logic."""
 
 import asyncio, json, sys
 from pathlib import Path
@@ -14,22 +19,76 @@ except ImportError:
     SCREENPIPE_AVAILABLE = False
 
 SCRIPT_DIR = Path(__file__).parent
-PROFILE_DIR = str(SCRIPT_DIR / "gbp_sniffer_profile")  # Yehuda's GBP account
+PROFILE_DIR = str(SCRIPT_DIR / "gbp_sniffer_profile")
 BUSINESS_NAME = "SUGAR SHACK"
 
 # Load latest blog meta
 _meta_dir = SCRIPT_DIR / "blog_posts" / "sugar_shack"
 _metas = sorted(_meta_dir.glob("*_meta.json"))
 if not _metas:
-    print("❌ No Sugar Shack meta file found"); sys.exit(1)
+    print("No Sugar Shack meta file found"); sys.exit(1)
 _meta = json.loads(_metas[-1].read_text(encoding="utf-8"))
-TEXT  = _meta.get("gbp", "")
+TEXT = _meta.get("gbp", "")
 IMAGE = _meta.get("images", {}).get("hero", "")
 print(f"Meta: {_metas[-1].name}")
 print(f"Image: {IMAGE}  exists={Path(IMAGE).exists() if IMAGE else False}")
 
 
 def log(msg): print(f"[gbp_sugar_shack] {msg}", flush=True)
+
+
+async def _click_skip_in_copy_dialog(page):
+    """CRITICAL: After clicking Post, Google shows 'Copy post to other profiles' dialog.
+    The Skip button is a <button> with text 'Skip' inside an IFRAME (not the main page).
+    We MUST click Skip to finalize the post. Without this, the post is NOT published.
+
+    Strategy: search ALL frames for a button whose text is exactly 'Skip'.
+    Do NOT break early on Close/Back buttons — those are on the outer page and do nothing."""
+    log("STEP: Dismissing 'Copy post' dialog (clicking Skip in iframe)...")
+
+    for attempt in range(3):
+        for frame in page.frames:
+            try:
+                result = await frame.evaluate("""() => {
+                    const btns = Array.from(document.querySelectorAll('button'));
+                    for (let b of btns) {
+                        if (b.textContent.trim() === 'Skip' && b.offsetParent !== null) {
+                            b.click();
+                            return true;
+                        }
+                    }
+                    return false;
+                }""")
+                if result:
+                    log(f"SUCCESS: Clicked Skip in iframe — post is now published")
+                    await page.wait_for_timeout(3000)
+                    return True
+            except Exception:
+                pass
+
+        try:
+            result = await page.evaluate("""() => {
+                const btns = Array.from(document.querySelectorAll('button'));
+                for (let b of btns) {
+                    if (b.textContent.trim() === 'Skip' && b.offsetParent !== null) {
+                        b.click();
+                        return true;
+                    }
+                }
+                return false;
+            }""")
+            if result:
+                log(f"SUCCESS: Clicked Skip on main page — post is now published")
+                await page.wait_for_timeout(3000)
+                return True
+        except Exception:
+            pass
+
+        log(f"Skip not found yet (attempt {attempt+1}/3), waiting...")
+        await page.wait_for_timeout(2000)
+
+    log("FAILED: Could not find Skip button after 3 attempts — POST MAY NOT BE PUBLISHED")
+    return False
 
 
 async def post():
@@ -41,12 +100,20 @@ async def post():
         )
         page = context.pages[0] if context.pages else await context.new_page()
         try:
+            # Clear any stale dialogs from previous runs
+            try:
+                await page.keyboard.press("Escape")
+                await page.keyboard.press("Escape")
+                await page.wait_for_timeout(500)
+            except Exception:
+                pass
+
             log("Navigating to business.google.com/locations...")
             await page.goto("https://business.google.com/locations", wait_until="domcontentloaded", timeout=30000)
             await page.wait_for_timeout(3000)
             await page.screenshot(path=str(SCRIPT_DIR / "gbp_ss_step1.png"))
 
-            log(f"Finding '{BUSINESS_NAME}' row and clicking Add update...")
+            log(f"Finding '{BUSINESS_NAME}' row and clicking Create post...")
             row_buttons = await page.evaluate(f"""() => {{
                 const rows = Array.from(document.querySelectorAll('tr'));
                 for (let row of rows) {{
@@ -98,21 +165,24 @@ async def post():
                 modal_frame = page
 
             # Upload image
-            log("Uploading image...")
-            try:
-                async with page.expect_file_chooser(timeout=8000) as fc_info:
-                    await modal_frame.get_by_text("Select images and videos").first.click()
-                fc = await fc_info.value
-                await fc.set_files(IMAGE)
-                log("Image uploaded via file chooser")
-                await page.wait_for_timeout(4000)
-            except Exception as e:
-                log(f"File chooser failed: {e}, trying hidden input...")
+            if IMAGE and Path(IMAGE).exists():
+                log(f"Uploading image: {Path(IMAGE).name}")
                 try:
-                    await modal_frame.locator('input[type="file"]').first.set_input_files(IMAGE)
+                    async with page.expect_file_chooser(timeout=8000) as fc_info:
+                        await modal_frame.get_by_text("Select images and videos").first.click()
+                    fc = await fc_info.value
+                    await fc.set_files(IMAGE)
+                    log("Image uploaded via file chooser")
                     await page.wait_for_timeout(4000)
-                except Exception as e2:
-                    log(f"Hidden input also failed: {e2}")
+                except Exception as e:
+                    log(f"File chooser failed: {e}, trying hidden input...")
+                    try:
+                        await modal_frame.locator('input[type="file"]').first.set_input_files(IMAGE)
+                        await page.wait_for_timeout(4000)
+                    except Exception as e2:
+                        log(f"Hidden input also failed: {e2}")
+            else:
+                log("No image specified or file not found — posting text only")
             await page.screenshot(path=str(SCRIPT_DIR / "gbp_ss_step3.png"))
 
             # Fill text
@@ -124,28 +194,26 @@ async def post():
                 await desc.fill(TEXT)
                 log("Text filled")
             except Exception as e:
-                log(f"Textarea error: {e}")
+                log(f"Textarea placeholder not found: {e}")
                 try:
                     desc = modal_frame.locator('textarea').first
                     await desc.click()
                     await desc.fill(TEXT)
                     log("Text filled via generic textarea")
                 except Exception as e2:
-                    log(f"Text fill failed: {e2}")
+                    log(f"Text fill FAILED: {e2}")
             await page.wait_for_timeout(1000)
             await page.screenshot(path=str(SCRIPT_DIR / "gbp_ss_step4.png"))
 
-            # Click Post
-            log("Clicking Post...")
-            published = False
+            # Click Post (opens "Copy post" dialog — does NOT publish yet)
+            log("Clicking Post button (opens Copy dialog)...")
             try:
                 post_btn = modal_frame.locator('button:has-text("Post")').last
                 await post_btn.wait_for(timeout=5000)
                 await post_btn.click()
-                published = True
-                log("Clicked Post button")
+                log("Clicked Post — now need to handle Copy dialog")
             except Exception as e:
-                log(f"Post button error: {e}")
+                log(f"Post button error: {e}, trying JS fallback...")
                 for frame in page.frames:
                     try:
                         result = await frame.evaluate("""() => {
@@ -154,20 +222,28 @@ async def post():
                             return false;
                         }""")
                         if result:
-                            published = True
                             log("Post clicked via JS fallback")
                             break
                     except Exception:
                         pass
 
-            await page.wait_for_timeout(4000)
-            await page.screenshot(path=str(SCRIPT_DIR / "gbp_ss_step5_final.png"), full_page=True)
+            await page.wait_for_timeout(6000)
+            await page.screenshot(path=str(SCRIPT_DIR / "gbp_ss_step5_copy_dialog.png"))
+
+            # CRITICAL: Click Skip in the Copy post dialog to actually publish
+            published = await _click_skip_in_copy_dialog(page)
+
+            await page.screenshot(path=str(SCRIPT_DIR / "gbp_ss_step6_final.png"), full_page=True)
             if published and SCREENPIPE_AVAILABLE:
                 verify_and_notify_gbp("Sugar Shack")
-            log(f"{'Posted OK!' if published else 'Check screenshots.'}")
+
+            if published:
+                log("POST CONFIRMED: Sugar Shack GBP update is live")
+            else:
+                log("WARNING: Post may not have published — check GBP manually")
             return published
         except Exception as e:
-            log(f"❌ Error: {e}")
+            log(f"ERROR: {e}")
             await page.screenshot(path=str(SCRIPT_DIR / "gbp_ss_error.png"))
             return False
         finally:

@@ -172,6 +172,11 @@ python listing_optimizer.py --address "123 Main St" --description "..." --dry-ru
 | 8 | casas en venta mcallen tx | Spanish-language SEO | ⬜ Not started |
 | 9 | agente de bienes raices mcallen tx | Spanish agent search | ⬜ Not started |
 | 10 | mission tx homes for sale | Tertiary market | ⬜ Not started |
+| **Location Pages** | | | |
+| L1 | real estate agent edinburg tx | Location SEO | ✅ Generated 2026-03-27 |
+| L2 | real estate agent mission tx | Location SEO | ✅ Generated 2026-03-27 |
+| L3 | homes for sale pharr tx | Location SEO | ✅ Generated 2026-03-27 |
+| L4 | homes for sale san juan tx | Location SEO | ✅ Generated 2026-03-27 |
 
 ---
 
