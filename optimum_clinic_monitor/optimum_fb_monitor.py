@@ -123,19 +123,35 @@ async def extract_recent_posts(page, max_posts: int = 15) -> list:
     """Extract recent posts from the current group page."""
     posts = []
     try:
+        # Try to extract group name from page title for better logging
+        page_title = await page.title()
+        if " | Facebook" in page_title:
+            display_name = page_title.replace(" | Facebook", "").strip()
+        else:
+            display_name = page_title.strip() or "Unknown"
+
+        # Check if current group URL maps to a generic placeholder name
+        current_url = page.url
+        group_entry = next((g for g in GROUPS if g["url"] == current_url), None)
+        if group_entry and group_entry["name"].startswith("Unknown Group"):
+            # Use scraped display name instead of placeholder for logging
+            log(f"  Group: {display_name} (scraped from page title)")
+        elif group_entry:
+            log(f"  Group: {group_entry['name']}")
+        else:
+            log(f"  Group: {display_name}")
+
         # Scroll to load posts
         for _ in range(3):
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
             await asyncio.sleep(2)
 
         # Try to find post elements
-        # Facebook's class names are obfuscated, so we use role-based selectors
         selectors = [
             "div[role='article']",
             "article",
             "div[data-visualcompletion='ignore']",
         ]
-
         elements = []
         for sel in selectors:
             try:
