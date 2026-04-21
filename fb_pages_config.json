@@ -15,35 +15,50 @@
       "auth_profile": "facebook_mario_profile",
       "posting_method": "graph_api"
     },
-    "spi": {
-      "name": "SPI Fund Rentals",
-      "url": "https://www.facebook.com/spifunrentals",
-      "page_id": "spifunrentals"
-    },
     "island_arcade": {
       "name": "Island Arcade South Padre Island Texas",
       "url": "https://www.facebook.com/profile.php?id=100090911360621",
-      "page_id": "100090911360621"
+      "page_id": "114015458267309",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "graph_api"
     },
     "sugar_shack": {
       "name": "The Sugar Shack",
       "url": "https://www.facebook.com/profile.php?id=61557735298128",
-      "page_id": "61557735298128"
+      "page_id": "239335259271508",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "graph_api"
     },
     "island_candy": {
       "name": "Island Candy",
-      "url": "https://www.facebook.com/profile.php?id=100090560413893",
-      "page_id": "100090560413893"
+      "url": "https://www.facebook.com/profile.php?id=115476118159874",
+      "page_id": "115476118159874",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "graph_api"
+    },
+    "spi_fun_rentals": {
+      "name": "SPI Fun Rentals",
+      "url": "https://www.facebook.com/spifunrentals",
+      "page_id": "793918597377081",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "graph_api"
+    },
+    "spi": {
+      "name": "SPI Fun Rentals",
+      "url": "https://www.facebook.com/spifunrentals",
+      "page_id": "793918597377081",
+      "auth_profile": "facebook_mario_profile",
+      "posting_method": "graph_api"
     },
     "custom_designs_tx": {
-      "name": "Custom Designs TX",
+      "name": "Custom Designs",
       "url": "https://www.facebook.com/profile.php?id=61553759342111",
-      "page_id": "61553759342111",
+      "page_id": "177280908799458",
       "auth_profile": "facebook_mario_profile",
-      "posting_method": "playwright"
+      "posting_method": "graph_api"
     }
   },
-  "auth_profile": "facebook_sniffer_profile",
+  "auth_profile": "facebook_mario_profile",
   "headless": false,
   "viewport": {
     "width": 1920,
