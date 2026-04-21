@@ -109,7 +109,7 @@ BUSINESSES = {
         "name": "SPI Fun Rentals",
         "type": "beach vehicle and water sports rentals",
         "location": "South Padre Island, TX",
-        "page_key": "spi",
+        "page_key": "spi_fun_rentals",
         "skill_id": "spi-fun-rentals-facebook",
         "voice": "Fun, adventurous, island-life energy. 'Your vacation starts the moment you rent from us.' Upbeat, laid-back — not corporate.",
         "audience": "Spring breakers wanting freedom, families wanting convenience, couples wanting a memorable SPI experience, groups looking for things to do",

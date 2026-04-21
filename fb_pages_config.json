@@ -10,8 +10,8 @@
     },
     "optimum_clinic": {
       "name": "Optimum Health and Wellness Clinic",
-      "url": "https://www.facebook.com/profile.php?id=61588407637377",
-      "page_id": "61588407637377",
+      "url": "https://www.facebook.com/profile.php?id=1003933732800661",
+      "page_id": "1003933732800661",
       "auth_profile": "facebook_mario_profile",
       "posting_method": "graph_api"
     },
@@ -37,13 +37,6 @@
       "posting_method": "graph_api"
     },
     "spi_fun_rentals": {
-      "name": "SPI Fun Rentals",
-      "url": "https://www.facebook.com/spifunrentals",
-      "page_id": "793918597377081",
-      "auth_profile": "facebook_mario_profile",
-      "posting_method": "graph_api"
-    },
-    "spi": {
       "name": "SPI Fun Rentals",
       "url": "https://www.facebook.com/spifunrentals",
       "page_id": "793918597377081",

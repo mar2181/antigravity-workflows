@@ -17,7 +17,7 @@ async def verify():
         
         # Go directly to the posts tab
         print("Going to posts tab...")
-        await page.goto("https://www.facebook.com/profile.php?id=61588407637377&sk=posts", wait_until="domcontentloaded", timeout=30000)
+        await page.goto("https://www.facebook.com/profile.php?id=1003933732800661&sk=posts", wait_until="domcontentloaded", timeout=30000)
         await page.wait_for_timeout(5000)
         await page.screenshot(path=str(SCRIPT_DIR / "optimum_posts_tab.png"))
         print("Posts tab screenshot saved")

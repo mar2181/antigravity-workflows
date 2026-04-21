@@ -88,7 +88,7 @@ POSTS = [
         ),
     },
     {
-        "page_key": "spi",
+        "page_key": "spi_fun_rentals",
         "name": "SPI Fun Rentals - Island Cruiser",
         "image_local": None,
         "image_url": "https://v3b.fal.media/files/b/0a934d1a/snIbRDp8ccj7f8IL-j_E8_1e3ee6af26774f7c976cc4ea20e5eeff.png",

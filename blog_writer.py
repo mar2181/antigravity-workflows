@@ -142,7 +142,7 @@ BUSINESSES = {
         "voice": "Fun, adventurous, island-life energy. Upbeat and laid-back — not corporate.",
         "audience": "Spring breakers, families, couples, groups",
         "offer_cta": "Reserve your ride — golf carts go fast during spring break!",
-        "page_key": "spi",
+        "page_key": "spi_fun_rentals",
         "gbp_key": None,
         "has_website": False,
         "website_url": None,

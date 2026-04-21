@@ -75,7 +75,7 @@ POSTS = [
         ),
     },
     {
-        "page_key": "spi",
+        "page_key": "spi_fun_rentals",
         "name": "SPI Fun Rentals",
         "image_prompt": "A row of clean colorful golf carts parked on a paved road near a tropical beach town, palm trees and blue sky, South Padre Island Texas vacation rental fleet, fun family transportation, professional photography, 4k",
         "message": (

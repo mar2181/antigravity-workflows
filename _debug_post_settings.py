@@ -7,7 +7,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 PROFILE_DIR = str(Path(r"C:/Users/mario/.gemini/antigravity/tools/execution/facebook_mario_profile"))
 SCRIPT_DIR = Path(r"C:/Users/mario/.gemini/antigravity/tools/execution")
-PAGE_URL = "https://www.facebook.com/profile.php?id=61588407637377"
+PAGE_URL = "https://www.facebook.com/profile.php?id=1003933732800661"
 
 TEXT = "Test debug post - finding selectors"
 

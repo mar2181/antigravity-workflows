@@ -20,7 +20,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 PROFILE_DIR = str(Path(__file__).parent / "facebook_mario_profile")
-PAGE_URL    = "https://www.facebook.com/profile.php?id=61588407637377"
+PAGE_URL    = "https://www.facebook.com/profile.php?id=1003933732800661"
 
 IMAGE_1 = r"C:\Users\mario\optimum_clinic_ad_images\ad_10_walk_in_tonight.png"
 IMAGE_2 = r"C:\Users\mario\optimum_clinic_ad_images\ad_11_late_night_relief.png"

@@ -13,7 +13,7 @@ PORT = 8765
 ADS = [
     {
         "key": "sugar_shack", "name": "The Sugar Shack",
-        "avatar": "SS", "color": "#e91e63", "account": "Yehuda account",
+        "avatar": "SS", "color": "#e91e63", "account": "Mario account",
         "image": r"C:\Users\mario\sugar_shack_ad_images\march14_spring_break.png",
         "copy": (
             "Spring break just started — and we are READY for you. 🍭\n\n"
@@ -29,7 +29,7 @@ ADS = [
     },
     {
         "key": "island_arcade", "name": "Island Arcade SPI",
-        "avatar": "IA", "color": "#7c3aed", "account": "Yehuda account",
+        "avatar": "IA", "color": "#7c3aed", "account": "Mario account",
         "image": r"C:\Users\mario\island_arcade_ad_images\march14_spring_break.png",
         "copy": (
             "Spring break is ON and the games are waiting. 🕹️\n\n"
@@ -42,8 +42,8 @@ ADS = [
         ),
     },
     {
-        "key": "spi", "name": "SPI Fun Rentals",
-        "avatar": "SR", "color": "#0ea5e9", "account": "Yehuda account",
+        "key": "spi_fun_rentals", "name": "SPI Fun Rentals",
+        "avatar": "SR", "color": "#0ea5e9", "account": "Mario account",
         "image": r"C:\Users\mario\spi_fun_rentals_ad_images\march14_spring_break.png",
         "copy": (
             "Spring break is here — and the best way to see South Padre Island is "

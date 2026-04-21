@@ -13,7 +13,7 @@ async def run():
             args=["--start-maximized"], no_viewport=True,
         )
         page = ctx.pages[0] if ctx.pages else await ctx.new_page()
-        await page.goto("https://www.facebook.com/profile.php?id=61588407637377", wait_until="domcontentloaded", timeout=30000)
+        await page.goto("https://www.facebook.com/profile.php?id=1003933732800661", wait_until="domcontentloaded", timeout=30000)
         await page.wait_for_timeout(5000)
         await page.screenshot(path=str(SCRIPT_DIR / "optimum_final_check.png"))
         await ctx.close()

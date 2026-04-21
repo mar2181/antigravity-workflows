@@ -57,11 +57,11 @@ ADS = [
         ),
     },
     {
-        "key":      "spi",
+        "key":      "spi_fun_rentals",
         "name":     "SPI Fun Rentals",
         "avatar":   "SR",
         "color":    "#0ea5e9",
-        "account":  "Yehuda account",
+        "account":  "Mario account",
         "image":    r"C:\Users\mario\spi_fun_rentals_ad_images\march14_spring_break.png",
         "copy": (
             "Spring break is here — and the best way to see South Padre Island is "

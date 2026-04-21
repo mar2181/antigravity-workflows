@@ -77,7 +77,7 @@ ADS = [
         ),
     },
     {
-        "key":      "spi",
+        "key":      "spi_fun_rentals",
         "name":     "SPI Fun Rentals",
         "avatar":   "SR",
         "color":    "#0ea5e9",

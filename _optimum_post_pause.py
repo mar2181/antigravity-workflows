@@ -6,7 +6,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 SCRIPT_DIR = Path(r"C:/Users/mario/.gemini/antigravity/tools/execution")
 PROFILE_DIR = str(SCRIPT_DIR / "facebook_mario_profile")
-PAGE_URL = "https://www.facebook.com/profile.php?id=61588407637377"
+PAGE_URL = "https://www.facebook.com/profile.php?id=1003933732800661"
 
 meta = json.loads((SCRIPT_DIR / "blog_posts/optimum_clinic/2026-03-19_walkin-clinic-pharr-tx_meta.json").read_text(encoding='utf-8'))
 TEXT  = meta["fb_copy"]
