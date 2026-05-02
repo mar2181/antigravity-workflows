@@ -27,23 +27,70 @@ import argparse
 import asyncio
 import html as _html_mod
 import json
+import os
 import random
 import re
 import sys
+import base64
 import urllib.parse
 import urllib.request as _ureq
 from datetime import date
 from pathlib import Path
 
-# ── Bright Data Web Unlocker ───────────────────────────────────────────────────
-_BD_TOKEN = "7fe773b11b190ba758a122c288438d14deef5356a694ef707a3c847de5af3b5c"
+# ── Bright Data credentials ────────────────────────────────────────────────────
+def _load_env_value(*keys) -> str | None:
+    """Load a value from env vars or .env.local (Windows + WSL paths)."""
+    for k in keys:
+        v = os.getenv(k)
+        if v:
+            return v.strip()
+    env_path = Path("C:/Users/mario/missioncontrol/dashboard/.env.local")
+    if not env_path.exists():
+        env_path = Path("/mnt/c/Users/mario/missioncontrol/dashboard/.env.local")
+    if env_path.exists():
+        for line in env_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k2, _, v2 = line.partition("=")
+            if k2.strip() in keys:
+                return v2.strip().strip('"').strip("'")
+    return None
+
+# Scraping Browser WS endpoint — full cloud browser, handles CAPTCHAs automatically
+_BD_SB_WS = _load_env_value("BRIGHTDATA_SCRAPING_BROWSER_WS")
+
+# Web Unlocker proxy creds (fallback)
+_BD_TOKEN = _load_env_value("BRIGHT_DATA_KEY", "BD_TOKEN", "BRIGHTDATA_WEB_UNLOCKER_API")
+if not _BD_TOKEN and not _BD_SB_WS:
+    print("[FATAL] No Bright Data credentials found in env or .env.local — cannot scrape SERPs.", file=sys.stderr)
+    import sys; sys.exit(2)
+
 _BD_URL   = "https://api.brightdata.com/request"
 
+def _bd_auth_header(token: str) -> str:
+    """
+    Bright Data uses Basic auth with the key as 'username:password'.
+    The key format is 'brd-customer-...-zone-...:password' — pass as-is.
+    If the key has no colon (plain API key), use Bearer as fallback.
+    """
+    if ":" in token:
+        encoded = base64.b64encode(token.encode("utf-8")).decode("utf-8")
+        return f"Basic {encoded}"
+    return f"Bearer {token}"
 
-async def _fetch_via_brightdata(url: str) -> str | None:
+
+async def _fetch_via_brightdata(url: str, return_html: bool = False) -> str | None:
     """
     Fetch a URL via Bright Data Web Unlocker — bypasses Google CAPTCHA.
-    Returns plain-text body (HTML tags stripped) or None on failure.
+    Default: returns plain-text body (HTML tags stripped, mirrors inner_text).
+    return_html=True: returns raw HTML for class-based parsing.
+    Returns None on failure.
+
+    NOTE: Bright Data's web_unlocker1 zone returns 502 on Google `tbm=lcl`
+    URLs (selector "#main" not found) and on `/maps/search/...` URLs
+    (endpoint disabled). Always pass plain `/search?q=...` URLs and parse
+    the inline local pack from the returned HTML.
     """
     try:
         payload = json.dumps({
@@ -55,7 +102,7 @@ async def _fetch_via_brightdata(url: str) -> str | None:
             _BD_URL,
             data=payload,
             headers={
-                "Authorization": f"Bearer {_BD_TOKEN}",
+                "Authorization": _bd_auth_header(_BD_TOKEN),
                 "Content-Type": "application/json",
             },
             method="POST",
@@ -63,22 +110,109 @@ async def _fetch_via_brightdata(url: str) -> str | None:
         with _ureq.urlopen(req, timeout=30) as r:
             raw = r.read().decode("utf-8", errors="replace")
 
+        if not raw or len(raw) < 500:
+            print(f"      [BD: empty/short body, len={len(raw) if raw else 0}]")
+            return None
+
+        if return_html:
+            return raw
+
         # Convert HTML → plain text (mirrors page.inner_text behaviour)
-        raw = re.sub(r'<script[^>]*>.*?</script>', ' ', raw, flags=re.DOTALL | re.IGNORECASE)
-        raw = re.sub(r'<style[^>]*>.*?</style>',  ' ', raw, flags=re.DOTALL | re.IGNORECASE)
-        raw = re.sub(r'<(?:br|p|div|li|tr|h[1-6])[^>]*/?>', '\n', raw, flags=re.IGNORECASE)
-        text = re.sub(r'<[^>]+>', '', raw)
+        stripped = re.sub(r'<script[^>]*>.*?</script>', ' ', raw, flags=re.DOTALL | re.IGNORECASE)
+        stripped = re.sub(r'<style[^>]*>.*?</style>',  ' ', stripped, flags=re.DOTALL | re.IGNORECASE)
+        stripped = re.sub(r'<(?:br|p|div|li|tr|h[1-6])[^>]*/?>', '\n', stripped, flags=re.IGNORECASE)
+        text = re.sub(r'<[^>]+>', '', stripped)
         text = _html_mod.unescape(text)
         lines = [l.strip() for l in text.split('\n')]
         text  = '\n'.join(l for l in lines if l)
 
         if not text or len(text) < 200:
+            print(f"      [BD: stripped body too short, len={len(text) if text else 0}]")
             return None
         if "unusual traffic" in text.lower() or "captcha" in text.lower():
+            print(f"      [BD: CAPTCHA in response]")
             return None
         return text
-    except Exception:
+    except Exception as _bd_err:
+        print(f"      [BD failed: {type(_bd_err).__name__}: {_bd_err}]")
         return None
+
+
+def _strip_html_to_text(raw: str) -> str:
+    """HTML → plain text (matches what _fetch_via_brightdata returns by default)."""
+    raw = re.sub(r'<script[^>]*>.*?</script>', ' ', raw, flags=re.DOTALL | re.IGNORECASE)
+    raw = re.sub(r'<style[^>]*>.*?</style>',  ' ', raw, flags=re.DOTALL | re.IGNORECASE)
+    raw = re.sub(r'<(?:br|p|div|li|tr|h[1-6])[^>]*/?>', '\n', raw, flags=re.IGNORECASE)
+    text = re.sub(r'<[^>]+>', '', raw)
+    text = _html_mod.unescape(text)
+    lines = [l.strip() for l in text.split('\n')]
+    return '\n'.join(l for l in lines if l)
+
+
+def _parse_local_pack_html(html: str) -> list:
+    """
+    Parse Google's inline local 3-pack from regular SERP HTML using the
+    stable `VkpGBb` container class. Each container holds one local result.
+
+    Selector map (verified 2026-05-02):
+      Container ........ class="VkpGBb"
+      Business name .... class="OSrXXb"
+      Rating + reviews . aria-label="Rated 4.9 out of 5, 228 user reviews"
+
+    Returns list of {"name", "rating", "reviews", "address"} for up to ~10
+    entries (Google occasionally shows expanded packs).
+    """
+    containers = re.findall(
+        r'<div class="VkpGBb".{0,8000}?</div></div></div>',
+        html,
+        flags=re.DOTALL,
+    )
+    entries = []
+    for c in containers:
+        name = ""
+        rating = ""
+        reviews = ""
+        address = ""
+
+        m_name = re.search(r'class="OSrXXb[^"]*"[^>]*>([^<]+)<', c)
+        if m_name:
+            name = _html_mod.unescape(m_name.group(1)).strip()
+
+        for aria in re.findall(r'aria-label="([^"]+)"', c):
+            m = re.search(r'Rated\s+(\d\.\d)\s+out of 5', aria, re.IGNORECASE)
+            if m and not rating:
+                rating = m.group(1)
+            m = re.search(r'(\d[\d,]*)\s*user reviews?', aria, re.IGNORECASE)
+            if m and not reviews:
+                reviews = m.group(1).replace(",", "")
+
+        # Fallback: visible text scan (handles future layout shifts)
+        if not name:
+            text = _strip_html_to_text(c)
+            for l in [x.strip() for x in text.split('\n') if x.strip()]:
+                if re.match(r'^[1-5]\.\d', l):
+                    continue
+                if 3 < len(l) < 120 and not l.startswith('('):
+                    name = l
+                    break
+
+        text_for_addr = _strip_html_to_text(c)
+        addr_match = re.search(
+            r'(\d{1,6}\s+[A-Z][\w\s\.,]{3,60}(?:TX|Texas|McAllen|Edinburg|Mission|Pharr|Brownsville|Harlingen))',
+            text_for_addr,
+        )
+        if addr_match:
+            address = addr_match.group(1).strip()
+
+        if name:
+            entries.append({
+                "name": name,
+                "rating": rating,
+                "reviews": reviews,
+                "address": address,
+            })
+
+    return entries
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -112,8 +246,56 @@ def load_state() -> dict:
 
 
 def save_state(state: dict):
-    with open(STATE_PATH, "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=2, ensure_ascii=False)
+    """Parallel-safe: lock, re-read disk, merge our updates per-business, atomic rename."""
+    import time, tempfile
+    try:
+        import msvcrt
+        _LOCK_WIN = True
+    except ImportError:
+        import fcntl
+        _LOCK_WIN = False
+
+    lock_path = str(STATE_PATH) + ".lock"
+    lock_f = open(lock_path, "a+")
+    try:
+        # Acquire exclusive lock (retry up to 30 sec)
+        acquired = False
+        for _ in range(60):
+            try:
+                if _LOCK_WIN:
+                    msvcrt.locking(lock_f.fileno(), msvcrt.LK_NBLCK, 1)
+                else:
+                    fcntl.flock(lock_f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                acquired = True
+                break
+            except Exception:
+                time.sleep(0.5)
+        # Re-read disk state and merge per-business
+        disk_state = {}
+        if STATE_PATH.exists():
+            try:
+                with open(STATE_PATH, encoding="utf-8") as f:
+                    disk_state = json.load(f)
+            except Exception:
+                disk_state = {}
+        for biz_key, biz_data in state.items():
+            disk_state[biz_key] = biz_data
+        # Atomic write via temp + replace
+        tmp_path = str(STATE_PATH) + f".tmp.{os.getpid()}"
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump(disk_state, f, indent=2, ensure_ascii=False)
+        os.replace(tmp_path, str(STATE_PATH))
+    finally:
+        if acquired:
+            try:
+                if _LOCK_WIN:
+                    lock_f.seek(0)
+                    msvcrt.locking(lock_f.fileno(), msvcrt.LK_UNLCK, 1)
+                else:
+                    fcntl.flock(lock_f.fileno(), fcntl.LOCK_UN)
+            except Exception:
+                pass
+        lock_f.close()
 
 
 # ── Name matching ──────────────────────────────────────────────────────────────
@@ -154,42 +336,75 @@ async def check_keyword(page, keyword: str, match_names: list, match_domains: li
     }
 
     try:
-        # Single request: tbm=lcl shows full ranked local results list.
-        # Top 3 entries = map pack equivalent. Full list = extended position.
-        enc     = urllib.parse.quote_plus(keyword)
-        lcl_url = f"https://www.google.com/search?q={enc}&tbm=lcl&gl=us&hl=en"
+        # ── Single Bright Data call: plain Google SERP, raw HTML ──
+        # Google embeds the local 3-pack inline in the regular SERP via
+        # `class="VkpGBb"` containers. The standalone `tbm=lcl` URL has been
+        # broken on Bright Data since spring 2026 (web_unlocker1 → expect_element,
+        # serp_api1 → expect_body). One call to plain `/search?q=...` gives us
+        # both the local pack AND organic results.
+        enc        = urllib.parse.quote_plus(keyword)
+        search_url = f"https://www.google.com/search?q={enc}&gl=us&hl=en&pws=0"
 
-        # Strategy 1: Bright Data (no CAPTCHA, no browser needed)
-        body = await _fetch_via_brightdata(lcl_url)
+        html = await _fetch_via_brightdata(search_url, return_html=True)
 
-        # Strategy 2: Playwright fallback (if Bright Data fails)
-        if not body:
-            await page.goto(lcl_url, wait_until="domcontentloaded", timeout=25000)
-            await page.wait_for_timeout(2000 + random.randint(0, 1000))
-            body = await page.inner_text("body")
+        # Playwright fallback (rare — only if Bright Data itself fails)
+        if not html:
+            try:
+                await page.goto(search_url, wait_until="domcontentloaded", timeout=25000)
+                await page.wait_for_timeout(2000 + random.randint(0, 1000))
+                html = await page.content()
+            except Exception:
+                html = None
 
-        if "unusual traffic" in body.lower() or "captcha" in body.lower():
+        if not html:
+            result["error"] = "no SERP body"
+            return result
+
+        if ("unusual traffic" in html.lower()) or ("captcha-form" in html.lower()):
             result["error"] = "CAPTCHA — IP rate-limited"
             return result
 
-        all_entries = _parse_local_search_list(body)
-        result["all_maps_entries"] = all_entries[:20]
+        # ── Local pack: parse from VkpGBb HTML containers ──
+        local_entries = _parse_local_pack_html(html)
+        result["all_maps_entries"] = local_entries[:20]
 
-        # Top 3 = map pack
-        for i, entry in enumerate(all_entries[:3]):
+        for i, entry in enumerate(local_entries[:3]):
             entry["is_ours"] = _matches(entry.get("name", ""), match_names, match_domains)
             if entry["is_ours"] and result["our_map_pack_position"] is None:
                 result["our_map_pack_position"] = i + 1
+
         result["map_pack"] = [
-            {"name": e.get("name",""), "rating": e.get("rating",""), "is_ours": e.get("is_ours", False)}
-            for e in all_entries[:3]
+            {"name": e.get("name", ""), "rating": e.get("rating", ""),
+             "is_ours": e.get("is_ours", False)}
+            for e in local_entries[:3]
         ]
 
-        # Full list position (1-20)
-        for i, entry in enumerate(all_entries[:20]):
+        for i, entry in enumerate(local_entries[:20]):
             if _matches(entry.get("name", ""), match_names, match_domains):
                 result["our_maps_position"] = i + 1
                 break
+
+        # ── Organic: parse from same HTML (stripped to text) ──
+        organic_text    = _strip_html_to_text(html)
+        organic_entries = _parse_organic_serp(organic_text)
+
+        for i, entry in enumerate(organic_entries):
+            check_text = (
+                f"{entry.get('title', '')} "
+                f"{entry.get('domain', '')} "
+                f"{entry.get('url', '')}"
+            )
+            if _matches(check_text, match_names, match_domains):
+                result["our_organic_position"] = i + 1
+                break
+
+        result["organic"] = [
+            {"title": e.get("title", ""), "url": e.get("url", ""),
+             "is_ours": _matches(
+                 f"{e.get('title', '')} {e.get('domain', '')}",
+                 match_names, match_domains)}
+            for e in organic_entries[:10]
+        ]
 
     except Exception as e:
         result["error"] = str(e)
@@ -276,51 +491,142 @@ def _parse_body_text(body: str) -> tuple:
 
 def _parse_local_search_list(body: str) -> list:
     """
-    Parse Google's local search results page (tbm=lcl) from inner_text.
-    Format per entry (5 lines):
-      Business Name
-      4.9(719) · Category          ← rating+reviews+category on ONE line
-      Address · Phone
-      Open/Closed status
-      "Review snippet"
-    Returns list of {"name", "rating", "reviews"} in rank order (up to 20).
+    Parse Google local search results (tbm=lcl) from inner_text.
+    Handles BOTH layouts Google has shipped:
+      OLD: Name / "4.9(719) · Category" / Address · Phone / Open/Closed / Review snippet
+      NEW: Name / "4.9" / "(719)" / Category / Address / Open/Closed / ...
+    Returns list of {"name", "rating", "reviews"} in rank order (up to 25).
     """
-    lines     = [l.strip() for l in body.split("\n") if l.strip()]
-    entries   = []
-    # Matches: "4.9(719) · Category" or "4.1(10) · Golf cart dealer"
-    rating_re = re.compile(r'^([1-5]\.[0-9])\s*\(?([\d,]*)\)?\s*[·\-]')
-    ui_skip   = {"accessibility", "skip to", "sign in", "filters", "ai mode",
-                 "images", "forums", "places", "short videos", "more", "tools",
-                 "open now", "top rated", "small business", "search results"}
+    lines = [l.strip() for l in body.split("\n") if l.strip()]
+    entries = []
+    rating_inline_re = re.compile(r'^([1-5]\.[0-9])\s*\(?([\d,]*)\)?\s*[·\-]')
+    rating_only_re   = re.compile(r'^[1-5]\.[0-9]$')
+    reviews_re       = re.compile(r'^\(([\d,]+)\)$')
+    ui_skip = {"accessibility", "skip to", "sign in", "filters", "ai mode",
+               "images", "forums", "places", "short videos", "more", "tools",
+               "open now", "top rated", "small business", "search results",
+               "delete", "see more", "report inappropriate", "press",
+               "google search", "send feedback"}
 
     i = 0
     while i < len(lines) and len(entries) < 25:
         line = lines[i]
         ll   = line.lower()
 
-        # Skip UI chrome
-        if any(sw in ll for sw in ui_skip) or ll in {"all", "maps", "more"}:
-            i += 1
-            continue
-
-        # Skip rating lines, address lines, open/closed lines, review snippets
-        if (rating_re.match(line)
+        if (any(sw in ll for sw in ui_skip)
+                or ll in {"all", "maps", "more", "(", ")"}
+                or rating_inline_re.match(line)
+                or rating_only_re.match(line)
+                or reviews_re.match(line)
                 or re.match(r'^(Open|Closed|Opens|Closes|·|")', line)
-                or re.match(r'^\d{3,4}\s', line)):   # address starts with street number
+                or re.match(r'^\d{3,4}\s', line)):
             i += 1
             continue
 
-        # Business entry: next line matches rating+category pattern
-        if i + 1 < len(lines) and rating_re.match(lines[i + 1]):
-            m = rating_re.match(lines[i + 1])
-            rating  = m.group(1) if m else ""
-            reviews = m.group(2) if m else ""
+        # OLD layout: name then "X.X(NN) · Cat"
+        if i + 1 < len(lines) and rating_inline_re.match(lines[i + 1]):
+            m = rating_inline_re.match(lines[i + 1])
+            entries.append({"name": line, "rating": m.group(1), "reviews": m.group(2)})
+            i += 5
+            continue
+
+        # NEW layout: name, then bare "X.X", optionally followed by "(NN)"
+        if i + 1 < len(lines) and rating_only_re.match(lines[i + 1]):
+            rating  = lines[i + 1]
+            reviews = ""
+            advance = 2
+            if i + 2 < len(lines):
+                rm = reviews_re.match(lines[i + 2])
+                if rm:
+                    reviews = rm.group(1)
+                    advance = 3
             entries.append({"name": line, "rating": rating, "reviews": reviews})
-            i += 5   # name + rating·category + address + open/closed + review snippet
-        else:
-            i += 1
+            i += advance + 2
+            continue
+
+        i += 1
 
     return entries
+
+
+def _parse_organic_serp(body: str) -> list:
+    """
+    Parse Google organic SERP results from inner_text body.
+    Identifies each result by its URL/breadcrumb line (e.g. "example.com › path").
+    Returns list of {"title", "url", "domain"} in rank order, max 100.
+
+    Tolerant to Google layout variants — looks for any line that opens with a
+    valid domain.tld pattern, then takes the previous non-URL line as the title.
+    Dedupes by domain so sitelinks of the same result don't inflate the count.
+    """
+    lines = [l.strip() for l in body.split("\n") if l.strip()]
+    results = []
+    seen_domains = set()
+
+    # URL/breadcrumb line patterns:
+    #   "spifunrentals.com"
+    #   "spifunrentals.com › about › services"
+    #   "https://www.spifunrentals.com/path"
+    #   "www.spifunrentals.com › about"
+    url_re = re.compile(
+        r'^(https?://)?(www\.)?([a-z0-9-]+\.)+[a-z]{2,12}(/[^\s]*)?(\s*[›>].*)?$',
+        re.IGNORECASE,
+    )
+    domain_re = re.compile(
+        r'^(?:https?://)?(?:www\.)?([a-z0-9-]+(?:\.[a-z0-9-]+)+)',
+        re.IGNORECASE,
+    )
+    # Skip Google internal links and the usual Google product noise
+    skip_substrings = (
+        "google.com/search", "google.com/maps", "google.com/url",
+        "support.google", "accounts.google", "policies.google",
+        "myactivity.google", "translate.google",
+    )
+
+    for i, line in enumerate(lines):
+        if not url_re.match(line):
+            continue
+        ll = line.lower()
+        if any(s in ll for s in skip_substrings):
+            continue
+        if ll in ("google.com", "www.google.com"):
+            continue
+
+        m = domain_re.match(line)
+        if not m:
+            continue
+        domain = m.group(1).lower()
+
+        # Skip Google's own properties — these are UI, not organic results
+        if domain in ("google.com", "youtube.com", "maps.google.com"):
+            # NOTE: youtube.com IS a legitimate organic result; only skip if it
+            # appears as a sitelink/UI nav. Keep it for now.
+            if domain == "google.com":
+                continue
+
+        # Dedupe — Google often shows same domain twice for sitelinks
+        if domain in seen_domains:
+            continue
+        seen_domains.add(domain)
+
+        # Title = the previous non-URL, non-rating line
+        title = ""
+        for j in range(i - 1, max(-1, i - 4), -1):
+            prev = lines[j]
+            if url_re.match(prev):
+                continue
+            if re.match(r'^[\d.]+\s*\(?[\d,]*\)?\s*$', prev):
+                continue  # rating line
+            if len(prev) < 5 or len(prev) > 200:
+                continue
+            title = prev
+            break
+
+        results.append({"title": title, "url": line, "domain": domain})
+        if len(results) >= 100:
+            break
+
+    return results
 
 
 # ── Single business runner ─────────────────────────────────────────────────────
@@ -341,42 +647,79 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
             return state
 
     biz_state = state.get(biz_key, {})
+    # Merge in any biz-specific today file (from incremental saves of prior crashed runs)
+    _biz_today_path = str(STATE_PATH).replace('.json', f'_{biz_key}_today.json')
+    if __import__('pathlib').Path(_biz_today_path).exists():
+        try:
+            with open(_biz_today_path, encoding='utf-8') as _tf:
+                _today_data = __import__('json').load(_tf)
+            biz_state = biz_state.copy()
+            for _kw, _hist in _today_data.get(biz_key, {}).items():
+                biz_state.setdefault(_kw, {}).update(_hist)
+        except Exception:
+            pass
 
     async with async_playwright() as p:
         # ── Browser strategy ──────────────────────────────────────────────────
-        # Google blocks headless Chromium. Priority:
-        #   1. Connect to existing real Chrome via CDP (port 9223 or 9224) if open
-        #   2. Launch Chrome via channel="chrome" (user's installed Chrome, looks real)
-        #   3. Fall back to headless Chromium with stealth patches
+        # Priority:
+        #   1. Bright Data Scraping Browser (cloud browser — no CAPTCHA, residential IP)
+        #   2. Local Chrome via CDP (port 9223 or 9224) if open
+        #   3. Local Chrome with Bright Data proxy
+        #   4. Plain local Chrome (last resort — will CAPTCHA on heavy scraping)
         browser = None
         ctx     = None
         using_cdp = False
 
-        for cdp_port in [9223, 9224]:
+        # Strategy 1: Bright Data Scraping Browser (best — Bright Data runs the browser)
+        if _BD_SB_WS and not browser:
             try:
-                browser = await p.chromium.connect_over_cdp(f"http://localhost:{cdp_port}")
+                browser = await p.chromium.connect_over_cdp(_BD_SB_WS)
                 using_cdp = True
-                print(f"  [CDP connected on port {cdp_port}]")
-                break
-            except Exception:
-                pass
+                print(f"  [Bright Data Scraping Browser — cloud residential IP]")
+            except Exception as _sb_err:
+                print(f"  [BD Scraping Browser failed: {_sb_err}]")
 
+        # Strategy 2: Local CDP (already-open Chrome)
         if not browser:
-            # NOTE: Google blocks headless Chrome — always launch visible to bypass anti-bot.
+            for cdp_port in [9223, 9224]:
+                try:
+                    browser = await p.chromium.connect_over_cdp(f"http://localhost:{cdp_port}")
+                    using_cdp = True
+                    print(f"  [CDP connected on port {cdp_port}]")
+                    break
+                except Exception:
+                    pass
+
+        # Strategy 3 & 4: Launch local Chrome, with or without Bright Data proxy
+        if not browser:
+            is_headless = os.environ.get("HEADLESS", "false").lower() == "true"
+
+            bd_proxy = None
+            if _BD_TOKEN and ":" in _BD_TOKEN:
+                _bd_user, _bd_pass = _BD_TOKEN.split(":", 1)
+                bd_proxy = {
+                    "server": "http://brd.superproxy.io:22225",
+                    "username": _bd_user,
+                    "password": _bd_pass,
+                }
+                print(f"  [Local Chrome + Bright Data proxy — residential IP]")
+            else:
+                print(f"  [Real Chrome — headless={is_headless}] (no proxy — CAPTCHA risk)")
+
             try:
                 browser = await p.chromium.launch(
                     channel="chrome",
-                    headless=False,      # Always visible — bypasses Google anti-bot
+                    headless=is_headless,
+                    proxy=bd_proxy,
                     args=["--disable-blink-features=AutomationControlled",
                           "--window-position=0,0", "--window-size=1024,768"],
                 )
-                print("  [Real Chrome — visible window]")
             except Exception:
                 browser = await p.chromium.launch(
-                    headless=False,
+                    headless=is_headless,
+                    proxy=bd_proxy,
                     args=["--disable-blink-features=AutomationControlled"],
                 )
-                print("  [Chromium — visible window]")
 
         if using_cdp:
             # In CDP mode, use existing context (do NOT create a new one — it may log you out)
@@ -399,6 +742,10 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
         await page.route("**/*.{png,jpg,jpeg,gif,webp,svg,woff,woff2,ttf}", lambda r: r.abort())
 
         for keyword in keywords:
+            # Skip keywords already checked today (incremental resume)
+            if today_str in biz_state.get(keyword, {}):
+                print(f"    [{biz_cfg['name']}] {keyword} ... (already done today, skipping)")
+                continue
             print(f"    [{biz_cfg['name']}] {keyword} ...", end=" ", flush=True)
             result = await check_keyword(page, keyword, match_names, match_domains)
 
@@ -447,9 +794,18 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
                 for old in dates_sorted[:-30]:
                     del kw_history[old]
             biz_state[keyword] = kw_history
+            # Incremental save to biz-specific file (avoids race with other trackers)
+            try:
+                state[biz_key] = biz_state
+                _biz_path = str(STATE_PATH).replace('.json', f'_{biz_key}_today.json')
+                with open(_biz_path, 'w', encoding='utf-8') as _f:
+                    import json as _json
+                    _json.dump({biz_key: biz_state}, _f, indent=2, ensure_ascii=False)
+            except Exception as _e:
+                pass  # non-fatal, main save happens at end
 
             # Throttle between searches (3–6 seconds)
-            await page.wait_for_timeout(random.randint(3000, 6000))
+            await page.wait_for_timeout(random.randint(800, 1500))
 
         await page.close()
         if not using_cdp:
@@ -522,13 +878,16 @@ def load_rankings_summary(target_date: str = None) -> dict:
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
-async def main_async(businesses: list, target_keyword: str = None):
+async def main_async(businesses: list, target_keyword: str = None, limit: int = None):
     state = load_state()
     for biz_key in businesses:
         if biz_key not in BUSINESSES:
             print(f"  Unknown business: {biz_key} — skipping")
             continue
         biz_cfg = BUSINESSES[biz_key]
+        if limit:
+            biz_cfg = dict(biz_cfg)
+            biz_cfg["keywords"] = biz_cfg["keywords"][:limit]
         print(f"\n[{biz_cfg['name']}]")
         state = await run_business(biz_key, biz_cfg, state, target_keyword)
         save_state(state)
@@ -547,6 +906,7 @@ def main():
     parser = argparse.ArgumentParser(description="Keyword rank tracker for all client businesses")
     parser.add_argument("--business", choices=list(BUSINESSES.keys()), help="Single business only")
     parser.add_argument("--keyword",  help="Check only keywords containing this string")
+    parser.add_argument("--limit", type=int, help="Cap each business at N keywords (testing)")
 
     parser.add_argument("--dry-run",  action="store_true", help="Print config, no scraping")
     args = parser.parse_args()
@@ -562,7 +922,7 @@ def main():
                 print(f"    • {kw}")
         return
 
-    asyncio.run(main_async(businesses, args.keyword))
+    asyncio.run(main_async(businesses, args.keyword, limit=args.limit))
 
 
 if __name__ == "__main__":
