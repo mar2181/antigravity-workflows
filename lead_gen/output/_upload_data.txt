@@ -1,0 +1,4 @@
+tier,score,name,category,city,rating,reviews,has_website,website_type,website_url,address,phone,rank_pos,search_query
+HOT,150,YJ Home Repair / Drywall Repair/Handyman/plumbing/Electrician/painting/Bathroom Remodel,home remodeler,Edinburg,4.8,225,False,none,,15+ years in business,(956) 884-2695,1,home remodeler in Edinburg tx
+HOT,150,Cindy Nail,nail salon,Harlingen,4.8,542,False,none,,,(956) 357-9046,1,nail salon in Harlingen tx
+HOT,150,Rodeo Dental & Orthodontics of Edinburg,orthodontist,Edinbur

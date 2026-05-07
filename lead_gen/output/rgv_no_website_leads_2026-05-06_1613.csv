@@ -1,0 +1,5 @@
+﻿tier,score,name,category,city,rating,reviews,has_website,website_type,website_url,address,phone,rank_pos,search_query
+HOT,110,Dental Park,dentist,McAllen,5.0,1300,True,real,https://www.dentalparkmcallen.com/,930 E Expressway 83,(956) 540-7825,1,dentist in McAllen tx
+HOT,105,Smile Magic of McAllen,dentist,McAllen,4.8,2300,True,real,https://mysmilemagic.com/locations/mcallen/,2708 W Nolana Ave Suite 120,(956) 278-8148,2,dentist in McAllen tx
+HOT,99,Tijerina Family & Cosmetic Dentistry of McAllen,dentist,McAllen,5.0,516,True,real,https://www.tijerinadentistry.com/,4121 N 22nd St,(956) 687-6103,3,best dentist in McAllen texas
+WARM,74,Top Dental,dentist,McAllen,4.7,115,True,real,https://www.topdentalmcallen.com/,228 N Ware Rd Unit 10,(956) 618-5811,3,dentist in McAllen tx
