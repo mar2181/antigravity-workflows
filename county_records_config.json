@@ -1,0 +1,20 @@
+{
+  "database": "C:/Users/mario/.gemini/antigravity/tools/execution/county_records.db",
+  "counties": {
+    "hidalgo": {
+      "name": "Hidalgo County",
+      "appraisal_url": "https://www.hidalgoad.org/",
+      "property_search_api": "https://www.hidalgoad.org/property-search/"
+    },
+    "cameron": {
+      "name": "Cameron County",
+      "appraisal_url": "https://www.ccad.org/",
+      "property_search_api": "https://www.ccad.org/"
+    },
+    "starr": {
+      "name": "Starr County",
+      "appraisal_url": "https://www.starrcad.org/",
+      "property_search_api": "https://www.starrcad.org/"
+    }
+  }
+}

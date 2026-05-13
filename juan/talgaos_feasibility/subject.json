@@ -1,0 +1,155 @@
+{
+  "deal_id": "talgaos_2026-04-26",
+  "effective_date_max": "2026-04-30",
+  "buyer": {
+    "entity": "Talgaos LLC",
+    "signatory": "Alicia Garza",
+    "address": "1812 Sabinal St., Mission TX 78572",
+    "phone": "(956) 239-0631"
+  },
+  "seller": {
+    "entity": "Turquesa Construction LLC",
+    "signatory": "Belkis Noemi Garcia",
+    "address": "1300 N 10TH ST STE 330, McAllen TX 78501",
+    "phone": "(956) 400-4530"
+  },
+  "brokerage": {
+    "firm": "Re/Max Elite",
+    "intermediary": true,
+    "listing_agent": {"name": "Tania J Salinas", "represents": "Seller"},
+    "buyer_agent": {"name": "Juan Jose Elizondo", "license": "0620235", "represents": "Buyer"},
+    "commission_pct": {"listing": 2.0, "cooperating": 2.0, "total": 4.0}
+  },
+  "subject_parcel": {
+    "address": "000 Rogers Rd., Edinburg, TX (Hidalgo County)",
+    "legal_description_short": "TEX-MEX SURVEY LOT 8 - W 177' - S 660' BLK 244",
+    "acres_per_legal": 2.69,
+    "acres_per_plat": 2.682,
+    "total_sf_per_plat": 116820,
+    "boundary": {
+      "north_top": "660 LF (S81°07'31\"E direction)",
+      "south_bottom": "660 LF (S08°52'29\"W direction)",
+      "east_side": "177 LF (S81°07'31\"E)",
+      "west_side": "102.92 LF (N81°07'31\"W) — has setback / cut for Rogers Rd ROW",
+      "shape": "near-rectangular with NW notch toward Rogers Rd"
+    },
+    "price": 385000,
+    "price_per_acre": 143123,
+    "price_per_sf_gross": 3.30
+  },
+  "stonecrest_adjacent": {
+    "legal_description": "STONECREST (R/S LTS 11 & 12) AN UNNUMBERED LOT EAST LOTS 8-17",
+    "acres": 1.47,
+    "total_sf": 64033,
+    "price_cap": 40000,
+    "price_per_acre_at_cap": 27211,
+    "price_per_sf_at_cap": 0.62,
+    "location": "immediately west of subject parcel, between subject and Rogers Rd ROW",
+    "deal_role_hypothesis": "ACCESS STRIP — likely required for Rogers Rd frontage; if hostile owner, deal dies",
+    "contingency_window_days": 60
+  },
+  "combined_project": {
+    "total_acres": 4.16,
+    "total_sf": 181220,
+    "combined_land_basis": 425000,
+    "combined_price_per_acre": 102163,
+    "combined_price_per_sf": 2.34
+  },
+  "plat_geometry": {
+    "lot_count_total_buildable": 27,
+    "lot_count_note": "Plat numbers run 1-27 with apparent skip/reuse around 17. Conservative: 26 verified buildable + 1 ambiguous. Use 27 base, 28 ceiling (Stonecrest may add 1-3), 24 floor.",
+    "lot_groups": {
+      "north_row_along_n_turquesa_st": {
+        "count": 11,
+        "lot_numbers": "1-11",
+        "lot_size_sf_typical": 2540,
+        "lot_size_sf_corners": [2657, 2681],
+        "frontage_typical_ft": 40.0,
+        "depth_typical_ft": 63.5
+      },
+      "east_side_along_e_aqua_st": {
+        "count": 5,
+        "lot_numbers": "12-16",
+        "lot_size_sf_typical": 2513,
+        "frontage_typical_ft": 35.4,
+        "depth_typical_ft": 71.0
+      },
+      "south_row_along_n_turquesa_st": {
+        "count": 10,
+        "lot_numbers": "18-27 (skip 17)",
+        "lot_size_sf_typical": 2540,
+        "lot_size_sf_corners": [2657, 2682],
+        "frontage_typical_ft": 40.0,
+        "depth_typical_ft": 63.5
+      }
+    },
+    "lot_size_summary": {
+      "min_sf": 2513,
+      "max_sf": 2682,
+      "median_sf": 2540,
+      "total_buildable_sf": 68580,
+      "total_buildable_pct_of_subject": 0.587
+    },
+    "right_of_way": {
+      "n_turquesa_st_width_ft": 50,
+      "n_turquesa_st_length_lf": 474,
+      "e_aqua_st_width_ft": 50,
+      "e_aqua_st_length_lf": 177,
+      "total_row_sf_estimated": 32550
+    },
+    "common_area": {
+      "detention_pond_sf": 8850,
+      "location": "NE corner near E. Aqua St"
+    },
+    "easements_inside_or_adjacent_subject": {
+      "drain_ditch_easement_ft": 57.95,
+      "drain_ditch_volume_page": "Vol. 34 Pg. 164A H.C.M.R.",
+      "irrigation_easement_ft": 24,
+      "abandoned_canal_row_ft": 45,
+      "abandoned_canal_status": "ABANDONED per Vol. 34 Pg. 164A H.C.M.R.",
+      "interior_utility_easements": ["10' UE rear-rear between lot rows", "15' UE on perimeter sides"],
+      "estimated_easement_sf_outside_buildable": 6840
+    }
+  },
+  "encumbrances_to_verify": [
+    "HCID No. 1 irrigation district assessment status (canal ROW abandoned but district authority may persist)",
+    "Plat recordation status with City of Edinburg planning dept",
+    "ETJ classification + zoning for townhouse use",
+    "FEMA flood zone (likely Zone X but verify; HCID drainage suggests historic floodway)",
+    "Public Improvement District (PID) assessment — none disclosed but no addendum checked"
+  ],
+  "contract_terms": {
+    "earnest_money": 5000,
+    "earnest_money_pct": 0.013,
+    "independent_consideration": 500,
+    "feasibility_period_days": 30,
+    "feasibility_extension_days": 14,
+    "feasibility_extension_em_add": 1000,
+    "feasibility_extension_indep_add": 100,
+    "closing_days_after_feasibility": 14,
+    "title_company": "Dante Title — Eugene Ragsdale closer",
+    "deed_type": "special warranty",
+    "buyer_assignable": true,
+    "financing_contingent": false
+  },
+  "key_dates_assuming_eff_date_2026-04-30": {
+    "effective_date": "2026-04-30",
+    "feasibility_expires_initial": "2026-05-30",
+    "feasibility_expires_extended": "2026-06-13",
+    "stonecrest_contingency_deadline": "2026-06-29",
+    "closing_initial": "2026-06-13",
+    "closing_extended": "2026-06-27"
+  },
+  "data_sources": [
+    "Commercial Contract - Unimproved Property TXR-1802 (read 2026-04-26)",
+    "Plat image WhatsApp 2026-04-26 16:07",
+    "Exhibit A Adjacent Parcel Condition (TXR-1937)",
+    "Intermediary Relationship Notice TXR-1409"
+  ],
+  "ambiguities_flagged": [
+    "Lot 17 numbering — confirm with surveyor / actual recorded plat",
+    "Whether plat is RECORDED with City of Edinburg or preliminary developer sketch",
+    "Drain ditch easement (57.95') — does it sit ON the subject or just adjacent? Likely north of subject but verify",
+    "Whether Stonecrest IS the Rogers Rd access strip or just an adjacent fill-in parcel"
+  ]
+}

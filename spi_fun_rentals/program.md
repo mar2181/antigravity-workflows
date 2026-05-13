@@ -12,9 +12,9 @@
 - **Website:** spifunrentals.com
 - **Season:** Peak = spring break (Feb–Apr), summer, holiday weekends
 - **Facebook Page:** https://www.facebook.com/spifunrentals
-- **Auth Account:** Yehuda (`quepadre@live.com`) → profile: `facebook_sniffer_profile/`
+- **Auth Account:** Mario (`marioelizondo81@gmail.com`) — Facebook posts via GraphQL API (no Playwright profile dependency)
 - **Page Key:** `spi` (in fb_pages_config.json)
-- **GBP:** ⚠️ Duplicate listing in Mario's account (`gbp_mario_profile/`) | Business ID: `12018623800655095562` | Listed as "SPI Fun Rental & Island Surf Rental" — do not post until duplicate resolved
+- **GBP:** ✅ Active | Profile: `gbp_mario_profile/` | Business ID: `03916507027076722961` _(confirmed in workspace.md + clients.md — old ID `12018623800655095562` in this file was stale)_ | Listed as "SPI Fun Rental & Island Surf Rental"
 - **CRITICAL:** Two-step Switch flow required — see spi-fun-rentals-facebook SKILL.md
 
 ---
@@ -128,7 +128,7 @@ python post_spi_ad1.py   # or copy and adapt for new ads
 
 ## Target Keywords
 > Content calendar — one keyword per blog session. Run: `python blog_writer.py --client spi_fun_rentals --keyword "..." --publish`
-> Channels: Facebook only (GBP duplicate — Mario's account, pending resolution)
+> Channels: Facebook + GBP ✅ (GBP is active on Mario's account — ID `03916507027076722961`)
 
 | Priority | Keyword | Intent | Status |
 |----------|---------|--------|--------|

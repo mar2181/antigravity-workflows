@@ -85,6 +85,46 @@ BUSINESSES = {
         "avatar_bg":   "#cc0000",   # RE/MAX red
         "avatar_text": "JE",
     },
+    "custom_designs_tx": {
+        "name":        "Custom Designs TX",
+        "page_key":    "custom_designs_tx",
+        "image_dir":   r"C:\Users\mario\custom_designs_tx_ad_images",
+        "preview_dir": r"C:\Users\mario\custom_designs_tx_ad_images",
+        "skill_dir":   r"C:\Users\mario\.gemini\antigravity\scratch\skills\custom-designs-facebook",
+        "color":       "#D4AF37",   # gold
+        "avatar_bg":   "#0A0A0C",   # obsidian
+        "avatar_text": "CD",
+    },
+    "spi_fun_rentals": {
+        "name":        "SPI Fun Rentals",
+        "page_key":    "spi_fun_rentals",
+        "image_dir":   r"C:\Users\mario\spi_fun_rentals_ad_images",
+        "preview_dir": r"C:\Users\mario\spi_fun_rentals_ad_images",
+        "skill_dir":   r"C:\Users\mario\.gemini\antigravity\scratch\skills\spi-fun-rentals-facebook",
+        "color":       "#0891b2",   # teal
+        "avatar_bg":   "#0891b2",
+        "avatar_text": "SF",
+    },
+    "optimum_clinic": {
+        "name":        "Optimum Health & Wellness Clinic",
+        "page_key":    "optimum_clinic",
+        "image_dir":   r"C:\Users\mario\optimum_clinic_ad_images",
+        "preview_dir": r"C:\Users\mario\optimum_clinic_ad_images",
+        "skill_dir":   r"C:\Users\mario\.gemini\antigravity\scratch\skills\optimum-clinic-facebook",
+        "color":       "#16a34a",   # green
+        "avatar_bg":   "#16a34a",
+        "avatar_text": "OC",
+    },
+    "optimum_foundation": {
+        "name":        "Optimum Health & Wellness Foundation",
+        "page_key":    "optimum_foundation",
+        "image_dir":   r"C:\Users\mario\optimum_foundation_ad_images",
+        "preview_dir": r"C:\Users\mario\optimum_foundation_ad_images",
+        "skill_dir":   r"C:\Users\mario\.gemini\antigravity\scratch\skills\optimum-foundation-facebook",
+        "color":       "#7c3aed",   # purple
+        "avatar_bg":   "#7c3aed",
+        "avatar_text": "OF",
+    },
 }
 
 MARKETER_SCRIPT = r"C:\Users\mario\.gemini\antigravity\tools\execution\facebook_marketer.py"
@@ -365,19 +405,23 @@ def run_post(biz: dict):
             print(f"  [ERROR] No copy text for ad #{ad['id']} — check ads_manifest.json")
             continue
 
+        angle_slug = ad.get("angle", "")
+
         if schedule and schedule.lower() != "immediate":
             action = "schedule"
             cmd = [PYTHON, MARKETER_SCRIPT,
                    "--action", "schedule",
                    "--page",   page_key,
                    "--message", copy_text,
-                   "--schedule", schedule]
+                   "--schedule", schedule,
+                   "--angle", angle_slug]
         else:
             action = "image" if image_path else "text"
             cmd = [PYTHON, MARKETER_SCRIPT,
                    "--action", action,
                    "--page",   page_key,
-                   "--message", copy_text]
+                   "--message", copy_text,
+                   "--angle", angle_slug]
 
         if image_path and os.path.exists(image_path):
             cmd += ["--media", image_path]

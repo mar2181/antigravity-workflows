@@ -149,6 +149,10 @@ def analyze_client(client_name, ranking_data):
     client_keywords = ranking_data[client_name]
 
     for keyword, timeseries_data in client_keywords.items():
+        # Skip top-level aggregate keys if they aren't time-series dicts
+        if not isinstance(timeseries_data, dict):
+            continue
+
         # Extract latest rank from time-series
         current_rank, latest_date = get_latest_rank(timeseries_data)
 

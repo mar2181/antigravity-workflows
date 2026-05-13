@@ -1,0 +1,4 @@
+{
+  "_comment": "Baseline of expected console.error messages on localhost:3001/war-room. Each entry is a substring to ignore. Update after Terminal B fixes land.",
+  "ignore_substrings": []
+}

@@ -1,0 +1,520 @@
+[
+  {
+    "account": "R469800000001400",
+    "owner_addr": "AGARWAL SHITAL 2103 FUENTE DE GOZO EDINBURG, TX 78539-4744 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 14 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 0,
+      "gross_value": 55242,
+      "legal": "RUSSELL VILLAGE LOT 14",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000000700",
+    "owner_addr": "BARRERA MICHAEL & LILIANA 2233 N WOODY ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "2233 N WOODY RD &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 7 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 209737,
+      "gross_value": 264468,
+      "legal": "RUSSELL VILLAGE LOT 7",
+      "site": "2233 N WOODY RD"
+    }
+  },
+  {
+    "account": "R469800000001100",
+    "owner_addr": "BHUSARE ASHISH SAMUEL 2108 FUENTE DE GOZO EDINBURG, TX 78539 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 11 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 174787,
+      "gross_value": 229518,
+      "legal": "RUSSELL VILLAGE LOT 11",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000000300",
+    "owner_addr": "BROWN TEVIN 2312 N OPAL ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "2215 N WOODY RD &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 3 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 207804,
+      "gross_value": 262535,
+      "legal": "RUSSELL VILLAGE LOT 3",
+      "site": "2215 N WOODY RD"
+    }
+  },
+  {
+    "account": "R469800000000600",
+    "owner_addr": "CHAPA ACQUIRED PROPERTY LLC 4416 TUESDAY ST EDINBURG, TX 78542 &nbsp;",
+    "site_addr": "2229 N WOODY RD &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 6 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 195616,
+      "gross_value": 250347,
+      "legal": "RUSSELL VILLAGE LOT 6",
+      "site": "2229 N WOODY RD"
+    }
+  },
+  {
+    "account": "R469800000001300",
+    "owner_addr": "EXCLUSIVE HOMES RGV LLC 1508 W DOVE AVE MCALLEN, TX 78504-3439 &nbsp;",
+    "site_addr": "2317 N WOODY RD &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 13 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 195616,
+      "gross_value": 250858,
+      "legal": "RUSSELL VILLAGE LOT 13",
+      "site": "2317 N WOODY RD"
+    }
+  },
+  {
+    "account": "R469800000001200",
+    "owner_addr": "GONZALEZ JUAN & DANIELLA HINOJOSA 2313 N WOODY ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "2313 N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 12 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 184444,
+      "gross_value": 239686,
+      "legal": "RUSSELL VILLAGE LOT 12",
+      "site": "2313 N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000000800",
+    "owner_addr": "GONZALEZ VICTOR & AMANDA 2237 N WOODY ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 8 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 185508,
+      "gross_value": 240239,
+      "legal": "RUSSELL VILLAGE LOT 8",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000001000",
+    "owner_addr": "HERNANDEZ SILVERIO JR AKA SILVERIO HERNA 2305 N WOODY ST EDINBURG, TX 78541-1423 &nbsp;",
+    "site_addr": "2305 N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 10 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 181805,
+      "gross_value": 236536,
+      "legal": "RUSSELL VILLAGE LOT 10",
+      "site": "2305 N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000000500",
+    "owner_addr": "JASTATE INVESTMENTS LLC 1613 RED RIVER AVE EDINBURG, TX 78539 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 5 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 197407,
+      "gross_value": 252138,
+      "legal": "RUSSELL VILLAGE LOT 5",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000000400",
+    "owner_addr": "LNC INVESTMENTS LLC 505 W CHAMPION LN MISSION, TX 78574-1844 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 4 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 207560,
+      "gross_value": 262291,
+      "legal": "RUSSELL VILLAGE LOT 4",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000001600",
+    "owner_addr": "PATEL BHARAT & SWATI 4029 THATCHER DR AURORA, IL 60504-5372 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 16 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 0,
+      "gross_value": 55242,
+      "legal": "RUSSELL VILLAGE LOT 16",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000000100",
+    "owner_addr": "SAINATHUNI PADMA RAO & LAKSHMI 22892 EMERALD CHASE PL BRAMBLETON, VA 20148-6431 &nbsp;",
+    "site_addr": "2201 N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 1 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 72540,
+      "improvement_value": 200834,
+      "gross_value": 273374,
+      "legal": "RUSSELL VILLAGE LOT 1",
+      "site": "2201 N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000001800",
+    "owner_addr": "TIENKEN LLC 417 E CARDINAL AVE MCALLEN, TX 78504 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 18 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 53410,
+      "improvement_value": 0,
+      "gross_value": 53410,
+      "legal": "RUSSELL VILLAGE LOT 18",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000001500",
+    "owner_addr": "TRIPATHI MANISH & RATI 6900 WESTCLIFF DR STE 603 LAS VEGAS, NV 89145-0199 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 15 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 0,
+      "gross_value": 55242,
+      "legal": "RUSSELL VILLAGE LOT 15",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000000900",
+    "owner_addr": "ULTRA CAPITAL LLC 4249 E STATE ST STE 203 ROCKFORD, IL 61108 &nbsp;",
+    "site_addr": "N WOODY ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 9 &NBSP;",
+    "street_q": "N WOODY",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 0,
+      "gross_value": 54731,
+      "legal": "RUSSELL VILLAGE LOT 9",
+      "site": "N WOODY ST"
+    }
+  },
+  {
+    "account": "R469800000005700",
+    "owner_addr": "GARCIA JUAN FERNANDO 1017 W CLOUD 9 LN EDINBURG, TX 78541-5551 &nbsp;",
+    "site_addr": "1017 W CLOUD 9 LN &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 57 &NBSP;",
+    "street_q": "W CLOUD 9",
+    "detail": {
+      "land_value": 59846,
+      "improvement_value": 186793,
+      "gross_value": 246639,
+      "legal": "RUSSELL VILLAGE LOT 57",
+      "site": "1017 W CLOUD 9 LN"
+    }
+  },
+  {
+    "account": "R469800000004800",
+    "owner_addr": "LNC INVESTMENTS LLC 505 W CHAMPION LN MISSION, TX 78574-1844 &nbsp;",
+    "site_addr": "W CLOUD 9 LANE &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 48 &NBSP;",
+    "street_q": "W CLOUD 9",
+    "detail": {
+      "land_value": 70657,
+      "improvement_value": 0,
+      "gross_value": 70657,
+      "legal": "RUSSELL VILLAGE LOT 48",
+      "site": "W CLOUD 9 LANE"
+    }
+  },
+  {
+    "account": "R469800000005800",
+    "owner_addr": "MATA JOSUE EMMANUEL & BRIANA LUZ 1013 W CLOUD 9 LN EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "W CLOUD 9 LN &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 58 &NBSP;",
+    "street_q": "W CLOUD 9",
+    "detail": {
+      "land_value": 59846,
+      "improvement_value": 208130,
+      "gross_value": 267976,
+      "legal": "RUSSELL VILLAGE LOT 58",
+      "site": "W CLOUD 9 LN"
+    }
+  },
+  {
+    "account": "R469800000005500",
+    "owner_addr": "PENA NATHAN LEE & MACY MARIE 3911 TINSLEY AVE APT 3 EDINBURG, TX 78539 &nbsp;",
+    "site_addr": "1025 W CLOUD 9 LN &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 55 &NBSP;",
+    "street_q": "W CLOUD 9",
+    "detail": {
+      "land_value": 59846,
+      "improvement_value": 216035,
+      "gross_value": 275881,
+      "legal": "RUSSELL VILLAGE LOT 55",
+      "site": "1025 W CLOUD 9 LN"
+    }
+  },
+  {
+    "account": "R469800000005900",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "1009 W CLOUD 9 LN &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 59 &NBSP;",
+    "street_q": "W CLOUD 9",
+    "detail": {
+      "land_value": 64240,
+      "improvement_value": 208904,
+      "gross_value": 273144,
+      "legal": "RUSSELL VILLAGE LOT 59",
+      "site": "1009 W CLOUD 9 LN"
+    }
+  },
+  {
+    "account": "R469800000003500",
+    "owner_addr": "AGARWAL SHITAL 2103 FUENTE DE GOZO EDINBURG, TX 78539-4744 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 35 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 0,
+      "gross_value": 55242,
+      "legal": "RUSSELL VILLAGE LOT 35",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003200",
+    "owner_addr": "ALTAM LLC 4900 W EXPRESSWAY 83 SUITE 255 MCALLEN, TX 78572 &nbsp;",
+    "site_addr": "2408 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 32 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 92659,
+      "gross_value": 147901,
+      "legal": "RUSSELL VILLAGE LOT 32",
+      "site": "2408 N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003100",
+    "owner_addr": "ALTAM LLC 4900 W EXPRESSWAY 83 SUITE 255 MCALLEN, TX 78572 &nbsp;",
+    "site_addr": "2412 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 31 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 109736,
+      "gross_value": 164978,
+      "legal": "RUSSELL VILLAGE LOT 31",
+      "site": "2412 N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003300",
+    "owner_addr": "ALTAM LLC 4900 W EXPRESWAY 83 SUITE 255 MCALLEN, TX 78572 &nbsp;",
+    "site_addr": "2404 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 33 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 93489,
+      "gross_value": 148731,
+      "legal": "RUSSELL VILLAGE LOT 33",
+      "site": "2404 N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003000",
+    "owner_addr": "ALTAM LLC 4900 W EXPRESWAY 83 SUITE 255 MCALLEN, TX 78572 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 30 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 53410,
+      "improvement_value": 142902,
+      "gross_value": 196312,
+      "legal": "RUSSELL VILLAGE LOT 30",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000004200",
+    "owner_addr": "DE CASTANEDA ANGELICA ALCANTAR 2228 N REVOLUTION ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "2228 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 42 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 192540,
+      "gross_value": 247271,
+      "legal": "RUSSELL VILLAGE LOT 42",
+      "site": "2228 N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003800",
+    "owner_addr": "EXCLUSIVE HOMES RGV LLC 5327 S SUGAR RD EDINBURG, TX 78539-8073 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 38 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 196599,
+      "gross_value": 251330,
+      "legal": "RUSSELL VILLAGE LOT 38",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000004300",
+    "owner_addr": "GILL ARJOHN DAVE 2224 N REVOLUTION ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "2224 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 43 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 180833,
+      "gross_value": 235564,
+      "legal": "RUSSELL VILLAGE LOT 43",
+      "site": "2224 N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000004100",
+    "owner_addr": "GONZALEZ FERNANDO JR & KENIA M GARZA 723 SAN JOSE ST SAN JUAN, TX 78589 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 41 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 182681,
+      "gross_value": 237412,
+      "legal": "RUSSELL VILLAGE LOT 41",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003600",
+    "owner_addr": "REYNALDO LOPEZ JR LLC 5400 CARLA ST MISSION, TX 78574 &nbsp;",
+    "site_addr": "2312 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 36 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 195616,
+      "gross_value": 250858,
+      "legal": "RUSSELL VILLAGE LOT 36",
+      "site": "2312 N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003400",
+    "owner_addr": "SANCHEZ BRIANNA & HECTOR JAVIER 2400 N REVOLUTION ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "2400 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 34 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 55242,
+      "improvement_value": 236501,
+      "gross_value": 291743,
+      "legal": "RUSSELL VILLAGE LOT 34",
+      "site": "2400 N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000004000",
+    "owner_addr": "TORRES BRANDON HERNANDEZ 2236 N REVOLUTION ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 40 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 188588,
+      "gross_value": 243319,
+      "legal": "RUSSELL VILLAGE LOT 40",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000002900",
+    "owner_addr": "UBOM VERONICA INI 3729 JOBY ST APT 2 EDINBURG, TX 78541-6153 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 29 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 69103,
+      "improvement_value": 0,
+      "gross_value": 69103,
+      "legal": "RUSSELL VILLAGE LOT 29",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000003900",
+    "owner_addr": "VARGAS ALBERTO ELIAS MATUS & MARIA PAZ C 2300 N REVOLUTION ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 39 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 220327,
+      "gross_value": 275058,
+      "legal": "RUSSELL VILLAGE LOT 39",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000004400",
+    "owner_addr": "VIDAURRI ARTURO MORAN & MONICA IVETT GON 2220 N REVOLUTION ST EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 44 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 192694,
+      "gross_value": 247425,
+      "legal": "RUSSELL VILLAGE LOT 44",
+      "site": "N REVOLUTION ST"
+    }
+  },
+  {
+    "account": "R469800000004500",
+    "owner_addr": "VIDAURRI ARTURO MORAN & MONICA IVETT GON PUERTO MARINA 4473 MONTERREY, NL 64790 &nbsp;",
+    "site_addr": "2214 N REVOLUTION ST &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 45 &NBSP;",
+    "street_q": "N REVOLUTION",
+    "detail": {
+      "land_value": 54731,
+      "improvement_value": 194310,
+      "gross_value": 249041,
+      "legal": "RUSSELL VILLAGE LOT 45",
+      "site": "2214 N REVOLUTION ST"
+    }
+  }
+]

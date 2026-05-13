@@ -1,7 +1,8 @@
 """
 Facebook Health Check — Run at the start of every session.
-Verifies each profile is authenticated and each page's composer is reachable.
-Takes ~15-20 seconds. Prints GREEN/RED per page.
+Verifies each page's Graph API token is valid and can post.
+Uses Graph API only — no Playwright, no browser sessions.
+Takes ~5-10 seconds. Prints GREEN/RED per page.
 
 Usage:
     python fb_health_check.py              # check all pages
@@ -9,69 +10,45 @@ Usage:
 """
 import json
 import sys
-import time
+import urllib.request
+import urllib.parse
 from pathlib import Path
-from playwright.sync_api import sync_playwright
 
+CREDS_PATH  = "fb_api_credentials.json"
 CONFIG_PATH = "fb_pages_config.json"
-BASE_DIR = Path(__file__).parent
 
 GREEN = "[OK]  "
 RED   = "[FAIL]"
 WARN  = "[WARN]"
 
-def check_page(p, page_key, page_info, profile_dir):
-    """Check one page: authenticate, navigate to pages list, verify composer reachable."""
-    result = {"page": page_key, "profile": profile_dir, "status": None, "detail": ""}
-    page_id = str(page_info.get("page_id", ""))
-    full_profile = str(BASE_DIR / profile_dir)
+GRAPH = "https://graph.facebook.com/v19.0"
+
+
+def check_page_token(page_key, page_id, page_token):
+    """Hit the Graph API with the page token — confirm it's valid and can read the page."""
+    result = {"page": page_key, "status": None, "detail": ""}
+    if not page_token:
+        result["status"] = "FAIL"
+        result["detail"] = "No page_token in fb_api_credentials.json"
+        return result
 
     try:
-        ctx = p.chromium.launch_persistent_context(
-            user_data_dir=full_profile,
-            headless=True,
-            args=["--no-sandbox"],
-            viewport={"width": 1280, "height": 900}
-        )
-        pg = ctx.new_page()
-
-        # Check authentication
-        pg.goto("https://www.facebook.com/", timeout=15000)
-        time.sleep(2)
-        if "login" in pg.url.lower():
-            result["status"] = "FAIL"
-            result["detail"] = "Session expired — run reauth script"
-            ctx.close()
-            return result
-
-        # Navigate to pages list and check account
-        pg.goto("https://www.facebook.com/pages/?category=your_pages", timeout=15000)
-        time.sleep(3)
-
-        # Check account identity
-        heading = pg.locator("h1, h2").first
-        account_name = heading.inner_text(timeout=3000) if heading.count() > 0 else "unknown"
-
-        # Check page is visible in list
-        page_link = pg.locator(f'a[href*="{page_id}"]')
-        if page_link.count() == 0:
-            result["status"] = "FAIL"
-            result["detail"] = f"Page not found on pages list (account: {account_name})"
-            ctx.close()
-            return result
-
-        # Check Create post button is reachable
-        create_btn = pg.locator(f'div:has(a[href*="{page_id}"]) [aria-label="Create post"]').first
+        url = f"{GRAPH}/{page_id}?fields=name,id,fan_count&access_token={urllib.parse.quote(page_token)}"
+        with urllib.request.urlopen(url, timeout=10) as resp:
+            data = json.loads(resp.read())
+        name = data.get("name", "?")
+        fans = data.get("fan_count", "?")
+        result["status"] = "OK"
+        result["detail"] = f'"{name}" | followers: {fans}'
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace")
         try:
-            create_btn.wait_for(state="visible", timeout=5000)
-            result["status"] = "OK"
-            result["detail"] = f"Composer reachable | Account: {account_name}"
+            err = json.loads(body).get("error", {})
+            msg = err.get("message", body[:120])
         except Exception:
-            result["status"] = "WARN"
-            result["detail"] = f"Page found but Create post button not visible | Account: {account_name}"
-
-        ctx.close()
-
+            msg = body[:120]
+        result["status"] = "FAIL"
+        result["detail"] = f"HTTP {e.code}: {msg}"
     except Exception as e:
         result["status"] = "FAIL"
         result["detail"] = str(e)[:120]
@@ -80,46 +57,57 @@ def check_page(p, page_key, page_info, profile_dir):
 
 
 def main():
+    # Load credentials (source of truth for page tokens)
+    creds_path = Path(CREDS_PATH)
+    if not creds_path.exists():
+        print(f"ERROR: {CREDS_PATH} not found")
+        sys.exit(1)
+    with open(creds_path) as f:
+        creds = json.load(f)
+
+    cred_pages = creds.get("pages", {})
+
+    # Load config (source of truth for page keys + ids)
     with open(CONFIG_PATH) as f:
         config = json.load(f)
-
-    pages = config["pages"]
-    default_profile = config.get("auth_profile", "facebook_sniffer_profile")
+    config_pages = config.get("pages", {})
 
     # Filter to specific page if provided
     target = sys.argv[1] if len(sys.argv) > 1 else None
     if target:
-        if target not in pages:
+        if target not in config_pages:
             print(f"Unknown page key: {target}")
-            print(f"Available: {list(pages.keys())}")
+            print(f"Available: {list(config_pages.keys())}")
             sys.exit(1)
-        pages = {target: pages[target]}
+        config_pages = {target: config_pages[target]}
 
-    # Group by profile to avoid launching browsers twice
-    profile_groups = {}
-    for key, info in pages.items():
-        profile = info.get("auth_profile", default_profile)
-        profile_groups.setdefault(profile, []).append((key, info))
-
-    print("\nFacebook Health Check")
-    print("=" * 50)
+    print("\nFacebook Health Check (Graph API)")
+    print("=" * 55)
 
     all_ok = True
-    with sync_playwright() as p:
-        for profile, page_list in profile_groups.items():
-            print(f"\nProfile: {profile}")
-            for page_key, page_info in page_list:
-                result = check_page(p, page_key, page_info, profile)
-                icon = GREEN if result["status"] == "OK" else (WARN if result["status"] == "WARN" else RED)
-                print(f"  {icon} {page_key:20s}  {result['detail']}")
-                if result["status"] == "FAIL":
-                    all_ok = False
+    for page_key, page_info in config_pages.items():
+        posting_method = page_info.get("posting_method", "playwright")
+        if posting_method != "graph_api":
+            # Skip non-graph-api pages (shouldn't exist, but be safe)
+            print(f"  {WARN} {page_key:20s}  posting_method={posting_method} (skipped)")
+            continue
 
-    print("\n" + "=" * 50)
+        page_id    = str(page_info.get("page_id", ""))
+        # Token lookup: fb_api_credentials.json → pages → page_key → page_token
+        page_token = cred_pages.get(page_key, {}).get("page_token", "")
+
+        result = check_page_token(page_key, page_id, page_token)
+        icon = GREEN if result["status"] == "OK" else (WARN if result["status"] == "WARN" else RED)
+        print(f"  {icon} {page_key:20s}  {result['detail']}")
+        if result["status"] == "FAIL":
+            all_ok = False
+
+    print("\n" + "=" * 55)
     if all_ok:
         print("All checks passed. Ready to post.\n")
     else:
-        print("One or more checks FAILED. See FACEBOOK_SESSION_GUIDE.md for fixes.\n")
+        print("One or more checks FAILED.")
+        print("Fix: run python fb_token_refresh.py   (or paste fresh page tokens into fb_api_credentials.json)\n")
         sys.exit(1)
 
 

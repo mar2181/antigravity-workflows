@@ -10,7 +10,7 @@
 - **Market:** Rio Grande Valley, TX (McAllen, Edinburg, Mission, San Juan, Pharr)
 - **Specialty:** Residential + commercial real estate, RGV market expert
 - **Facebook Page:** https://www.facebook.com/JuanElizondoRemax/
-- **Auth Account:** Mario (`marioelizondo81@gmail.com`) → profile: `facebook_mario_profile/`
+- **Auth Account:** Mario (`marioelizondo81@gmail.com`) — Facebook posts via GraphQL API (no Playwright profile dependency)
 - **Page Key:** `juan`
 - **GBP:** ⚠️ Suspended — do not attempt GBP posting until resolved
 - **Website:** juanjoseelizondo.com
@@ -158,7 +158,7 @@ python listing_optimizer.py --address "123 Main St" --description "..." --dry-ru
 
 ## Target Keywords
 > Content calendar — one keyword per blog session. Run: `python blog_writer.py --client juan --keyword "..." --publish`
-> Channels: Facebook only (GBP suspended, website repo TBD — confirm GitHub repo to unlock website publish)
+> Channels: Facebook + Website ✅ (website blog pipeline confirmed working as of 2026-05 — juanjoseelizondo.com receives blogs) | GBP suspended — skip GBP channel
 
 | Priority | Keyword | Intent | Status |
 |----------|---------|--------|--------|

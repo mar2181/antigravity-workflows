@@ -1,0 +1,1799 @@
+[
+  {
+    "account": "A378000000002900",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "1406 S MICHIGAN STREET &nbsp;",
+    "legal": "ALTON VILLAGE APARTMENTS LOT 29 &nbsp;",
+    "cad_ref": "1565006 &nbsp;",
+    "query": "TURQUESA CONSTRUCTION",
+    "_detail": {
+      "gross_value": 411345,
+      "land_value": 125388,
+      "improvement_value": 285957,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ALTON VILLAGE APARTMENTS LOT 29",
+      "site_address": "1406 S MICHIGAN STREET",
+      "tax_levy": 10919.57
+    }
+  },
+  {
+    "account": "A378000000003000",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "1410 S MICHIGAN STREET &nbsp;",
+    "legal": "ALTON VILLAGE APARTMENTS LOT 30 &nbsp;",
+    "cad_ref": "1565007 &nbsp;",
+    "query": "TURQUESA CONSTRUCTION",
+    "_detail": {
+      "gross_value": 411345,
+      "land_value": 125388,
+      "improvement_value": 285957,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ALTON VILLAGE APARTMENTS LOT 30",
+      "site_address": "1410 S MICHIGAN STREET",
+      "tax_levy": 10919.57
+    }
+  },
+  {
+    "account": "O064000000002000",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "1104 E ACACIA DR &nbsp;",
+    "legal": "OAK RIDGE ESTATES LOT 20 &nbsp;",
+    "cad_ref": "1643006 &nbsp;",
+    "query": "TURQUESA CONSTRUCTION",
+    "_detail": {
+      "gross_value": 75502,
+      "land_value": 75502,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "OAK RIDGE ESTATES LOT 20",
+      "site_address": "1104 E ACACIA DR",
+      "tax_levy": 1952.49
+    }
+  },
+  {
+    "account": "O064000000012100",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "1817 N MANGROVE ST &nbsp;",
+    "legal": "OAK RIDGE ESTATES LOT 121 &nbsp;",
+    "cad_ref": "1643107 &nbsp;",
+    "query": "TURQUESA CONSTRUCTION",
+    "_detail": {
+      "gross_value": 57432,
+      "land_value": 57432,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "OAK RIDGE ESTATES LOT 121",
+      "site_address": "1817 N MANGROVE ST",
+      "tax_levy": 1485.2
+    }
+  },
+  {
+    "account": "O064000000012200",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "1813 N MANGROVE ST &nbsp;",
+    "legal": "OAK RIDGE ESTATES LOT 122 &nbsp;",
+    "cad_ref": "1643108 &nbsp;",
+    "query": "TURQUESA CONSTRUCTION",
+    "_detail": {
+      "gross_value": 57432,
+      "land_value": 57432,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "OAK RIDGE ESTATES LOT 122",
+      "site_address": "1813 N MANGROVE ST",
+      "tax_levy": 1485.2
+    }
+  },
+  {
+    "account": "R469800000001700",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "N. WOODY ST. &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 17 &nbsp;",
+    "cad_ref": "1559924 &nbsp;",
+    "query": "TURQUESA CONSTRUCTION",
+    "_detail": {
+      "gross_value": 254548,
+      "land_value": 55242,
+      "improvement_value": 199306,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "RUSSELL VILLAGE LOT 17",
+      "site_address": "N. WOODY ST.",
+      "tax_levy": 5639.03
+    }
+  },
+  {
+    "account": "R469800000005900",
+    "owner_addr": "TURQUESA CONSTRUCTION LLC 1300 N 10TH ST STE 330 N MCALLEN, TX 78501-2680 &nbsp;",
+    "site_addr": "1009 W CLOUD 9 LN &nbsp;",
+    "legal": "RUSSELL VILLAGE LOT 59 &nbsp;",
+    "cad_ref": "1559966 &nbsp;",
+    "query": "TURQUESA CONSTRUCTION",
+    "_detail": {
+      "gross_value": 273144,
+      "land_value": 64240,
+      "improvement_value": 208904,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "RUSSELL VILLAGE LOT 59",
+      "site_address": "1009 W CLOUD 9 LN",
+      "tax_levy": 5288.35
+    }
+  },
+  {
+    "account": "W010000038000900",
+    "owner_addr": "TALGAOS LLC & FORTIA INVESTMENTS LLC 1812 SABINAL ST MISSION, TX 78572-2021 &nbsp;",
+    "site_addr": "S MAYBERRY RD &nbsp;",
+    "legal": "WEST ADDN TO SHARYLAND S10AC LOT 38-9 &nbsp;",
+    "cad_ref": "318092 &nbsp;",
+    "query": "TALGAOS",
+    "_detail": {
+      "gross_value": 520000,
+      "land_value": 520000,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "WEST ADDN TO SHARYLAND S10AC LOT 38-9",
+      "site_address": "S MAYBERRY RD",
+      "tax_levy": 9553.68
+    }
+  },
+  {
+    "account": "L33972B000024600",
+    "owner_addr": "TALGAOS LLC & FORTIA INVESTMENTS LLC 2208 VICTORIA ST HIDALGO, TX 78557 &nbsp;",
+    "site_addr": "2208 VICTORIA ST &nbsp;",
+    "legal": "LAS VILLAS DEL RIO PH 2B LOT 246 &nbsp;",
+    "cad_ref": "562011 &nbsp;",
+    "query": "TALGAOS",
+    "_detail": {
+      "gross_value": 162066,
+      "land_value": 65910,
+      "improvement_value": 96156,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LAS VILLAS DEL RIO PH 2B LOT 246",
+      "site_address": "2208 VICTORIA ST",
+      "tax_levy": 3905.47
+    }
+  },
+  {
+    "account": "M082500000006700",
+    "owner_addr": "TALGAOS LLC 1812 SABINAL ST MISSION, TX 78572 &nbsp;",
+    "site_addr": "2323 DORADO DR &nbsp;",
+    "legal": "MAR LOT 67 &nbsp;",
+    "cad_ref": "1130926 &nbsp;",
+    "query": "TALGAOS",
+    "_detail": {
+      "gross_value": 234336,
+      "land_value": 49949,
+      "improvement_value": 184387,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "MAR LOT 67",
+      "site_address": "2323 DORADO DR",
+      "tax_levy": 4313.9
+    }
+  },
+  {
+    "account": "M572002000000200",
+    "owner_addr": "TALGAOS LLC 1812 SABINAL ST MISSION, TX 78572-2021 &nbsp;",
+    "site_addr": "3613 ZELMA ST &nbsp;",
+    "legal": "MONMACK TERRACE NO. 2 LOT 2 &nbsp;",
+    "cad_ref": "667123 &nbsp;",
+    "query": "TALGAOS",
+    "_detail": {
+      "gross_value": 362052,
+      "land_value": 130540,
+      "improvement_value": 231512,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "MONMACK TERRACE NO. 2 LOT 2",
+      "site_address": "3613 ZELMA ST",
+      "tax_levy": 8653.76
+    }
+  },
+  {
+    "account": "V055300000000100",
+    "owner_addr": "TRENTON PALMS LLC 7017 N 10TH ST STE T MCALLEN, TX 78504-3288 &nbsp;",
+    "site_addr": "7001 N 10TH ST &nbsp;",
+    "legal": "VALERIE LOT 1 &nbsp;",
+    "cad_ref": "311700 &nbsp;",
+    "query": "TRENTON",
+    "_detail": {
+      "gross_value": 690600,
+      "land_value": 676400,
+      "improvement_value": 14200,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "VALERIE LOT 1",
+      "site_address": "7001 N 10TH ST",
+      "tax_levy": 12689.77
+    }
+  },
+  {
+    "account": "T687500000000100",
+    "owner_addr": "TRENTON PALMS LLC 7017 N 10TH ST STE T MCALLEN, TX 78504-3288 &nbsp;",
+    "site_addr": "7017 N 10TH ST &nbsp;",
+    "legal": "TRENTON VIEW LOT 1 &nbsp;",
+    "cad_ref": "669537 &nbsp;",
+    "query": "TRENTON",
+    "_detail": {
+      "gross_value": 14150000,
+      "land_value": 4637865,
+      "improvement_value": 9512135,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "TRENTON VIEW LOT 1",
+      "site_address": "7017 N 10TH ST",
+      "tax_levy": 260006.25
+    }
+  },
+  {
+    "account": "T686100000000200",
+    "owner_addr": "TRENTON PARK RETAIL LLC 100 E NOLANA AVE STE 130 MCALLEN, TX 78504-2670 &nbsp;",
+    "site_addr": "271 - 293 E TRENTON RD &nbsp;",
+    "legal": "TRENTON PARK PLAZA LOT 2 & LOT 3 &nbsp;",
+    "cad_ref": "840721 &nbsp;",
+    "query": "TRENTON",
+    "_detail": {
+      "gross_value": 2316905,
+      "land_value": 1179740,
+      "improvement_value": 1137165,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "TRENTON PARK PLAZA LOT 2 & LOT 3",
+      "site_address": "271 - 293 E TRENTON RD",
+      "tax_levy": 55378.66
+    }
+  },
+  {
+    "account": "T686100000000100",
+    "owner_addr": "TRENTON PARK RETAIL LLC 100 E NOLANA AVE STE 130 MCALLEN, TX 78504-2670 &nbsp;",
+    "site_addr": "203 -263 E TRENTON RD &nbsp;",
+    "legal": "TRENTON PARK PLAZA LOT 1 &nbsp;",
+    "cad_ref": "840720 &nbsp;",
+    "query": "TRENTON",
+    "_detail": {
+      "gross_value": 3315920,
+      "land_value": 1651874,
+      "improvement_value": 1664046,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "TRENTON PARK PLAZA LOT 1",
+      "site_address": "203 -263 E TRENTON RD",
+      "tax_levy": 79257.12
+    }
+  },
+  {
+    "account": "T683600000000500",
+    "owner_addr": "TRENTON REALTY HOLDINGS LLC 1701 DONS DRIVE MISSION, TX 78572-3378 &nbsp;",
+    "site_addr": "1911 W TRENTON RD &nbsp;",
+    "legal": "TRENTON CROSSROADS PLAZA LOT 5 &nbsp;",
+    "cad_ref": "696933 &nbsp;",
+    "query": "TRENTON",
+    "_detail": {
+      "gross_value": 403704,
+      "land_value": 403704,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "TRENTON CROSSROADS PLAZA LOT 5",
+      "site_address": "1911 W TRENTON RD",
+      "tax_levy": 9649.34
+    }
+  },
+  {
+    "account": "C823004010000101",
+    "owner_addr": "TRENTON SQUARE LLC 1004 MERIDEN LN AUSTIN, TX 78703-3823 &nbsp;",
+    "site_addr": "2502 W TRENTON RD &nbsp;",
+    "legal": "CORNERSTONE MEDICAL PARK PH 4 AN IRR TR S110.70'-E88.60' LOT 1 BLK 10 .3868AC NET &nbsp;",
+    "cad_ref": "692764 &nbsp;",
+    "query": "TRENTON",
+    "_detail": {
+      "gross_value": 3554791,
+      "land_value": 269600,
+      "improvement_value": 3285191,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "CORNERSTONE MEDICAL PARK PH 4 AN IRR TR",
+      "site_address": "2502 W TRENTON RD",
+      "tax_levy": 68145.53
+    }
+  },
+  {
+    "account": "T686500000000100",
+    "owner_addr": "TRENTON STREET CORPORATION 367 S GULPH RD KING OF PRUSSIA, PA 19406-3121 &nbsp;",
+    "site_addr": "1102 W TRENTON RD &nbsp;",
+    "legal": "TRENTON STREET LOT 1 &nbsp;",
+    "cad_ref": "570308 &nbsp;",
+    "query": "TRENTON",
+    "_detail": {
+      "gross_value": 104000000,
+      "land_value": 10322000,
+      "improvement_value": 93678000,
+      "capped_value": 0,
+      "agricultural_value": 5544,
+      "legal_full": "TRENTON STREET LOT 1",
+      "site_address": "1102 W TRENTON RD",
+      "tax_levy": 2416194.48
+    }
+  },
+  {
+    "account": "Q401002003018900",
+    "owner_addr": "QUIET VILLAGE II ASSOCIATION 215 S VALLEY VIEW RD LOT 190 DONNA, TX 78537-7249 &nbsp;",
+    "site_addr": "215 N VALLEY VIEW RD &nbsp;",
+    "legal": "QUIET VILLAGE II SEC 3 LOT 189 & 190 & 191 &nbsp;",
+    "cad_ref": "450121 &nbsp;",
+    "query": "QUIET VILLAGE",
+    "_detail": {
+      "gross_value": 119772,
+      "land_value": 35910,
+      "improvement_value": 83862,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "QUIET VILLAGE II SEC 3 LOT 189 & 190 &",
+      "site_address": "215 N VALLEY VIEW RD",
+      "tax_levy": 2358.67
+    }
+  },
+  {
+    "account": "G488002000003800",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "2413 MOONLIGHT LN &nbsp;",
+    "legal": "GOLDEN CREST APARTMENT COMMUNITY NO. 2 LOT 38 &nbsp;",
+    "cad_ref": "701144 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 339602,
+      "land_value": 95907,
+      "improvement_value": 243695,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "GOLDEN CREST APARTMENT COMMUNITY NO. 2",
+      "site_address": "2413 MOONLIGHT LN",
+      "tax_levy": 8117.16
+    }
+  },
+  {
+    "account": "J422001000002000",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3811 FAITH HILL ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENTS PH 1 LOT 20 - AMENDED &nbsp;",
+    "cad_ref": "672006 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 316473,
+      "land_value": 104000,
+      "improvement_value": 212473,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENTS PH 1 LOT 20",
+      "site_address": "3811 FAITH HILL ST",
+      "tax_levy": 7564.34
+    }
+  },
+  {
+    "account": "J422001000002200",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3727 FAITH HILL ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENTS PH 1 LOT 22 - AMENDED &nbsp;",
+    "cad_ref": "672008 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 316743,
+      "land_value": 104000,
+      "improvement_value": 212743,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENTS PH 1 LOT 22",
+      "site_address": "3727 FAITH HILL ST",
+      "tax_levy": 7570.78
+    }
+  },
+  {
+    "account": "J422002000005400",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3713 SARAH EVANS ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENT PH 2 LOT 54 &nbsp;",
+    "cad_ref": "687827 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 316743,
+      "land_value": 110600,
+      "improvement_value": 206143,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENT PH 2 LOT 54",
+      "site_address": "3713 SARAH EVANS ST",
+      "tax_levy": 7570.78
+    }
+  },
+  {
+    "account": "J422002000005700",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3623 SARAH EVANS ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENT PH 2 LOT 57 &nbsp;",
+    "cad_ref": "687830 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 356629,
+      "land_value": 110600,
+      "improvement_value": 246029,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENT PH 2 LOT 57",
+      "site_address": "3623 SARAH EVANS ST",
+      "tax_levy": 8524.14
+    }
+  },
+  {
+    "account": "J422001000002100",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3805 FAITH HILL ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENTS PH 1 LOT 21 - AMENDED &nbsp;",
+    "cad_ref": "672007 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 316743,
+      "land_value": 104000,
+      "improvement_value": 212743,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENTS PH 1 LOT 21",
+      "site_address": "3805 FAITH HILL ST",
+      "tax_levy": 7570.78
+    }
+  },
+  {
+    "account": "J422002000005300",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3719 SARAH EVANS ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENT PH 2 LOT 53 &nbsp;",
+    "cad_ref": "687826 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 316743,
+      "land_value": 110600,
+      "improvement_value": 206143,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENT PH 2 LOT 53",
+      "site_address": "3719 SARAH EVANS ST",
+      "tax_levy": 7570.78
+    }
+  },
+  {
+    "account": "J422002000005500",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3707 SARAH EVANS ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENT PH 2 LOT 55 &nbsp;",
+    "cad_ref": "687828 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 316743,
+      "land_value": 110600,
+      "improvement_value": 206143,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENT PH 2 LOT 55",
+      "site_address": "3707 SARAH EVANS ST",
+      "tax_levy": 7570.78
+    }
+  },
+  {
+    "account": "J422002000005600",
+    "owner_addr": "EDINBURG MANOR LLC 305 N SUGAR RD EDINBURG, TX 78541 &nbsp;",
+    "site_addr": "3701 SARAH EVANS ST &nbsp;",
+    "legal": "JARDIN DEL VALLE APARTMENT PH 2 LOT 56 &nbsp;",
+    "cad_ref": "687829 &nbsp;",
+    "query": "EDINBURG MANOR",
+    "_detail": {
+      "gross_value": 356629,
+      "land_value": 110600,
+      "improvement_value": 246029,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "JARDIN DEL VALLE APARTMENT PH 2 LOT 56",
+      "site_address": "3701 SARAH EVANS ST",
+      "tax_levy": 8524.14
+    }
+  },
+  {
+    "account": "H521006000001900",
+    "owner_addr": "VILLASANA MARIA DEL ROSARIO RODOLFO R VILLASANA 7307 NOEMI ST DONNA, TX 78537-5331 &nbsp;",
+    "site_addr": "7307 NOEMI ST &nbsp;",
+    "legal": "HUISACHE ACRES NO. 6 LOT 19 &nbsp;",
+    "cad_ref": "711597 &nbsp;",
+    "query": "VILLAS DEL RIO",
+    "_detail": {
+      "gross_value": 109876,
+      "land_value": 66900,
+      "improvement_value": 42976,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "HUISACHE ACRES NO. 6 LOT 19",
+      "site_address": "7307 NOEMI ST",
+      "tax_levy": 1595.72
+    }
+  },
+  {
+    "account": "C496800000001800",
+    "owner_addr": "SAN AGUSTIN ZAIRA M MARTINEZ 5400 FIESTA DR MISSION, TX 78574-6455 &nbsp;",
+    "site_addr": "4007 FIESTA DR &nbsp;",
+    "legal": "CITRUS LAKE ESTATES LOT 18 &nbsp;",
+    "cad_ref": "137234 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 61485,
+      "land_value": 21755,
+      "improvement_value": 39730,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "CITRUS LAKE ESTATES LOT 18",
+      "site_address": "4007 FIESTA DR",
+      "tax_levy": 1291.82
+    }
+  },
+  {
+    "account": "T474501000008000",
+    "owner_addr": "SAN MARTIN AIDA 4631 THIRD ST NEW ERA, MI 49446-9602 &nbsp;",
+    "site_addr": "577 MAR CIR &nbsp;",
+    "legal": "TIERRA BONITA PH 1 LOT 80 &nbsp;",
+    "cad_ref": "302549 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 118152,
+      "land_value": 43065,
+      "improvement_value": 75087,
+      "capped_value": 86529,
+      "agricultural_value": 0,
+      "legal_full": "TIERRA BONITA PH 1 LOT 80",
+      "site_address": "577 MAR CIR",
+      "tax_levy": 793.69
+    }
+  },
+  {
+    "account": "B158003002002200",
+    "owner_addr": "SAN MARTIN CESAR PO BOX 1841 ELSA, TX 78543-1841 &nbsp;",
+    "site_addr": "8006 DALLAS ST &nbsp;",
+    "legal": "BAR UT NO. 3 LOT 22 BLK 2 &nbsp;",
+    "cad_ref": "121860 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 63543,
+      "land_value": 26465,
+      "improvement_value": 37078,
+      "capped_value": 51617,
+      "agricultural_value": 0,
+      "legal_full": "BAR UT NO. 3 LOT 22 BLK 2",
+      "site_address": "8006 DALLAS ST",
+      "tax_levy": 476.82
+    }
+  },
+  {
+    "account": "A380000003000100",
+    "owner_addr": "SAN MARTIN DE PORRES-ALTON C/O JOHN J FITZPATRICK REV PO BOX 2279 BROWNSVILLE, TX 78522-2279 &nbsp;",
+    "site_addr": "572 W MAIN AVE &nbsp;",
+    "legal": "ALTON-WEST BLK 3 LOTS 1-9 SAN MARTIN DE PORRES - ALTON &nbsp;",
+    "cad_ref": "117852 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 821159,
+      "land_value": 357076,
+      "improvement_value": 464083,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ALTON-WEST BLK 3 LOTS 1-9 SAN MARTIN DE",
+      "site_address": "572 W MAIN AVE",
+      "tax_levy": 0.0
+    }
+  },
+  {
+    "account": "A380000002000100",
+    "owner_addr": "SAN MARTIN DE PORRES-ALTON DIOCESE OF BROWNSVILLE PO BOX 2279 BROWNSVILLE, TX 78522-2279 &nbsp;",
+    "site_addr": "621 W MAIN AVE &nbsp;",
+    "legal": "ALTON-WEST BLK 2 LOTS 1-6 SAN MARTIN DE PORRES - ALTON &nbsp;",
+    "cad_ref": "117835 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 1074574,
+      "land_value": 289276,
+      "improvement_value": 785298,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ALTON-WEST BLK 2 LOTS 1-6 SAN MARTIN DE",
+      "site_address": "621 W MAIN AVE",
+      "tax_levy": 0.0
+    }
+  },
+  {
+    "account": "B444301000000100",
+    "owner_addr": "SAN MARTIN ELISA ABIGAIL & HECTOR G 3701 XANTHISMA AVE MCALLEN, TX 78504-5211 &nbsp;",
+    "site_addr": "3701 XANTHISMA AVE &nbsp;",
+    "legal": "BROOKWOOD UT 1 LOT 1 &nbsp;",
+    "cad_ref": "578166 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 155778,
+      "land_value": 45807,
+      "improvement_value": 109971,
+      "capped_value": 152990,
+      "agricultural_value": 0,
+      "legal_full": "BROOKWOOD UT 1 LOT 1",
+      "site_address": "3701 XANTHISMA AVE",
+      "tax_levy": 1493.24
+    }
+  },
+  {
+    "account": "M215000002001700",
+    "owner_addr": "SAN MARTIN GREGORIO MA MARICELA GUTIERREZ 1013 S 26 1/2 ST MCALLEN, TX 78501-7747 &nbsp;",
+    "site_addr": "1013 S 26TH1/2 ST &nbsp;",
+    "legal": "MCALLEN HEIGHTS LOT 17 BLK 2 &nbsp;",
+    "cad_ref": "230291 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 106467,
+      "land_value": 49500,
+      "improvement_value": 56967,
+      "capped_value": 65269,
+      "agricultural_value": 0,
+      "legal_full": "MCALLEN HEIGHTS LOT 17 BLK 2",
+      "site_address": "1013 S 26TH1/2 ST",
+      "tax_levy": 297.12
+    }
+  },
+  {
+    "account": "A022500003015700",
+    "owner_addr": "SAN MARTIN ITZAMAR G MARQUEZ 6915 SAN ISIDRO MISSION, TX 78574-3233 &nbsp;",
+    "site_addr": "7105 SAN ISIDRO &nbsp;",
+    "legal": "ABRAM ACRES LOT 157 BLK 3 &nbsp;",
+    "cad_ref": "635119 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 111489,
+      "land_value": 68982,
+      "improvement_value": 42507,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ABRAM ACRES LOT 157 BLK 3",
+      "site_address": "7105 SAN ISIDRO",
+      "tax_levy": 2101.41
+    }
+  },
+  {
+    "account": "T601002000018400",
+    "owner_addr": "SAN MARTIN ITZEL G MARQUEZ & ERIC ESTRAD 1502 RUBY ST PENITAS, TX 78576-8396 &nbsp;",
+    "site_addr": "1502 RUBY ST &nbsp;",
+    "legal": "TOM GILL NO 2 LOT 184 &nbsp;",
+    "cad_ref": "562550 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 275328,
+      "land_value": 88209,
+      "improvement_value": 187119,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "TOM GILL NO 2 LOT 184",
+      "site_address": "1502 RUBY ST",
+      "tax_levy": 5050.2
+    }
+  },
+  {
+    "account": "W660000000007500",
+    "owner_addr": "SAN MARTIN JACQUELINE 10911 ALMOND WOOD LIVE OAK, TX 78233 &nbsp;",
+    "site_addr": "109 E ESPERANZA AVE &nbsp;",
+    "legal": "WINDFERN LOT 75 &nbsp;",
+    "cad_ref": "329522 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 179003,
+      "land_value": 64239,
+      "improvement_value": 114764,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "WINDFERN LOT 75",
+      "site_address": "109 E ESPERANZA AVE",
+      "tax_levy": 3277.01
+    }
+  },
+  {
+    "account": "L622300000004100",
+    "owner_addr": "SAN MARTIN JACQUELINE 10911 ALMOND WOOD LIVE OAK, TX 78233 &nbsp;",
+    "site_addr": "1906 SABINAL ST &nbsp;",
+    "legal": "LOS JARDINEZ DE CIMARRON LOT 41 &nbsp;",
+    "cad_ref": "689379 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 568574,
+      "land_value": 157086,
+      "improvement_value": 411488,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LOS JARDINEZ DE CIMARRON LOT 41",
+      "site_address": "1906 SABINAL ST",
+      "tax_levy": 13725.38
+    }
+  },
+  {
+    "account": "L450005000016600",
+    "owner_addr": "SAN MARTIN JAVIER & LAURA 2504 UPAS AVE MCALLEN, TX 78501-6429 &nbsp;",
+    "site_addr": "2504 UPAS AVE &nbsp;",
+    "legal": "LINCOLN TERRACE UT NO. 5 LOT 166 &nbsp;",
+    "cad_ref": "218695 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 200000,
+      "land_value": 41359,
+      "improvement_value": 158641,
+      "capped_value": 187000,
+      "agricultural_value": 0,
+      "legal_full": "LINCOLN TERRACE UT NO. 5 LOT 166",
+      "site_address": "2504 UPAS AVE",
+      "tax_levy": 2115.86
+    }
+  },
+  {
+    "account": "L611500000011600",
+    "owner_addr": "SAN MARTIN JOSE & GLORIA 3608 QUETA AVE MCALLEN, TX 78503-8759 &nbsp;",
+    "site_addr": "3608 QUETA AVE &nbsp;",
+    "legal": "LOS ENCINOS LOT 116 &nbsp;",
+    "cad_ref": "531688 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 146827,
+      "land_value": 61500,
+      "improvement_value": 85327,
+      "capped_value": 140835,
+      "agricultural_value": 0,
+      "legal_full": "LOS ENCINOS LOT 116",
+      "site_address": "3608 QUETA AVE",
+      "tax_levy": 655.51
+    }
+  },
+  {
+    "account": "V351500000008400",
+    "owner_addr": "SAN MARTIN KARMIN & YAZMIN RODRIGUEZ ALFONSO & MARIA N RODRIGUEZ 4108 FERN AVE MCALLEN, TX 78501-6544 &nbsp;",
+    "site_addr": "4108 FERN AVE &nbsp;",
+    "legal": "VILLA DE PALMAS LOT 84 &nbsp;",
+    "cad_ref": "596310 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 164817,
+      "land_value": 52425,
+      "improvement_value": 112392,
+      "capped_value": 142426,
+      "agricultural_value": 0,
+      "legal_full": "VILLA DE PALMAS LOT 84",
+      "site_address": "4108 FERN AVE",
+      "tax_levy": 715.54
+    }
+  },
+  {
+    "account": "R439001000003200",
+    "owner_addr": "SAN MARTIN KARMIN 317 TOUCAN AVE MCALLEN, TX 78504-1720 &nbsp;",
+    "site_addr": "317 TOUCAN AVE &nbsp;",
+    "legal": "ROYAL OAK ESTATES UT 1 LOT 32 &nbsp;",
+    "cad_ref": "539447 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 314866,
+      "land_value": 81559,
+      "improvement_value": 233307,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ROYAL OAK ESTATES UT 1 LOT 32",
+      "site_address": "317 TOUCAN AVE",
+      "tax_levy": 4478.11
+    }
+  },
+  {
+    "account": "C938702000001400",
+    "owner_addr": "SAN MARTIN MIGUEL 415 PINE CREEK ALAMO, TX 78516-4702 &nbsp;",
+    "site_addr": "415 PINE CREEK &nbsp;",
+    "legal": "CRIPPLE CREEK UT 2 LOT 14 &nbsp;",
+    "cad_ref": "659045 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 143061,
+      "land_value": 46080,
+      "improvement_value": 96981,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "CRIPPLE CREEK UT 2 LOT 14",
+      "site_address": "415 PINE CREEK",
+      "tax_levy": 2229.8
+    }
+  },
+  {
+    "account": "B365500000006500",
+    "owner_addr": "SAN MARTIN RAUL & MARIA 6218 DIAMOND AVE EDINBURG, TX 78542-4051 &nbsp;",
+    "site_addr": "6218 DIAMOND AVE &nbsp;",
+    "legal": "BOOMTOWN LOT 65 &nbsp;",
+    "cad_ref": "559444 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 26750,
+      "land_value": 26750,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "BOOMTOWN LOT 65",
+      "site_address": "6218 DIAMOND AVE",
+      "tax_levy": 639.38
+    }
+  },
+  {
+    "account": "B365595000006501",
+    "owner_addr": "SAN MARTIN RAUL & MARIA 6218 DIAMOND AVE EDINBURG, TX 78542-4051 &nbsp;",
+    "site_addr": "6218 DIAMOND AVE &nbsp;",
+    "legal": "BOOMTOWN LOT 65, IMPROVEMENTS ONLY-NEW FOR 2007 &nbsp;",
+    "cad_ref": "782816 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 18001,
+      "land_value": 0,
+      "improvement_value": 18001,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "BOOMTOWN LOT 65, IMPROVEMENTS ONLY-NEW",
+      "site_address": "6218 DIAMOND AVE",
+      "tax_levy": 241.2
+    }
+  },
+  {
+    "account": "E330000200000300",
+    "owner_addr": "SAN MARTIN RICARDO & VERONICA C 1012 E KUHN ST EDINBURG, TX 78541-3748 &nbsp;",
+    "site_addr": "1012 E KUHN ST &nbsp;",
+    "legal": "EDINBURG TOWNSITE LOT 3 BLK 200 &nbsp;",
+    "cad_ref": "164739 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 150000,
+      "land_value": 71000,
+      "improvement_value": 79000,
+      "capped_value": 139755,
+      "agricultural_value": 0,
+      "legal_full": "EDINBURG TOWNSITE LOT 3 BLK 200",
+      "site_address": "1012 E KUHN ST",
+      "tax_levy": 2102.19
+    }
+  },
+  {
+    "account": "A577001000002000",
+    "owner_addr": "SAN MARTIN RITO & MARIA L 2709 N 38TH ST MCALLEN, TX 78501-3337 &nbsp;",
+    "site_addr": "2709 N 38TH ST &nbsp;",
+    "legal": "ARROWHEAD PH 1 LOT 20 &nbsp;",
+    "cad_ref": "580787 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 145554,
+      "land_value": 62234,
+      "improvement_value": 83320,
+      "capped_value": 131141,
+      "agricultural_value": 0,
+      "legal_full": "ARROWHEAD PH 1 LOT 20",
+      "site_address": "2709 N 38TH ST",
+      "tax_levy": 732.5
+    }
+  },
+  {
+    "account": "C443901000000300",
+    "owner_addr": "SAN MARTIN ROSARIO ANSELMO GARZA 3008 TANYA AVE MCALLEN, TX 78503-1828 &nbsp;",
+    "site_addr": "3008 TANYA AVE &nbsp;",
+    "legal": "CIELO VISTA PH 1 LOT 3 &nbsp;",
+    "cad_ref": "714450 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 172734,
+      "land_value": 47133,
+      "improvement_value": 125601,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "CIELO VISTA PH 1 LOT 3",
+      "site_address": "3008 TANYA AVE",
+      "tax_levy": 1854.71
+    }
+  },
+  {
+    "account": "P755000000004000",
+    "owner_addr": "SAN MARTIN SIXTO & LUCIANA 3540 PLAZAS DEL LAGO DR EDINBURG, TX 78539 &nbsp;",
+    "site_addr": "3540 PLAZAS DEL LAGO DR &nbsp;",
+    "legal": "PLAZAS DEL LAGO LAKE JAMES LOTS 40 & 41 &nbsp;",
+    "cad_ref": "262083 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 565668,
+      "land_value": 128700,
+      "improvement_value": 436968,
+      "capped_value": 495210,
+      "agricultural_value": 0,
+      "legal_full": "PLAZAS DEL LAGO LAKE JAMES LOTS 40 & 41",
+      "site_address": "3540 PLAZAS DEL LAGO DR",
+      "tax_levy": 10846.59
+    }
+  },
+  {
+    "account": "E596001000001000",
+    "owner_addr": "SAN MARTIN SIXTO M 513 E WISTERIA AVE MCALLEN, TX 78504-2348 &nbsp;",
+    "site_addr": "513 E WISTERIA AVE &nbsp;",
+    "legal": "ENCINO PARK UT 1 LOT 10 &nbsp;",
+    "cad_ref": "450790 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 211895,
+      "land_value": 79165,
+      "improvement_value": 132730,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ENCINO PARK UT 1 LOT 10",
+      "site_address": "513 E WISTERIA AVE",
+      "tax_levy": 3879.17
+    }
+  },
+  {
+    "account": "P696000000013200",
+    "owner_addr": "SAN MARTIN-RAMOS WENCESLAO & ANITA MONTO A/K/A ANITA SAN MARTIN 734 JUANITA ST DONNA, TX 78537-4435 &nbsp;",
+    "site_addr": "734 JUANITA ST &nbsp;",
+    "legal": "PIQUITO DE ORO LOT 132 & 133 &nbsp;",
+    "cad_ref": "261173 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 256372,
+      "land_value": 83785,
+      "improvement_value": 172587,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "PIQUITO DE ORO LOT 132 & 133",
+      "site_address": "734 JUANITA ST",
+      "tax_levy": 5048.75
+    }
+  },
+  {
+    "account": "N814002004000300",
+    "owner_addr": "SAN MIGUEL MARTIN & FIDELA 3505 LOYOLA AVE MCALLEN, TX 78504-6196 &nbsp;",
+    "site_addr": "3505 LOYOLA AVE &nbsp;",
+    "legal": "NORTH WARE ROAD ESTATES PH 2 LOT 3 BLK 4 &nbsp;",
+    "cad_ref": "692567 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 218108,
+      "land_value": 43388,
+      "improvement_value": 174720,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "NORTH WARE ROAD ESTATES PH 2 LOT 3 BLK 4",
+      "site_address": "3505 LOYOLA AVE",
+      "tax_levy": 0.0
+    }
+  },
+  {
+    "account": "D202300000001700",
+    "owner_addr": "SANCHEZ ALONSO M MARTINEZ & ROCIO VIANNE 821 W LONGORIA DR PHARR, TX 78577-9762 &nbsp;",
+    "site_addr": "601 GERARDO LN &nbsp;",
+    "legal": "DEER FIELD LOT 17 &nbsp;",
+    "cad_ref": "1464144 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 246782,
+      "land_value": 56907,
+      "improvement_value": 189875,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "DEER FIELD LOT 17",
+      "site_address": "601 GERARDO LN",
+      "tax_levy": 6441.77
+    }
+  },
+  {
+    "account": "L626800000005200",
+    "owner_addr": "SANCHEZ ANA G & RUBEN MARTINEZ 5111 LOS MESQUITES DONNA, TX 78537-4410 &nbsp;",
+    "site_addr": "5111 LOS ARBOLES ST &nbsp;",
+    "legal": "LOS MIRASOLES LOT 52 &nbsp;",
+    "cad_ref": "627709 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 246716,
+      "land_value": 66369,
+      "improvement_value": 180347,
+      "capped_value": 239437,
+      "agricultural_value": 0,
+      "legal_full": "LOS MIRASOLES LOT 52",
+      "site_address": "5111 LOS ARBOLES ST",
+      "tax_levy": 3243.89
+    }
+  },
+  {
+    "account": "S035302000015300",
+    "owner_addr": "SANCHEZ CLAUDIA P MARTINEZ 2820 ASH AVE LOT 74 MCALLEN, TX 78501-7621 &nbsp;",
+    "site_addr": "825 CANELA DR &nbsp;",
+    "legal": "SAN AGUSTIN PH 2 LOT 153 &nbsp;",
+    "cad_ref": "1308740 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 114098,
+      "land_value": 45045,
+      "improvement_value": 69053,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "SAN AGUSTIN PH 2 LOT 153",
+      "site_address": "825 CANELA DR",
+      "tax_levy": 2951.83
+    }
+  },
+  {
+    "account": "C153502000004300",
+    "owner_addr": "SANCHEZ CLAUDIA PATRICIA MARTINEZ 1602 PULLIN AVE SAN JUAN, TX 78589-3907 &nbsp;",
+    "site_addr": "1602 PULLIN AVE &nbsp;",
+    "legal": "CAPRI NO. 2 LOT 43 &nbsp;",
+    "cad_ref": "517712 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 60351,
+      "land_value": 48620,
+      "improvement_value": 11731,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "CAPRI NO. 2 LOT 43",
+      "site_address": "1602 PULLIN AVE",
+      "tax_levy": 1560.67
+    }
+  },
+  {
+    "account": "G260000000000102",
+    "owner_addr": "SANCHEZ DE MARTINEZ NELIA C A/K/A NELIA 322 S BRIDGE ST HIDALGO, TX 78557-2805 &nbsp;",
+    "site_addr": "1209 S 10TH ST &nbsp;",
+    "legal": "GATEWAY PLAZA SHOPPING CITY S40'-N190' LOT 1 &nbsp;",
+    "cad_ref": "178745 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 520273,
+      "land_value": 200400,
+      "improvement_value": 319873,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "GATEWAY PLAZA SHOPPING CITY S40'-N190'",
+      "site_address": "1209 S 10TH ST",
+      "tax_levy": 9524.63
+    }
+  },
+  {
+    "account": "G260000000000103",
+    "owner_addr": "SANCHEZ DE MARTINEZ NELIA C A/K/A NELIA 322 S BRIDGE ST HIDALGO, TX 78557-2805 &nbsp;",
+    "site_addr": "1209 S 10TH ST &nbsp;",
+    "legal": "GATEWAY PLAZA SHOPPING CITY N25'-S110'-N300' LOT 1 &nbsp;",
+    "cad_ref": "178746 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 314039,
+      "land_value": 125250,
+      "improvement_value": 188789,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "GATEWAY PLAZA SHOPPING CITY",
+      "site_address": "1209 S 10TH ST",
+      "tax_levy": 5749.11
+    }
+  },
+  {
+    "account": "T575002006006800",
+    "owner_addr": "SANCHEZ DIANA & MARTIN ESPINOZA 520 E BUCHANAN AVE ALTON, TX 78573-3834 &nbsp;",
+    "site_addr": "520 E BUCHANAN DR &nbsp;",
+    "legal": "TODO PH 2 LOT 68 BLK 6 &nbsp;",
+    "cad_ref": "614807 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 154954,
+      "land_value": 54937,
+      "improvement_value": 100017,
+      "capped_value": 150639,
+      "agricultural_value": 0,
+      "legal_full": "TODO PH 2 LOT 68 BLK 6",
+      "site_address": "520 E BUCHANAN DR",
+      "tax_levy": 1745.17
+    }
+  },
+  {
+    "account": "C6650000B2001500",
+    "owner_addr": "SANCHEZ ENRIQUE & MARTINA 1840 FLORIDA ST MERCEDES, TX 78570 &nbsp;",
+    "site_addr": "616 S VERMONT &nbsp;",
+    "legal": "COLONIA CHAPULTEPEC UT NO. 1 S60' LOTS 14, 15 & 16 BLK B-2 117 &nbsp;",
+    "cad_ref": "150216 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 127956,
+      "land_value": 32400,
+      "improvement_value": 95556,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "COLONIA CHAPULTEPEC UT NO. 1 S60' LOTS",
+      "site_address": "616 S VERMONT",
+      "tax_levy": 3558.06
+    }
+  },
+  {
+    "account": "S310000001000100",
+    "owner_addr": "SANCHEZ HECTOR HUGO M & IRMA G MARTINEZ 1018 E BELL PHARR, TX 78577-4204 &nbsp;",
+    "site_addr": "1016 E BELL ST &nbsp;",
+    "legal": "SHERER LOT 1 UNIT 1 &nbsp;",
+    "cad_ref": "283713 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 95829,
+      "land_value": 43876,
+      "improvement_value": 51953,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "SHERER LOT 1 UNIT 1",
+      "site_address": "1016 E BELL ST",
+      "tax_levy": 2038.41
+    }
+  },
+  {
+    "account": "H255000008001002",
+    "owner_addr": "SANCHEZ INGRID M MARTINEZ & ALBERTO 300 N 6TH ST MCALLEN, TX 78501-2520 &nbsp;",
+    "site_addr": "300 N 6TH ST &nbsp;",
+    "legal": "HIDALGO CANAL CO-MC W131'-S53.7' LOT 10 NE 1/4 BLK 8 &nbsp;",
+    "cad_ref": "189564 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 142929,
+      "land_value": 50181,
+      "improvement_value": 92748,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "HIDALGO CANAL CO-MC W131'-S53.7' LOT 10",
+      "site_address": "300 N 6TH ST",
+      "tax_levy": 2616.59
+    }
+  },
+  {
+    "account": "T543600000001600",
+    "owner_addr": "SANCHEZ IRIS & JUAN MANUEL GOMEZ MARTINE 1003 ISABEL DR WESLACO, TX 78599-2339 &nbsp;",
+    "site_addr": "&nbsp;",
+    "legal": "TIERRA ROOSEVELT LOT 16 &nbsp;",
+    "cad_ref": "1641769 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 96441,
+      "land_value": 59998,
+      "improvement_value": 36443,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "TIERRA ROOSEVELT LOT 16",
+      "tax_levy": 1929.62
+    }
+  },
+  {
+    "account": "L565002000010500",
+    "owner_addr": "SANCHEZ JESUS MARTIN & MELINDA TELLEZ 304 TYLER AVE MCALLEN, TX 78503-3069 &nbsp;",
+    "site_addr": "304 TYLER AVE &nbsp;",
+    "legal": "LOS ALEGRES UT NO. 2 LOT 105 &nbsp;",
+    "cad_ref": "221460 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 272088,
+      "land_value": 68850,
+      "improvement_value": 203238,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LOS ALEGRES UT NO. 2 LOT 105",
+      "site_address": "304 TYLER AVE",
+      "tax_levy": 3673.57
+    }
+  },
+  {
+    "account": "S397502000021100",
+    "owner_addr": "SANCHEZ JOSE D MARTINEZ & HAYDE M TAVERA DE VALENCIA 821 LONGORIA ST PHARR, TX 78577-9762 &nbsp;",
+    "site_addr": "6304 BLANCA LN &nbsp;",
+    "legal": "SOL BRILLA PH 2 LOT 211 &nbsp;",
+    "cad_ref": "545311 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 232140,
+      "land_value": 49920,
+      "improvement_value": 182220,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "SOL BRILLA PH 2 LOT 211",
+      "site_address": "6304 BLANCA LN",
+      "tax_levy": 6214.63
+    }
+  },
+  {
+    "account": "O065100000001800",
+    "owner_addr": "SANCHEZ JOSE F & OLGA E MARTINEZ 3700 N K CTR APT #502 MCALLEN, TX 78501 &nbsp;",
+    "site_addr": "2010 N 44TH LN &nbsp;",
+    "legal": "OAK TERRACE ESTATES LOT 18 &nbsp;",
+    "cad_ref": "701235 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 352435,
+      "land_value": 65100,
+      "improvement_value": 287335,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "OAK TERRACE ESTATES LOT 18",
+      "site_address": "2010 N 44TH LN",
+      "tax_levy": 5198.23
+    }
+  },
+  {
+    "account": "L284800000007900",
+    "owner_addr": "SANCHEZ JUAN MARTINEZ & LOYDA N GUAJARDO 906 MAGNOLIA ST MISSION, TX 78573-2850 &nbsp;",
+    "site_addr": "906 MAGNOLIA ST &nbsp;",
+    "legal": "LANTANA LANDING LOT 79 &nbsp;",
+    "cad_ref": "1562865 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 264039,
+      "land_value": 54850,
+      "improvement_value": 209189,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LANTANA LANDING LOT 79",
+      "site_address": "906 MAGNOLIA ST",
+      "tax_levy": 6784.48
+    }
+  },
+  {
+    "account": "C788600000002100",
+    "owner_addr": "SANCHEZ MARIA A & ANA KAREN MARTINEZ PO BOX 2216 SAN JUAN, TX 78589-7216 &nbsp;",
+    "site_addr": "4716 MELODY LANE &nbsp;",
+    "legal": "CONCHO HEIGHTS LOT 21 &nbsp;",
+    "cad_ref": "958136 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 78507,
+      "land_value": 78507,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "CONCHO HEIGHTS LOT 21",
+      "site_address": "4716 MELODY LANE",
+      "tax_levy": 994.17
+    }
+  },
+  {
+    "account": "S300000000002858",
+    "owner_addr": "SANCHEZ MARIA I MARTINEZ 2116 DELDIE LN MISSION, TX 78572-4602 &nbsp;",
+    "site_addr": "2108 DELDIE LN &nbsp;",
+    "legal": "SHARYLAND ORCHARDS LOT 28 TRACT 10 &nbsp;",
+    "cad_ref": "283401 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 35866,
+      "land_value": 23030,
+      "improvement_value": 12836,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "SHARYLAND ORCHARDS LOT 28 TRACT 10",
+      "site_address": "2108 DELDIE LN",
+      "tax_levy": 865.81
+    }
+  },
+  {
+    "account": "D280000007000708",
+    "owner_addr": "SANCHEZ MARIA MARTINEZ 3111 HUMBERTO GARZA JR ST MISSION, TX 78572-1215 &nbsp;",
+    "site_addr": "3111 HUMBERTO GARZA JR. ST &nbsp;",
+    "legal": "DEL MONTE ORCHARD CO. NO. 1 S169.04'-N388.04'-W49.68' LOT 7 BLK 7 0.19AC &nbsp;",
+    "cad_ref": "578978 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 0,
+      "land_value": 0,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "DEL MONTE ORCHARD CO. NO. 1",
+      "site_address": "3111 HUMBERTO GARZA JR. ST",
+      "tax_levy": 0.0
+    }
+  },
+  {
+    "account": "C788600000001500",
+    "owner_addr": "SANCHEZ MARTIN & CELIA 4711 MELODY LANE EDINBURG, TX 78542-0212 &nbsp;",
+    "site_addr": "4711 MELODY LANE &nbsp;",
+    "legal": "CONCHO HEIGHTS LOT 15 &nbsp;",
+    "cad_ref": "958130 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 246613,
+      "land_value": 79605,
+      "improvement_value": 167008,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "CONCHO HEIGHTS LOT 15",
+      "site_address": "4711 MELODY LANE",
+      "tax_levy": 3713.8
+    }
+  },
+  {
+    "account": "D301003000003500",
+    "owner_addr": "SANCHEZ MARTIN & LESLIE L 8007 VERBENA ST EDINBURG, TX 78542-7166 &nbsp;",
+    "site_addr": "&nbsp;",
+    "legal": "DEL REY ESTATES UT 3 LOT 35 &nbsp;",
+    "cad_ref": "1306097 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 80176,
+      "land_value": 80176,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "DEL REY ESTATES UT 3 LOT 35",
+      "tax_levy": 1012.94
+    }
+  },
+  {
+    "account": "E456000000000300",
+    "owner_addr": "SANCHEZ MARTIN & MARIVEL PO BOX 1506 EDCOUCH, TX 78538-1506 &nbsp;",
+    "site_addr": "1507 W MILE 14 N &nbsp;",
+    "legal": "EL OBISPADO LOT 3 &nbsp;",
+    "cad_ref": "536054 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 197609,
+      "land_value": 66960,
+      "improvement_value": 130649,
+      "capped_value": 143369,
+      "agricultural_value": 0,
+      "legal_full": "EL OBISPADO LOT 3",
+      "site_address": "1507 W MILE 14 N",
+      "tax_levy": 1351.9
+    }
+  },
+  {
+    "account": "V344003000030800",
+    "owner_addr": "SANCHEZ MARTIN & ROSARIO 3312 TRIPLE J DR MISSION, TX 78572-8470 &nbsp;",
+    "site_addr": "3312 TRIPLE J DR &nbsp;",
+    "legal": "VILLA-RAMA EAST PH 3 LOT 308 &nbsp;",
+    "cad_ref": "573992 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 206755,
+      "land_value": 44660,
+      "improvement_value": 162095,
+      "capped_value": 177474,
+      "agricultural_value": 0,
+      "legal_full": "VILLA-RAMA EAST PH 3 LOT 308",
+      "site_address": "3312 TRIPLE J DR",
+      "tax_levy": 2239.8
+    }
+  },
+  {
+    "account": "D301003000020100",
+    "owner_addr": "SANCHEZ MARTIN ALBERTO BUENO & YOSELIN M 1754 PRESIDO CIR W ALAMO, TX 78516-7338 &nbsp;",
+    "site_addr": "&nbsp;",
+    "legal": "DEL REY ESTATES UT 3 LOT 201 &nbsp;",
+    "cad_ref": "1306263 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 81252,
+      "land_value": 81252,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "DEL REY ESTATES UT 3 LOT 201",
+      "tax_levy": 1480.58
+    }
+  },
+  {
+    "account": "M579500000000500",
+    "owner_addr": "SANCHEZ MARTIN BERLANGA & GABRIELA MARTI 3000 NARANJA DR MISSION, TX 78574-2734 &nbsp;",
+    "site_addr": "1908 W 26 1/2TH ST &nbsp;",
+    "legal": "MONTECRISTO LOT 5 &nbsp;",
+    "cad_ref": "1180676 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 54567,
+      "land_value": 54567,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "MONTECRISTO LOT 5",
+      "site_address": "1908 W 26 1/2TH ST",
+      "tax_levy": 1341.8
+    }
+  },
+  {
+    "account": "T123105000001700",
+    "owner_addr": "SANCHEZ MARTIN CERDA 213 TODD ST PROGRESO, TX 78579 &nbsp;",
+    "site_addr": "213 TODD ST &nbsp;",
+    "legal": "TEJAS NO.5 PH 2 LOT 17 &nbsp;",
+    "cad_ref": "683871 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 170564,
+      "land_value": 36355,
+      "improvement_value": 134209,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "TEJAS NO.5 PH 2 LOT 17",
+      "site_address": "213 TODD ST",
+      "tax_levy": 3159.75
+    }
+  },
+  {
+    "account": "C030000194002400",
+    "owner_addr": "SANCHEZ MARTIN D GRACIELA GUERRERO PO BOX 465 PHARR, TX 78577-1608 &nbsp;",
+    "site_addr": "100 E SAENZ AVE &nbsp;",
+    "legal": "CAGE NO. 2 LOT 24 BLK 194 &nbsp;",
+    "cad_ref": "129290 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 106533,
+      "land_value": 27398,
+      "improvement_value": 79135,
+      "capped_value": 66480,
+      "agricultural_value": 0,
+      "legal_full": "CAGE NO. 2 LOT 24 BLK 194",
+      "site_address": "100 E SAENZ AVE",
+      "tax_levy": 1105.17
+    }
+  },
+  {
+    "account": "V266004000023900",
+    "owner_addr": "SANCHEZ MARTIN J & ROSEMARIE BAUTISTA 706 E WASHINGTON ST WESLACO, TX 78599-4390 &nbsp;",
+    "site_addr": "4005 ADORE ST &nbsp;",
+    "legal": "VAQUERO ESTATES PH 4 LOT 239 &nbsp;",
+    "cad_ref": "1072389 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 65344,
+      "land_value": 65344,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "VAQUERO ESTATES PH 4 LOT 239",
+      "site_address": "4005 ADORE ST",
+      "tax_levy": 1219.19
+    }
+  },
+  {
+    "account": "M319700000007700",
+    "owner_addr": "SANCHEZ MARTIN L & VIVIAN A RUIZ 4617 VIOLET AVE MCALLEN, TX 78504-4862 &nbsp;",
+    "site_addr": "4617 VIOLET AVE &nbsp;",
+    "legal": "MEADOW RIDGE LOT 77 &nbsp;",
+    "cad_ref": "708385 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 277660,
+      "land_value": 51425,
+      "improvement_value": 226235,
+      "capped_value": 255421,
+      "agricultural_value": 0,
+      "legal_full": "MEADOW RIDGE LOT 77",
+      "site_address": "4617 VIOLET AVE",
+      "tax_levy": 3397.66
+    }
+  },
+  {
+    "account": "S544700000004500",
+    "owner_addr": "SANCHEZ MARTIN M & MYRIAM I 2207 NELLIE ST WESLACO, TX 78596-1905 &nbsp;",
+    "site_addr": "2209 PAGE AVE &nbsp;",
+    "legal": "SPRINGWOOD ESTATES LOT 45 &nbsp;",
+    "cad_ref": "706290 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 56666,
+      "land_value": 56666,
+      "improvement_value": 0,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "SPRINGWOOD ESTATES LOT 45",
+      "site_address": "2209 PAGE AVE",
+      "tax_levy": 1432.81
+    }
+  },
+  {
+    "account": "I705003000010000",
+    "owner_addr": "SANCHEZ MARTIN 8007 VERBENA ST EDINBURG, TX 78542-7166 &nbsp;",
+    "site_addr": "8007 VERBENA ST &nbsp;",
+    "legal": "IOWA GARDENS ESTATES PH 3 LOT 100 &nbsp;",
+    "cad_ref": "653684 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 88468,
+      "land_value": 68028,
+      "improvement_value": 20440,
+      "capped_value": 67515,
+      "agricultural_value": 0,
+      "legal_full": "IOWA GARDENS ESTATES PH 3 LOT 100",
+      "site_address": "8007 VERBENA ST",
+      "tax_levy": 695.34
+    }
+  },
+  {
+    "account": "V010000000001100",
+    "owner_addr": "SANCHEZ MARTINA G PO BOX 1071 MERCEDES, TX 78570-1071 &nbsp;",
+    "site_addr": "RAMIRO CAVAZOS &nbsp;",
+    "legal": "V & C LOT 11 &nbsp;",
+    "cad_ref": "311207 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 116808,
+      "land_value": 46728,
+      "improvement_value": 70080,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "V & C LOT 11",
+      "site_address": "RAMIRO CAVAZOS",
+      "tax_levy": 2200.32
+    }
+  },
+  {
+    "account": "R021502000007100",
+    "owner_addr": "SANCHEZ MATEO & JUANA MARTINEZ PO BOX 2789 ELSA, TX 78543-2789 &nbsp;",
+    "site_addr": "7714 EDEN ST &nbsp;",
+    "legal": "RMR PH 2 LOT 71 &nbsp;",
+    "cad_ref": "564849 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 173882,
+      "land_value": 60784,
+      "improvement_value": 113098,
+      "capped_value": 147839,
+      "agricultural_value": 0,
+      "legal_full": "RMR PH 2 LOT 71",
+      "site_address": "7714 EDEN ST",
+      "tax_levy": 872.29
+    }
+  },
+  {
+    "account": "A160003000005200",
+    "owner_addr": "SANCHEZ MILAGROS MARTINEZ & LUZ VIDA NUN 902 ALA BLANCA MISSION, TX 78572-7001 &nbsp;",
+    "site_addr": "902 ALA BLANCA AVE &nbsp;",
+    "legal": "ALA BLANCA UT NO. 3 LOT 52 &nbsp;",
+    "cad_ref": "109617 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 93583,
+      "land_value": 44386,
+      "improvement_value": 49197,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "ALA BLANCA UT NO. 3 LOT 52",
+      "site_address": "902 ALA BLANCA AVE",
+      "tax_levy": 1582.75
+    }
+  },
+  {
+    "account": "S061001000002700",
+    "owner_addr": "SANCHEZ PEDRO MARTIN & TANYA YANETH SOSA 1102 DOVE AVE PHARR, TX 78577-7105 &nbsp;",
+    "site_addr": "1102 DOVE AVE &nbsp;",
+    "legal": "SAN GABRIEL PH 1 LOT 27 &nbsp;",
+    "cad_ref": "628356 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 162570,
+      "land_value": 48016,
+      "improvement_value": 114554,
+      "capped_value": 127050,
+      "agricultural_value": 0,
+      "legal_full": "SAN GABRIEL PH 1 LOT 27",
+      "site_address": "1102 DOVE AVE",
+      "tax_levy": 2114.33
+    }
+  },
+  {
+    "account": "S130000002001000",
+    "owner_addr": "SANCHEZ REMIGIO & JESSICA MARTINEZ 7838 ALBERTO RD EDINBURG, TX 78542-4326 &nbsp;",
+    "site_addr": "103 N FIR ST &nbsp;",
+    "legal": "SANCHEZ NO. 2 LOT 10 BLK 2 &nbsp;",
+    "cad_ref": "277129 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 90181,
+      "land_value": 36323,
+      "improvement_value": 53858,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "SANCHEZ NO. 2 LOT 10 BLK 2",
+      "site_address": "103 N FIR ST",
+      "tax_levy": 2136.78
+    }
+  },
+  {
+    "account": "L622503000014500",
+    "owner_addr": "SANCHEZ RONALD & ALEXANDRA GRANDA MARTIN 2232 DIPLOMA DR EDINBURG, TX 78542 &nbsp;",
+    "site_addr": "2232 DIPLOMAT DR &nbsp;",
+    "legal": "LOS LAGOS PH 3 LOT 145 &nbsp;",
+    "cad_ref": "673612 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 196431,
+      "land_value": 44075,
+      "improvement_value": 152356,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LOS LAGOS PH 3 LOT 145",
+      "site_address": "2232 DIPLOMAT DR",
+      "tax_levy": 3454.76
+    }
+  },
+  {
+    "account": "J816500000005400",
+    "owner_addr": "SANCHEZ ROSARIO MARTINEZ 3017 W MILE 10 RD MISSION, TX 78574-2054 &nbsp;",
+    "site_addr": "3017 W MILE 10 RD &nbsp;",
+    "legal": "JOSHUA TREE HEIGHTS LOT 54 &nbsp;",
+    "cad_ref": "571147 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 102328,
+      "land_value": 44146,
+      "improvement_value": 58182,
+      "capped_value": 92709,
+      "agricultural_value": 0,
+      "legal_full": "JOSHUA TREE HEIGHTS LOT 54",
+      "site_address": "3017 W MILE 10 RD",
+      "tax_levy": 830.53
+    }
+  },
+  {
+    "account": "S408000000004100",
+    "owner_addr": "SANCHEZ SILVIA MARTINEZ 4701 SOTIRA ST MISSION, TX 78572-1193 &nbsp;",
+    "site_addr": "4707 SOTIRA ST &nbsp;",
+    "legal": "SOTIRA ESTATES LOT 41 &nbsp;",
+    "cad_ref": "286172 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 60035,
+      "land_value": 41015,
+      "improvement_value": 19020,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "SOTIRA ESTATES LOT 41",
+      "site_address": "4707 SOTIRA ST",
+      "tax_levy": 1152.44
+    }
+  },
+  {
+    "account": "K299000000003200",
+    "owner_addr": "SANDERS TRAVIS A & ANA L MARTINEZ 2005 N 17TH ST MCALLEN, TX 78501-4203 &nbsp;",
+    "site_addr": "3423 N 41ST LN &nbsp;",
+    "legal": "KERRIA CROSSING LOT 32 &nbsp;",
+    "cad_ref": "597331 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 232296,
+      "land_value": 73978,
+      "improvement_value": 158318,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "KERRIA CROSSING LOT 32",
+      "site_address": "3423 N 41ST LN",
+      "tax_levy": 3498.22
+    }
+  },
+  {
+    "account": "L581200000003700",
+    "owner_addr": "SANDOVAL DANIEL R & GRISELDA T MARTINEZ 8232 LOS AZARES EDINBURG, TX 78542-1515 &nbsp;",
+    "site_addr": "8232 LOS AZAHARES ST &nbsp;",
+    "legal": "LOS AZAHARES ESTATES LOT 37 &nbsp;",
+    "cad_ref": "681377 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 155262,
+      "land_value": 18240,
+      "improvement_value": 137022,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LOS AZAHARES ESTATES LOT 37",
+      "site_address": "8232 LOS AZAHARES ST",
+      "tax_levy": 2091.71
+    }
+  },
+  {
+    "account": "P811503000008800",
+    "owner_addr": "SANDOVAL JAIME MARTIN & GLORIA I GARCIA 7227 BUENA VISTA DR PALMVIEW, TX 78572-1899 &nbsp;",
+    "site_addr": "7227 BUENA VISTA DR &nbsp;",
+    "legal": "PRAIRIE VIEW HEIGHTS PH 3 LOT 88 &nbsp;",
+    "cad_ref": "576507 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 190178,
+      "land_value": 38466,
+      "improvement_value": 151712,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "PRAIRIE VIEW HEIGHTS PH 3 LOT 88",
+      "site_address": "7227 BUENA VISTA DR",
+      "tax_levy": 3995.64
+    }
+  },
+  {
+    "account": "F450000000000500",
+    "owner_addr": "SANDOVAL MARTIN & BEATRIZ PO BOX 331 SULLIVAN CITY, TX 78595-0331 &nbsp;",
+    "site_addr": "116 FLORES ST &nbsp;",
+    "legal": "JOSEFINA B FLORES LOT 5 &nbsp;",
+    "cad_ref": "175420 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 187450,
+      "land_value": 38400,
+      "improvement_value": 149050,
+      "capped_value": 156660,
+      "agricultural_value": 0,
+      "legal_full": "JOSEFINA B FLORES LOT 5",
+      "site_address": "116 FLORES ST",
+      "tax_levy": 2179.53
+    }
+  },
+  {
+    "account": "P100002000018600",
+    "owner_addr": "SANDOVAL ROGELIO & MELISSA D MARTINEZ 1922 E JUAREZ AVE ALTON, TX 78573-0710 &nbsp;",
+    "site_addr": "1922 E JUAREZ AVE &nbsp;",
+    "legal": "PALM LAKE ESTATES UT NO. 2 LOT 186 &nbsp;",
+    "cad_ref": "253959 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 186574,
+      "land_value": 59241,
+      "improvement_value": 127333,
+      "capped_value": 163683,
+      "agricultural_value": 0,
+      "legal_full": "PALM LAKE ESTATES UT NO. 2 LOT 186",
+      "site_address": "1922 E JUAREZ AVE",
+      "tax_levy": 2784.47
+    }
+  },
+  {
+    "account": "L566502000000300",
+    "owner_addr": "SANDOVAL SANTOS MARTINEZ & DIANA MARIBEL 1201 E MOORE RD NO 124 PHARR, TX 78577-6452 &nbsp;",
+    "site_addr": "3918 BEAUX AVE &nbsp;",
+    "legal": "LOS AMIGOS PH 2 LOT 3 &nbsp;",
+    "cad_ref": "1310098 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 141964,
+      "land_value": 60365,
+      "improvement_value": 81599,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LOS AMIGOS PH 2 LOT 3",
+      "site_address": "3918 BEAUX AVE",
+      "tax_levy": 3030.25
+    }
+  },
+  {
+    "account": "P717015029002400",
+    "owner_addr": "SANTIAGO HECTOR G MARTINEZ 1517 NEW ORLEANS CIR PHARR, TX 78577-7246 &nbsp;",
+    "site_addr": "1517 NEW ORLEANS CIR &nbsp;",
+    "legal": "PLANTATION SOUTH UT NO. 15 LOT 24 BLK 29 &nbsp;",
+    "cad_ref": "710019 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 129631,
+      "land_value": 38235,
+      "improvement_value": 91396,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "PLANTATION SOUTH UT NO. 15 LOT 24 BLK 29",
+      "site_address": "1517 NEW ORLEANS CIR",
+      "tax_levy": 3470.36
+    }
+  },
+  {
+    "account": "L580602000018200",
+    "owner_addr": "SANTIAGO JOSE M MARTINEZ & SALMA J SANTI 917 PINO ST SAN JUAN, TX 78589-3956 &nbsp;",
+    "site_addr": "917 PINO ST &nbsp;",
+    "legal": "LOS ARBOLES PH 2 LOT 182 &nbsp;",
+    "cad_ref": "521156 &nbsp;",
+    "query": "SAN MARTIN",
+    "_detail": {
+      "gross_value": 167257,
+      "land_value": 35750,
+      "improvement_value": 131507,
+      "capped_value": 0,
+      "agricultural_value": 0,
+      "legal_full": "LOS ARBOLES PH 2 LOT 182",
+      "site_address": "917 PINO ST",
+      "tax_levy": 4038.33
+    }
+  }
+]

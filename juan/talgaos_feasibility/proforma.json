@@ -1,0 +1,28 @@
+{
+  "lot_count": 27,
+  "hard_cost_multiplier": 1.0,
+  "land_basis": 425000,
+  "hard_costs_raw": 610510.3333333334,
+  "hard_costs": 610510.3333333334,
+  "contingency": 91576.55,
+  "soft_costs": 196346.50783333337,
+  "dev_cost": 898433.3911666668,
+  "carry": {
+    "loan_interest": 114642.4175098125,
+    "property_tax_during_dev": 14609.375,
+    "carry_total": 129251.7925098125
+  },
+  "all_in": 1452685.1836764792,
+  "per_lot_dev": 33275.31078395062,
+  "per_lot_all_in": 53803.15495098071,
+  "lot_retail_price": 35000,
+  "gross_revenue": 945000,
+  "commissions": 56700.0,
+  "marketing": 9450.0,
+  "net_revenue": 878850.0,
+  "gross_profit": -573835.1836764792,
+  "gross_margin_pct": -0.6529387081714504,
+  "profit_per_lot": -21253.15495098071,
+  "months_total": 24,
+  "annualized_return": -0.1975084450934537
+}

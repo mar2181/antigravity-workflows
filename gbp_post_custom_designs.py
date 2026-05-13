@@ -131,7 +131,7 @@ async def post_to_gbp(post: dict) -> bool:
         log(f"Launching Chrome with gbp_sniffer_profile...")
         context = await p.chromium.launch_persistent_context(
             user_data_dir=PROFILE_DIR,
-            headless=False,
+            headless=True,
             args=["--start-maximized"],
             no_viewport=True,
         )

@@ -1769,6 +1769,42 @@ def publish_website(biz_key: str, meta: dict) -> bool:
         shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
+def _update_program_md_log(biz_key: str, channel: str, keyword: str, notes: str = "") -> None:
+    """Append one row to ## Posting Log in the client's program.md after a successful publish."""
+    import re as _re, time as _time
+    execution_dir = Path(__file__).parent
+    program_path = execution_dir / biz_key / "program.md"
+    if not program_path.exists():
+        return
+    text = program_path.read_text(encoding="utf-8")
+    date_str = _time.strftime("%Y-%m-%d")
+    service = keyword.replace("-", " ").replace("_", " ").title()
+    note_str = notes or "Auto-logged by blog_writer"
+    new_row = f"| {date_str} | {service} | blog-keyword | {channel} | | {note_str} |"
+
+    section_match = _re.search(r"## Posting Log", text)
+    if not section_match:
+        return
+    section_start = section_match.start()
+    next_sec = _re.search(r"\n## ", text[section_start + 1:])
+    section_end = (section_start + 1 + next_sec.start()) if next_sec else len(text)
+    section_text = text[section_start:section_end]
+
+    row_matches = list(_re.finditer(r"^\|.+\|[ \t]*$", section_text, _re.MULTILINE))
+    if row_matches:
+        last = row_matches[-1]
+        insert_pos = section_start + last.end()
+        new_text = text[:insert_pos] + "\n" + new_row + text[insert_pos:]
+    else:
+        dir_match = _re.search(r"^>.*$", section_text, _re.MULTILINE)
+        insert_pos = section_start + (dir_match.end() if dir_match else section_text.find("\n") + 1)
+        header = "\n| Date | Service | Ad Angle | Channel | Offer | Notes |\n|------|---------|----------|---------|-------|-------|\n"
+        new_text = text[:insert_pos] + header + new_row + "\n" + text[insert_pos:]
+
+    program_path.write_text(new_text, encoding="utf-8")
+    print(f"  [LOG] Posting log updated -> {biz_key}/program.md (channel: {channel})")
+
+
 def publish_all(biz_key: str, keyword: str, channels: list[str]) -> None:
     meta = find_latest_meta(biz_key, keyword)
     if not meta:
@@ -1783,14 +1819,17 @@ def publish_all(biz_key: str, keyword: str, channels: list[str]) -> None:
         ok = publish_gbp(biz_key, meta)
         if ok:
             published["gbp"] = True
+            _update_program_md_log(biz_key, "GBP", keyword, f"Blog post published to GBP: {keyword}")
     if not channels or "facebook" in channels:
         ok = publish_facebook(biz_key, meta)
         if ok:
             published["facebook"] = True
+            _update_program_md_log(biz_key, "Facebook", keyword, f"Blog post published to Facebook: {keyword}")
     if not channels or "web" in channels or "website" in channels:
         ok = publish_website(biz_key, meta)
         if ok:
             published["website"] = True
+            _update_program_md_log(biz_key, "Website", keyword, f"Blog post live at /{keyword}")
 
     # Update meta
     meta["published"] = published

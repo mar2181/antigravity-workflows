@@ -1,0 +1,341 @@
+# === module: tasks ===
+# co_names: ('__doc__', 'threading', '', 'bridge', 'memory', 'int', '_execute', 'run_task_async')
+# co_consts (strs+code):
+#   STR: "Task runner — executes an assigned task through the role agent.\n\nEach 'promote' call (cued -> live) runs asynchronously in a daemon thread so\nthe API stays responsive. The task row tracks status (cued | live | done |\nfailed) and, on completion, stores the agent's reply in the result column\nso the dashboard can render it.\n"
+#   STR: 'task_id'
+#   STR: 'return'
+#   STR: '_execute'
+#   STR: 'run_task_async'
+
+## TOP-LEVEL DISASSEMBLY:
+  1           0 LOAD_CONST               0 ("Task runner — executes an assigned task through the role agent.\n\nEach 'promote' call (cued -> live) runs asynchronously in a daemon thread so\nthe API stays responsive. The task row tracks status (cued | live | done |\nfailed) and, on completion, stores the agent's reply in the result column\nso the dashboard can render it.\n")
+              2 STORE_NAME               0 (__doc__)
+
+  9           4 LOAD_CONST               1 (0)
+              6 LOAD_CONST               2 (None)
+              8 IMPORT_NAME              1 (threading)
+             10 STORE_NAME               1 (threading)
+
+ 11          12 LOAD_CONST               3 (1)
+             14 LOAD_CONST               4 (('bridge', 'memory'))
+             16 IMPORT_NAME              2
+             18 IMPORT_FROM              3 (bridge)
+             20 STORE_NAME               3 (bridge)
+             22 IMPORT_FROM              4 (memory)
+             24 STORE_NAME               4 (memory)
+             26 POP_TOP
+
+ 14          28 LOAD_CONST               5 ('task_id')
+             30 LOAD_NAME                5 (int)
+             32 LOAD_CONST               6 ('return')
+             34 LOAD_CONST               2 (None)
+             36 BUILD_TUPLE              4
+             38 LOAD_CONST               7 (<code object _execute at 0x0000021CBF4B3C00, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\tasks.py", line 14>)
+             40 LOAD_CONST               8 ('_execute')
+             42 MAKE_FUNCTION            4 (annotations)
+             44 STORE_NAME               6 (_execute)
+
+ 32          46 LOAD_CONST               5 ('task_id')
+             48 LOAD_NAME                5 (int)
+             50 LOAD_CONST               6 ('return')
+             52 LOAD_CONST               2 (None)
+             54 BUILD_TUPLE              4
+             56 LOAD_CONST               9 (<code object run_task_async at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\tasks.py", line 32>)
+             58 LOAD_CONST              10 ('run_task_async')
+             60 MAKE_FUNCTION            4 (annotations)
+             62 STORE_NAME               7 (run_task_async)
+             64 LOAD_CONST               2 (None)
+             66 RETURN_VALUE
+
+Disassembly of <code object _execute at 0x0000021CBF4B3C00, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\tasks.py", line 14>:
+ 15           0 LOAD_GLOBAL              0 (memory)
+              2 LOAD_METHOD              1 (task_get)
+              4 LOAD_FAST                0 (task_id)
+              6 CALL_METHOD              1
+              8 STORE_FAST               1 (t)
+
+ 16          10 LOAD_FAST                1 (t)
+             12 POP_JUMP_IF_TRUE         9 (to 18)
+
+ 17          14 LOAD_CONST               0 (None)
+             16 RETURN_VALUE
+
+ 18     >>   18 LOAD_FAST                1 (t)
+             20 LOAD_METHOD              2 (get)
+             22 LOAD_CONST               1 ('role')
+             24 CALL_METHOD              1
+             26 JUMP_IF_TRUE_OR_POP     15 (to 30)
+             28 LOAD_CONST               2 ('main')
+        >>   30 STORE_FAST               2 (role)
+
+ 19          32 LOAD_GLOBAL              0 (memory)
+             34 LOAD_METHOD              3 (task_set_status)
+             36 LOAD_FAST                0 (task_id)
+             38 LOAD_CONST               3 ('live')
+             40 CALL_METHOD              2
+             42 POP_TOP
+
+ 20          44 SETUP_FINALLY           47 (to 140)
+
+ 21          46 LOAD_CONST               4 ('Task #')
+             48 LOAD_FAST                0 (task_id)
+             50 FORMAT_VALUE             0
+             52 LOAD_CONST               5 (': ')
+             54 LOAD_FAST                1 (t)
+             56 LOAD_CONST               6 ('title')
+             58 BINARY_SUBSCR
+             60 FORMAT_VALUE             0
+             62 LOAD_CONST               7 ('\n\n')
+             64 LOAD_FAST                1 (t)
+             66 LOAD_CONST               8 ('description')
+             68 BINARY_SUBSCR
+             70 FORMAT_VALUE             0
+             72 BUILD_STRING             6
+             74 STORE_FAST               3 (prompt)
+
+ 23          76 LOAD_GLOBAL              4 (bridge)
+             78 LOAD_METHOD              5 (handle_war_message)
+
+ 24          80 LOAD_GLOBAL              4 (bridge)
+             82 LOAD_ATTR                6 (ALLOWED_IDS)
+             84 POP_JUMP_IF_FALSE       50 (to 100)
+             86 LOAD_GLOBAL              7 (next)
+             88 LOAD_GLOBAL              8 (iter)
+             90 LOAD_GLOBAL              4 (bridge)
+             92 LOAD_ATTR                6 (ALLOWED_IDS)
+             94 CALL_FUNCTION            1
+             96 CALL_FUNCTION            1
+             98 JUMP_FORWARD             1 (to 102)
+        >>  100 LOAD_CONST               9 ('0')
+
+ 25     >>  102 LOAD_FAST                2 (role)
+            104 FORMAT_VALUE             0
+            106 LOAD_CONST               5 (': ')
+            108 LOAD_FAST                3 (prompt)
+            110 FORMAT_VALUE             0
+            112 BUILD_STRING             3
+
+ 23         114 CALL_METHOD              2
+            116 STORE_FAST               4 (reply)
+
+ 27         118 LOAD_GLOBAL              0 (memory)
+            120 LOAD_ATTR                3 (task_set_status)
+            122 LOAD_FAST                0 (task_id)
+            124 LOAD_CONST              10 ('done')
+            126 LOAD_FAST                4 (reply)
+            128 LOAD_CONST              11 (('result',))
+            130 CALL_FUNCTION_KW         3
+            132 POP_TOP
+            134 POP_BLOCK
+            136 LOAD_CONST               0 (None)
+            138 RETURN_VALUE
+
+ 28     >>  140 DUP_TOP
+            142 LOAD_GLOBAL              9 (Exception)
+            144 JUMP_IF_NOT_EXC_MATCH   104 (to 208)
+            146 POP_TOP
+            148 STORE_FAST               5 (e)
+            150 POP_TOP
+            152 SETUP_FINALLY           23 (to 200)
+
+ 29         154 LOAD_GLOBAL              0 (memory)
+            156 LOAD_ATTR                3 (task_set_status)
+            158 LOAD_FAST                0 (task_id)
+            160 LOAD_CONST              12 ('failed')
+            162 LOAD_GLOBAL             10 (type)
+            164 LOAD_FAST                5 (e)
+            166 CALL_FUNCTION            1
+            168 LOAD_ATTR               11 (__name__)
+            170 FORMAT_VALUE             0
+            172 LOAD_CONST               5 (': ')
+            174 LOAD_FAST                5 (e)
+            176 FORMAT_VALUE             0
+            178 BUILD_STRING             3
+            180 LOAD_CONST              11 (('result',))
+            182 CALL_FUNCTION_KW         3
+            184 POP_TOP
+            186 POP_BLOCK
+            188 POP_EXCEPT
+            190 LOAD_CONST               0 (None)
+            192 STORE_FAST               5 (e)
+            194 DELETE_FAST              5 (e)
+            196 LOAD_CONST               0 (None)
+            198 RETURN_VALUE
+        >>  200 LOAD_CONST               0 (None)
+            202 STORE_FAST               5 (e)
+            204 DELETE_FAST              5 (e)
+            206 RERAISE                  1
+
+ 28     >>  208 RERAISE                  0
+
+Disassembly of <code object run_task_async at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\tasks.py", line 32>:
+ 33           0 LOAD_GLOBAL              0 (threading)
+              2 LOAD_ATTR                1 (Thread)
+              4 LOAD_GLOBAL              2 (_execute)
+              6 LOAD_FAST                0 (task_id)
+              8 BUILD_TUPLE              1
+             10 LOAD_CONST               1 (True)
+
+ 34          12 LOAD_CONST               2 ('claudeclaw-task-')
+             14 LOAD_FAST                0 (task_id)
+             16 FORMAT_VALUE             0
+             18 BUILD_STRING             2
+
+ 33          20 LOAD_CONST               3 (('target', 'args', 'daemon', 'name'))
+             22 CALL_FUNCTION_KW         4
+
+ 34          24 LOAD_METHOD              3 (start)
+             26 CALL_METHOD              0
+             28 POP_TOP
+             30 LOAD_CONST               0 (None)
+             32 RETURN_VALUE
+
+
+## NESTED CODE OBJECTS:
+
+### def _execute(task_id)  [argcount=1, locals=('task_id', 't', 'role', 'prompt', 'reply', 'e')]
+# co_consts: ['None', "'role'", "'main'", "'live'", "'Task #'", "': '", "'title'", "'\\n\\n'", "'description'", "'0'", "'done'", "('result',)", "'failed'"]
+# co_names:  ('memory', 'task_get', 'get', 'task_set_status', 'bridge', 'handle_war_message', 'ALLOWED_IDS', 'next', 'iter', 'Exception', 'type', '__name__')
+ 15           0 LOAD_GLOBAL              0 (memory)
+              2 LOAD_METHOD              1 (task_get)
+              4 LOAD_FAST                0 (task_id)
+              6 CALL_METHOD              1
+              8 STORE_FAST               1 (t)
+
+ 16          10 LOAD_FAST                1 (t)
+             12 POP_JUMP_IF_TRUE         9 (to 18)
+
+ 17          14 LOAD_CONST               0 (None)
+             16 RETURN_VALUE
+
+ 18     >>   18 LOAD_FAST                1 (t)
+             20 LOAD_METHOD              2 (get)
+             22 LOAD_CONST               1 ('role')
+             24 CALL_METHOD              1
+             26 JUMP_IF_TRUE_OR_POP     15 (to 30)
+             28 LOAD_CONST               2 ('main')
+        >>   30 STORE_FAST               2 (role)
+
+ 19          32 LOAD_GLOBAL              0 (memory)
+             34 LOAD_METHOD              3 (task_set_status)
+             36 LOAD_FAST                0 (task_id)
+             38 LOAD_CONST               3 ('live')
+             40 CALL_METHOD              2
+             42 POP_TOP
+
+ 20          44 SETUP_FINALLY           47 (to 140)
+
+ 21          46 LOAD_CONST               4 ('Task #')
+             48 LOAD_FAST                0 (task_id)
+             50 FORMAT_VALUE             0
+             52 LOAD_CONST               5 (': ')
+             54 LOAD_FAST                1 (t)
+             56 LOAD_CONST               6 ('title')
+             58 BINARY_SUBSCR
+             60 FORMAT_VALUE             0
+             62 LOAD_CONST               7 ('\n\n')
+             64 LOAD_FAST                1 (t)
+             66 LOAD_CONST               8 ('description')
+             68 BINARY_SUBSCR
+             70 FORMAT_VALUE             0
+             72 BUILD_STRING             6
+             74 STORE_FAST               3 (prompt)
+
+ 23          76 LOAD_GLOBAL              4 (bridge)
+             78 LOAD_METHOD              5 (handle_war_message)
+
+ 24          80 LOAD_GLOBAL              4 (bridge)
+             82 LOAD_ATTR                6 (ALLOWED_IDS)
+             84 POP_JUMP_IF_FALSE       50 (to 100)
+             86 LOAD_GLOBAL              7 (next)
+             88 LOAD_GLOBAL              8 (iter)
+             90 LOAD_GLOBAL              4 (bridge)
+             92 LOAD_ATTR                6 (ALLOWED_IDS)
+             94 CALL_FUNCTION            1
+             96 CALL_FUNCTION            1
+             98 JUMP_FORWARD             1 (to 102)
+        >>  100 LOAD_CONST               9 ('0')
+
+ 25     >>  102 LOAD_FAST                2 (role)
+            104 FORMAT_VALUE             0
+            106 LOAD_CONST               5 (': ')
+            108 LOAD_FAST                3 (prompt)
+            110 FORMAT_VALUE             0
+            112 BUILD_STRING             3
+
+ 23         114 CALL_METHOD              2
+            116 STORE_FAST               4 (reply)
+
+ 27         118 LOAD_GLOBAL              0 (memory)
+            120 LOAD_ATTR                3 (task_set_status)
+            122 LOAD_FAST                0 (task_id)
+            124 LOAD_CONST              10 ('done')
+            126 LOAD_FAST                4 (reply)
+            128 LOAD_CONST              11 (('result',))
+            130 CALL_FUNCTION_KW         3
+            132 POP_TOP
+            134 POP_BLOCK
+            136 LOAD_CONST               0 (None)
+            138 RETURN_VALUE
+
+ 28     >>  140 DUP_TOP
+            142 LOAD_GLOBAL              9 (Exception)
+            144 JUMP_IF_NOT_EXC_MATCH   104 (to 208)
+            146 POP_TOP
+            148 STORE_FAST               5 (e)
+            150 POP_TOP
+            152 SETUP_FINALLY           23 (to 200)
+
+ 29         154 LOAD_GLOBAL              0 (memory)
+            156 LOAD_ATTR                3 (task_set_status)
+            158 LOAD_FAST                0 (task_id)
+            160 LOAD_CONST              12 ('failed')
+            162 LOAD_GLOBAL             10 (type)
+            164 LOAD_FAST                5 (e)
+            166 CALL_FUNCTION            1
+            168 LOAD_ATTR               11 (__name__)
+            170 FORMAT_VALUE             0
+            172 LOAD_CONST               5 (': ')
+            174 LOAD_FAST                5 (e)
+            176 FORMAT_VALUE             0
+            178 BUILD_STRING             3
+            180 LOAD_CONST              11 (('result',))
+            182 CALL_FUNCTION_KW         3
+            184 POP_TOP
+            186 POP_BLOCK
+            188 POP_EXCEPT
+            190 LOAD_CONST               0 (None)
+            192 STORE_FAST               5 (e)
+            194 DELETE_FAST              5 (e)
+            196 LOAD_CONST               0 (None)
+            198 RETURN_VALUE
+        >>  200 LOAD_CONST               0 (None)
+            202 STORE_FAST               5 (e)
+            204 DELETE_FAST              5 (e)
+            206 RERAISE                  1
+
+ 28     >>  208 RERAISE                  0
+
+### def run_task_async(task_id)  [argcount=1, locals=('task_id',)]
+# co_consts: ['None', 'True', "'claudeclaw-task-'", "('target', 'args', 'daemon', 'name')"]
+# co_names:  ('threading', 'Thread', '_execute', 'start')
+ 33           0 LOAD_GLOBAL              0 (threading)
+              2 LOAD_ATTR                1 (Thread)
+              4 LOAD_GLOBAL              2 (_execute)
+              6 LOAD_FAST                0 (task_id)
+              8 BUILD_TUPLE              1
+             10 LOAD_CONST               1 (True)
+
+ 34          12 LOAD_CONST               2 ('claudeclaw-task-')
+             14 LOAD_FAST                0 (task_id)
+             16 FORMAT_VALUE             0
+             18 BUILD_STRING             2
+
+ 33          20 LOAD_CONST               3 (('target', 'args', 'daemon', 'name'))
+             22 CALL_FUNCTION_KW         4
+
+ 34          24 LOAD_METHOD              3 (start)
+             26 CALL_METHOD              0
+             28 POP_TOP
+             30 LOAD_CONST               0 (None)
+             32 RETURN_VALUE

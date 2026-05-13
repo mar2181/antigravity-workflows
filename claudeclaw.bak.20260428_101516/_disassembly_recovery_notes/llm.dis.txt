@@ -1,0 +1,2655 @@
+# === module: llm ===
+# co_names: ('__doc__', 'asyncio', 'json', 'os', 'pathlib', 'Path', 'typing', 'Optional', 'claude_agent_sdk', 'ClaudeAgentOptions', 'query', 'claude_agent_sdk.types', 'AssistantMessage', 'ResultMessage', 'TextBlock', 'ThinkingBlock', 'Exception', 'ToolUseBlock', 'ToolResultBlock', '__file__', 'parent', 'SCRATCH_DIR', 'ENV_PATH', 'dict', '_load_env', '_env', 'get', 'ROLE_MODEL', 'CLASSIFIER_MODEL', 'OPENROUTER_KEY', 'ANTHROPIC_KEY', 'str', 'int', 'list', 'tuple', '_run_query', '_run_sync', 'call', 'call_session', 'classify')
+# co_consts (strs+code):
+#   STR: "LLM caller — uses Claude Agent SDK (spawns `claude` CLI, uses Mario's\nClaude Code subscription, no API credits needed).\n\nThis is the whole point of the video: tap the subscription, not pay per token.\n\nTwo entry points, unchanged signatures so the rest of claudeclaw doesn't care:\n  call(model, system, user_messages, max_tokens=...) -> str\n  classify(text) -> dict\n"
+#   STR: 'scratch'
+#   STR: 'gravity-claw'
+#   STR: '.env'
+#   STR: 'return'
+#   STR: '_load_env'
+#   STR: 'CLAUDECLAW_ROLE_MODEL'
+#   STR: 'sonnet'
+#   STR: 'CLAUDECLAW_CLASSIFIER_MODEL'
+#   STR: 'haiku'
+#   STR: 'OPENROUTER_API_KEY'
+#   STR: ''
+#   STR: 'model'
+#   STR: 'system'
+#   STR: 'user_text'
+#   STR: 'max_tokens'
+#   STR: 'resume_session_id'
+#   STR: 'allowed_tools'
+#   STR: '_run_query'
+#   STR: '_run_sync'
+#   STR: 'messages'
+#   STR: 'call'
+#   STR: 'call_session'
+#   STR: 'text'
+#   STR: 'classify'
+
+## TOP-LEVEL DISASSEMBLY:
+  1           0 LOAD_CONST               0 ("LLM caller — uses Claude Agent SDK (spawns `claude` CLI, uses Mario's\nClaude Code subscription, no API credits needed).\n\nThis is the whole point of the video: tap the subscription, not pay per token.\n\nTwo entry points, unchanged signatures so the rest of claudeclaw doesn't care:\n  call(model, system, user_messages, max_tokens=...) -> str\n  classify(text) -> dict\n")
+              2 STORE_NAME               0 (__doc__)
+
+ 11           4 LOAD_CONST               1 (0)
+              6 LOAD_CONST               2 (None)
+              8 IMPORT_NAME              1 (asyncio)
+             10 STORE_NAME               1 (asyncio)
+
+ 12          12 LOAD_CONST               1 (0)
+             14 LOAD_CONST               2 (None)
+             16 IMPORT_NAME              2 (json)
+             18 STORE_NAME               2 (json)
+
+ 13          20 LOAD_CONST               1 (0)
+             22 LOAD_CONST               2 (None)
+             24 IMPORT_NAME              3 (os)
+             26 STORE_NAME               3 (os)
+
+ 14          28 LOAD_CONST               1 (0)
+             30 LOAD_CONST               3 (('Path',))
+             32 IMPORT_NAME              4 (pathlib)
+             34 IMPORT_FROM              5 (Path)
+             36 STORE_NAME               5 (Path)
+             38 POP_TOP
+
+ 15          40 LOAD_CONST               1 (0)
+             42 LOAD_CONST               4 (('Optional',))
+             44 IMPORT_NAME              6 (typing)
+             46 IMPORT_FROM              7 (Optional)
+             48 STORE_NAME               7 (Optional)
+             50 POP_TOP
+
+ 17          52 LOAD_CONST               1 (0)
+             54 LOAD_CONST               5 (('ClaudeAgentOptions', 'query'))
+             56 IMPORT_NAME              8 (claude_agent_sdk)
+             58 IMPORT_FROM              9 (ClaudeAgentOptions)
+             60 STORE_NAME               9 (ClaudeAgentOptions)
+             62 IMPORT_FROM             10 (query)
+             64 STORE_NAME              10 (query)
+             66 POP_TOP
+
+ 18          68 LOAD_CONST               1 (0)
+             70 LOAD_CONST               6 (('AssistantMessage', 'ResultMessage', 'TextBlock'))
+             72 IMPORT_NAME             11 (claude_agent_sdk.types)
+             74 IMPORT_FROM             12 (AssistantMessage)
+             76 STORE_NAME              12 (AssistantMessage)
+             78 IMPORT_FROM             13 (ResultMessage)
+             80 STORE_NAME              13 (ResultMessage)
+             82 IMPORT_FROM             14 (TextBlock)
+             84 STORE_NAME              14 (TextBlock)
+             86 POP_TOP
+
+ 19          88 SETUP_FINALLY            8 (to 106)
+
+ 20          90 LOAD_CONST               1 (0)
+             92 LOAD_CONST               7 (('ThinkingBlock',))
+             94 IMPORT_NAME             11 (claude_agent_sdk.types)
+             96 IMPORT_FROM             15 (ThinkingBlock)
+             98 STORE_NAME              15 (ThinkingBlock)
+            100 POP_TOP
+            102 POP_BLOCK
+            104 JUMP_FORWARD            11 (to 128)
+
+ 21     >>  106 DUP_TOP
+            108 LOAD_NAME               16 (Exception)
+            110 JUMP_IF_NOT_EXC_MATCH    63 (to 126)
+            112 POP_TOP
+            114 POP_TOP
+            116 POP_TOP
+
+ 22         118 LOAD_CONST               2 (None)
+            120 STORE_NAME              15 (ThinkingBlock)
+            122 POP_EXCEPT
+            124 JUMP_FORWARD             1 (to 128)
+
+ 21     >>  126 RERAISE                  0
+
+ 23     >>  128 SETUP_FINALLY           10 (to 150)
+
+ 24         130 LOAD_CONST               1 (0)
+            132 LOAD_CONST               8 (('ToolUseBlock', 'ToolResultBlock'))
+            134 IMPORT_NAME             11 (claude_agent_sdk.types)
+            136 IMPORT_FROM             17 (ToolUseBlock)
+            138 STORE_NAME              17 (ToolUseBlock)
+            140 IMPORT_FROM             18 (ToolResultBlock)
+            142 STORE_NAME              18 (ToolResultBlock)
+            144 POP_TOP
+            146 POP_BLOCK
+            148 JUMP_FORWARD            13 (to 176)
+
+ 25     >>  150 DUP_TOP
+            152 LOAD_NAME               16 (Exception)
+            154 JUMP_IF_NOT_EXC_MATCH    87 (to 174)
+            156 POP_TOP
+            158 POP_TOP
+            160 POP_TOP
+
+ 26         162 LOAD_CONST               2 (None)
+            164 STORE_NAME              17 (ToolUseBlock)
+
+ 27         166 LOAD_CONST               2 (None)
+            168 STORE_NAME              18 (ToolResultBlock)
+            170 POP_EXCEPT
+            172 JUMP_FORWARD             1 (to 176)
+
+ 25     >>  174 RERAISE                  0
+
+ 30     >>  176 LOAD_NAME                5 (Path)
+            178 LOAD_NAME               19 (__file__)
+            180 CALL_FUNCTION            1
+            182 LOAD_ATTR               20 (parent)
+            184 LOAD_ATTR               20 (parent)
+            186 LOAD_ATTR               20 (parent)
+            188 LOAD_ATTR               20 (parent)
+            190 LOAD_CONST               9 ('scratch')
+            192 BINARY_TRUE_DIVIDE
+            194 STORE_NAME              21 (SCRATCH_DIR)
+
+ 31         196 LOAD_NAME               21 (SCRATCH_DIR)
+            198 LOAD_CONST              10 ('gravity-claw')
+            200 BINARY_TRUE_DIVIDE
+            202 LOAD_CONST              11 ('.env')
+            204 BINARY_TRUE_DIVIDE
+            206 STORE_NAME              22 (ENV_PATH)
+
+ 34         208 LOAD_CONST              12 ('return')
+            210 LOAD_NAME               23 (dict)
+            212 BUILD_TUPLE              2
+            214 LOAD_CONST              13 (<code object _load_env at 0x0000021CBF4B3EC0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 34>)
+            216 LOAD_CONST              14 ('_load_env')
+            218 MAKE_FUNCTION            4 (annotations)
+            220 STORE_NAME              24 (_load_env)
+
+ 47         222 LOAD_NAME               24 (_load_env)
+            224 CALL_FUNCTION            0
+            226 STORE_NAME              25 (_env)
+
+ 51         228 LOAD_NAME               25 (_env)
+            230 LOAD_METHOD             26 (get)
+            232 LOAD_CONST              15 ('CLAUDECLAW_ROLE_MODEL')
+            234 LOAD_CONST              16 ('sonnet')
+            236 CALL_METHOD              2
+            238 STORE_NAME              27 (ROLE_MODEL)
+
+ 52         240 LOAD_NAME               25 (_env)
+            242 LOAD_METHOD             26 (get)
+            244 LOAD_CONST              17 ('CLAUDECLAW_CLASSIFIER_MODEL')
+            246 LOAD_CONST              18 ('haiku')
+            248 CALL_METHOD              2
+            250 STORE_NAME              28 (CLASSIFIER_MODEL)
+
+ 55         252 LOAD_NAME               25 (_env)
+            254 LOAD_METHOD             26 (get)
+            256 LOAD_CONST              19 ('OPENROUTER_API_KEY')
+            258 LOAD_CONST              20 ('')
+            260 CALL_METHOD              2
+            262 STORE_NAME              29 (OPENROUTER_KEY)
+
+ 56         264 LOAD_CONST              20 ('')
+            266 STORE_NAME              30 (ANTHROPIC_KEY)
+
+ 64         268 NOP
+
+ 65         270 NOP
+
+ 66         272 NOP
+
+ 59         274 LOAD_CONST              40 ((None, None, None))
+            276 LOAD_CONST              21 ('model')
+
+ 60         278 LOAD_NAME               31 (str)
+
+ 59         280 LOAD_CONST              22 ('system')
+
+ 61         282 LOAD_NAME               31 (str)
+
+ 59         284 LOAD_CONST              23 ('user_text')
+
+ 62         286 LOAD_NAME               31 (str)
+
+ 59         288 LOAD_CONST              24 ('max_tokens')
+
+ 63         290 LOAD_NAME               32 (int)
+
+ 59         292 LOAD_CONST              25 ('resume_session_id')
+
+ 64         294 LOAD_NAME                7 (Optional)
+            296 LOAD_NAME               31 (str)
+            298 BINARY_SUBSCR
+
+ 59         300 LOAD_CONST              26 ('allowed_tools')
+
+ 66         302 LOAD_NAME                7 (Optional)
+            304 LOAD_NAME               33 (list)
+            306 BINARY_SUBSCR
+
+ 59         308 LOAD_CONST              12 ('return')
+
+ 67         310 LOAD_NAME               34 (tuple)
+            312 LOAD_NAME               31 (str)
+            314 LOAD_NAME               31 (str)
+            316 LOAD_NAME                7 (Optional)
+            318 LOAD_NAME               31 (str)
+            320 BINARY_SUBSCR
+            322 BUILD_TUPLE              3
+            324 BINARY_SUBSCR
+
+ 59         326 BUILD_TUPLE             14
+            328 LOAD_CONST              27 (<code object _run_query at 0x0000021CBF12FE10, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 59>)
+            330 LOAD_CONST              28 ('_run_query')
+            332 MAKE_FUNCTION            5 (defaults, annotations)
+            334 STORE_NAME              35 (_run_query)
+
+161         336 LOAD_CONST              29 (<code object _run_sync at 0x0000021CBF12FEC0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 161>)
+            338 LOAD_CONST              30 ('_run_sync')
+            340 MAKE_FUNCTION            0
+            342 STORE_NAME              36 (_run_sync)
+
+181         344 LOAD_CONST              41 ((1500,))
+            346 LOAD_CONST              21 ('model')
+            348 LOAD_NAME               31 (str)
+            350 LOAD_CONST              22 ('system')
+            352 LOAD_NAME               31 (str)
+            354 LOAD_CONST              32 ('messages')
+            356 LOAD_NAME               33 (list)
+            358 LOAD_CONST              24 ('max_tokens')
+            360 LOAD_NAME               32 (int)
+            362 LOAD_CONST              12 ('return')
+            364 LOAD_NAME               31 (str)
+            366 BUILD_TUPLE             10
+            368 LOAD_CONST              33 (<code object call at 0x0000021CBF50C030, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 181>)
+            370 LOAD_CONST              34 ('call')
+            372 MAKE_FUNCTION            5 (defaults, annotations)
+            374 STORE_NAME              37 (call)
+
+198         376 NOP
+
+199         378 NOP
+
+200         380 NOP
+
+193         382 LOAD_CONST              42 ((1500, None, None))
+            384 LOAD_CONST              21 ('model')
+
+194         386 LOAD_NAME               31 (str)
+
+193         388 LOAD_CONST              22 ('system')
+
+195         390 LOAD_NAME               31 (str)
+
+193         392 LOAD_CONST              23 ('user_text')
+
+196         394 LOAD_NAME               31 (str)
+
+193         396 LOAD_CONST              25 ('resume_session_id')
+
+197         398 LOAD_NAME                7 (Optional)
+            400 LOAD_NAME               31 (str)
+            402 BINARY_SUBSCR
+
+193         404 LOAD_CONST              24 ('max_tokens')
+
+198         406 LOAD_NAME               32 (int)
+
+193         408 LOAD_CONST              26 ('allowed_tools')
+
+200         410 LOAD_NAME                7 (Optional)
+            412 LOAD_NAME               33 (list)
+            414 BINARY_SUBSCR
+
+193         416 LOAD_CONST              12 ('return')
+
+201         418 LOAD_NAME               34 (tuple)
+            420 LOAD_NAME               31 (str)
+            422 LOAD_NAME               31 (str)
+            424 LOAD_NAME                7 (Optional)
+            426 LOAD_NAME               31 (str)
+            428 BINARY_SUBSCR
+            430 BUILD_TUPLE              3
+            432 BINARY_SUBSCR
+
+193         434 BUILD_TUPLE             14
+            436 LOAD_CONST              35 (<code object call_session at 0x0000021CBF50C240, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 193>)
+            438 LOAD_CONST              36 ('call_session')
+            440 MAKE_FUNCTION            5 (defaults, annotations)
+            442 STORE_NAME              38 (call_session)
+
+209         444 LOAD_CONST              37 ('text')
+            446 LOAD_NAME               31 (str)
+            448 LOAD_CONST              12 ('return')
+            450 LOAD_NAME               23 (dict)
+            452 BUILD_TUPLE              4
+            454 LOAD_CONST              38 (<code object classify at 0x0000021CBF50C660, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 209>)
+            456 LOAD_CONST              39 ('classify')
+            458 MAKE_FUNCTION            4 (annotations)
+            460 STORE_NAME              39 (classify)
+            462 LOAD_CONST               2 (None)
+            464 RETURN_VALUE
+
+Disassembly of <code object _load_env at 0x0000021CBF4B3EC0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 34>:
+ 35           0 BUILD_MAP                0
+              2 STORE_FAST               0 (env)
+
+ 36           4 SETUP_FINALLY           49 (to 104)
+
+ 37           6 LOAD_GLOBAL              0 (ENV_PATH)
+              8 LOAD_ATTR                1 (read_text)
+             10 LOAD_CONST               1 ('utf-8')
+             12 LOAD_CONST               2 (('encoding',))
+             14 CALL_FUNCTION_KW         1
+             16 LOAD_METHOD              2 (splitlines)
+             18 CALL_METHOD              0
+             20 GET_ITER
+        >>   22 FOR_ITER                37 (to 98)
+             24 STORE_FAST               1 (line)
+
+ 38          26 LOAD_FAST                1 (line)
+             28 LOAD_METHOD              3 (strip)
+             30 CALL_METHOD              0
+             32 STORE_FAST               1 (line)
+
+ 39          34 LOAD_CONST               3 ('=')
+             36 LOAD_FAST                1 (line)
+             38 CONTAINS_OP              0
+             40 POP_JUMP_IF_FALSE       48 (to 96)
+             42 LOAD_FAST                1 (line)
+             44 LOAD_METHOD              4 (startswith)
+             46 LOAD_CONST               4 ('#')
+             48 CALL_METHOD              1
+             50 POP_JUMP_IF_TRUE        48 (to 96)
+
+ 40          52 LOAD_FAST                1 (line)
+             54 LOAD_METHOD              5 (partition)
+             56 LOAD_CONST               3 ('=')
+             58 CALL_METHOD              1
+             60 UNPACK_SEQUENCE          3
+             62 STORE_FAST               2 (k)
+             64 STORE_FAST               3 (_)
+             66 STORE_FAST               4 (v)
+
+ 41          68 LOAD_FAST                4 (v)
+             70 LOAD_METHOD              3 (strip)
+             72 CALL_METHOD              0
+             74 LOAD_METHOD              3 (strip)
+             76 LOAD_CONST               5 ('"')
+             78 CALL_METHOD              1
+             80 LOAD_METHOD              3 (strip)
+             82 LOAD_CONST               6 ("'")
+             84 CALL_METHOD              1
+             86 LOAD_FAST                0 (env)
+             88 LOAD_FAST                2 (k)
+             90 LOAD_METHOD              3 (strip)
+             92 CALL_METHOD              0
+             94 STORE_SUBSCR
+        >>   96 JUMP_ABSOLUTE           11 (to 22)
+
+ 37     >>   98 POP_BLOCK
+
+ 44         100 LOAD_FAST                0 (env)
+            102 RETURN_VALUE
+
+ 42     >>  104 DUP_TOP
+            106 LOAD_GLOBAL              6 (FileNotFoundError)
+            108 JUMP_IF_NOT_EXC_MATCH    61 (to 122)
+            110 POP_TOP
+            112 POP_TOP
+            114 POP_TOP
+
+ 43         116 POP_EXCEPT
+
+ 44         118 LOAD_FAST                0 (env)
+            120 RETURN_VALUE
+
+ 42     >>  122 RERAISE                  0
+
+Disassembly of <code object _run_query at 0x0000021CBF12FE10, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 59>:
+              0 GEN_START                1
+
+ 75           2 LOAD_GLOBAL              0 (list)
+              4 LOAD_FAST                6 (allowed_tools)
+              6 JUMP_IF_TRUE_OR_POP      5 (to 10)
+              8 BUILD_LIST               0
+        >>   10 CALL_FUNCTION            1
+             12 STORE_FAST               7 (tools)
+
+ 79          14 LOAD_GLOBAL              1 (ClaudeAgentOptions)
+
+ 80          16 LOAD_FAST                1 (system)
+
+ 81          18 LOAD_FAST                0 (model)
+
+ 82          20 LOAD_CONST               1 (20)
+
+ 83          22 LOAD_FAST                7 (tools)
+
+ 84          24 LOAD_CONST               2 ('bypassPermissions')
+
+ 85          26 LOAD_CONST               3 (1024)
+
+ 86          28 LOAD_FAST                4 (resume_session_id)
+
+ 79          30 LOAD_CONST               4 (('system_prompt', 'model', 'max_turns', 'allowed_tools', 'permission_mode', 'max_thinking_tokens', 'resume'))
+             32 CALL_FUNCTION_KW         7
+             34 STORE_FAST               8 (options)
+
+ 88          36 BUILD_LIST               0
+             38 STORE_FAST               9 (chunks)
+
+ 89          40 BUILD_LIST               0
+             42 STORE_FAST              10 (thinking_chunks)
+
+ 90          44 LOAD_CONST               5 (None)
+             46 STORE_FAST              11 (result_text)
+
+ 91          48 LOAD_CONST               5 (None)
+             50 STORE_FAST              12 (session_id)
+
+ 92          52 LOAD_CONST              45 (('',))
+             54 LOAD_CLOSURE             0 (on_event)
+             56 BUILD_TUPLE              1
+             58 LOAD_CONST               7 (<code object _evt at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 92>)
+             60 LOAD_CONST               8 ('_run_query.<locals>._evt')
+             62 MAKE_FUNCTION            9 (defaults, closure)
+             64 STORE_FAST              13 (_evt)
+
+ 96          66 LOAD_FAST               13 (_evt)
+             68 LOAD_CONST               9 ('spawning')
+             70 CALL_FUNCTION            1
+             72 POP_TOP
+
+ 97          74 LOAD_GLOBAL              2 (query)
+             76 LOAD_FAST                2 (user_text)
+             78 LOAD_FAST                8 (options)
+             80 LOAD_CONST              10 (('prompt', 'options'))
+             82 CALL_FUNCTION_KW         2
+             84 STORE_FAST              14 (gen)
+
+ 98          86 EXTENDED_ARG             1
+             88 SETUP_FINALLY          339 (to 768)
+
+ 99          90 LOAD_FAST               14 (gen)
+             92 GET_AITER
+        >>   94 EXTENDED_ARG             1
+             96 SETUP_FINALLY          302 (to 702)
+             98 GET_ANEXT
+            100 LOAD_CONST               5 (None)
+            102 YIELD_FROM
+            104 POP_BLOCK
+            106 STORE_FAST              15 (msg)
+
+100         108 LOAD_GLOBAL              3 (isinstance)
+            110 LOAD_FAST               15 (msg)
+            112 LOAD_GLOBAL              4 (AssistantMessage)
+            114 CALL_FUNCTION            2
+            116 POP_JUMP_IF_FALSE      230 (to 460)
+
+101         118 LOAD_FAST               15 (msg)
+            120 LOAD_ATTR                5 (content)
+            122 GET_ITER
+        >>  124 FOR_ITER               166 (to 458)
+            126 STORE_FAST              16 (block)
+
+102         128 LOAD_GLOBAL              3 (isinstance)
+            130 LOAD_FAST               16 (block)
+            132 LOAD_GLOBAL              6 (TextBlock)
+            134 CALL_FUNCTION            2
+            136 POP_JUMP_IF_FALSE       86 (to 172)
+
+103         138 LOAD_FAST                9 (chunks)
+            140 LOAD_METHOD              7 (append)
+            142 LOAD_FAST               16 (block)
+            144 LOAD_ATTR                8 (text)
+            146 CALL_METHOD              1
+            148 POP_TOP
+
+104         150 LOAD_FAST               13 (_evt)
+            152 LOAD_CONST              11 ('writing')
+            154 LOAD_FAST               16 (block)
+            156 LOAD_ATTR                8 (text)
+            158 LOAD_CONST               5 (None)
+            160 LOAD_CONST              12 (160)
+            162 BUILD_SLICE              2
+            164 BINARY_SUBSCR
+            166 CALL_FUNCTION            2
+            168 POP_TOP
+            170 JUMP_ABSOLUTE           62 (to 124)
+
+105     >>  172 LOAD_GLOBAL              9 (ThinkingBlock)
+            174 LOAD_CONST               5 (None)
+            176 IS_OP                    1
+            178 POP_JUMP_IF_FALSE      124 (to 248)
+            180 LOAD_GLOBAL              3 (isinstance)
+            182 LOAD_FAST               16 (block)
+            184 LOAD_GLOBAL              9 (ThinkingBlock)
+            186 CALL_FUNCTION            2
+            188 POP_JUMP_IF_FALSE      124 (to 248)
+
+106         190 LOAD_GLOBAL             10 (getattr)
+            192 LOAD_FAST               16 (block)
+            194 LOAD_CONST              13 ('thinking')
+            196 LOAD_CONST               6 ('')
+            198 CALL_FUNCTION            3
+            200 JUMP_IF_TRUE_OR_POP    106 (to 212)
+            202 LOAD_GLOBAL             10 (getattr)
+            204 LOAD_FAST               16 (block)
+            206 LOAD_CONST              14 ('text')
+            208 LOAD_CONST               6 ('')
+            210 CALL_FUNCTION            3
+        >>  212 STORE_FAST              17 (t)
+
+107         214 LOAD_FAST               17 (t)
+            216 POP_JUMP_IF_FALSE      123 (to 246)
+
+108         218 LOAD_FAST               10 (thinking_chunks)
+            220 LOAD_METHOD              7 (append)
+            222 LOAD_FAST               17 (t)
+            224 CALL_METHOD              1
+            226 POP_TOP
+
+109         228 LOAD_FAST               13 (_evt)
+            230 LOAD_CONST              13 ('thinking')
+            232 LOAD_FAST               17 (t)
+            234 LOAD_CONST               5 (None)
+            236 LOAD_CONST              15 (240)
+            238 BUILD_SLICE              2
+            240 BINARY_SUBSCR
+            242 CALL_FUNCTION            2
+            244 POP_TOP
+        >>  246 JUMP_ABSOLUTE           62 (to 124)
+
+110     >>  248 LOAD_GLOBAL             11 (ToolUseBlock)
+            250 LOAD_CONST               5 (None)
+            252 IS_OP                    1
+            254 POP_JUMP_IF_FALSE      187 (to 374)
+            256 LOAD_GLOBAL              3 (isinstance)
+            258 LOAD_FAST               16 (block)
+            260 LOAD_GLOBAL             11 (ToolUseBlock)
+            262 CALL_FUNCTION            2
+            264 POP_JUMP_IF_FALSE      187 (to 374)
+
+111         266 LOAD_GLOBAL             10 (getattr)
+            268 LOAD_FAST               16 (block)
+            270 LOAD_CONST              16 ('name')
+            272 LOAD_CONST              17 ('?')
+            274 CALL_FUNCTION            3
+            276 STORE_FAST              18 (name)
+
+112         278 LOAD_GLOBAL             10 (getattr)
+            280 LOAD_FAST               16 (block)
+            282 LOAD_CONST              18 ('input')
+            284 BUILD_MAP                0
+            286 CALL_FUNCTION            3
+            288 JUMP_IF_TRUE_OR_POP    146 (to 292)
+            290 BUILD_MAP                0
+        >>  292 STORE_FAST              19 (inp)
+
+114         294 LOAD_FAST               19 (inp)
+            296 LOAD_METHOD             12 (get)
+            298 LOAD_CONST              19 ('command')
+            300 CALL_METHOD              1
+            302 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            304 LOAD_FAST               19 (inp)
+            306 LOAD_METHOD             12 (get)
+            308 LOAD_CONST              20 ('pattern')
+            310 CALL_METHOD              1
+            312 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            314 LOAD_FAST               19 (inp)
+            316 LOAD_METHOD             12 (get)
+            318 LOAD_CONST              21 ('file_path')
+            320 CALL_METHOD              1
+            322 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            324 LOAD_FAST               19 (inp)
+            326 LOAD_METHOD             12 (get)
+            328 LOAD_CONST              22 ('path')
+            330 CALL_METHOD              1
+            332 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            334 LOAD_CONST               6 ('')
+        >>  336 STORE_FAST              20 (summary)
+
+115         338 LOAD_FAST               13 (_evt)
+            340 LOAD_CONST              23 ('tool_call')
+            342 LOAD_FAST               18 (name)
+            344 FORMAT_VALUE             0
+            346 LOAD_CONST              24 ('(')
+            348 LOAD_GLOBAL             13 (str)
+            350 LOAD_FAST               20 (summary)
+            352 CALL_FUNCTION            1
+            354 LOAD_CONST               5 (None)
+            356 LOAD_CONST              25 (200)
+            358 BUILD_SLICE              2
+            360 BINARY_SUBSCR
+            362 FORMAT_VALUE             0
+            364 LOAD_CONST              26 (')')
+            366 BUILD_STRING             4
+            368 CALL_FUNCTION            2
+            370 POP_TOP
+            372 JUMP_ABSOLUTE           62 (to 124)
+
+116     >>  374 LOAD_GLOBAL             14 (ToolResultBlock)
+            376 LOAD_CONST               5 (None)
+            378 IS_OP                    1
+            380 POP_JUMP_IF_FALSE      228 (to 456)
+            382 LOAD_GLOBAL              3 (isinstance)
+            384 LOAD_FAST               16 (block)
+            386 LOAD_GLOBAL             14 (ToolResultBlock)
+            388 CALL_FUNCTION            2
+            390 POP_JUMP_IF_FALSE      228 (to 456)
+
+117         392 LOAD_GLOBAL             10 (getattr)
+            394 LOAD_FAST               16 (block)
+            396 LOAD_CONST              27 ('content')
+            398 LOAD_CONST               6 ('')
+            400 CALL_FUNCTION            3
+            402 STORE_FAST              21 (content)
+
+118         404 LOAD_GLOBAL              3 (isinstance)
+            406 LOAD_FAST               21 (content)
+            408 LOAD_GLOBAL              0 (list)
+            410 CALL_FUNCTION            2
+            412 POP_JUMP_IF_FALSE      217 (to 434)
+
+119         414 LOAD_CONST              28 (' ')
+            416 LOAD_METHOD             15 (join)
+            418 LOAD_CONST              29 (<code object <genexpr> at 0x0000021CBF4B3C00, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 119>)
+            420 LOAD_CONST              30 ('_run_query.<locals>.<genexpr>')
+            422 MAKE_FUNCTION            0
+            424 LOAD_FAST               21 (content)
+            426 GET_ITER
+            428 CALL_FUNCTION            1
+            430 CALL_METHOD              1
+            432 STORE_FAST              21 (content)
+
+120     >>  434 LOAD_FAST               13 (_evt)
+            436 LOAD_CONST              31 ('tool_result')
+            438 LOAD_GLOBAL             13 (str)
+            440 LOAD_FAST               21 (content)
+            442 CALL_FUNCTION            1
+            444 LOAD_CONST               5 (None)
+            446 LOAD_CONST              25 (200)
+            448 BUILD_SLICE              2
+            450 BINARY_SUBSCR
+            452 CALL_FUNCTION            2
+            454 POP_TOP
+        >>  456 JUMP_ABSOLUTE           62 (to 124)
+
+101     >>  458 JUMP_ABSOLUTE           47 (to 94)
+
+121     >>  460 LOAD_GLOBAL             14 (ToolResultBlock)
+            462 LOAD_CONST               5 (None)
+            464 IS_OP                    1
+            466 EXTENDED_ARG             1
+            468 POP_JUMP_IF_FALSE      309 (to 618)
+            470 LOAD_GLOBAL             16 (hasattr)
+            472 LOAD_FAST               15 (msg)
+            474 LOAD_CONST              27 ('content')
+            476 CALL_FUNCTION            2
+            478 EXTENDED_ARG             1
+            480 POP_JUMP_IF_FALSE      309 (to 618)
+            482 LOAD_GLOBAL              3 (isinstance)
+            484 LOAD_FAST               15 (msg)
+            486 LOAD_GLOBAL              4 (AssistantMessage)
+            488 LOAD_GLOBAL             17 (ResultMessage)
+            490 BUILD_TUPLE              2
+            492 CALL_FUNCTION            2
+            494 EXTENDED_ARG             1
+            496 POP_JUMP_IF_TRUE       309 (to 618)
+
+122         498 SETUP_FINALLY           49 (to 598)
+
+123         500 LOAD_FAST               15 (msg)
+            502 LOAD_ATTR                5 (content)
+            504 JUMP_IF_TRUE_OR_POP    254 (to 508)
+            506 BUILD_LIST               0
+        >>  508 GET_ITER
+        >>  510 FOR_ITER                41 (to 594)
+            512 STORE_FAST              16 (block)
+
+124         514 LOAD_GLOBAL              3 (isinstance)
+            516 LOAD_FAST               16 (block)
+            518 LOAD_GLOBAL             14 (ToolResultBlock)
+            520 CALL_FUNCTION            2
+            522 EXTENDED_ARG             1
+            524 POP_JUMP_IF_FALSE      296 (to 592)
+
+125         526 LOAD_GLOBAL             10 (getattr)
+            528 LOAD_FAST               16 (block)
+            530 LOAD_CONST              27 ('content')
+            532 LOAD_CONST               6 ('')
+            534 CALL_FUNCTION            3
+            536 STORE_FAST              21 (content)
+
+126         538 LOAD_GLOBAL              3 (isinstance)
+            540 LOAD_FAST               21 (content)
+            542 LOAD_GLOBAL              0 (list)
+            544 CALL_FUNCTION            2
+            546 EXTENDED_ARG             1
+            548 POP_JUMP_IF_FALSE      285 (to 570)
+
+127         550 LOAD_CONST              28 (' ')
+            552 LOAD_METHOD             15 (join)
+            554 LOAD_CONST              32 (<code object <genexpr> at 0x0000021CBF12FD60, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 127>)
+            556 LOAD_CONST              30 ('_run_query.<locals>.<genexpr>')
+            558 MAKE_FUNCTION            0
+            560 LOAD_FAST               21 (content)
+            562 GET_ITER
+            564 CALL_FUNCTION            1
+            566 CALL_METHOD              1
+            568 STORE_FAST              21 (content)
+
+128     >>  570 LOAD_FAST               13 (_evt)
+            572 LOAD_CONST              31 ('tool_result')
+            574 LOAD_GLOBAL             13 (str)
+            576 LOAD_FAST               21 (content)
+            578 CALL_FUNCTION            1
+            580 LOAD_CONST               5 (None)
+            582 LOAD_CONST              25 (200)
+            584 BUILD_SLICE              2
+            586 BINARY_SUBSCR
+            588 CALL_FUNCTION            2
+            590 POP_TOP
+        >>  592 JUMP_ABSOLUTE          255 (to 510)
+
+123     >>  594 POP_BLOCK
+            596 JUMP_ABSOLUTE           47 (to 94)
+
+129     >>  598 DUP_TOP
+            600 LOAD_GLOBAL             18 (Exception)
+            602 EXTENDED_ARG             1
+            604 JUMP_IF_NOT_EXC_MATCH   308 (to 616)
+            606 POP_TOP
+            608 POP_TOP
+            610 POP_TOP
+
+130         612 POP_EXCEPT
+            614 JUMP_ABSOLUTE           47 (to 94)
+
+129     >>  616 RERAISE                  0
+
+131     >>  618 LOAD_GLOBAL              3 (isinstance)
+            620 LOAD_FAST               15 (msg)
+            622 LOAD_GLOBAL             17 (ResultMessage)
+            624 CALL_FUNCTION            2
+            626 EXTENDED_ARG             1
+            628 POP_JUMP_IF_FALSE      350 (to 700)
+
+132         630 LOAD_FAST               15 (msg)
+            632 LOAD_ATTR               19 (session_id)
+            634 STORE_FAST              12 (session_id)
+
+133         636 LOAD_GLOBAL             10 (getattr)
+            638 LOAD_FAST               15 (msg)
+            640 LOAD_CONST              33 ('result')
+            642 LOAD_CONST               5 (None)
+            644 CALL_FUNCTION            3
+            646 STORE_FAST              11 (result_text)
+
+134         648 SETUP_FINALLY           13 (to 676)
+
+135         650 LOAD_FAST               14 (gen)
+            652 GET_AITER
+        >>  654 SETUP_FINALLY            7 (to 670)
+            656 GET_ANEXT
+            658 LOAD_CONST               5 (None)
+            660 YIELD_FROM
+            662 POP_BLOCK
+            664 STORE_FAST              22 (_)
+
+136         666 EXTENDED_ARG             1
+            668 JUMP_ABSOLUTE          327 (to 654)
+
+135     >>  670 END_ASYNC_FOR
+            672 POP_BLOCK
+            674 JUMP_FORWARD            10 (to 696)
+
+137     >>  676 DUP_TOP
+            678 LOAD_GLOBAL             18 (Exception)
+            680 EXTENDED_ARG             1
+            682 JUMP_IF_NOT_EXC_MATCH   347 (to 694)
+            684 POP_TOP
+            686 POP_TOP
+            688 POP_TOP
+
+138         690 POP_EXCEPT
+            692 JUMP_FORWARD             1 (to 696)
+
+137     >>  694 RERAISE                  0
+
+139     >>  696 POP_TOP
+            698 JUMP_FORWARD             2 (to 704)
+
+131     >>  700 JUMP_ABSOLUTE           47 (to 94)
+
+ 99     >>  702 END_ASYNC_FOR
+        >>  704 POP_BLOCK
+
+141         706 LOAD_GLOBAL             10 (getattr)
+            708 LOAD_FAST               14 (gen)
+            710 LOAD_CONST              34 ('aclose')
+            712 LOAD_CONST               5 (None)
+            714 CALL_FUNCTION            3
+            716 STORE_FAST              23 (aclose)
+
+142         718 LOAD_FAST               23 (aclose)
+            720 LOAD_CONST               5 (None)
+            722 IS_OP                    1
+            724 EXTENDED_ARG             1
+            726 POP_JUMP_IF_FALSE      383 (to 766)
+
+143         728 SETUP_FINALLY            8 (to 746)
+
+144         730 LOAD_FAST               23 (aclose)
+            732 CALL_FUNCTION            0
+            734 GET_AWAITABLE
+            736 LOAD_CONST               5 (None)
+            738 YIELD_FROM
+            740 POP_TOP
+            742 POP_BLOCK
+            744 JUMP_FORWARD            42 (to 830)
+
+145     >>  746 DUP_TOP
+            748 LOAD_GLOBAL             18 (Exception)
+            750 EXTENDED_ARG             1
+            752 JUMP_IF_NOT_EXC_MATCH   382 (to 764)
+            754 POP_TOP
+            756 POP_TOP
+            758 POP_TOP
+
+146         760 POP_EXCEPT
+            762 JUMP_FORWARD            33 (to 830)
+
+145     >>  764 RERAISE                  0
+
+142     >>  766 JUMP_FORWARD            31 (to 830)
+
+141     >>  768 LOAD_GLOBAL             10 (getattr)
+            770 LOAD_FAST               14 (gen)
+            772 LOAD_CONST              34 ('aclose')
+            774 LOAD_CONST               5 (None)
+            776 CALL_FUNCTION            3
+            778 STORE_FAST              23 (aclose)
+
+142         780 LOAD_FAST               23 (aclose)
+            782 LOAD_CONST               5 (None)
+            784 IS_OP                    1
+            786 EXTENDED_ARG             1
+            788 POP_JUMP_IF_FALSE      414 (to 828)
+
+143         790 SETUP_FINALLY            8 (to 808)
+
+144         792 LOAD_FAST               23 (aclose)
+            794 CALL_FUNCTION            0
+            796 GET_AWAITABLE
+            798 LOAD_CONST               5 (None)
+            800 YIELD_FROM
+            802 POP_TOP
+            804 POP_BLOCK
+            806 RERAISE                  0
+
+145     >>  808 DUP_TOP
+            810 LOAD_GLOBAL             18 (Exception)
+            812 EXTENDED_ARG             1
+            814 JUMP_IF_NOT_EXC_MATCH   413 (to 826)
+            816 POP_TOP
+            818 POP_TOP
+            820 POP_TOP
+
+146         822 POP_EXCEPT
+            824 RERAISE                  0
+
+145     >>  826 RERAISE                  0
+
+142     >>  828 RERAISE                  0
+
+147     >>  830 LOAD_CONST               6 ('')
+            832 LOAD_METHOD             15 (join)
+            834 LOAD_FAST                9 (chunks)
+            836 CALL_METHOD              1
+            838 LOAD_METHOD             20 (strip)
+            840 CALL_METHOD              0
+            842 STORE_FAST              24 (reply)
+
+148         844 LOAD_FAST               24 (reply)
+            846 EXTENDED_ARG             1
+            848 POP_JUMP_IF_TRUE       434 (to 868)
+            850 LOAD_FAST               11 (result_text)
+            852 EXTENDED_ARG             1
+            854 POP_JUMP_IF_FALSE      434 (to 868)
+
+149         856 LOAD_GLOBAL             13 (str)
+            858 LOAD_FAST               11 (result_text)
+            860 CALL_FUNCTION            1
+            862 LOAD_METHOD             20 (strip)
+            864 CALL_METHOD              0
+            866 STORE_FAST              24 (reply)
+
+150     >>  868 LOAD_CONST               6 ('')
+            870 LOAD_METHOD             15 (join)
+            872 LOAD_FAST               10 (thinking_chunks)
+            874 CALL_METHOD              1
+            876 LOAD_METHOD             20 (strip)
+            878 CALL_METHOD              0
+            880 STORE_FAST              25 (thinking)
+
+151         882 LOAD_FAST               13 (_evt)
+            884 LOAD_CONST              35 ('done')
+            886 LOAD_CONST              36 ('reply=')
+            888 LOAD_GLOBAL             21 (len)
+            890 LOAD_FAST               24 (reply)
+            892 CALL_FUNCTION            1
+            894 FORMAT_VALUE             0
+            896 LOAD_CONST              37 ('ch thinking=')
+            898 LOAD_GLOBAL             21 (len)
+            900 LOAD_FAST               25 (thinking)
+            902 CALL_FUNCTION            1
+            904 FORMAT_VALUE             0
+            906 LOAD_CONST              38 ('ch')
+            908 BUILD_STRING             5
+            910 CALL_FUNCTION            2
+            912 POP_TOP
+
+152         914 LOAD_FAST               24 (reply)
+            916 EXTENDED_ARG             1
+            918 POP_JUMP_IF_TRUE       501 (to 1002)
+
+154         920 BUILD_LIST               0
+            922 STORE_FAST              26 (hint)
+
+155         924 LOAD_FAST               25 (thinking)
+            926 EXTENDED_ARG             1
+            928 POP_JUMP_IF_FALSE      475 (to 950)
+            930 LOAD_FAST               26 (hint)
+            932 LOAD_METHOD              7 (append)
+            934 LOAD_GLOBAL             21 (len)
+            936 LOAD_FAST               25 (thinking)
+            938 CALL_FUNCTION            1
+            940 FORMAT_VALUE             0
+            942 LOAD_CONST              39 (' chars of thinking')
+            944 BUILD_STRING             2
+            946 CALL_METHOD              1
+            948 POP_TOP
+
+156     >>  950 LOAD_FAST                7 (tools)
+            952 EXTENDED_ARG             1
+            954 POP_JUMP_IF_FALSE      489 (to 978)
+            956 LOAD_FAST               26 (hint)
+            958 LOAD_METHOD              7 (append)
+            960 LOAD_CONST              40 ('tools enabled: ')
+            962 LOAD_CONST              41 (', ')
+            964 LOAD_METHOD             15 (join)
+            966 LOAD_FAST                7 (tools)
+            968 CALL_METHOD              1
+            970 FORMAT_VALUE             0
+            972 BUILD_STRING             2
+            974 CALL_METHOD              1
+            976 POP_TOP
+
+157     >>  978 LOAD_CONST              42 ('[no text response — ')
+            980 LOAD_CONST              41 (', ')
+            982 LOAD_METHOD             15 (join)
+            984 LOAD_FAST               26 (hint)
+            986 CALL_METHOD              1
+            988 EXTENDED_ARG             1
+            990 JUMP_IF_TRUE_OR_POP    497 (to 994)
+            992 LOAD_CONST              43 ('model returned nothing')
+        >>  994 BINARY_ADD
+            996 LOAD_CONST              44 ('. Try rephrasing or force a different agent.]')
+            998 BINARY_ADD
+           1000 STORE_FAST              24 (reply)
+
+158     >> 1002 LOAD_FAST               24 (reply)
+           1004 LOAD_FAST               25 (thinking)
+           1006 LOAD_FAST               12 (session_id)
+           1008 BUILD_TUPLE              3
+           1010 RETURN_VALUE
+
+Disassembly of <code object _evt at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 92>:
+ 93           0 LOAD_DEREF               0 (on_event)
+              2 POP_JUMP_IF_FALSE       21 (to 42)
+
+ 94           4 SETUP_FINALLY            8 (to 22)
+              6 LOAD_DEREF               0 (on_event)
+              8 LOAD_FAST                0 (stage)
+             10 LOAD_FAST                1 (detail)
+             12 CALL_FUNCTION            2
+             14 POP_TOP
+             16 POP_BLOCK
+             18 LOAD_CONST               0 (None)
+             20 RETURN_VALUE
+
+ 95     >>   22 DUP_TOP
+             24 LOAD_GLOBAL              0 (Exception)
+             26 JUMP_IF_NOT_EXC_MATCH    20 (to 40)
+             28 POP_TOP
+             30 POP_TOP
+             32 POP_TOP
+             34 POP_EXCEPT
+             36 LOAD_CONST               0 (None)
+             38 RETURN_VALUE
+        >>   40 RERAISE                  0
+
+ 93     >>   42 LOAD_CONST               0 (None)
+             44 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x0000021CBF4B3C00, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 119>:
+              0 GEN_START                0
+
+119           2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                11 (to 28)
+              6 STORE_FAST               1 (c)
+              8 LOAD_GLOBAL              0 (str)
+             10 LOAD_GLOBAL              1 (getattr)
+             12 LOAD_FAST                1 (c)
+             14 LOAD_CONST               0 ('text')
+             16 LOAD_FAST                1 (c)
+             18 CALL_FUNCTION            3
+             20 CALL_FUNCTION            1
+             22 YIELD_VALUE
+             24 POP_TOP
+             26 JUMP_ABSOLUTE            2 (to 4)
+        >>   28 LOAD_CONST               1 (None)
+             30 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x0000021CBF12FD60, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 127>:
+              0 GEN_START                0
+
+127           2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                11 (to 28)
+              6 STORE_FAST               1 (c)
+              8 LOAD_GLOBAL              0 (str)
+             10 LOAD_GLOBAL              1 (getattr)
+             12 LOAD_FAST                1 (c)
+             14 LOAD_CONST               0 ('text')
+             16 LOAD_FAST                1 (c)
+             18 CALL_FUNCTION            3
+             20 CALL_FUNCTION            1
+             22 YIELD_VALUE
+             24 POP_TOP
+             26 JUMP_ABSOLUTE            2 (to 4)
+        >>   28 LOAD_CONST               1 (None)
+             30 RETURN_VALUE
+
+Disassembly of <code object _run_sync at 0x0000021CBF12FEC0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 161>:
+164           0 LOAD_GLOBAL              0 (asyncio)
+              2 LOAD_METHOD              1 (new_event_loop)
+              4 CALL_METHOD              0
+              6 STORE_FAST               1 (loop)
+
+165           8 SETUP_FINALLY           56 (to 122)
+
+166          10 LOAD_FAST                1 (loop)
+             12 LOAD_METHOD              2 (run_until_complete)
+             14 LOAD_FAST                0 (coro)
+             16 CALL_METHOD              1
+             18 POP_BLOCK
+
+168          20 SETUP_FINALLY           36 (to 94)
+
+170          22 LOAD_GLOBAL              0 (asyncio)
+             24 LOAD_METHOD              3 (all_tasks)
+             26 LOAD_FAST                1 (loop)
+             28 CALL_METHOD              1
+             30 STORE_FAST               2 (pending)
+
+171          32 LOAD_FAST                2 (pending)
+             34 GET_ITER
+        >>   36 FOR_ITER                 6 (to 50)
+             38 STORE_FAST               3 (t)
+
+172          40 LOAD_FAST                3 (t)
+             42 LOAD_METHOD              4 (cancel)
+             44 CALL_METHOD              0
+             46 POP_TOP
+             48 JUMP_ABSOLUTE           18 (to 36)
+
+173     >>   50 LOAD_FAST                2 (pending)
+             52 POP_JUMP_IF_FALSE       38 (to 76)
+
+174          54 LOAD_FAST                1 (loop)
+             56 LOAD_METHOD              2 (run_until_complete)
+             58 LOAD_GLOBAL              0 (asyncio)
+             60 LOAD_ATTR                5 (gather)
+             62 LOAD_FAST                2 (pending)
+             64 LOAD_CONST               1 ('return_exceptions')
+             66 LOAD_CONST               2 (True)
+             68 BUILD_MAP                1
+             70 CALL_FUNCTION_EX         1
+             72 CALL_METHOD              1
+             74 POP_TOP
+
+175     >>   76 LOAD_FAST                1 (loop)
+             78 LOAD_METHOD              2 (run_until_complete)
+             80 LOAD_FAST                1 (loop)
+             82 LOAD_METHOD              6 (shutdown_asyncgens)
+             84 CALL_METHOD              0
+             86 CALL_METHOD              1
+             88 POP_TOP
+             90 POP_BLOCK
+             92 JUMP_FORWARD             9 (to 112)
+
+176     >>   94 DUP_TOP
+             96 LOAD_GLOBAL              7 (Exception)
+             98 JUMP_IF_NOT_EXC_MATCH    55 (to 110)
+            100 POP_TOP
+            102 POP_TOP
+            104 POP_TOP
+
+177         106 POP_EXCEPT
+            108 JUMP_FORWARD             1 (to 112)
+
+176     >>  110 RERAISE                  0
+
+178     >>  112 LOAD_FAST                1 (loop)
+            114 LOAD_METHOD              8 (close)
+            116 CALL_METHOD              0
+            118 POP_TOP
+            120 RETURN_VALUE
+
+168     >>  122 SETUP_FINALLY           36 (to 196)
+
+170         124 LOAD_GLOBAL              0 (asyncio)
+            126 LOAD_METHOD              3 (all_tasks)
+            128 LOAD_FAST                1 (loop)
+            130 CALL_METHOD              1
+            132 STORE_FAST               2 (pending)
+
+171         134 LOAD_FAST                2 (pending)
+            136 GET_ITER
+        >>  138 FOR_ITER                 6 (to 152)
+            140 STORE_FAST               3 (t)
+
+172         142 LOAD_FAST                3 (t)
+            144 LOAD_METHOD              4 (cancel)
+            146 CALL_METHOD              0
+            148 POP_TOP
+            150 JUMP_ABSOLUTE           69 (to 138)
+
+173     >>  152 LOAD_FAST                2 (pending)
+            154 POP_JUMP_IF_FALSE       89 (to 178)
+
+174         156 LOAD_FAST                1 (loop)
+            158 LOAD_METHOD              2 (run_until_complete)
+            160 LOAD_GLOBAL              0 (asyncio)
+            162 LOAD_ATTR                5 (gather)
+            164 LOAD_FAST                2 (pending)
+            166 LOAD_CONST               1 ('return_exceptions')
+            168 LOAD_CONST               2 (True)
+            170 BUILD_MAP                1
+            172 CALL_FUNCTION_EX         1
+            174 CALL_METHOD              1
+            176 POP_TOP
+
+175     >>  178 LOAD_FAST                1 (loop)
+            180 LOAD_METHOD              2 (run_until_complete)
+            182 LOAD_FAST                1 (loop)
+            184 LOAD_METHOD              6 (shutdown_asyncgens)
+            186 CALL_METHOD              0
+            188 CALL_METHOD              1
+            190 POP_TOP
+            192 POP_BLOCK
+            194 JUMP_FORWARD             9 (to 214)
+
+176     >>  196 DUP_TOP
+            198 LOAD_GLOBAL              7 (Exception)
+            200 JUMP_IF_NOT_EXC_MATCH   106 (to 212)
+            202 POP_TOP
+            204 POP_TOP
+            206 POP_TOP
+
+177         208 POP_EXCEPT
+            210 JUMP_FORWARD             1 (to 214)
+
+176     >>  212 RERAISE                  0
+
+178     >>  214 LOAD_FAST                1 (loop)
+            216 LOAD_METHOD              8 (close)
+            218 CALL_METHOD              0
+            220 POP_TOP
+            222 RERAISE                  0
+
+Disassembly of <code object call at 0x0000021CBF50C030, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 181>:
+183           0 LOAD_CONST               1 ('\n\n')
+              2 LOAD_METHOD              0 (join)
+              4 LOAD_CONST               2 (<code object <genexpr> at 0x0000021CBF50C500, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 183>)
+              6 LOAD_CONST               3 ('call.<locals>.<genexpr>')
+              8 MAKE_FUNCTION            0
+
+184          10 LOAD_FAST                2 (messages)
+
+183          12 GET_ITER
+             14 CALL_FUNCTION            1
+             16 CALL_METHOD              1
+
+185          18 LOAD_METHOD              1 (strip)
+             20 CALL_METHOD              0
+
+183          22 JUMP_IF_TRUE_OR_POP     13 (to 26)
+
+185          24 LOAD_CONST               4 ('(empty prompt)')
+
+183     >>   26 STORE_FAST               4 (user_text)
+
+186          28 SETUP_FINALLY           15 (to 60)
+
+187          30 LOAD_GLOBAL              2 (_run_sync)
+             32 LOAD_GLOBAL              3 (_run_query)
+             34 LOAD_FAST                0 (model)
+             36 LOAD_FAST                1 (system)
+             38 LOAD_FAST                4 (user_text)
+             40 LOAD_FAST                3 (max_tokens)
+             42 CALL_FUNCTION            4
+             44 CALL_FUNCTION            1
+             46 UNPACK_SEQUENCE          3
+             48 STORE_FAST               5 (reply)
+             50 STORE_FAST               6 (_think)
+             52 STORE_FAST               7 (_sid)
+
+188          54 LOAD_FAST                5 (reply)
+             56 POP_BLOCK
+             58 RETURN_VALUE
+
+189     >>   60 DUP_TOP
+             62 LOAD_GLOBAL              4 (Exception)
+             64 JUMP_IF_NOT_EXC_MATCH    65 (to 130)
+             66 POP_TOP
+             68 STORE_FAST               8 (e)
+             70 POP_TOP
+             72 SETUP_FINALLY           24 (to 122)
+
+190          74 LOAD_CONST               5 ('[SDK error: ')
+             76 LOAD_GLOBAL              5 (type)
+             78 LOAD_FAST                8 (e)
+             80 CALL_FUNCTION            1
+             82 LOAD_ATTR                6 (__name__)
+             84 FORMAT_VALUE             0
+             86 LOAD_CONST               6 (': ')
+             88 LOAD_GLOBAL              7 (str)
+             90 LOAD_FAST                8 (e)
+             92 CALL_FUNCTION            1
+             94 LOAD_CONST               7 (None)
+             96 LOAD_CONST               8 (300)
+             98 BUILD_SLICE              2
+            100 BINARY_SUBSCR
+            102 FORMAT_VALUE             0
+            104 LOAD_CONST               9 (']')
+            106 BUILD_STRING             5
+            108 POP_BLOCK
+            110 ROT_FOUR
+            112 POP_EXCEPT
+            114 LOAD_CONST               7 (None)
+            116 STORE_FAST               8 (e)
+            118 DELETE_FAST              8 (e)
+            120 RETURN_VALUE
+        >>  122 LOAD_CONST               7 (None)
+            124 STORE_FAST               8 (e)
+            126 DELETE_FAST              8 (e)
+            128 RERAISE                  1
+
+189     >>  130 RERAISE                  0
+
+Disassembly of <code object <genexpr> at 0x0000021CBF50C500, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 183>:
+              0 GEN_START                0
+
+183           2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                16 (to 38)
+
+184           6 STORE_FAST               1 (m)
+              8 LOAD_FAST                1 (m)
+             10 LOAD_METHOD              0 (get)
+             12 LOAD_CONST               0 ('role')
+             14 CALL_METHOD              1
+             16 LOAD_CONST               1 ('user')
+             18 COMPARE_OP               2 (==)
+             20 POP_JUMP_IF_FALSE        2 (to 4)
+             22 LOAD_FAST                1 (m)
+             24 LOAD_METHOD              0 (get)
+             26 LOAD_CONST               2 ('content')
+             28 LOAD_CONST               3 ('')
+             30 CALL_METHOD              2
+             32 YIELD_VALUE
+             34 POP_TOP
+             36 JUMP_ABSOLUTE            2 (to 4)
+
+183     >>   38 LOAD_CONST               4 (None)
+             40 RETURN_VALUE
+
+Disassembly of <code object call_session at 0x0000021CBF50C240, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 193>:
+203           0 SETUP_FINALLY           13 (to 28)
+
+204           2 LOAD_GLOBAL              0 (_run_sync)
+              4 LOAD_GLOBAL              1 (_run_query)
+              6 LOAD_FAST                0 (model)
+              8 LOAD_FAST                1 (system)
+             10 LOAD_FAST                2 (user_text)
+             12 LOAD_FAST                4 (max_tokens)
+             14 LOAD_FAST                3 (resume_session_id)
+             16 LOAD_FAST                5 (on_event)
+             18 LOAD_FAST                6 (allowed_tools)
+             20 CALL_FUNCTION            7
+             22 CALL_FUNCTION            1
+             24 POP_BLOCK
+             26 RETURN_VALUE
+
+205     >>   28 DUP_TOP
+             30 LOAD_GLOBAL              2 (Exception)
+             32 JUMP_IF_NOT_EXC_MATCH    52 (to 104)
+             34 POP_TOP
+             36 STORE_FAST               7 (e)
+             38 POP_TOP
+             40 SETUP_FINALLY           27 (to 96)
+
+206          42 LOAD_CONST               1 ('[SDK error: ')
+             44 LOAD_GLOBAL              3 (type)
+             46 LOAD_FAST                7 (e)
+             48 CALL_FUNCTION            1
+             50 LOAD_ATTR                4 (__name__)
+             52 FORMAT_VALUE             0
+             54 LOAD_CONST               2 (': ')
+             56 LOAD_GLOBAL              5 (str)
+             58 LOAD_FAST                7 (e)
+             60 CALL_FUNCTION            1
+             62 LOAD_CONST               3 (None)
+             64 LOAD_CONST               4 (300)
+             66 BUILD_SLICE              2
+             68 BINARY_SUBSCR
+             70 FORMAT_VALUE             0
+             72 LOAD_CONST               5 (']')
+             74 BUILD_STRING             5
+             76 LOAD_CONST               6 ('')
+             78 LOAD_CONST               3 (None)
+             80 BUILD_TUPLE              3
+             82 POP_BLOCK
+             84 ROT_FOUR
+             86 POP_EXCEPT
+             88 LOAD_CONST               3 (None)
+             90 STORE_FAST               7 (e)
+             92 DELETE_FAST              7 (e)
+             94 RETURN_VALUE
+        >>   96 LOAD_CONST               3 (None)
+             98 STORE_FAST               7 (e)
+            100 DELETE_FAST              7 (e)
+            102 RERAISE                  1
+
+205     >>  104 RERAISE                  0
+
+Disassembly of <code object classify at 0x0000021CBF50C660, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 209>:
+212           0 LOAD_CONST               1 ('You are a memory classifier. Given a user message, classify it as one of: fact (durable, e.g. \'my address is...\', \'the client\'s phone is...\'), preference (e.g. \'I hate ukulele music in ads\'), context (short-term, e.g. \'I\'m about to post sugar shack\'), or noise (no memory value). Return ONLY valid JSON on a single line: {"kind":"fact|preference|context|noise","text":"<short summary>","importance":0.0}')
+
+211           2 STORE_FAST               1 (system)
+
+219           4 LOAD_GLOBAL              0 (call)
+              6 LOAD_GLOBAL              1 (CLASSIFIER_MODEL)
+              8 LOAD_FAST                1 (system)
+             10 LOAD_CONST               2 ('user')
+             12 LOAD_FAST                0 (text)
+             14 LOAD_CONST               3 (('role', 'content'))
+             16 BUILD_CONST_KEY_MAP      2
+             18 BUILD_LIST               1
+             20 LOAD_CONST               4 (200)
+             22 LOAD_CONST               5 (('max_tokens',))
+             24 CALL_FUNCTION_KW         4
+             26 STORE_FAST               2 (raw)
+
+220          28 LOAD_FAST                2 (raw)
+             30 LOAD_METHOD              2 (strip)
+             32 CALL_METHOD              0
+             34 STORE_FAST               3 (s)
+
+221          36 LOAD_FAST                3 (s)
+             38 LOAD_METHOD              3 (startswith)
+             40 LOAD_CONST               6 ('```')
+             42 CALL_METHOD              1
+             44 POP_JUMP_IF_FALSE       42 (to 84)
+
+222          46 LOAD_FAST                3 (s)
+             48 LOAD_METHOD              4 (split)
+             50 LOAD_CONST               6 ('```')
+             52 LOAD_CONST               7 (2)
+             54 CALL_METHOD              2
+             56 LOAD_CONST               8 (1)
+             58 BINARY_SUBSCR
+             60 STORE_FAST               3 (s)
+
+223          62 LOAD_FAST                3 (s)
+             64 LOAD_METHOD              3 (startswith)
+             66 LOAD_CONST               9 ('json')
+             68 CALL_METHOD              1
+             70 POP_JUMP_IF_FALSE       42 (to 84)
+
+224          72 LOAD_FAST                3 (s)
+             74 LOAD_CONST              10 (4)
+             76 LOAD_CONST              11 (None)
+             78 BUILD_SLICE              2
+             80 BINARY_SUBSCR
+             82 STORE_FAST               3 (s)
+
+225     >>   84 SETUP_FINALLY           22 (to 130)
+
+226          86 LOAD_FAST                3 (s)
+             88 LOAD_METHOD              5 (index)
+             90 LOAD_CONST              12 ('{')
+             92 CALL_METHOD              1
+             94 STORE_FAST               4 (start)
+
+227          96 LOAD_FAST                3 (s)
+             98 LOAD_METHOD              6 (rindex)
+            100 LOAD_CONST              13 ('}')
+            102 CALL_METHOD              1
+            104 LOAD_CONST               8 (1)
+            106 BINARY_ADD
+            108 STORE_FAST               5 (end)
+
+228         110 LOAD_GLOBAL              7 (json)
+            112 LOAD_METHOD              8 (loads)
+            114 LOAD_FAST                3 (s)
+            116 LOAD_FAST                4 (start)
+            118 LOAD_FAST                5 (end)
+            120 BUILD_SLICE              2
+            122 BINARY_SUBSCR
+            124 CALL_METHOD              1
+            126 POP_BLOCK
+            128 RETURN_VALUE
+
+229     >>  130 DUP_TOP
+            132 LOAD_GLOBAL              9 (Exception)
+            134 JUMP_IF_NOT_EXC_MATCH    79 (to 158)
+            136 POP_TOP
+            138 POP_TOP
+            140 POP_TOP
+
+230         142 LOAD_CONST              14 ('noise')
+            144 LOAD_CONST              15 ('')
+            146 LOAD_CONST              16 (0.0)
+            148 LOAD_CONST              17 (('kind', 'text', 'importance'))
+            150 BUILD_CONST_KEY_MAP      3
+            152 ROT_FOUR
+            154 POP_EXCEPT
+            156 RETURN_VALUE
+
+229     >>  158 RERAISE                  0
+
+
+## NESTED CODE OBJECTS:
+
+### def _load_env()  [argcount=0, locals=('env', 'line', 'k', '_', 'v')]
+# co_consts: ['None', "'utf-8'", "('encoding',)", "'='", "'#'", '\'"\'', '"\'"']
+# co_names:  ('ENV_PATH', 'read_text', 'splitlines', 'strip', 'startswith', 'partition', 'FileNotFoundError')
+ 35           0 BUILD_MAP                0
+              2 STORE_FAST               0 (env)
+
+ 36           4 SETUP_FINALLY           49 (to 104)
+
+ 37           6 LOAD_GLOBAL              0 (ENV_PATH)
+              8 LOAD_ATTR                1 (read_text)
+             10 LOAD_CONST               1 ('utf-8')
+             12 LOAD_CONST               2 (('encoding',))
+             14 CALL_FUNCTION_KW         1
+             16 LOAD_METHOD              2 (splitlines)
+             18 CALL_METHOD              0
+             20 GET_ITER
+        >>   22 FOR_ITER                37 (to 98)
+             24 STORE_FAST               1 (line)
+
+ 38          26 LOAD_FAST                1 (line)
+             28 LOAD_METHOD              3 (strip)
+             30 CALL_METHOD              0
+             32 STORE_FAST               1 (line)
+
+ 39          34 LOAD_CONST               3 ('=')
+             36 LOAD_FAST                1 (line)
+             38 CONTAINS_OP              0
+             40 POP_JUMP_IF_FALSE       48 (to 96)
+             42 LOAD_FAST                1 (line)
+             44 LOAD_METHOD              4 (startswith)
+             46 LOAD_CONST               4 ('#')
+             48 CALL_METHOD              1
+             50 POP_JUMP_IF_TRUE        48 (to 96)
+
+ 40          52 LOAD_FAST                1 (line)
+             54 LOAD_METHOD              5 (partition)
+             56 LOAD_CONST               3 ('=')
+             58 CALL_METHOD              1
+             60 UNPACK_SEQUENCE          3
+             62 STORE_FAST               2 (k)
+             64 STORE_FAST               3 (_)
+             66 STORE_FAST               4 (v)
+
+ 41          68 LOAD_FAST                4 (v)
+             70 LOAD_METHOD              3 (strip)
+             72 CALL_METHOD              0
+             74 LOAD_METHOD              3 (strip)
+             76 LOAD_CONST               5 ('"')
+             78 CALL_METHOD              1
+             80 LOAD_METHOD              3 (strip)
+             82 LOAD_CONST               6 ("'")
+             84 CALL_METHOD              1
+             86 LOAD_FAST                0 (env)
+             88 LOAD_FAST                2 (k)
+             90 LOAD_METHOD              3 (strip)
+             92 CALL_METHOD              0
+             94 STORE_SUBSCR
+        >>   96 JUMP_ABSOLUTE           11 (to 22)
+
+ 37     >>   98 POP_BLOCK
+
+ 44         100 LOAD_FAST                0 (env)
+            102 RETURN_VALUE
+
+ 42     >>  104 DUP_TOP
+            106 LOAD_GLOBAL              6 (FileNotFoundError)
+            108 JUMP_IF_NOT_EXC_MATCH    61 (to 122)
+            110 POP_TOP
+            112 POP_TOP
+            114 POP_TOP
+
+ 43         116 POP_EXCEPT
+
+ 44         118 LOAD_FAST                0 (env)
+            120 RETURN_VALUE
+
+ 42     >>  122 RERAISE                  0
+
+### def _run_query(model, system, user_text, max_tokens, resume_session_id, on_event, allowed_tools)  [argcount=7, locals=('model', 'system', 'user_text', 'max_tokens', 'resume_session_id', 'on_event', 'allowed_tools', 'tools', 'options', 'chunks', 'thinking_chunks', 'result_text', 'session_id', '_evt', 'gen', 'msg', 'block', 't', 'name', 'inp', 'summary', 'content', '_', 'aclose', 'reply', 'thinking', 'hint')]
+# co_consts: ["'Spawn a Claude Code session via the SDK and collect the reply.\\n\\n    Returns (reply_text, new_session_id). If resume_session_id is provided,\\n    the SDK resumes that session (multi-turn continuity)", '20', "'bypassPermissions'", '1024', "('system_prompt', 'model', 'max_turns', 'allowed_tools', 'permission_mode', 'max_thinking_tokens', 'resume')", 'None', "''", '<code object _evt at 0x0000021CBF4B3890, file "C:\\Users\\mario\\.gemini\\antigravity\\tools\\execution\\claudeclaw\\llm.py", line 92>', "'_run_query.<locals>._evt'", "'spawning'", "('prompt', 'options')", "'writing'", '160', "'thinking'", "'text'", '240', "'name'", "'?'", "'input'", "'command'", "'pattern'", "'file_path'", "'path'", "'tool_call'", "'('", '200', "')'", "'content'", "' '", '<code object <genexpr> at 0x0000021CBF4B3C00, file "C:\\Users\\mario\\.gemini\\antigravity\\tools\\execution\\claudeclaw\\llm.py", line 119>', "'_run_query.<locals>.<genexpr>'", "'tool_result'", '<code object <genexpr> at 0x0000021CBF12FD60, file "C:\\Users\\mario\\.gemini\\antigravity\\tools\\execution\\claudeclaw\\llm.py", line 127>', "'result'", "'aclose'", "'done'", "'reply='", "'ch thinking='", "'ch'", "' chars of thinking'", "'tools enabled: '", "', '", "'[no text response — '", "'model returned nothing'", "'. Try rephrasing or force a different agent.]'", "('',)"]
+# co_names:  ('list', 'ClaudeAgentOptions', 'query', 'isinstance', 'AssistantMessage', 'content', 'TextBlock', 'append', 'text', 'ThinkingBlock', 'getattr', 'ToolUseBlock', 'get', 'str', 'ToolResultBlock', 'join', 'hasattr', 'ResultMessage', 'Exception', 'session_id', 'strip', 'len')
+              0 GEN_START                1
+
+ 75           2 LOAD_GLOBAL              0 (list)
+              4 LOAD_FAST                6 (allowed_tools)
+              6 JUMP_IF_TRUE_OR_POP      5 (to 10)
+              8 BUILD_LIST               0
+        >>   10 CALL_FUNCTION            1
+             12 STORE_FAST               7 (tools)
+
+ 79          14 LOAD_GLOBAL              1 (ClaudeAgentOptions)
+
+ 80          16 LOAD_FAST                1 (system)
+
+ 81          18 LOAD_FAST                0 (model)
+
+ 82          20 LOAD_CONST               1 (20)
+
+ 83          22 LOAD_FAST                7 (tools)
+
+ 84          24 LOAD_CONST               2 ('bypassPermissions')
+
+ 85          26 LOAD_CONST               3 (1024)
+
+ 86          28 LOAD_FAST                4 (resume_session_id)
+
+ 79          30 LOAD_CONST               4 (('system_prompt', 'model', 'max_turns', 'allowed_tools', 'permission_mode', 'max_thinking_tokens', 'resume'))
+             32 CALL_FUNCTION_KW         7
+             34 STORE_FAST               8 (options)
+
+ 88          36 BUILD_LIST               0
+             38 STORE_FAST               9 (chunks)
+
+ 89          40 BUILD_LIST               0
+             42 STORE_FAST              10 (thinking_chunks)
+
+ 90          44 LOAD_CONST               5 (None)
+             46 STORE_FAST              11 (result_text)
+
+ 91          48 LOAD_CONST               5 (None)
+             50 STORE_FAST              12 (session_id)
+
+ 92          52 LOAD_CONST              45 (('',))
+             54 LOAD_CLOSURE             0 (on_event)
+             56 BUILD_TUPLE              1
+             58 LOAD_CONST               7 (<code object _evt at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 92>)
+             60 LOAD_CONST               8 ('_run_query.<locals>._evt')
+             62 MAKE_FUNCTION            9 (defaults, closure)
+             64 STORE_FAST              13 (_evt)
+
+ 96          66 LOAD_FAST               13 (_evt)
+             68 LOAD_CONST               9 ('spawning')
+             70 CALL_FUNCTION            1
+             72 POP_TOP
+
+ 97          74 LOAD_GLOBAL              2 (query)
+             76 LOAD_FAST                2 (user_text)
+             78 LOAD_FAST                8 (options)
+             80 LOAD_CONST              10 (('prompt', 'options'))
+             82 CALL_FUNCTION_KW         2
+             84 STORE_FAST              14 (gen)
+
+ 98          86 EXTENDED_ARG             1
+             88 SETUP_FINALLY          339 (to 768)
+
+ 99          90 LOAD_FAST               14 (gen)
+             92 GET_AITER
+        >>   94 EXTENDED_ARG             1
+             96 SETUP_FINALLY          302 (to 702)
+             98 GET_ANEXT
+            100 LOAD_CONST               5 (None)
+            102 YIELD_FROM
+            104 POP_BLOCK
+            106 STORE_FAST              15 (msg)
+
+100         108 LOAD_GLOBAL              3 (isinstance)
+            110 LOAD_FAST               15 (msg)
+            112 LOAD_GLOBAL              4 (AssistantMessage)
+            114 CALL_FUNCTION            2
+            116 POP_JUMP_IF_FALSE      230 (to 460)
+
+101         118 LOAD_FAST               15 (msg)
+            120 LOAD_ATTR                5 (content)
+            122 GET_ITER
+        >>  124 FOR_ITER               166 (to 458)
+            126 STORE_FAST              16 (block)
+
+102         128 LOAD_GLOBAL              3 (isinstance)
+            130 LOAD_FAST               16 (block)
+            132 LOAD_GLOBAL              6 (TextBlock)
+            134 CALL_FUNCTION            2
+            136 POP_JUMP_IF_FALSE       86 (to 172)
+
+103         138 LOAD_FAST                9 (chunks)
+            140 LOAD_METHOD              7 (append)
+            142 LOAD_FAST               16 (block)
+            144 LOAD_ATTR                8 (text)
+            146 CALL_METHOD              1
+            148 POP_TOP
+
+104         150 LOAD_FAST               13 (_evt)
+            152 LOAD_CONST              11 ('writing')
+            154 LOAD_FAST               16 (block)
+            156 LOAD_ATTR                8 (text)
+            158 LOAD_CONST               5 (None)
+            160 LOAD_CONST              12 (160)
+            162 BUILD_SLICE              2
+            164 BINARY_SUBSCR
+            166 CALL_FUNCTION            2
+            168 POP_TOP
+            170 JUMP_ABSOLUTE           62 (to 124)
+
+105     >>  172 LOAD_GLOBAL              9 (ThinkingBlock)
+            174 LOAD_CONST               5 (None)
+            176 IS_OP                    1
+            178 POP_JUMP_IF_FALSE      124 (to 248)
+            180 LOAD_GLOBAL              3 (isinstance)
+            182 LOAD_FAST               16 (block)
+            184 LOAD_GLOBAL              9 (ThinkingBlock)
+            186 CALL_FUNCTION            2
+            188 POP_JUMP_IF_FALSE      124 (to 248)
+
+106         190 LOAD_GLOBAL             10 (getattr)
+            192 LOAD_FAST               16 (block)
+            194 LOAD_CONST              13 ('thinking')
+            196 LOAD_CONST               6 ('')
+            198 CALL_FUNCTION            3
+            200 JUMP_IF_TRUE_OR_POP    106 (to 212)
+            202 LOAD_GLOBAL             10 (getattr)
+            204 LOAD_FAST               16 (block)
+            206 LOAD_CONST              14 ('text')
+            208 LOAD_CONST               6 ('')
+            210 CALL_FUNCTION            3
+        >>  212 STORE_FAST              17 (t)
+
+107         214 LOAD_FAST               17 (t)
+            216 POP_JUMP_IF_FALSE      123 (to 246)
+
+108         218 LOAD_FAST               10 (thinking_chunks)
+            220 LOAD_METHOD              7 (append)
+            222 LOAD_FAST               17 (t)
+            224 CALL_METHOD              1
+            226 POP_TOP
+
+109         228 LOAD_FAST               13 (_evt)
+            230 LOAD_CONST              13 ('thinking')
+            232 LOAD_FAST               17 (t)
+            234 LOAD_CONST               5 (None)
+            236 LOAD_CONST              15 (240)
+            238 BUILD_SLICE              2
+            240 BINARY_SUBSCR
+            242 CALL_FUNCTION            2
+            244 POP_TOP
+        >>  246 JUMP_ABSOLUTE           62 (to 124)
+
+110     >>  248 LOAD_GLOBAL             11 (ToolUseBlock)
+            250 LOAD_CONST               5 (None)
+            252 IS_OP                    1
+            254 POP_JUMP_IF_FALSE      187 (to 374)
+            256 LOAD_GLOBAL              3 (isinstance)
+            258 LOAD_FAST               16 (block)
+            260 LOAD_GLOBAL             11 (ToolUseBlock)
+            262 CALL_FUNCTION            2
+            264 POP_JUMP_IF_FALSE      187 (to 374)
+
+111         266 LOAD_GLOBAL             10 (getattr)
+            268 LOAD_FAST               16 (block)
+            270 LOAD_CONST              16 ('name')
+            272 LOAD_CONST              17 ('?')
+            274 CALL_FUNCTION            3
+            276 STORE_FAST              18 (name)
+
+112         278 LOAD_GLOBAL             10 (getattr)
+            280 LOAD_FAST               16 (block)
+            282 LOAD_CONST              18 ('input')
+            284 BUILD_MAP                0
+            286 CALL_FUNCTION            3
+            288 JUMP_IF_TRUE_OR_POP    146 (to 292)
+            290 BUILD_MAP                0
+        >>  292 STORE_FAST              19 (inp)
+
+114         294 LOAD_FAST               19 (inp)
+            296 LOAD_METHOD             12 (get)
+            298 LOAD_CONST              19 ('command')
+            300 CALL_METHOD              1
+            302 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            304 LOAD_FAST               19 (inp)
+            306 LOAD_METHOD             12 (get)
+            308 LOAD_CONST              20 ('pattern')
+            310 CALL_METHOD              1
+            312 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            314 LOAD_FAST               19 (inp)
+            316 LOAD_METHOD             12 (get)
+            318 LOAD_CONST              21 ('file_path')
+            320 CALL_METHOD              1
+            322 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            324 LOAD_FAST               19 (inp)
+            326 LOAD_METHOD             12 (get)
+            328 LOAD_CONST              22 ('path')
+            330 CALL_METHOD              1
+            332 JUMP_IF_TRUE_OR_POP    168 (to 336)
+            334 LOAD_CONST               6 ('')
+        >>  336 STORE_FAST              20 (summary)
+
+115         338 LOAD_FAST               13 (_evt)
+            340 LOAD_CONST              23 ('tool_call')
+            342 LOAD_FAST               18 (name)
+            344 FORMAT_VALUE             0
+            346 LOAD_CONST              24 ('(')
+            348 LOAD_GLOBAL             13 (str)
+            350 LOAD_FAST               20 (summary)
+            352 CALL_FUNCTION            1
+            354 LOAD_CONST               5 (None)
+            356 LOAD_CONST              25 (200)
+            358 BUILD_SLICE              2
+            360 BINARY_SUBSCR
+            362 FORMAT_VALUE             0
+            364 LOAD_CONST              26 (')')
+            366 BUILD_STRING             4
+            368 CALL_FUNCTION            2
+            370 POP_TOP
+            372 JUMP_ABSOLUTE           62 (to 124)
+
+116     >>  374 LOAD_GLOBAL             14 (ToolResultBlock)
+            376 LOAD_CONST               5 (None)
+            378 IS_OP                    1
+            380 POP_JUMP_IF_FALSE      228 (to 456)
+            382 LOAD_GLOBAL              3 (isinstance)
+            384 LOAD_FAST               16 (block)
+            386 LOAD_GLOBAL             14 (ToolResultBlock)
+            388 CALL_FUNCTION            2
+            390 POP_JUMP_IF_FALSE      228 (to 456)
+
+117         392 LOAD_GLOBAL             10 (getattr)
+            394 LOAD_FAST               16 (block)
+            396 LOAD_CONST              27 ('content')
+            398 LOAD_CONST               6 ('')
+            400 CALL_FUNCTION            3
+            402 STORE_FAST              21 (content)
+
+118         404 LOAD_GLOBAL              3 (isinstance)
+            406 LOAD_FAST               21 (content)
+            408 LOAD_GLOBAL              0 (list)
+            410 CALL_FUNCTION            2
+            412 POP_JUMP_IF_FALSE      217 (to 434)
+
+119         414 LOAD_CONST              28 (' ')
+            416 LOAD_METHOD             15 (join)
+            418 LOAD_CONST              29 (<code object <genexpr> at 0x0000021CBF4B3C00, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 119>)
+            420 LOAD_CONST              30 ('_run_query.<locals>.<genexpr>')
+            422 MAKE_FUNCTION            0
+            424 LOAD_FAST               21 (content)
+            426 GET_ITER
+            428 CALL_FUNCTION            1
+            430 CALL_METHOD              1
+            432 STORE_FAST              21 (content)
+
+120     >>  434 LOAD_FAST               13 (_evt)
+            436 LOAD_CONST              31 ('tool_result')
+            438 LOAD_GLOBAL             13 (str)
+            440 LOAD_FAST               21 (content)
+            442 CALL_FUNCTION            1
+            444 LOAD_CONST               5 (None)
+            446 LOAD_CONST              25 (200)
+            448 BUILD_SLICE              2
+            450 BINARY_SUBSCR
+            452 CALL_FUNCTION            2
+            454 POP_TOP
+        >>  456 JUMP_ABSOLUTE           62 (to 124)
+
+101     >>  458 JUMP_ABSOLUTE           47 (to 94)
+
+121     >>  460 LOAD_GLOBAL             14 (ToolResultBlock)
+            462 LOAD_CONST               5 (None)
+            464 IS_OP                    1
+            466 EXTENDED_ARG             1
+            468 POP_JUMP_IF_FALSE      309 (to 618)
+            470 LOAD_GLOBAL             16 (hasattr)
+            472 LOAD_FAST               15 (msg)
+            474 LOAD_CONST              27 ('content')
+            476 CALL_FUNCTION            2
+            478 EXTENDED_ARG             1
+            480 POP_JUMP_IF_FALSE      309 (to 618)
+            482 LOAD_GLOBAL              3 (isinstance)
+            484 LOAD_FAST               15 (msg)
+            486 LOAD_GLOBAL              4 (AssistantMessage)
+            488 LOAD_GLOBAL             17 (ResultMessage)
+            490 BUILD_TUPLE              2
+            492 CALL_FUNCTION            2
+            494 EXTENDED_ARG             1
+            496 POP_JUMP_IF_TRUE       309 (to 618)
+
+122         498 SETUP_FINALLY           49 (to 598)
+
+123         500 LOAD_FAST               15 (msg)
+            502 LOAD_ATTR                5 (content)
+            504 JUMP_IF_TRUE_OR_POP    254 (to 508)
+            506 BUILD_LIST               0
+        >>  508 GET_ITER
+        >>  510 FOR_ITER                41 (to 594)
+            512 STORE_FAST              16 (block)
+
+124         514 LOAD_GLOBAL              3 (isinstance)
+            516 LOAD_FAST               16 (block)
+            518 LOAD_GLOBAL             14 (ToolResultBlock)
+            520 CALL_FUNCTION            2
+            522 EXTENDED_ARG             1
+            524 POP_JUMP_IF_FALSE      296 (to 592)
+
+125         526 LOAD_GLOBAL             10 (getattr)
+            528 LOAD_FAST               16 (block)
+            530 LOAD_CONST              27 ('content')
+            532 LOAD_CONST               6 ('')
+            534 CALL_FUNCTION            3
+            536 STORE_FAST              21 (content)
+
+126         538 LOAD_GLOBAL              3 (isinstance)
+            540 LOAD_FAST               21 (content)
+            542 LOAD_GLOBAL              0 (list)
+            544 CALL_FUNCTION            2
+            546 EXTENDED_ARG             1
+            548 POP_JUMP_IF_FALSE      285 (to 570)
+
+127         550 LOAD_CONST              28 (' ')
+            552 LOAD_METHOD             15 (join)
+            554 LOAD_CONST              32 (<code object <genexpr> at 0x0000021CBF12FD60, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 127>)
+            556 LOAD_CONST              30 ('_run_query.<locals>.<genexpr>')
+            558 MAKE_FUNCTION            0
+            560 LOAD_FAST               21 (content)
+            562 GET_ITER
+            564 CALL_FUNCTION            1
+            566 CALL_METHOD              1
+            568 STORE_FAST              21 (content)
+
+128     >>  570 LOAD_FAST               13 (_evt)
+            572 LOAD_CONST              31 ('tool_result')
+            574 LOAD_GLOBAL             13 (str)
+            576 LOAD_FAST               21 (content)
+            578 CALL_FUNCTION            1
+            580 LOAD_CONST               5 (None)
+            582 LOAD_CONST              25 (200)
+            584 BUILD_SLICE              2
+            586 BINARY_SUBSCR
+            588 CALL_FUNCTION            2
+            590 POP_TOP
+        >>  592 JUMP_ABSOLUTE          255 (to 510)
+
+123     >>  594 POP_BLOCK
+            596 JUMP_ABSOLUTE           47 (to 94)
+
+129     >>  598 DUP_TOP
+            600 LOAD_GLOBAL             18 (Exception)
+            602 EXTENDED_ARG             1
+            604 JUMP_IF_NOT_EXC_MATCH   308 (to 616)
+            606 POP_TOP
+            608 POP_TOP
+            610 POP_TOP
+
+130         612 POP_EXCEPT
+            614 JUMP_ABSOLUTE           47 (to 94)
+
+129     >>  616 RERAISE                  0
+
+131     >>  618 LOAD_GLOBAL              3 (isinstance)
+            620 LOAD_FAST               15 (msg)
+            622 LOAD_GLOBAL             17 (ResultMessage)
+            624 CALL_FUNCTION            2
+            626 EXTENDED_ARG             1
+            628 POP_JUMP_IF_FALSE      350 (to 700)
+
+132         630 LOAD_FAST               15 (msg)
+            632 LOAD_ATTR               19 (session_id)
+            634 STORE_FAST              12 (session_id)
+
+133         636 LOAD_GLOBAL             10 (getattr)
+            638 LOAD_FAST               15 (msg)
+            640 LOAD_CONST              33 ('result')
+            642 LOAD_CONST               5 (None)
+            644 CALL_FUNCTION            3
+            646 STORE_FAST              11 (result_text)
+
+134         648 SETUP_FINALLY           13 (to 676)
+
+135         650 LOAD_FAST               14 (gen)
+            652 GET_AITER
+        >>  654 SETUP_FINALLY            7 (to 670)
+            656 GET_ANEXT
+            658 LOAD_CONST               5 (None)
+            660 YIELD_FROM
+            662 POP_BLOCK
+            664 STORE_FAST              22 (_)
+
+136         666 EXTENDED_ARG             1
+            668 JUMP_ABSOLUTE          327 (to 654)
+
+135     >>  670 END_ASYNC_FOR
+            672 POP_BLOCK
+            674 JUMP_FORWARD            10 (to 696)
+
+137     >>  676 DUP_TOP
+            678 LOAD_GLOBAL             18 (Exception)
+            680 EXTENDED_ARG             1
+            682 JUMP_IF_NOT_EXC_MATCH   347 (to 694)
+            684 POP_TOP
+            686 POP_TOP
+            688 POP_TOP
+
+138         690 POP_EXCEPT
+            692 JUMP_FORWARD             1 (to 696)
+
+137     >>  694 RERAISE                  0
+
+139     >>  696 POP_TOP
+            698 JUMP_FORWARD             2 (to 704)
+
+131     >>  700 JUMP_ABSOLUTE           47 (to 94)
+
+ 99     >>  702 END_ASYNC_FOR
+        >>  704 POP_BLOCK
+
+141         706 LOAD_GLOBAL             10 (getattr)
+            708 LOAD_FAST               14 (gen)
+            710 LOAD_CONST              34 ('aclose')
+            712 LOAD_CONST               5 (None)
+            714 CALL_FUNCTION            3
+            716 STORE_FAST              23 (aclose)
+
+142         718 LOAD_FAST               23 (aclose)
+            720 LOAD_CONST               5 (None)
+            722 IS_OP                    1
+            724 EXTENDED_ARG             1
+            726 POP_JUMP_IF_FALSE      383 (to 766)
+
+143         728 SETUP_FINALLY            8 (to 746)
+
+144         730 LOAD_FAST               23 (aclose)
+            732 CALL_FUNCTION            0
+            734 GET_AWAITABLE
+            736 LOAD_CONST               5 (None)
+            738 YIELD_FROM
+            740 POP_TOP
+            742 POP_BLOCK
+            744 JUMP_FORWARD            42 (to 830)
+
+145     >>  746 DUP_TOP
+            748 LOAD_GLOBAL             18 (Exception)
+            750 EXTENDED_ARG             1
+            752 JUMP_IF_NOT_EXC_MATCH   382 (to 764)
+            754 POP_TOP
+            756 POP_TOP
+            758 POP_TOP
+
+146         760 POP_EXCEPT
+            762 JUMP_FORWARD            33 (to 830)
+
+145     >>  764 RERAISE                  0
+
+142     >>  766 JUMP_FORWARD            31 (to 830)
+
+141     >>  768 LOAD_GLOBAL             10 (getattr)
+            770 LOAD_FAST               14 (gen)
+            772 LOAD_CONST              34 ('aclose')
+            774 LOAD_CONST               5 (None)
+            776 CALL_FUNCTION            3
+            778 STORE_FAST              23 (aclose)
+
+142         780 LOAD_FAST               23 (aclose)
+            782 LOAD_CONST               5 (None)
+            784 IS_OP                    1
+            786 EXTENDED_ARG             1
+            788 POP_JUMP_IF_FALSE      414 (to 828)
+
+143         790 SETUP_FINALLY            8 (to 808)
+
+144         792 LOAD_FAST               23 (aclose)
+            794 CALL_FUNCTION            0
+            796 GET_AWAITABLE
+            798 LOAD_CONST               5 (None)
+            800 YIELD_FROM
+            802 POP_TOP
+            804 POP_BLOCK
+            806 RERAISE                  0
+
+145     >>  808 DUP_TOP
+            810 LOAD_GLOBAL             18 (Exception)
+            812 EXTENDED_ARG             1
+            814 JUMP_IF_NOT_EXC_MATCH   413 (to 826)
+            816 POP_TOP
+            818 POP_TOP
+            820 POP_TOP
+
+146         822 POP_EXCEPT
+            824 RERAISE                  0
+
+145     >>  826 RERAISE                  0
+
+142     >>  828 RERAISE                  0
+
+147     >>  830 LOAD_CONST               6 ('')
+            832 LOAD_METHOD             15 (join)
+            834 LOAD_FAST                9 (chunks)
+            836 CALL_METHOD              1
+            838 LOAD_METHOD             20 (strip)
+            840 CALL_METHOD              0
+            842 STORE_FAST              24 (reply)
+
+148         844 LOAD_FAST               24 (reply)
+            846 EXTENDED_ARG             1
+            848 POP_JUMP_IF_TRUE       434 (to 868)
+            850 LOAD_FAST               11 (result_text)
+            852 EXTENDED_ARG             1
+            854 POP_JUMP_IF_FALSE      434 (to 868)
+
+149         856 LOAD_GLOBAL             13 (str)
+            858 LOAD_FAST               11 (result_text)
+            860 CALL_FUNCTION            1
+            862 LOAD_METHOD             20 (strip)
+            864 CALL_METHOD              0
+            866 STORE_FAST              24 (reply)
+
+150     >>  868 LOAD_CONST               6 ('')
+            870 LOAD_METHOD             15 (join)
+            872 LOAD_FAST               10 (thinking_chunks)
+            874 CALL_METHOD              1
+            876 LOAD_METHOD             20 (strip)
+            878 CALL_METHOD              0
+            880 STORE_FAST              25 (thinking)
+
+151         882 LOAD_FAST               13 (_evt)
+            884 LOAD_CONST              35 ('done')
+            886 LOAD_CONST              36 ('reply=')
+            888 LOAD_GLOBAL             21 (len)
+            890 LOAD_FAST               24 (reply)
+            892 CALL_FUNCTION            1
+            894 FORMAT_VALUE             0
+            896 LOAD_CONST              37 ('ch thinking=')
+            898 LOAD_GLOBAL             21 (len)
+            900 LOAD_FAST               25 (thinking)
+            902 CALL_FUNCTION            1
+            904 FORMAT_VALUE             0
+            906 LOAD_CONST              38 ('ch')
+            908 BUILD_STRING             5
+            910 CALL_FUNCTION            2
+            912 POP_TOP
+
+152         914 LOAD_FAST               24 (reply)
+            916 EXTENDED_ARG             1
+            918 POP_JUMP_IF_TRUE       501 (to 1002)
+
+154         920 BUILD_LIST               0
+            922 STORE_FAST              26 (hint)
+
+155         924 LOAD_FAST               25 (thinking)
+            926 EXTENDED_ARG             1
+            928 POP_JUMP_IF_FALSE      475 (to 950)
+            930 LOAD_FAST               26 (hint)
+            932 LOAD_METHOD              7 (append)
+            934 LOAD_GLOBAL             21 (len)
+            936 LOAD_FAST               25 (thinking)
+            938 CALL_FUNCTION            1
+            940 FORMAT_VALUE             0
+            942 LOAD_CONST              39 (' chars of thinking')
+            944 BUILD_STRING             2
+            946 CALL_METHOD              1
+            948 POP_TOP
+
+156     >>  950 LOAD_FAST                7 (tools)
+            952 EXTENDED_ARG             1
+            954 POP_JUMP_IF_FALSE      489 (to 978)
+            956 LOAD_FAST               26 (hint)
+            958 LOAD_METHOD              7 (append)
+            960 LOAD_CONST              40 ('tools enabled: ')
+            962 LOAD_CONST              41 (', ')
+            964 LOAD_METHOD             15 (join)
+            966 LOAD_FAST                7 (tools)
+            968 CALL_METHOD              1
+            970 FORMAT_VALUE             0
+            972 BUILD_STRING             2
+            974 CALL_METHOD              1
+            976 POP_TOP
+
+157     >>  978 LOAD_CONST              42 ('[no text response — ')
+            980 LOAD_CONST              41 (', ')
+            982 LOAD_METHOD             15 (join)
+            984 LOAD_FAST               26 (hint)
+            986 CALL_METHOD              1
+            988 EXTENDED_ARG             1
+            990 JUMP_IF_TRUE_OR_POP    497 (to 994)
+            992 LOAD_CONST              43 ('model returned nothing')
+        >>  994 BINARY_ADD
+            996 LOAD_CONST              44 ('. Try rephrasing or force a different agent.]')
+            998 BINARY_ADD
+           1000 STORE_FAST              24 (reply)
+
+158     >> 1002 LOAD_FAST               24 (reply)
+           1004 LOAD_FAST               25 (thinking)
+           1006 LOAD_FAST               12 (session_id)
+           1008 BUILD_TUPLE              3
+           1010 RETURN_VALUE
+
+Disassembly of <code object _evt at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 92>:
+ 93           0 LOAD_DEREF               0 (on_event)
+              2 POP_JUMP_IF_FALSE       21 (to 42)
+
+ 94           4 SETUP_FINALLY            8 (to 22)
+              6 LOAD_DEREF               0 (on_event)
+              8 LOAD_FAST                0 (stage)
+             10 LOAD_FAST                1 (detail)
+             12 CALL_FUNCTION            2
+             14 POP_TOP
+             16 POP_BLOCK
+             18 LOAD_CONST               0 (None)
+             20 RETURN_VALUE
+
+ 95     >>   22 DUP_TOP
+             24 LOAD_GLOBAL              0 (Exception)
+             26 JUMP_IF_NOT_EXC_MATCH    20 (to 40)
+             28 POP_TOP
+             30 POP_TOP
+             32 POP_TOP
+             34 POP_EXCEPT
+             36 LOAD_CONST               0 (None)
+             38 RETURN_VALUE
+        >>   40 RERAISE                  0
+
+ 93     >>   42 LOAD_CONST               0 (None)
+             44 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x0000021CBF4B3C00, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 119>:
+              0 GEN_START                0
+
+119           2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                11 (to 28)
+              6 STORE_FAST               1 (c)
+              8 LOAD_GLOBAL              0 (str)
+             10 LOAD_GLOBAL              1 (getattr)
+             12 LOAD_FAST                1 (c)
+             14 LOAD_CONST               0 ('text')
+             16 LOAD_FAST                1 (c)
+             18 CALL_FUNCTION            3
+             20 CALL_FUNCTION            1
+             22 YIELD_VALUE
+             24 POP_TOP
+             26 JUMP_ABSOLUTE            2 (to 4)
+        >>   28 LOAD_CONST               1 (None)
+             30 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x0000021CBF12FD60, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 127>:
+              0 GEN_START                0
+
+127           2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                11 (to 28)
+              6 STORE_FAST               1 (c)
+              8 LOAD_GLOBAL              0 (str)
+             10 LOAD_GLOBAL              1 (getattr)
+             12 LOAD_FAST                1 (c)
+             14 LOAD_CONST               0 ('text')
+             16 LOAD_FAST                1 (c)
+             18 CALL_FUNCTION            3
+             20 CALL_FUNCTION            1
+             22 YIELD_VALUE
+             24 POP_TOP
+             26 JUMP_ABSOLUTE            2 (to 4)
+        >>   28 LOAD_CONST               1 (None)
+             30 RETURN_VALUE
+
+  ### def _evt(stage, detail)  [argcount=2, locals=('stage', 'detail')]
+  # co_consts: ['None']
+  # co_names:  ('Exception',)
+ 93           0 LOAD_DEREF               0 (on_event)
+              2 POP_JUMP_IF_FALSE       21 (to 42)
+
+ 94           4 SETUP_FINALLY            8 (to 22)
+              6 LOAD_DEREF               0 (on_event)
+              8 LOAD_FAST                0 (stage)
+             10 LOAD_FAST                1 (detail)
+             12 CALL_FUNCTION            2
+             14 POP_TOP
+             16 POP_BLOCK
+             18 LOAD_CONST               0 (None)
+             20 RETURN_VALUE
+
+ 95     >>   22 DUP_TOP
+             24 LOAD_GLOBAL              0 (Exception)
+             26 JUMP_IF_NOT_EXC_MATCH    20 (to 40)
+             28 POP_TOP
+             30 POP_TOP
+             32 POP_TOP
+             34 POP_EXCEPT
+             36 LOAD_CONST               0 (None)
+             38 RETURN_VALUE
+        >>   40 RERAISE                  0
+
+ 93     >>   42 LOAD_CONST               0 (None)
+             44 RETURN_VALUE
+
+### def _run_sync(coro)  [argcount=1, locals=('coro', 'loop', 'pending', 't')]
+# co_consts: ["'Run an async coroutine from sync code. Creates a fresh loop per call to\\n    avoid clashing with any loop the caller might already own.'", "'return_exceptions'", 'True']
+# co_names:  ('asyncio', 'new_event_loop', 'run_until_complete', 'all_tasks', 'cancel', 'gather', 'shutdown_asyncgens', 'Exception', 'close')
+164           0 LOAD_GLOBAL              0 (asyncio)
+              2 LOAD_METHOD              1 (new_event_loop)
+              4 CALL_METHOD              0
+              6 STORE_FAST               1 (loop)
+
+165           8 SETUP_FINALLY           56 (to 122)
+
+166          10 LOAD_FAST                1 (loop)
+             12 LOAD_METHOD              2 (run_until_complete)
+             14 LOAD_FAST                0 (coro)
+             16 CALL_METHOD              1
+             18 POP_BLOCK
+
+168          20 SETUP_FINALLY           36 (to 94)
+
+170          22 LOAD_GLOBAL              0 (asyncio)
+             24 LOAD_METHOD              3 (all_tasks)
+             26 LOAD_FAST                1 (loop)
+             28 CALL_METHOD              1
+             30 STORE_FAST               2 (pending)
+
+171          32 LOAD_FAST                2 (pending)
+             34 GET_ITER
+        >>   36 FOR_ITER                 6 (to 50)
+             38 STORE_FAST               3 (t)
+
+172          40 LOAD_FAST                3 (t)
+             42 LOAD_METHOD              4 (cancel)
+             44 CALL_METHOD              0
+             46 POP_TOP
+             48 JUMP_ABSOLUTE           18 (to 36)
+
+173     >>   50 LOAD_FAST                2 (pending)
+             52 POP_JUMP_IF_FALSE       38 (to 76)
+
+174          54 LOAD_FAST                1 (loop)
+             56 LOAD_METHOD              2 (run_until_complete)
+             58 LOAD_GLOBAL              0 (asyncio)
+             60 LOAD_ATTR                5 (gather)
+             62 LOAD_FAST                2 (pending)
+             64 LOAD_CONST               1 ('return_exceptions')
+             66 LOAD_CONST               2 (True)
+             68 BUILD_MAP                1
+             70 CALL_FUNCTION_EX         1
+             72 CALL_METHOD              1
+             74 POP_TOP
+
+175     >>   76 LOAD_FAST                1 (loop)
+             78 LOAD_METHOD              2 (run_until_complete)
+             80 LOAD_FAST                1 (loop)
+             82 LOAD_METHOD              6 (shutdown_asyncgens)
+             84 CALL_METHOD              0
+             86 CALL_METHOD              1
+             88 POP_TOP
+             90 POP_BLOCK
+             92 JUMP_FORWARD             9 (to 112)
+
+176     >>   94 DUP_TOP
+             96 LOAD_GLOBAL              7 (Exception)
+             98 JUMP_IF_NOT_EXC_MATCH    55 (to 110)
+            100 POP_TOP
+            102 POP_TOP
+            104 POP_TOP
+
+177         106 POP_EXCEPT
+            108 JUMP_FORWARD             1 (to 112)
+
+176     >>  110 RERAISE                  0
+
+178     >>  112 LOAD_FAST                1 (loop)
+            114 LOAD_METHOD              8 (close)
+            116 CALL_METHOD              0
+            118 POP_TOP
+            120 RETURN_VALUE
+
+168     >>  122 SETUP_FINALLY           36 (to 196)
+
+170         124 LOAD_GLOBAL              0 (asyncio)
+            126 LOAD_METHOD              3 (all_tasks)
+            128 LOAD_FAST                1 (loop)
+            130 CALL_METHOD              1
+            132 STORE_FAST               2 (pending)
+
+171         134 LOAD_FAST                2 (pending)
+            136 GET_ITER
+        >>  138 FOR_ITER                 6 (to 152)
+            140 STORE_FAST               3 (t)
+
+172         142 LOAD_FAST                3 (t)
+            144 LOAD_METHOD              4 (cancel)
+            146 CALL_METHOD              0
+            148 POP_TOP
+            150 JUMP_ABSOLUTE           69 (to 138)
+
+173     >>  152 LOAD_FAST                2 (pending)
+            154 POP_JUMP_IF_FALSE       89 (to 178)
+
+174         156 LOAD_FAST                1 (loop)
+            158 LOAD_METHOD              2 (run_until_complete)
+            160 LOAD_GLOBAL              0 (asyncio)
+            162 LOAD_ATTR                5 (gather)
+            164 LOAD_FAST                2 (pending)
+            166 LOAD_CONST               1 ('return_exceptions')
+            168 LOAD_CONST               2 (True)
+            170 BUILD_MAP                1
+            172 CALL_FUNCTION_EX         1
+            174 CALL_METHOD              1
+            176 POP_TOP
+
+175     >>  178 LOAD_FAST                1 (loop)
+            180 LOAD_METHOD              2 (run_until_complete)
+            182 LOAD_FAST                1 (loop)
+            184 LOAD_METHOD              6 (shutdown_asyncgens)
+            186 CALL_METHOD              0
+            188 CALL_METHOD              1
+            190 POP_TOP
+            192 POP_BLOCK
+            194 JUMP_FORWARD             9 (to 214)
+
+176     >>  196 DUP_TOP
+            198 LOAD_GLOBAL              7 (Exception)
+            200 JUMP_IF_NOT_EXC_MATCH   106 (to 212)
+            202 POP_TOP
+            204 POP_TOP
+            206 POP_TOP
+
+177         208 POP_EXCEPT
+            210 JUMP_FORWARD             1 (to 214)
+
+176     >>  212 RERAISE                  0
+
+178     >>  214 LOAD_FAST                1 (loop)
+            216 LOAD_METHOD              8 (close)
+            218 CALL_METHOD              0
+            220 POP_TOP
+            222 RERAISE                  0
+
+### def call(model, system, messages, max_tokens)  [argcount=4, locals=('model', 'system', 'messages', 'max_tokens', 'user_text', 'reply', '_think', '_sid', 'e')]
+# co_consts: ["'One-shot call — no session persistence. Used by classifier + router.'", "'\\n\\n'", '<code object <genexpr> at 0x0000021CBF50C500, file "C:\\Users\\mario\\.gemini\\antigravity\\tools\\execution\\claudeclaw\\llm.py", line 183>', "'call.<locals>.<genexpr>'", "'(empty prompt)'", "'[SDK error: '", "': '", 'None', '300', "']'"]
+# co_names:  ('join', 'strip', '_run_sync', '_run_query', 'Exception', 'type', '__name__', 'str')
+183           0 LOAD_CONST               1 ('\n\n')
+              2 LOAD_METHOD              0 (join)
+              4 LOAD_CONST               2 (<code object <genexpr> at 0x0000021CBF50C500, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 183>)
+              6 LOAD_CONST               3 ('call.<locals>.<genexpr>')
+              8 MAKE_FUNCTION            0
+
+184          10 LOAD_FAST                2 (messages)
+
+183          12 GET_ITER
+             14 CALL_FUNCTION            1
+             16 CALL_METHOD              1
+
+185          18 LOAD_METHOD              1 (strip)
+             20 CALL_METHOD              0
+
+183          22 JUMP_IF_TRUE_OR_POP     13 (to 26)
+
+185          24 LOAD_CONST               4 ('(empty prompt)')
+
+183     >>   26 STORE_FAST               4 (user_text)
+
+186          28 SETUP_FINALLY           15 (to 60)
+
+187          30 LOAD_GLOBAL              2 (_run_sync)
+             32 LOAD_GLOBAL              3 (_run_query)
+             34 LOAD_FAST                0 (model)
+             36 LOAD_FAST                1 (system)
+             38 LOAD_FAST                4 (user_text)
+             40 LOAD_FAST                3 (max_tokens)
+             42 CALL_FUNCTION            4
+             44 CALL_FUNCTION            1
+             46 UNPACK_SEQUENCE          3
+             48 STORE_FAST               5 (reply)
+             50 STORE_FAST               6 (_think)
+             52 STORE_FAST               7 (_sid)
+
+188          54 LOAD_FAST                5 (reply)
+             56 POP_BLOCK
+             58 RETURN_VALUE
+
+189     >>   60 DUP_TOP
+             62 LOAD_GLOBAL              4 (Exception)
+             64 JUMP_IF_NOT_EXC_MATCH    65 (to 130)
+             66 POP_TOP
+             68 STORE_FAST               8 (e)
+             70 POP_TOP
+             72 SETUP_FINALLY           24 (to 122)
+
+190          74 LOAD_CONST               5 ('[SDK error: ')
+             76 LOAD_GLOBAL              5 (type)
+             78 LOAD_FAST                8 (e)
+             80 CALL_FUNCTION            1
+             82 LOAD_ATTR                6 (__name__)
+             84 FORMAT_VALUE             0
+             86 LOAD_CONST               6 (': ')
+             88 LOAD_GLOBAL              7 (str)
+             90 LOAD_FAST                8 (e)
+             92 CALL_FUNCTION            1
+             94 LOAD_CONST               7 (None)
+             96 LOAD_CONST               8 (300)
+             98 BUILD_SLICE              2
+            100 BINARY_SUBSCR
+            102 FORMAT_VALUE             0
+            104 LOAD_CONST               9 (']')
+            106 BUILD_STRING             5
+            108 POP_BLOCK
+            110 ROT_FOUR
+            112 POP_EXCEPT
+            114 LOAD_CONST               7 (None)
+            116 STORE_FAST               8 (e)
+            118 DELETE_FAST              8 (e)
+            120 RETURN_VALUE
+        >>  122 LOAD_CONST               7 (None)
+            124 STORE_FAST               8 (e)
+            126 DELETE_FAST              8 (e)
+            128 RERAISE                  1
+
+189     >>  130 RERAISE                  0
+
+Disassembly of <code object <genexpr> at 0x0000021CBF50C500, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\llm.py", line 183>:
+              0 GEN_START                0
+
+183           2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                16 (to 38)
+
+184           6 STORE_FAST               1 (m)
+              8 LOAD_FAST                1 (m)
+             10 LOAD_METHOD              0 (get)
+             12 LOAD_CONST               0 ('role')
+             14 CALL_METHOD              1
+             16 LOAD_CONST               1 ('user')
+             18 COMPARE_OP               2 (==)
+             20 POP_JUMP_IF_FALSE        2 (to 4)
+             22 LOAD_FAST                1 (m)
+             24 LOAD_METHOD              0 (get)
+             26 LOAD_CONST               2 ('content')
+             28 LOAD_CONST               3 ('')
+             30 CALL_METHOD              2
+             32 YIELD_VALUE
+             34 POP_TOP
+             36 JUMP_ABSOLUTE            2 (to 4)
+
+183     >>   38 LOAD_CONST               4 (None)
+             40 RETURN_VALUE
+
+### def call_session(model, system, user_text, resume_session_id, max_tokens, on_event, allowed_tools)  [argcount=7, locals=('model', 'system', 'user_text', 'resume_session_id', 'max_tokens', 'on_event', 'allowed_tools', 'e')]
+# co_consts: ["'Multi-turn call — returns (reply, thinking_text, new_session_id).'", "'[SDK error: '", "': '", 'None', '300', "']'", "''"]
+# co_names:  ('_run_sync', '_run_query', 'Exception', 'type', '__name__', 'str')
+203           0 SETUP_FINALLY           13 (to 28)
+
+204           2 LOAD_GLOBAL              0 (_run_sync)
+              4 LOAD_GLOBAL              1 (_run_query)
+              6 LOAD_FAST                0 (model)
+              8 LOAD_FAST                1 (system)
+             10 LOAD_FAST                2 (user_text)
+             12 LOAD_FAST                4 (max_tokens)
+             14 LOAD_FAST                3 (resume_session_id)
+             16 LOAD_FAST                5 (on_event)
+             18 LOAD_FAST                6 (allowed_tools)
+             20 CALL_FUNCTION            7
+             22 CALL_FUNCTION            1
+             24 POP_BLOCK
+             26 RETURN_VALUE
+
+205     >>   28 DUP_TOP
+             30 LOAD_GLOBAL              2 (Exception)
+             32 JUMP_IF_NOT_EXC_MATCH    52 (to 104)
+             34 POP_TOP
+             36 STORE_FAST               7 (e)
+             38 POP_TOP
+             40 SETUP_FINALLY           27 (to 96)
+
+206          42 LOAD_CONST               1 ('[SDK error: ')
+             44 LOAD_GLOBAL              3 (type)
+             46 LOAD_FAST                7 (e)
+             48 CALL_FUNCTION            1
+             50 LOAD_ATTR                4 (__name__)
+             52 FORMAT_VALUE             0
+             54 LOAD_CONST               2 (': ')
+             56 LOAD_GLOBAL              5 (str)
+             58 LOAD_FAST                7 (e)
+             60 CALL_FUNCTION            1
+             62 LOAD_CONST               3 (None)
+             64 LOAD_CONST               4 (300)
+             66 BUILD_SLICE              2
+             68 BINARY_SUBSCR
+             70 FORMAT_VALUE             0
+             72 LOAD_CONST               5 (']')
+             74 BUILD_STRING             5
+             76 LOAD_CONST               6 ('')
+             78 LOAD_CONST               3 (None)
+             80 BUILD_TUPLE              3
+             82 POP_BLOCK
+             84 ROT_FOUR
+             86 POP_EXCEPT
+             88 LOAD_CONST               3 (None)
+             90 STORE_FAST               7 (e)
+             92 DELETE_FAST              7 (e)
+             94 RETURN_VALUE
+        >>   96 LOAD_CONST               3 (None)
+             98 STORE_FAST               7 (e)
+            100 DELETE_FAST              7 (e)
+            102 RERAISE                  1
+
+205     >>  104 RERAISE                  0
+
+### def classify(text)  [argcount=1, locals=('text', 'system', 'raw', 's', 'start', 'end')]
+# co_consts: ["'Classify a user message for memory triage. One cheap Haiku call.'", "'You are a memory classifier. Given a user message, classify it as one of: fact (durable, e.g. \\'my address is...\\', \\'the client\\'s phone is...\\'), preference (e.g. \\'I hate ukulele music in ads\\'), ", "'user'", "('role', 'content')", '200', "('max_tokens',)", "'```'", '2', '1', "'json'", '4', 'None', "'{'", "'}'", "'noise'", "''", '0.0', "('kind', 'text', 'importance')"]
+# co_names:  ('call', 'CLASSIFIER_MODEL', 'strip', 'startswith', 'split', 'index', 'rindex', 'json', 'loads', 'Exception')
+212           0 LOAD_CONST               1 ('You are a memory classifier. Given a user message, classify it as one of: fact (durable, e.g. \'my address is...\', \'the client\'s phone is...\'), preference (e.g. \'I hate ukulele music in ads\'), context (short-term, e.g. \'I\'m about to post sugar shack\'), or noise (no memory value). Return ONLY valid JSON on a single line: {"kind":"fact|preference|context|noise","text":"<short summary>","importance":0.0}')
+
+211           2 STORE_FAST               1 (system)
+
+219           4 LOAD_GLOBAL              0 (call)
+              6 LOAD_GLOBAL              1 (CLASSIFIER_MODEL)
+              8 LOAD_FAST                1 (system)
+             10 LOAD_CONST               2 ('user')
+             12 LOAD_FAST                0 (text)
+             14 LOAD_CONST               3 (('role', 'content'))
+             16 BUILD_CONST_KEY_MAP      2
+             18 BUILD_LIST               1
+             20 LOAD_CONST               4 (200)
+             22 LOAD_CONST               5 (('max_tokens',))
+             24 CALL_FUNCTION_KW         4
+             26 STORE_FAST               2 (raw)
+
+220          28 LOAD_FAST                2 (raw)
+             30 LOAD_METHOD              2 (strip)
+             32 CALL_METHOD              0
+             34 STORE_FAST               3 (s)
+
+221          36 LOAD_FAST                3 (s)
+             38 LOAD_METHOD              3 (startswith)
+             40 LOAD_CONST               6 ('```')
+             42 CALL_METHOD              1
+             44 POP_JUMP_IF_FALSE       42 (to 84)
+
+222          46 LOAD_FAST                3 (s)
+             48 LOAD_METHOD              4 (split)
+             50 LOAD_CONST               6 ('```')
+             52 LOAD_CONST               7 (2)
+             54 CALL_METHOD              2
+             56 LOAD_CONST               8 (1)
+             58 BINARY_SUBSCR
+             60 STORE_FAST               3 (s)
+
+223          62 LOAD_FAST                3 (s)
+             64 LOAD_METHOD              3 (startswith)
+             66 LOAD_CONST               9 ('json')
+             68 CALL_METHOD              1
+             70 POP_JUMP_IF_FALSE       42 (to 84)
+
+224          72 LOAD_FAST                3 (s)
+             74 LOAD_CONST              10 (4)
+             76 LOAD_CONST              11 (None)
+             78 BUILD_SLICE              2
+             80 BINARY_SUBSCR
+             82 STORE_FAST               3 (s)
+
+225     >>   84 SETUP_FINALLY           22 (to 130)
+
+226          86 LOAD_FAST                3 (s)
+             88 LOAD_METHOD              5 (index)
+             90 LOAD_CONST              12 ('{')
+             92 CALL_METHOD              1
+             94 STORE_FAST               4 (start)
+
+227          96 LOAD_FAST                3 (s)
+             98 LOAD_METHOD              6 (rindex)
+            100 LOAD_CONST              13 ('}')
+            102 CALL_METHOD              1
+            104 LOAD_CONST               8 (1)
+            106 BINARY_ADD
+            108 STORE_FAST               5 (end)
+
+228         110 LOAD_GLOBAL              7 (json)
+            112 LOAD_METHOD              8 (loads)
+            114 LOAD_FAST                3 (s)
+            116 LOAD_FAST                4 (start)
+            118 LOAD_FAST                5 (end)
+            120 BUILD_SLICE              2
+            122 BINARY_SUBSCR
+            124 CALL_METHOD              1
+            126 POP_BLOCK
+            128 RETURN_VALUE
+
+229     >>  130 DUP_TOP
+            132 LOAD_GLOBAL              9 (Exception)
+            134 JUMP_IF_NOT_EXC_MATCH    79 (to 158)
+            136 POP_TOP
+            138 POP_TOP
+            140 POP_TOP
+
+230         142 LOAD_CONST              14 ('noise')
+            144 LOAD_CONST              15 ('')
+            146 LOAD_CONST              16 (0.0)
+            148 LOAD_CONST              17 (('kind', 'text', 'importance'))
+            150 BUILD_CONST_KEY_MAP      3
+            152 ROT_FOUR
+            154 POP_EXCEPT
+            156 RETURN_VALUE
+
+229     >>  158 RERAISE                  0

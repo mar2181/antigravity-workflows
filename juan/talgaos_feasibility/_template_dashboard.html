@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talgaos LLC — Edinburg Deal Dashboard · 000 Rogers Rd</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --panel: #111827;
+    --panel-2: #0f172a;
+    --border: #1f2937;
+    --border-soft: #1a2333;
+    --text: #e6edf3;
+    --muted: #9ca3af;
+    --dim: #6b7280;
+    --accent: #7aa2f7;
+    --accent-2: #c084fc;
+    --green: #34d399;
+    --green-bg: #064e3b;
+    --green-fg: #6ee7b7;
+    --yellow: #fbbf24;
+    --yellow-bg: #78350f;
+    --yellow-fg: #fcd34d;
+    --red: #f87171;
+    --red-bg: #7f1d1d;
+    --red-fg: #fecaca;
+    --gold: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding: 40px 32px 56px; }
+
+  /* Header band */
+  .masthead {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 18px; margin-bottom: 28px;
+  }
+  .masthead .brand {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .18em;
+    color: var(--accent); font-weight: 600;
+  }
+  .masthead h1 {
+    font-size: 28px; font-weight: 700; margin: 4px 0 6px;
+    color: #fff; letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    color: var(--muted); font-size: 13px;
+  }
+  .masthead .seal {
+    text-align: right; font-size: 11px; color: var(--dim);
+  }
+  .masthead .seal .doc-id {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    color: var(--accent-2); font-weight: 600; font-size: 12px;
+  }
+
+  /* Verdict ribbon */
+  .verdict-ribbon {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3730a3 100%);
+    border: 1px solid #3b82f6;
+    border-radius: 14px;
+    padding: 22px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 24px rgba(59,130,246,0.15);
+    position: relative; overflow: hidden;
+  }
+  .verdict-ribbon::before {
+    content: ""; position: absolute; top: 0; right: 0;
+    width: 200px; height: 100%;
+    background: radial-gradient(circle at top right, rgba(192,132,252,0.25), transparent 70%);
+    pointer-events: none;
+  }
+  .verdict-ribbon .label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .15em;
+    color: #bfdbfe; font-weight: 600;
+  }
+  .verdict-ribbon .verdict {
+    font-size: 30px; font-weight: 800; color: #fff; margin: 4px 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .verdict-ribbon .reason {
+    font-size: 14px; color: #dbeafe; max-width: 800px;
+  }
+
+  /* Section heading */
+  h2.section {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .15em;
+    color: var(--accent); margin: 32px 0 12px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border); font-weight: 700;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2.section::before {
+    content: ""; width: 4px; height: 14px; background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* KPI grid */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .kpi {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: border-color .15s;
+  }
+  .kpi:hover { border-color: #2d3a52; }
+  .kpi .label {
+    font-size: 10px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .08em; font-weight: 600;
+  }
+  .kpi .value {
+    font-size: 26px; color: #fff; font-weight: 700; margin-top: 6px;
+    letter-spacing: -0.01em; line-height: 1.1;
+  }
+  .kpi .delta { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .kpi .delta.good { color: var(--green); }
+  .kpi .delta.warn { color: var(--yellow); }
+  .kpi.featured {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--panel) 0%, #1e2a4a 100%);
+  }
+
+  /* 2-column row */
+  .row-2 { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; align-items: start; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .panel h3 {
+    font-size: 13px; font-weight: 600; color: #fff;
+    margin: 0 0 14px; letter-spacing: -0.005em;
+  }
+
+  /* Scenarios */
+  .scenario {
+    padding: 12px 14px; border: 1px solid var(--border-soft);
+    border-radius: 10px; margin-bottom: 10px; background: var(--panel-2);
+    transition: border-color .15s;
+  }
+  .scenario.recommended {
+    border-color: var(--green); background: linear-gradient(135deg, var(--panel-2) 0%, #052e2a 100%);
+  }
+  .scenario .name {
+    font-weight: 700; color: #fff; font-size: 13px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .scenario .badge {
+    font-size: 9px; text-transform: uppercase; letter-spacing: .1em;
+    background: var(--green-bg); color: var(--green-fg);
+    padding: 2px 8px; border-radius: 999px; font-weight: 700;
+  }
+  .scenario .nums {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 8px; font-size: 11px; color: var(--muted); margin-top: 8px;
+  }
+  .scenario .num b {
+    display: block; color: #fff; font-size: 14px; font-weight: 700; margin-top: 2px;
+  }
+  .scenario .num.profit-pos b { color: var(--green); }
+  .scenario .num.profit-neg b { color: var(--red); }
+
+  /* Risk traffic */
+  .risk-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .risk-cell {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 10px; background: var(--panel-2);
+    border: 1px solid var(--border-soft); border-radius: 8px;
+  }
+  .risk-dot {
+    width: 10px; height: 10px; border-radius: 50%; margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .risk-dot.green { background: var(--green); box-shadow: 0 0 0 3px rgba(52,211,153,0.18); }
+  .risk-dot.yellow { background: var(--yellow); box-shadow: 0 0 0 3px rgba(251,191,36,0.18); }
+  .risk-dot.red { background: var(--red); box-shadow: 0 0 0 3px rgba(248,113,113,0.18); }
+  .risk-cell .name { font-size: 12px; color: #fff; font-weight: 600; }
+  .risk-cell .note { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  /* Tree */
+  .tree {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11.5px; line-height: 1.8; color: #cbd5e1;
+    background: var(--panel-2); border: 1px solid var(--border-soft);
+    border-radius: 8px; padding: 12px 14px; white-space: pre-wrap;
+  }
+  .tree b { color: var(--gold); font-weight: 700; }
+  .tree .go { color: var(--green); font-weight: 700; }
+  .tree .stop { color: var(--red); font-weight: 700; }
+
+  /* Tables */
+  table.data {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    background: var(--panel-2); border-radius: 8px; overflow: hidden;
+  }
+  table.data th {
+    background: #0a1226; color: var(--muted); text-transform: uppercase;
+    font-size: 10px; letter-spacing: .08em; font-weight: 600;
+    text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--border);
+  }
+  table.data td {
+    padding: 10px 12px; border-bottom: 1px solid var(--border-soft);
+    color: #e2e8f0;
+  }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  table.data td.pos { color: var(--green); }
+  table.data td.neg { color: var(--red); }
+
+  /* Comp gallery */
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .comp {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    transition: transform .15s, border-color .15s;
+  }
+  .comp:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .comp .img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+    background: linear-gradient(135deg, #1f2937, #0f172a);
+  }
+  .comp .meta { padding: 10px 12px; }
+  .comp .addr { font-size: 12px; color: #fff; font-weight: 600; line-height: 1.3; }
+  .comp .stats {
+    display: flex; justify-content: space-between;
+    margin-top: 6px; font-size: 10px; color: var(--muted);
+  }
+  .comp .stats b { color: var(--green); font-size: 12px; font-weight: 700; }
+
+  /* Action checklist */
+  .actions { counter-reset: action; padding: 0; list-style: none; margin: 0; }
+  .actions li {
+    counter-increment: action;
+    padding: 12px 14px 12px 48px; background: var(--panel-2);
+    border: 1px solid var(--border-soft); border-radius: 8px;
+    margin-bottom: 8px; position: relative;
+    font-size: 12.5px; line-height: 1.5;
+  }
+  .actions li::before {
+    content: counter(action);
+    position: absolute; left: 14px; top: 12px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #0a0e1a;
+    font-weight: 800; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .actions li b { color: #fff; }
+  .actions li .who {
+    display: inline-block; font-size: 10px; padding: 2px 8px;
+    background: var(--border); color: var(--muted);
+    border-radius: 999px; margin-left: 8px; vertical-align: middle;
+    font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
+  }
+
+  /* Footer */
+  .footer {
+    color: var(--dim); font-size: 11px; margin-top: 40px;
+    padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer .conf {
+    color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
+  }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    .page { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div>
+      <div class="brand">RE/MAX Elite · Buyer-Side Advisory</div>
+      <h1>Talgaos LLC — 000 Rogers Rd, Edinburg TX 78539</h1>
+      <div class="subtitle">4.16 ac combined · ~27 townhouse lots · Subject $385K + Stonecrest $40K · Prepared by Juan Elizondo</div>
+    </div>
+    <div class="seal">
+      <div class="doc-id">TALGAOS-FEAS-2026-04-26</div>
+      <div>Confidential · Buyer Advisory</div>
+    </div>
+  </header>
+
+  <div class="verdict-ribbon">
+    <div class="label">Final Recommendation</div>
+    <div class="verdict">{{VERDICT}}</div>
+    <div class="reason">{{VERDICT_REASON}}</div>
+  </div>
+
+  <h2 class="section">Headline Numbers</h2>
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="label">Land Basis (Combined)</div>
+      <div class="value">$425,000</div>
+      <div class="delta">Subject $385K + Stonecrest $40K cap</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Horizontal Dev Cost (Mid)</div>
+      <div class="value">${{DEV_COST}}</div>
+      <div class="delta">${{DEV_COST_PER_LOT}}/lot · ±20%</div>
+    </div>
+    <div class="kpi featured">
+      <div class="label">Total All-In</div>
+      <div class="value">${{ALL_IN}}</div>
+      <div class="delta">Per-lot all-in: ${{PER_LOT_ALL_IN}}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Lot Retail (Median)</div>
+      <div class="value">${{LOT_RETAIL}}</div>
+      <div class="delta">{{COMP_N}} Tier-A comps · juanjoseelizondo.com IDX</div>
+    </div>
+  </div>
+
+  <div class="row-2" style="margin-top: 18px;">
+    <div class="panel">
+      <h3>Three Exit Scenarios</h3>
+      <div class="scenario">
+        <div class="name">A · Wholesale finished lots to a builder</div>
+        <div class="nums">
+          <div class="num">Revenue<b>${{A_REV}}</b></div>
+          <div class="num profit-{{A_PROFIT_SIGN}}">Profit<b>${{A_PROFIT}}</b></div>
+          <div class="num">Margin<b>{{A_MARGIN}}%</b></div>
+          <div class="num">Months<b>{{A_MONTHS}}</b></div>
+        </div>
+      </div>
+      <div class="scenario recommended">
+        <div class="name">B · Vertical build & sell townhomes <span class="badge">Recommended</span></div>
+        <div class="nums">
+          <div class="num">Revenue<b>${{B_REV}}</b></div>
+          <div class="num profit-{{B_PROFIT_SIGN}}">Profit<b>${{B_PROFIT}}</b></div>
+          <div class="num">Margin<b>{{B_MARGIN}}%</b></div>
+          <div class="num">Months<b>{{B_MONTHS}}</b></div>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="name">C · Contract flip pre-closing (assignment)</div>
+        <div class="nums">
+          <div class="num">Revenue<b>${{C_REV}}</b></div>
+          <div class="num profit-{{C_PROFIT_SIGN}}">Profit<b>${{C_PROFIT}}</b></div>
+          <div class="num">Margin<b>{{C_MARGIN}}%</b></div>
+          <div class="num">Months<b>{{C_MONTHS}}</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Risk Posture</h3>
+      <div class="risk-grid">
+        <div class="risk-cell">
+          <div class="risk-dot {{R_STONECREST_CLR}}"></div>
+          <div><div class="name">Stonecrest access</div><div class="note">{{R_STONECREST_NOTE}}</div></div>
+        </div>
+        <div class="risk-cell">
+          <div class="risk-dot {{R_PLAT_CLR}}"></div>
+          <div><div class="name">Plat status</div><div class="note">{{R_PLAT_NOTE}}</div></div>
+        </div>
+        <div class="risk-cell">
+          <div class="risk-dot {{R_EASEMENT_CLR}}"></div>
+          <div><div class="name">Easements (north strip)</div><div class="note">{{R_EASEMENT_NOTE}}</div></div>
+        </div>
+        <div class="risk-cell">
+          <div class="risk-dot {{R_HCID_CLR}}"></div>
+          <div><div class="name">HCID canal release</div><div class="note">{{R_HCID_NOTE}}</div></div>
+        </div>
+        <div class="risk-cell">
+          <div class="risk-dot {{R_DEMAND_CLR}}"></div>
+          <div><div class="name">Townhouse demand</div><div class="note">{{R_DEMAND_NOTE}}</div></div>
+        </div>
+        <div class="risk-cell">
+          <div class="risk-dot {{R_COST_CLR}}"></div>
+          <div><div class="name">Dev cost validation</div><div class="note">{{R_COST_NOTE}}</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section">Stonecrest Contingency Tree</h2>
+  <div class="tree">Stonecrest owner identified: <b>{{STONECREST_OWNER}}</b>
+├── Option signed @ ≤$40K? <b>{{STONECREST_OPTION}}</b>
+│    ├── YES → both parcels close together → <span class="go">GO</span>
+│    └── NO  → counter-offer escalates above $40K?
+│           ├── YES → exceeds Talgaos cap → <span class="stop">terminate per Exhibit A</span>
+│           └── NO  → re-negotiate (rare)
+└── Owner unreachable → <span class="stop">terminate during feasibility</span></div>
+
+  <h2 class="section">Comparable Lot Sales — Tier A (juanjoseelizondo.com IDX)</h2>
+  <div class="gallery">
+    {{COMP_GALLERY_HTML}}
+  </div>
+
+  <h2 class="section">Sensitivity Analysis</h2>
+  <table class="data">
+    <thead><tr><th>Variable</th><th>Low</th><th>Mid</th><th>High</th><th>Profit Swing</th></tr></thead>
+    <tbody>
+      <tr><td>Hard cost</td><td class="num">-20%</td><td class="num">baseline</td><td class="num">+20%</td><td class="num">${{HC_LOW}} ↔ ${{HC_HIGH}}</td></tr>
+      <tr><td>Lot count</td><td class="num">24</td><td class="num">27</td><td class="num">32</td><td class="num">${{LC_LOW}} ↔ ${{LC_HIGH}}</td></tr>
+      <tr><td>Lot retail (Scenario A)</td><td class="num">${{LR_LOW}}</td><td class="num">${{LR_MID}}</td><td class="num">${{LR_HIGH}}</td><td class="num">${{LR_DELTA}}</td></tr>
+      <tr><td>Townhouse retail (Scenario B)</td><td class="num">$200K</td><td class="num">$215K</td><td class="num">$230K</td><td class="num">${{TR_DELTA}}</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Action Checklist · Next 14 Days</h2>
+  <ol class="actions">
+    <li><b>Open Stonecrest option negotiation</b> with PlainsCapital Special Assets (956) 380-8530. Open offer $20K, room to $35K, walk at $40K. <span class="who">Juan</span></li>
+    <li><b>Confirm plat recordation status</b> — call Edinburg Planning (956) 388-8204; confirm 32' vs 40' pavement classification ($700/lot swing). <span class="who">Juan</span></li>
+    <li><b>POF letter to Seller</b> (Turquesa Construction LLC) within 3 days of effective date. <span class="who">Talgaos</span></li>
+    <li><b>HCID No. 1 canal release</b> — confirm abandonment process and irrigation easement timing via hcid1.com. <span class="who">Juan</span></li>
+    <li><b>ALTA survey</b> (not Cat 1A) on easement-burdened north strip; tie to Stonecrest closing. <span class="who">Talgaos</span></li>
+    <li><b>Probe Turquesa motivation</b> — bought Oct 2024, listed Apr 2026 = 18-month flip. Ask Tania Salinas (listing agent) why. <span class="who">Juan</span></li>
+    <li><b>Civil engineer cost validation</b> (Halff / Melden &amp; Hunt / R. Gutierrez) before financial commitment. <span class="who">Talgaos</span></li>
+  </ol>
+
+  <div class="footer">
+    <div class="conf">Confidential · Talgaos LLC + RE/MAX Elite Buyer Advisory</div>
+    <div>Data as of 2026-04-26 · Validate with civil engineer + attorney before financial commitment</div>
+  </div>
+
+</div>
+</body>
+</html>

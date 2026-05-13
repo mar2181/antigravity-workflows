@@ -1,0 +1,2462 @@
+
+
+
+
+
+<html>
+	<head>
+	<link rel=stylesheet href="/act_webdev/hidalgo/hidalgo.css" type="text/css">
+  <LINK rel="stylesheet" type="text/css" href="/act_webdev/hidalgo/site.css" media="screen">
+  <LINK href="/act_webdev/hidalgo/print.css" rel="stylesheet" type="text/css" media="print">
+  <link rel="stylesheet" href="/act_webdev/resource/css/smoothness/jquery-ui-1.10.4.custom.min.jac.css" /><!--jason-->
+  <!-- Site Specific Stylesheet by include-->
+  <LINK rel="stylesheet" type="text/css" href="/act_webdev/hidalgo/siteSpecific.css" media="screen">
+    <style>
+      table.tablesorter thead tr .header {
+        background-image: url("../resource/image/bg.gif");
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        color: #0066CC;
+        font-family: Verdana, Helvetica, sans-serif;
+        font-size: 12px;
+        text-align: left;
+        padding: 5px 8px 27px 6px;
+        height: 59px;
+      }
+      table.tablesorter thead tr .headerSortDown,
+      table.tablesorter thead tr .headerSortUp {
+        color: black;
+      }
+      table.tablesorter thead tr .headerSortDown {
+        background-image: url("../resource/image/asc.gif");
+      }
+      table.tablesorter thead tr .headerSortUp {
+        background-image: url("../resource/image/desc.gif");
+      }
+    </style>
+    <title>Hidalgo County</title>
+    <script type="text/javascript" src="/act_webdev/resource/js/jquery-1.9.1.min.js"></script>
+    <script src="/act_webdev/resource/js/jquery-ui-1.10.4.custom.min.jac.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/act_webdev/resource/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".tablesorter").tablesorter({
+          sortList : [[1, 0]]
+        });
+      });
+    </script>
+	</head>
+
+<body class="docBody" >
+<basefont>
+
+<DIV id="wrapper">
+  <DIV id="container">
+    <DIV id="header"></DIV>
+    <!-- Begin JSP include (pageContent)-->
+    <DIV id="pageContent">
+      <TABLE width="940" border="0" cellpadding="0">
+			<tr> 
+				<td > 
+			<p align="right"><font face="Verdana" size="1" color=navy>
+                    <script language="Javascript">
+
+  var dayName = new Array ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+  var monName = new Array ("January", "February", "March", "April", "May", "June", "July", "August",
+  "September", "October", "November", "December")
+  var now = new Date
+  document.write("" + dayName[now.getDay()] + ", " + monName[now.getMonth()] + " "+now.getDate()+ ", " + " " + now.getFullYear())
+
+										</script>&nbsp;    &nbsp; &nbsp; &nbsp; </font>
+          </p>
+				</td>
+			</tr>
+		</table>
+
+		<table width="98%" style="margin-left:6px;" border="0">
+			<tr> 
+				<td>
+
+
+	<h6 align="center">
+		<br>
+		Your Search Results
+		<br>
+	</h6>
+
+	<h3 align="center">
+		<a class="nobreak" href="index.jsp">Begin a New Search</a>
+		&nbsp; &nbsp;
+		<a class="nobreak" href="portfolio/Login.jsp">Go to Your Portfolio</a>
+	</h3>
+
+
+<!--
+    DN - 12/29/2017 - PRC 195249
+        Removed one '</table' tag to resolve the footer issue on showlist.jsp page
+    DN - 06/03/2018 - PRC 198448
+        Increased the font size and swap the order of sentences
+        Added a "Added Selected Accounts to Shopping Cart" to bottom of table if there are more than 5  matches found
+        Updated style for account number column, it should be shown as hyperlink(blue and underlined)
+-->
+<style>
+#data-block A:link {
+	COLOR: #06c; TEXT-DECORATION: underline
+}
+#data-block A:visited {
+	COLOR: #036; TEXT-DECORATION: none
+}
+#data-block A:hover {
+	COLOR: #009cde; TEXT-DECORATION: underline
+}
+#data-block A:active {
+	COLOR: #036; TEXT-DECORATION: none
+}
+</style>
+	<table border='0' cellspacing='1' cellpadding='6' align="center">
+		<tr width="760" > 
+			<td> 
+				<div align="center"> 
+
+					<h3><b><br><br>The following is the result of your Owner Name search for "SAN MARTIN"<div style='font-weight:bold;color:blue;margin:25px;'>More records exist than are shown below. If you are unable to find your account below, please refine your search.</div></b></h3>
+					
+						<h3>There are 100 matches. </h3>
+					
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+	
+	  <h3>&nbsp;&nbsp; <a class="nobreak" href="showlistPrint.jsp" target="_blank"><font face="Arial, Helvetica, sans-serif" size="2">[print 
+        version]</font></a> &nbsp; &nbsp;
+<!-- <a class="nobreak" href="showlistExcel.jsp" target="_blank"><font face="Arial, Helvetica, sans-serif" size="2">[Excel&trade; 
+        version]</font></a> --></h3>
+      <h3>When first displayed, the results below are sorted by Owner Name. To 
+        sort by another Account Number, Property Site Address, Legal Description, 
+        or CAD Reference, click the underlined column heading having that label. 
+        (For example, to sort the results by Account Number, click that column 
+        heading.)</h3>
+	
+      <h3>To print this page, click <b>print version</b> above. This will display 
+        the information in a more printer-friendly font.</h3>
+      <!-- <h3>To bring the results below into an Excel spreadsheet, click <b>Excel&trade; 
+        version</b> above and follow the instructions there.</h3>-->
+	 
+
+	<form id="addToCart" action="" method="post">   
+		
+			<h3 style="font-size: 18px;"><b>To view the full record or to make a payment, click on the desired account number.</b></h3> 
+			
+		
+
+
+	<div id="data-block">
+	<table align="center" width="800">
+		<tr> 
+			<td> 
+				<table class="tablesorter" width="100%" cellpadding="4" cellspacing="0" border="1">
+          <thead>
+          <tr bordercolor="#000000"> 
+			
+            <th class="header" width="17%">
+              Account <br>Number
+            </th>
+            <th class="header" width="24%"> 
+              Owner's Name &amp;<br> Address
+            </th>
+            <th class="header" width="24%"> 
+              Property Site <br>Address
+            </th>
+            <th class="header" width="18%"> 
+              Legal <br>Description
+            </th>
+            <th class="header" width="17%"> 
+              CAD Reference <br>No.
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+				<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C496800000001800</span>
+							<h3> <a href='showdetail2.jsp?can=C496800000001800'> 
+								C496800000001800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN AGUSTIN ZAIRA M MARTINEZ<br>5400 FIESTA DR<br>MISSION, TX  78574-6455<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4007 FIESTA DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CITRUS LAKE ESTATES LOT 18<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>137234 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T474501000008000</span>
+							<h3> <a href='showdetail2.jsp?can=T474501000008000'> 
+								T474501000008000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN AIDA<br>4631 THIRD ST<br>NEW ERA, MI  49446-9602<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>577 MAR CIR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TIERRA BONITA PH 1 LOT 80<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>302549 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S244093000006401</span>
+							<h3> <a href='showdetail2.jsp?can=S244093000006401'> 
+								S244093000006401
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN AUTO SALES LLC<br>2712 N CESAR CHAVEZ RD<br>ALAMO, TX  78516-6841<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2712 N CESAR CHAVEZ RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SPECIAL INVENTORY (GDN) P162083 AT 2017<br>N CESAR CHAVEZ RD (SEE<br>S2440-99-000-0064-02) / NEW ACCT 2022<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1379618 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S244099000006402</span>
+							<h3> <a href='showdetail2.jsp?can=S244099000006402'> 
+								S244099000006402
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN AUTO SALES LLC<br>2712 N CESAR CHAVEZ RD<br>ALAMO, TX  78516-6841<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2712 N CESAR CHAVEZ RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUPPLIES FURNITURE FIXTURES & EQUIPMENT<br>AT 2712 N CESAR CHAVEZ RD (SEE<br>2440-93-000-0064-01) / NEW ACCT 2022<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1379617 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S244099000006401</span>
+							<h3> <a href='showdetail2.jsp?can=S244099000006401'> 
+								S244099000006401
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN AUTO SALES<br>JORGE A BARRON - SAN MARTIN<br>920 W ENCARNATION LN<br>PHARR, TX  78577<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2712 SEMINOLE VALLEY DR (CORNER OF CESAR CHAV  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUPPLIES FURNITURE FIXTURES & EQUIPMENT<br>AT 2712 SEMINOLE VALLEY DR (SEE<br>S2440-93-000-0064-00)/ NEW ACCT 2018<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1131606 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>B158003002002200</span>
+							<h3> <a href='showdetail2.jsp?can=B158003002002200'> 
+								B158003002002200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN CESAR<br>PO BOX 1841<br>ELSA, TX  78543-1841<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>8006 DALLAS ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>BAR UT NO. 3 LOT 22 BLK 2<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>121860 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>W250000129001220</span>
+							<h3> <a href='showdetail2.jsp?can=W250000129001220'> 
+								W250000129001220
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN DE PORRES CHURCH<br>901 N TEXAS BLVD<br>WESLACO, TX  78596-4508<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>CORNER MILE 4 & 13 1/2  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>WEST & ADAMS W0.258AC LOT 12 BLK 129<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>323248 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>W380000120000000</span>
+							<h3> <a href='showdetail2.jsp?can=W380000120000000'> 
+								W380000120000000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN DE PORRES CHURCH<br>CATHOLIC CHURCH<br>PO BOX 172<br>WESLACO, TX  78599-0172<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>901 N TEXAS BLVD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>WEST TRACT BLK FT 120 5.20 AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>324510 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>M500099003000813</span>
+							<h3> <a href='showdetail2.jsp?can=M500099003000813'> 
+								M500099003000813
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN DE PORRES CLINIC<br>JHONNY M BAZAN MD<br>1337 E PALMA VISTA DR STE A<br>PALMVIEW, TX  78572-2055<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1301 E PALMA VISTA DR STE A (S SIDE) & STE C  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUPPLIES FURNITURE FIXTURES EQUIPMENT &<br>VEHICLES AT 1337 E PALMA VISTA DR STE A<br>& STE C / NEW ACCT 2012<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>820914 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>A380000003000100</span>
+							<h3> <a href='showdetail2.jsp?can=A380000003000100'> 
+								A380000003000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN DE PORRES-ALTON<br>C/O JOHN J FITZPATRICK REV<br>PO BOX 2279<br>BROWNSVILLE, TX  78522-2279<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>572 W MAIN AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ALTON-WEST BLK 3 LOTS 1-9 SAN MARTIN DE<br>PORRES - ALTON<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>117852 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>A380000002000100</span>
+							<h3> <a href='showdetail2.jsp?can=A380000002000100'> 
+								A380000002000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN DE PORRES-ALTON<br>DIOCESE OF BROWNSVILLE<br>PO BOX 2279<br>BROWNSVILLE, TX  78522-2279<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>621 W MAIN AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ALTON-WEST BLK 2 LOTS 1-6 SAN MARTIN DE<br>PORRES - ALTON<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>117835 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>B444301000000100</span>
+							<h3> <a href='showdetail2.jsp?can=B444301000000100'> 
+								B444301000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN ELISA ABIGAIL & HECTOR G<br>3701 XANTHISMA AVE<br>MCALLEN, TX  78504-5211<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3701 XANTHISMA AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>BROOKWOOD UT 1 LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>578166 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>M215000002001700</span>
+							<h3> <a href='showdetail2.jsp?can=M215000002001700'> 
+								M215000002001700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN GREGORIO<br>MA MARICELA GUTIERREZ<br>1013 S 26 1/2 ST<br>MCALLEN, TX  78501-7747<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1013 S 26TH1/2 ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>MCALLEN HEIGHTS LOT 17 BLK 2<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>230291 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>A022500003015700</span>
+							<h3> <a href='showdetail2.jsp?can=A022500003015700'> 
+								A022500003015700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN ITZAMAR G MARQUEZ<br>6915 SAN ISIDRO<br>MISSION, TX  78574-3233<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>7105 SAN ISIDRO  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ABRAM ACRES LOT 157 BLK 3<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>635119 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T601002000018400</span>
+							<h3> <a href='showdetail2.jsp?can=T601002000018400'> 
+								T601002000018400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN ITZEL G MARQUEZ & ERIC ESTRAD<br>1502 RUBY ST<br>PENITAS, TX  78576-8396<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1502 RUBY ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TOM GILL NO 2 LOT 184<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>562550 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>W660000000007500</span>
+							<h3> <a href='showdetail2.jsp?can=W660000000007500'> 
+								W660000000007500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN JACQUELINE<br>10911 ALMOND WOOD<br>LIVE OAK, TX  78233<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>109 E ESPERANZA AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>WINDFERN LOT 75<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>329522 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L622300000004100</span>
+							<h3> <a href='showdetail2.jsp?can=L622300000004100'> 
+								L622300000004100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN JACQUELINE<br>10911 ALMOND WOOD<br>LIVE OAK, TX  78233<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1906 SABINAL ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS JARDINEZ DE CIMARRON LOT 41<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>689379 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L450005000016600</span>
+							<h3> <a href='showdetail2.jsp?can=L450005000016600'> 
+								L450005000016600
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN JAVIER & LAURA<br>2504 UPAS AVE<br>MCALLEN, TX  78501-6429<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2504 UPAS AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LINCOLN TERRACE UT NO. 5 LOT 166<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>218695 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L611500000011600</span>
+							<h3> <a href='showdetail2.jsp?can=L611500000011600'> 
+								L611500000011600
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN JOSE & GLORIA<br>3608 QUETA AVE<br>MCALLEN, TX  78503-8759<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3608 QUETA AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS ENCINOS LOT 116<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>531688 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>V351500000008400</span>
+							<h3> <a href='showdetail2.jsp?can=V351500000008400'> 
+								V351500000008400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN KARMIN & YAZMIN RODRIGUEZ<br>ALFONSO & MARIA N RODRIGUEZ<br>4108 FERN AVE<br>MCALLEN, TX  78501-6544<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4108 FERN AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>VILLA DE PALMAS LOT 84<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>596310 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>R439001000003200</span>
+							<h3> <a href='showdetail2.jsp?can=R439001000003200'> 
+								R439001000003200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN KARMIN<br>317 TOUCAN AVE<br>MCALLEN, TX  78504-1720<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>317 TOUCAN AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ROYAL OAK ESTATES UT 1 LOT 32<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>539447 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>K240095000007115</span>
+							<h3> <a href='showdetail2.jsp?can=K240095000007115'> 
+								K240095000007115
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN MANUEL & JOSEFINA<br>DAVID SAN MARTIN<br>5418 S SUGAR RD<br>EDINBURG, TX  78539-0242<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>5418 S SUGAR RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>KELLY PHARR TRACT S10AC-N20AC EXC 1.0AC<br>LOT 71;IMPROVEMENTS ONLY-NEW FOR<br>2015;IMPROVEMENTS TRANSFER FROM<br>K2400-00-000-0071-15<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>997054 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C938702000001400</span>
+							<h3> <a href='showdetail2.jsp?can=C938702000001400'> 
+								C938702000001400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN MIGUEL<br>415 PINE CREEK<br>ALAMO, TX  78516-4702<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>415 PINE CREEK  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CRIPPLE CREEK UT 2 LOT 14<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>659045 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>B365500000006500</span>
+							<h3> <a href='showdetail2.jsp?can=B365500000006500'> 
+								B365500000006500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN RAUL & MARIA<br>6218 DIAMOND AVE<br>EDINBURG, TX  78542-4051<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>6218 DIAMOND AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>BOOMTOWN LOT 65<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>559444 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>B365595000006501</span>
+							<h3> <a href='showdetail2.jsp?can=B365595000006501'> 
+								B365595000006501
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN RAUL & MARIA<br>6218 DIAMOND AVE<br>EDINBURG, TX  78542-4051<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>6218 DIAMOND AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>BOOMTOWN LOT 65, IMPROVEMENTS ONLY-NEW<br>FOR 2007<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>782816 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E330000200000300</span>
+							<h3> <a href='showdetail2.jsp?can=E330000200000300'> 
+								E330000200000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN RICARDO & VERONICA C<br>1012 E KUHN ST<br>EDINBURG, TX  78541-3748<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1012 E KUHN ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>EDINBURG TOWNSITE LOT 3 BLK 200<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>164739 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>A577001000002000</span>
+							<h3> <a href='showdetail2.jsp?can=A577001000002000'> 
+								A577001000002000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN RITO & MARIA L<br>2709 N 38TH ST<br>MCALLEN, TX  78501-3337<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2709 N 38TH ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ARROWHEAD PH 1 LOT 20<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>580787 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C443901000000300</span>
+							<h3> <a href='showdetail2.jsp?can=C443901000000300'> 
+								C443901000000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN ROSARIO<br>ANSELMO GARZA<br>3008 TANYA AVE<br>MCALLEN, TX  78503-1828<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3008 TANYA AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CIELO VISTA PH 1 LOT 3<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>714450 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>P755000000004000</span>
+							<h3> <a href='showdetail2.jsp?can=P755000000004000'> 
+								P755000000004000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN SIXTO & LUCIANA<br>3540 PLAZAS DEL LAGO DR<br>EDINBURG, TX  78539<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3540 PLAZAS DEL LAGO DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PLAZAS DEL LAGO LAKE JAMES LOTS 40 & 41<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>262083 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E596001000001000</span>
+							<h3> <a href='showdetail2.jsp?can=E596001000001000'> 
+								E596001000001000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN SIXTO M<br>513 E WISTERIA AVE<br>MCALLEN, TX  78504-2348<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>513 E WISTERIA AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ENCINO PARK UT 1 LOT 10<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>450790 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>P696000000013200</span>
+							<h3> <a href='showdetail2.jsp?can=P696000000013200'> 
+								P696000000013200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MARTIN-RAMOS WENCESLAO & ANITA MONTO<br>A/K/A ANITA SAN MARTIN<br>734 JUANITA ST<br>DONNA, TX  78537-4435<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>734 JUANITA ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PIQUITO DE ORO LOT 132 & 133<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>261173 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>N814002004000300</span>
+							<h3> <a href='showdetail2.jsp?can=N814002004000300'> 
+								N814002004000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MIGUEL MARTIN & FIDELA<br>3505 LOYOLA AVE<br>MCALLEN, TX  78504-6196<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3505 LOYOLA AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>NORTH WARE ROAD ESTATES PH 2 LOT 3 BLK 4<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>692567 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>J570000005001205</span>
+							<h3> <a href='showdetail2.jsp?can=J570000005001205'> 
+								J570000005001205
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ ALICIA MARTINEZ<br>1614 N VETERANS BLVD<br>SAN JUAN, TX  78589-3216<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1614 N VETERANS BLVD (I RD)  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>JOHN CLOSNER LT 12-N 111'-S 880'-W 179'<br>BK 5 0.46 AC GR 0.38 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>199838 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>D202300000001700</span>
+							<h3> <a href='showdetail2.jsp?can=D202300000001700'> 
+								D202300000001700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ ALONSO M MARTINEZ & ROCIO VIANNE<br>821 W LONGORIA DR<br>PHARR, TX  78577-9762<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>601 GERARDO LN  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>DEER FIELD LOT 17<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1464144 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L626800000005200</span>
+							<h3> <a href='showdetail2.jsp?can=L626800000005200'> 
+								L626800000005200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ ANA G & RUBEN MARTINEZ<br>5111 LOS MESQUITES<br>DONNA, TX  78537-4410<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>5111 LOS ARBOLES ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS MIRASOLES LOT 52<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>627709 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S035302000015300</span>
+							<h3> <a href='showdetail2.jsp?can=S035302000015300'> 
+								S035302000015300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ CLAUDIA P MARTINEZ<br>2820 ASH AVE LOT 74<br>MCALLEN, TX  78501-7621<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>825 CANELA DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SAN AGUSTIN PH 2 LOT 153<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1308740 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C153502000004300</span>
+							<h3> <a href='showdetail2.jsp?can=C153502000004300'> 
+								C153502000004300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ CLAUDIA PATRICIA MARTINEZ<br>1602 PULLIN AVE<br>SAN JUAN, TX  78589-3907<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1602 PULLIN AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CAPRI NO. 2 LOT 43<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>517712 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>G260000000000102</span>
+							<h3> <a href='showdetail2.jsp?can=G260000000000102'> 
+								G260000000000102
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ DE MARTINEZ NELIA C A/K/A NELIA<br>322 S BRIDGE ST<br>HIDALGO, TX  78557-2805<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1209 S 10TH ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>GATEWAY PLAZA SHOPPING CITY S40'-N190'<br>LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>178745 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>G260000000000103</span>
+							<h3> <a href='showdetail2.jsp?can=G260000000000103'> 
+								G260000000000103
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ DE MARTINEZ NELIA C A/K/A NELIA<br>322 S BRIDGE ST<br>HIDALGO, TX  78557-2805<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1209 S 10TH ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>GATEWAY PLAZA SHOPPING CITY<br>N25'-S110'-N300' LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>178746 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T575002006006800</span>
+							<h3> <a href='showdetail2.jsp?can=T575002006006800'> 
+								T575002006006800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ DIANA & MARTIN ESPINOZA<br>520 E BUCHANAN AVE<br>ALTON, TX  78573-3834<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>520 E BUCHANAN DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TODO PH 2 LOT 68 BLK 6<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>614807 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C6650000B2001500</span>
+							<h3> <a href='showdetail2.jsp?can=C6650000B2001500'> 
+								C6650000B2001500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ ENRIQUE & MARTINA<br>1840 FLORIDA ST<br>MERCEDES, TX  78570<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>616 S VERMONT  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>COLONIA CHAPULTEPEC UT NO. 1 S60' LOTS<br>14, 15 & 16 BLK B-2 117<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>150216 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S310000001000100</span>
+							<h3> <a href='showdetail2.jsp?can=S310000001000100'> 
+								S310000001000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ HECTOR HUGO M & IRMA G MARTINEZ<br>1018 E BELL<br>PHARR, TX  78577-4204<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1016 E BELL ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SHERER LOT 1 UNIT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>283713 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>H255000008001002</span>
+							<h3> <a href='showdetail2.jsp?can=H255000008001002'> 
+								H255000008001002
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ INGRID M MARTINEZ & ALBERTO<br>300 N 6TH ST<br>MCALLEN, TX  78501-2520<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>300 N 6TH ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>HIDALGO CANAL CO-MC W131'-S53.7' LOT 10<br>NE 1/4 BLK 8<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>189564 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T543600000001600</span>
+							<h3> <a href='showdetail2.jsp?can=T543600000001600'> 
+								T543600000001600
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ IRIS & JUAN MANUEL GOMEZ MARTINE<br>1003 ISABEL DR<br>WESLACO, TX  78599-2339<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3> &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TIERRA ROOSEVELT LOT 16<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1641769 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L565002000010500</span>
+							<h3> <a href='showdetail2.jsp?can=L565002000010500'> 
+								L565002000010500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ JESUS MARTIN & MELINDA TELLEZ<br>304 TYLER AVE<br>MCALLEN, TX  78503-3069<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>304 TYLER AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS ALEGRES UT NO. 2 LOT 105<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>221460 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S397502000021100</span>
+							<h3> <a href='showdetail2.jsp?can=S397502000021100'> 
+								S397502000021100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ JOSE D MARTINEZ & HAYDE M<br>TAVERA DE VALENCIA<br>821 LONGORIA ST<br>PHARR, TX  78577-9762<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>6304 BLANCA LN  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SOL BRILLA PH 2 LOT 211<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>545311 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>O065100000001800</span>
+							<h3> <a href='showdetail2.jsp?can=O065100000001800'> 
+								O065100000001800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ JOSE F & OLGA E MARTINEZ<br>3700 N K CTR APT #502<br>MCALLEN, TX  78501<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2010 N 44TH LN  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>OAK TERRACE ESTATES LOT 18<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>701235 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L284800000007900</span>
+							<h3> <a href='showdetail2.jsp?can=L284800000007900'> 
+								L284800000007900
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ JUAN MARTINEZ & LOYDA N GUAJARDO<br>906 MAGNOLIA ST<br>MISSION, TX  78573-2850<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>906 MAGNOLIA ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LANTANA LANDING LOT 79<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1562865 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T760000000001900</span>
+							<h3> <a href='showdetail2.jsp?can=T760000000001900'> 
+								T760000000001900
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ JUAN V & ELSA N MARTINEZ<br>1708 NUGGET ST<br>PENITAS, TX  78576-8207<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>309 TRIPLE D DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TRIPLE D HOME PLACE LT 19<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>308280 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C788600000002100</span>
+							<h3> <a href='showdetail2.jsp?can=C788600000002100'> 
+								C788600000002100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARIA A & ANA KAREN MARTINEZ<br>PO BOX 2216<br>SAN JUAN, TX  78589-7216<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4716 MELODY LANE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CONCHO HEIGHTS LOT 21<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>958136 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S300000000002858</span>
+							<h3> <a href='showdetail2.jsp?can=S300000000002858'> 
+								S300000000002858
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARIA I MARTINEZ<br>2116 DELDIE LN<br>MISSION, TX  78572-4602<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2108 DELDIE LN  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SHARYLAND ORCHARDS LOT 28 TRACT 10<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>283401 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>D280000007000703</span>
+							<h3> <a href='showdetail2.jsp?can=D280000007000703'> 
+								D280000007000703
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARIA MARTINEZ<br>3111 HUMBERTO GARZA JR ST<br>MISSION, TX  78572-1215<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3111 HUMBERTO GARZA JR ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>DEL MONTE ORCHARD CO. NO. 1<br>S169.04'-N388.04'-E166.56'-W172.51' LOT<br>7 BLK 7 0.65AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>157685 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>D280000007000712</span>
+							<h3> <a href='showdetail2.jsp?can=D280000007000712'> 
+								D280000007000712
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARIA MARTINEZ<br>3111 HUMBERTO GARZA JR ST<br>MISSION, TX  78572-1215<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3109 HUMBERTO GARZA ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>DEL MONTE ORCHARD CO. NO. 1<br>E81.87'-W172.5'-S120.77'-N339.77' LOT 7<br>BLK 7 0.23AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>157690 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>D280000007000708</span>
+							<h3> <a href='showdetail2.jsp?can=D280000007000708'> 
+								D280000007000708
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARIA MARTINEZ<br>3111 HUMBERTO GARZA JR ST<br>MISSION, TX  78572-1215<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3111 HUMBERTO GARZA JR. ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>DEL MONTE ORCHARD CO. NO. 1<br>S169.04'-N388.04'-W49.68' LOT 7 BLK 7<br>0.19AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>578978 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C788600000001500</span>
+							<h3> <a href='showdetail2.jsp?can=C788600000001500'> 
+								C788600000001500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN & CELIA<br>4711 MELODY LANE<br>EDINBURG, TX  78542-0212<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4711 MELODY LANE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CONCHO HEIGHTS LOT 15<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>958130 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C140000067001201</span>
+							<h3> <a href='showdetail2.jsp?can=C140000067001201'> 
+								C140000067001201
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN & INOCENCIA<br>1840 FLORIDA ST<br>MERCEDES, TX  78570-3934<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1840 S FLORIDA ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CAPISALLO<br>N1.66AC-S11.07AC-W20AC-E30.91AC LOT 12<br>BLK 67 BEING AN IRR TR<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>131827 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>D301003000003500</span>
+							<h3> <a href='showdetail2.jsp?can=D301003000003500'> 
+								D301003000003500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN & LESLIE L<br>8007 VERBENA ST<br>EDINBURG, TX  78542-7166<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3> &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>DEL REY ESTATES UT 3 LOT 35<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1306097 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E456000000000300</span>
+							<h3> <a href='showdetail2.jsp?can=E456000000000300'> 
+								E456000000000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN & MARIVEL<br>PO BOX 1506<br>EDCOUCH, TX  78538-1506<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1507 W MILE 14 N  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>EL OBISPADO LOT 3<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>536054 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L080000036000422</span>
+							<h3> <a href='showdetail2.jsp?can=L080000036000422'> 
+								L080000036000422
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN & ROSA I<br>PO BOX 100<br>DONNA, TX  78537-0100<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>825 VERTREES RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LA DONNA W132'-E1056'-S660' LOT 4 BLK<br>36 AKA TR 8 2.00AC 1.94AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>675244 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>V344003000030800</span>
+							<h3> <a href='showdetail2.jsp?can=V344003000030800'> 
+								V344003000030800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN & ROSARIO<br>3312 TRIPLE J DR<br>MISSION, TX  78572-8470<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3312 TRIPLE J DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>VILLA-RAMA EAST PH 3 LOT 308<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>573992 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>D301003000020100</span>
+							<h3> <a href='showdetail2.jsp?can=D301003000020100'> 
+								D301003000020100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN ALBERTO BUENO & YOSELIN M<br>1754 PRESIDO CIR W<br>ALAMO, TX  78516-7338<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3> &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>DEL REY ESTATES UT 3 LOT 201<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1306263 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>M579500000000500</span>
+							<h3> <a href='showdetail2.jsp?can=M579500000000500'> 
+								M579500000000500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN BERLANGA & GABRIELA MARTI<br>3000 NARANJA DR<br>MISSION, TX  78574-2734<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1908 W 26 1/2TH ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>MONTECRISTO LOT 5<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1180676 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T123105000001700</span>
+							<h3> <a href='showdetail2.jsp?can=T123105000001700'> 
+								T123105000001700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN CERDA<br>213 TODD ST<br>PROGRESO, TX  78579<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>213 TODD ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEJAS NO.5 PH 2 LOT 17<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>683871 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C030000194002400</span>
+							<h3> <a href='showdetail2.jsp?can=C030000194002400'> 
+								C030000194002400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN D<br>GRACIELA GUERRERO<br>PO BOX 465<br>PHARR, TX  78577-1608<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>100 E SAENZ AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CAGE NO. 2 LOT 24 BLK 194<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>129290 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>V266004000023900</span>
+							<h3> <a href='showdetail2.jsp?can=V266004000023900'> 
+								V266004000023900
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN J & ROSEMARIE BAUTISTA<br>706 E WASHINGTON ST<br>WESLACO, TX  78599-4390<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4005 ADORE ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>VAQUERO ESTATES PH 4 LOT 239<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1072389 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>M319700000007700</span>
+							<h3> <a href='showdetail2.jsp?can=M319700000007700'> 
+								M319700000007700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN L & VIVIAN A RUIZ<br>4617 VIOLET AVE<br>MCALLEN, TX  78504-4862<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4617 VIOLET AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>MEADOW RIDGE LOT 77<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>708385 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S544700000004500</span>
+							<h3> <a href='showdetail2.jsp?can=S544700000004500'> 
+								S544700000004500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN M & MYRIAM I<br>2207 NELLIE ST<br>WESLACO, TX  78596-1905<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2209 PAGE AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SPRINGWOOD ESTATES LOT 45<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>706290 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>I705003000010000</span>
+							<h3> <a href='showdetail2.jsp?can=I705003000010000'> 
+								I705003000010000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTIN<br>8007 VERBENA ST<br>EDINBURG, TX  78542-7166<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>8007 VERBENA ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>IOWA GARDENS ESTATES PH 3 LOT 100<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>653684 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>V010000000001100</span>
+							<h3> <a href='showdetail2.jsp?can=V010000000001100'> 
+								V010000000001100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MARTINA G<br>PO BOX 1071<br>MERCEDES, TX  78570-1071<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>RAMIRO CAVAZOS  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>V & C LOT 11<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>311207 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>R021502000007100</span>
+							<h3> <a href='showdetail2.jsp?can=R021502000007100'> 
+								R021502000007100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MATEO & JUANA MARTINEZ<br>PO BOX 2789<br>ELSA, TX  78543-2789<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>7714 EDEN ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>RMR PH 2 LOT 71<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>564849 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>A160003000005200</span>
+							<h3> <a href='showdetail2.jsp?can=A160003000005200'> 
+								A160003000005200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ MILAGROS MARTINEZ & LUZ VIDA NUN<br>902 ALA BLANCA<br>MISSION, TX  78572-7001<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>902 ALA BLANCA AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ALA BLANCA UT NO. 3 LOT 52<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>109617 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S061001000002700</span>
+							<h3> <a href='showdetail2.jsp?can=S061001000002700'> 
+								S061001000002700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ PEDRO MARTIN & TANYA YANETH SOSA<br>1102 DOVE AVE<br>PHARR, TX  78577-7105<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1102 DOVE AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SAN GABRIEL PH 1 LOT 27<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>628356 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S130000002001000</span>
+							<h3> <a href='showdetail2.jsp?can=S130000002001000'> 
+								S130000002001000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ REMIGIO & JESSICA MARTINEZ<br>7838 ALBERTO RD<br>EDINBURG, TX  78542-4326<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>103 N FIR ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SANCHEZ NO. 2 LOT 10 BLK 2<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>277129 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S170002020000503</span>
+							<h3> <a href='showdetail2.jsp?can=S170002020000503'> 
+								S170002020000503
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ REMIGIO & JESSICA MARTINEZ<br>7838 ALBERTO RD<br>EDINBURG, TX  78542-4326<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>7837 ALBERTO RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SANTA CRUZ GARDENS UT NO. 2<br>S110'-N350'-W150' LOT 5 BLK 20 0.38AC<br>GR 0.32AC NET (A/K/A SPRING GARDEN LOT<br>3)<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>278054 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000205000000</span>
+							<h3> <a href='showdetail2.jsp?can=T210000205000000'> 
+								T210000205000000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ RENE MARTINEZ<br>1800 VICTORY DR<br>SAN JUAN, TX  78589-0139<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>27676 N FM 681 (TR 4)  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S300'-N1253.41'-W1455'<br>SEC 205 10.02AC GR 9.74AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1241554 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L622503000014500</span>
+							<h3> <a href='showdetail2.jsp?can=L622503000014500'> 
+								L622503000014500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ RONALD & ALEXANDRA GRANDA MARTIN<br>2232 DIPLOMA DR<br>EDINBURG, TX  78542<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2232 DIPLOMAT DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS LAGOS PH 3 LOT 145<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>673612 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>J816500000005400</span>
+							<h3> <a href='showdetail2.jsp?can=J816500000005400'> 
+								J816500000005400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ ROSARIO MARTINEZ<br>3017 W MILE 10 RD<br>MISSION, TX  78574-2054<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3017 W MILE 10 RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>JOSHUA TREE HEIGHTS LOT 54<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>571147 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S408000000004100</span>
+							<h3> <a href='showdetail2.jsp?can=S408000000004100'> 
+								S408000000004100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ SILVIA MARTINEZ<br>4701 SOTIRA ST<br>MISSION, TX  78572-1193<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4707 SOTIRA ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SOTIRA ESTATES LOT 41<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>286172 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>K299000000003200</span>
+							<h3> <a href='showdetail2.jsp?can=K299000000003200'> 
+								K299000000003200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANDERS TRAVIS A & ANA L MARTINEZ<br>2005 N 17TH ST<br>MCALLEN, TX  78501-4203<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3423 N 41ST LN  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>KERRIA CROSSING LOT 32<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>597331 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L581200000003700</span>
+							<h3> <a href='showdetail2.jsp?can=L581200000003700'> 
+								L581200000003700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANDOVAL DANIEL R & GRISELDA T MARTINEZ<br>8232 LOS AZARES<br>EDINBURG, TX  78542-1515<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>8232 LOS AZAHARES ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS AZAHARES ESTATES LOT 37<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>681377 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>P811503000008800</span>
+							<h3> <a href='showdetail2.jsp?can=P811503000008800'> 
+								P811503000008800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANDOVAL JAIME MARTIN & GLORIA I GARCIA<br>7227 BUENA VISTA DR<br>PALMVIEW, TX  78572-1899<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>7227 BUENA VISTA DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PRAIRIE VIEW HEIGHTS PH 3 LOT 88<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>576507 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>1004600000000049</span>
+							<h3> <a href='showdetail2.jsp?can=1004600000000049'> 
+								1004600000000049
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANDOVAL MARTIN & BEATRIZ<br>PO BOX 331<br>SULLIVAN CITY, TX  78595-0331<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2416 N/W EXPRESSWAY 83-FRONTING  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PORCION 46 0.54AC LYING N OF U S HWY 83<br>A/K/A LOTS 13, 14 & 15 0.41AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>101285 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>F450000000000500</span>
+							<h3> <a href='showdetail2.jsp?can=F450000000000500'> 
+								F450000000000500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANDOVAL MARTIN & BEATRIZ<br>PO BOX 331<br>SULLIVAN CITY, TX  78595-0331<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>116 FLORES ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>JOSEFINA B FLORES LOT 5<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>175420 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>P100002000018600</span>
+							<h3> <a href='showdetail2.jsp?can=P100002000018600'> 
+								P100002000018600
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANDOVAL ROGELIO & MELISSA D MARTINEZ<br>1922 E JUAREZ AVE<br>ALTON, TX  78573-0710<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1922 E JUAREZ AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PALM LAKE ESTATES UT NO. 2 LOT 186<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>253959 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L566502000000300</span>
+							<h3> <a href='showdetail2.jsp?can=L566502000000300'> 
+								L566502000000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANDOVAL SANTOS MARTINEZ & DIANA MARIBEL<br>1201 E MOORE RD NO 124<br>PHARR, TX  78577-6452<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3918 BEAUX AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS AMIGOS PH 2 LOT 3<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1310098 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>1004800000007651</span>
+							<h3> <a href='showdetail2.jsp?can=1004800000007651'> 
+								1004800000007651
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTANA MARTIN & ET AL<br>5700 N ABRAM RD<br>MISSION, TX  78574-4854<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>5700 N ABRAM RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PORCION 48 N2AC-S34AC-W660'-65.71AC TR<br>LOT 76 A/K/A TR-13 2.00AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>101402 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>P717015029002400</span>
+							<h3> <a href='showdetail2.jsp?can=P717015029002400'> 
+								P717015029002400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTIAGO HECTOR G MARTINEZ<br>1517 NEW ORLEANS CIR<br>PHARR, TX  78577-7246<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1517 NEW ORLEANS CIR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PLANTATION SOUTH UT NO. 15 LOT 24 BLK 29<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>710019 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>L580602000018200</span>
+							<h3> <a href='showdetail2.jsp?can=L580602000018200'> 
+								L580602000018200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTIAGO JOSE M MARTINEZ & SALMA J SANTI<br>917 PINO ST<br>SAN JUAN, TX  78589-3956<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>917 PINO ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>LOS ARBOLES PH 2 LOT 182<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>521156 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E625005000001900</span>
+							<h3> <a href='showdetail2.jsp?can=E625005000001900'> 
+								E625005000001900
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTIAGO ROSAURA S & NICASIO M MARTINEZ<br>7029 CRYSTAL DR<br>MISSION, TX  78574-4294<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>7029 CRYSTAL DR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ELLIS NO. 5 LOT 19<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>728994 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>W380000341000015</span>
+							<h3> <a href='showdetail2.jsp?can=W380000341000015'> 
+								W380000341000015
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTILLAN ANABEL MARTINEZ<br>9151 N MILE 6 W<br>WESLACO, TX  78599-2129<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>9151 N MILE 6  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>WEST TRACT S66'-N396'-E660' FT 341<br>1.0AC GR 0.95AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>620062 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T410000001000202</span>
+							<h3> <a href='showdetail2.jsp?can=T410000001000202'> 
+								T410000001000202
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN & GLORIA G<br>119 E JONES AVE<br>PHARR, TX  78577-5403<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>808 S DANNER RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>EARL THOMAS S100' LOT 2 BLK 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>302264 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>G520002000000700</span>
+							<h3> <a href='showdetail2.jsp?can=G520002000000700'> 
+								G520002000000700
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN & GLORIA G<br>119 E JONES AVE<br>PHARR, TX  78577-5403<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>707 TARRANT CIR  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>GOMEZ NO. 2 LOT 7<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>180400 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>G520002000000800</span>
+							<h3> <a href='showdetail2.jsp?can=G520002000000800'> 
+								G520002000000800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN & GLORIA G<br>119 E JONES AVE<br>PHARR, TX  78577-5403<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>801 S GUMWOOD ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>GOMEZ NO. 2 LOT 8<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>180401 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>G520002000000900</span>
+							<h3> <a href='showdetail2.jsp?can=G520002000000900'> 
+								G520002000000900
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN & GLORIA G<br>119 E JONES AVE<br>PHARR, TX  78577-5403<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>802 S GUMWOOD ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>GOMEZ NO. 2 LOT 9<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>180402 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>G520002000001100</span>
+							<h3> <a href='showdetail2.jsp?can=G520002000001100'> 
+								G520002000001100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN & GLORIA G<br>119 E JONES AVE<br>PHARR, TX  78577-5403<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>803 S FIR ST  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>GOMEZ NO. 2 LOT 11 & N5' LOT 12<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>180404 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T410000001000201</span>
+							<h3> <a href='showdetail2.jsp?can=T410000001000201'> 
+								T410000001000201
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN & GLORIA G<br>119 E JONES AVE<br>PHARR, TX  78577-5403<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>804 S DANNER RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>EARL THOMAS N100'-S200' LOT 2 BLK 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>302263 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>A180000045001510</span>
+							<h3> <a href='showdetail2.jsp?can=A180000045001510'> 
+								A180000045001510
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN & GLORIA GAMBOA<br>PO BOX 1892<br>PHARR, TX  78577-1636<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1221 N TOWER RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ALAMO LAND & SUGAR CO E330'-N132'-S660'<br>LOT 15 BLK 45 1.0AC GR<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>578566 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>P640000074001300</span>
+							<h3> <a href='showdetail2.jsp?can=P640000074001300'> 
+								P640000074001300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN G & GLORIA G<br>PO BOX 1892<br>PHARR, TX  78577-1636<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>119 E JONES AVE  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>PHARR ORIGINAL TOWNSITE LOTS 13 & 14<br>BLK 74<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>259753 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S191000000000100</span>
+							<h3> <a href='showdetail2.jsp?can=S191000000000100'> 
+								S191000000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN G & GLORIA GAMBOA<br>483 W CLAM CIR<br>PORT ISABEL, TX  78578<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1419 N SUGAR RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SANTOS BUSINESS CENTER LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1643221 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>K240000000016804</span>
+							<h3> <a href='showdetail2.jsp?can=K240000000016804'> 
+								K240000000016804
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANTOS MARTIN G & GLORIA GAMBOA<br>483 W CLAM CIR<br>PORT ISABEL, TX  78578<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1419 N SUGAR RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>KELLY PHARR TRACT S75'-N525'-E660'-LOT<br>168 1.14AC GR 1.09AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>202668 &nbsp;</h3></td>
+					</tr>
+				<caption align="right">&nbsp; &nbsp;</caption>
+
+			    </tbody>
+			  </table>
+			</td>
+		</tr>
+	</table>
+    
+    
+        <h3><input type="submit" id="add-to-cart-button" value="Add Selected Accounts to Shopping Cart"></h3>
+    
+	</form>
+	
+
+
+
+
+		</td>
+	</tr>
+<tr> 
+  <td> <br>
+    <hr width="100%">
+	<div> 
+		<a style="font-size:10px;margin-left: 10px;" href="/act_webdev/hidalgo/terms.jsp">Terms of Use</a>
+		<a style="font-size:10px;margin-left: 10px; " href="/act_webdev/hidalgo/privacypolicy.jsp">Privacy Policy</a></li>
+	</div><br>
+  </td>
+</tr>
+
+<tr>
+<TD><font face="Arial" size="1" color="#000000">
+The Tax Office makes no representations as to the accuracy or reliability of any information accessed from its computer data base.  The Tax Office, its officers, agents, employees and representatives shall not be liable for the information posted on the Tax Office Website in connection with any actions losses, damages, claims or liability in any way related to use of, distribution of or reliance upon such information.<br></FONT>
+</td>
+</tr>
+<tr> 
+  <td> 
+    <hr width="100%">
+  </td>
+</tr>
+<tr> 
+  <td> 
+    <table width="100%">
+      <tr> 
+        <td> <font face="Arial" size="2" color=#000000> 
+          HIDALGO COUNTY TAX OFFICE<br>
+          PO BOX 178<br>
+          EDINBURG, TEXAS 78540<br>
+          (956) 318-2157<br>
+          You may also <a href="/act_webdev/hidalgo/Question.jsp">e-mail</a> the office.
+		</font></td>
+        <td valign="top"> 
+          <div align="right"><font face="Arial" size="1" color=navy><i>
+		<br>
+		<br>
+		<br>
+		<br>
+            &copy;Appraisal &amp; Collection Technologies. 
+            All rights reserved.</i></font></div>
+        </td>
+      </tr>
+        
+          
+
+    </table>
+<!--
+  <table><tr>
+                     <td><div>
+                  <font face="Arial, Helvetica, sans-serif" size="1" color="#000000"><i> Terms of Use:
+                     This webpage is designed for individual taxpayers to research and pay their property taxes.  ACT depends upon its own and third party computer systems to provide timely property tax information. As a condition of your use of this webpage and/or by submitting a query on this webpage, you agree and warrant to ACT that you will not use this webpage for any purpose that is unlawful or prohibited by these terms.  You may not use this  webpage in any manner which could damage, disable, overburden, or impair this webpage or interfere with any other party's use and enjoyment of this webpage.  Occasionally, these computer systems are subjected to exceptional volumes of incoming data, service requests, processes, and electronic mail messages that result in significant degradation of system processing and response time. Regardless of the reason, in those instances when there is system performance degradation, ACT reserves the right, in its sole discretion, to filter or block electronic messages, data and/or processes originating from or traveling to the identified sources of the high volume, automated, electronic  traffic.  ACT further reserves the right to permanently filter or block repeated sources of high volume, automated, electronic traffic.    The unauthorized use of this webpage may give rise to a claim for damages and/or injunctive relief. 
+                  </i></font></div>
+                      </td>
+                    </tr>
+</table>
+-->
+  </td>
+</tr></table>
+
+</body>
+</html>
+
+
+

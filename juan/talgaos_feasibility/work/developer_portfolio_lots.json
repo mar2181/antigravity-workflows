@@ -1,0 +1,134 @@
+[
+  {
+    "gross_value": 411345,
+    "land_value": 125388,
+    "improvement_value": 285957,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "ALTON VILLAGE APARTMENTS LOT 29",
+    "site": "1406 S MICHIGAN STREET",
+    "can": "A378000000002900",
+    "name": "TURQUESA Alton Village #29"
+  },
+  {
+    "gross_value": 411345,
+    "land_value": 125388,
+    "improvement_value": 285957,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "ALTON VILLAGE APARTMENTS LOT 30",
+    "site": "1410 S MICHIGAN STREET",
+    "can": "A378000000003000",
+    "name": "TURQUESA Alton Village #30"
+  },
+  {
+    "gross_value": 75502,
+    "land_value": 75502,
+    "improvement_value": 0,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "OAK RIDGE ESTATES LOT 20",
+    "site": "1104 E ACACIA DR",
+    "can": "O064000000002000",
+    "name": "TURQUESA Oak Ridge #20"
+  },
+  {
+    "gross_value": 57432,
+    "land_value": 57432,
+    "improvement_value": 0,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "OAK RIDGE ESTATES LOT 121",
+    "site": "1817 N MANGROVE ST",
+    "can": "O064000000012100",
+    "name": "TURQUESA Oak Ridge #121"
+  },
+  {
+    "gross_value": 57432,
+    "land_value": 57432,
+    "improvement_value": 0,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "OAK RIDGE ESTATES LOT 122",
+    "site": "1813 N MANGROVE ST",
+    "can": "O064000000012200",
+    "name": "TURQUESA Oak Ridge #122"
+  },
+  {
+    "gross_value": 254548,
+    "land_value": 55242,
+    "improvement_value": 199306,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "RUSSELL VILLAGE LOT 17",
+    "site": "N. WOODY ST.",
+    "can": "R469800000001700",
+    "name": "TURQUESA Russell Village #17"
+  },
+  {
+    "gross_value": 273144,
+    "land_value": 64240,
+    "improvement_value": 208904,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "RUSSELL VILLAGE LOT 59",
+    "site": "1009 W CLOUD 9 LN",
+    "can": "R469800000005900",
+    "name": "TURQUESA Russell Village #59"
+  },
+  {
+    "gross_value": 155022,
+    "land_value": 155022,
+    "improvement_value": 0,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "TEX-MEX SURVEY LOT 8 - W 177' - S 660'",
+    "site": "ROGERS RD",
+    "can": "T210000244000808",
+    "name": "TURQUESA SUBJECT (Tex-Mex Sec 244)"
+  },
+  {
+    "gross_value": 520000,
+    "land_value": 520000,
+    "improvement_value": 0,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "WEST ADDN TO SHARYLAND S10AC LOT 38-9",
+    "site": "S MAYBERRY RD",
+    "can": "W010000038000900",
+    "name": "TALGAOS West Sharyland S10AC Lot 38-9"
+  },
+  {
+    "gross_value": 162066,
+    "land_value": 65910,
+    "improvement_value": 96156,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "LAS VILLAS DEL RIO PH 2B LOT 246",
+    "site": "2208 VICTORIA ST",
+    "can": "L33972B000024600",
+    "name": "TALGAOS Las Villas del Rio #246"
+  },
+  {
+    "gross_value": 234336,
+    "land_value": 49949,
+    "improvement_value": 184387,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "MAR LOT 67",
+    "site": "2323 DORADO DR",
+    "can": "M082500000006700",
+    "name": "TALGAOS Mar Lot 67"
+  },
+  {
+    "gross_value": 362052,
+    "land_value": 130540,
+    "improvement_value": 231512,
+    "capped_value": 0,
+    "agricultural_value": 0,
+    "legal": "MONMACK TERRACE NO. 2 LOT 2",
+    "site": "3613 ZELMA ST",
+    "can": "M572002000000200",
+    "name": "TALGAOS Monmack Terrace #2"
+  }
+]

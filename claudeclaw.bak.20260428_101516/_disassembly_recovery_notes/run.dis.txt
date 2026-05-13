@@ -1,0 +1,1806 @@
+# === module: run ===
+# co_names: ('__doc__', 'json', 'os', 'sys', 'time', 'traceback', 'urllib.error', 'urllib', 'urllib.parse', 'urllib.request', 'pathlib', 'Path', 'hasattr', 'stdout', 'reconfigure', '', 'api', 'bridge', 'tunnel', '__file__', 'parent', 'ENV_PATH', 'dict', '_load_env', '_env', 'get', 'environ', 'TOKEN', 'exit', 'BASE', 'str', '_tg', 'send', 'int', 'list', 'get_updates', 'HELP_TEXT', 'handle', 'main', '__name__')
+# co_consts (strs+code):
+#   STR: 'claudeclaw standalone bot runner — @claudette21bot.\n\nThis is the war room\'s dedicated Telegram bot. Separate from the main\nAntigravity `telegram_bot.py` so they coexist without stepping on each\nother\'s long-poller.\n\nCommands:\n    /start                  welcome\n    /help                   command list\n    /agents                 list role agents\n    /war <msg>              route to best role agent (rule or LLM)\n    /war comms: <msg>       force a specific role\n    /mem [sub]              memory viewer (stats | pinned | insights | hive [role])\n    /pinmem key=value       save persistent pinned memory\n    /wqueue                 queue stats\n    /pin <code>             unlock (if CLAUDECLAW_PIN is set)\n    (free text)             same as /war <text>\n\nAuth: uses your Claude Code subscription via claude-agent-sdk. No API cost.\n\nUsage:\n    cd "C:/Users/mario/.gemini/antigravity/tools/execution"\n    python -m claudeclaw.run\n'
+#   STR: 'reconfigure'
+#   STR: 'utf-8'
+#   STR: 'replace'
+#   STR: 'scratch'
+#   STR: 'gravity-claw'
+#   STR: '.env'
+#   STR: 'return'
+#   STR: '_load_env'
+#   STR: 'CLAUDECLAW_BOT_TOKEN'
+#   STR: ''
+#   STR: 'ERROR: CLAUDECLAW_BOT_TOKEN not found in gravity-claw/.env'
+#   STR: 'https://api.telegram.org/bot'
+#   STR: 'method'
+#   STR: 'payload'
+#   STR: '_tg'
+#   STR: 'chat_id'
+#   STR: 'text'
+#   STR: 'send'
+#   STR: 'offset'
+#   STR: 'get_updates'
+#   STR: '🤖 claudeclaw war room — @claudette21bot\n\n/agents             List the 5 role agents\n/war <message>      Route to best role agent\n/war comms: ...     Force role (main/comms/content/ops/research)\n/mem                Memory stats\n/mem pinned         Pinned memories\n/mem insights       Recent insights\n/mem hive [role]    Hive mind (optional role filter)\n/pinmem key=value   Save persistent memory\n/wqueue             Queue stats\n/forget [role]      Reset multi-turn session (role or all)\n/dashboard          Get the war-room dashboard URL\n/pin <code>         Unlock (if PIN set)\n\nTip: any plain message is treated as /war <message>.\nRuns on your Claude Code subscription — no API cost.'
+#   STR: 'handle'
+#   STR: 'main'
+#   STR: '__main__'
+
+## TOP-LEVEL DISASSEMBLY:
+  2           0 LOAD_CONST               0 ('claudeclaw standalone bot runner — @claudette21bot.\n\nThis is the war room\'s dedicated Telegram bot. Separate from the main\nAntigravity `telegram_bot.py` so they coexist without stepping on each\nother\'s long-poller.\n\nCommands:\n    /start                  welcome\n    /help                   command list\n    /agents                 list role agents\n    /war <msg>              route to best role agent (rule or LLM)\n    /war comms: <msg>       force a specific role\n    /mem [sub]              memory viewer (stats | pinned | insights | hive [role])\n    /pinmem key=value       save persistent pinned memory\n    /wqueue                 queue stats\n    /pin <code>             unlock (if CLAUDECLAW_PIN is set)\n    (free text)             same as /war <text>\n\nAuth: uses your Claude Code subscription via claude-agent-sdk. No API cost.\n\nUsage:\n    cd "C:/Users/mario/.gemini/antigravity/tools/execution"\n    python -m claudeclaw.run\n')
+              2 STORE_NAME               0 (__doc__)
+
+ 27           4 LOAD_CONST               1 (0)
+              6 LOAD_CONST               2 (None)
+              8 IMPORT_NAME              1 (json)
+             10 STORE_NAME               1 (json)
+
+ 28          12 LOAD_CONST               1 (0)
+             14 LOAD_CONST               2 (None)
+             16 IMPORT_NAME              2 (os)
+             18 STORE_NAME               2 (os)
+
+ 29          20 LOAD_CONST               1 (0)
+             22 LOAD_CONST               2 (None)
+             24 IMPORT_NAME              3 (sys)
+             26 STORE_NAME               3 (sys)
+
+ 30          28 LOAD_CONST               1 (0)
+             30 LOAD_CONST               2 (None)
+             32 IMPORT_NAME              4 (time)
+             34 STORE_NAME               4 (time)
+
+ 31          36 LOAD_CONST               1 (0)
+             38 LOAD_CONST               2 (None)
+             40 IMPORT_NAME              5 (traceback)
+             42 STORE_NAME               5 (traceback)
+
+ 32          44 LOAD_CONST               1 (0)
+             46 LOAD_CONST               2 (None)
+             48 IMPORT_NAME              6 (urllib.error)
+             50 STORE_NAME               7 (urllib)
+
+ 33          52 LOAD_CONST               1 (0)
+             54 LOAD_CONST               2 (None)
+             56 IMPORT_NAME              8 (urllib.parse)
+             58 STORE_NAME               7 (urllib)
+
+ 34          60 LOAD_CONST               1 (0)
+             62 LOAD_CONST               2 (None)
+             64 IMPORT_NAME              9 (urllib.request)
+             66 STORE_NAME               7 (urllib)
+
+ 35          68 LOAD_CONST               1 (0)
+             70 LOAD_CONST               3 (('Path',))
+             72 IMPORT_NAME             10 (pathlib)
+             74 IMPORT_FROM             11 (Path)
+             76 STORE_NAME              11 (Path)
+             78 POP_TOP
+
+ 37          80 LOAD_NAME               12 (hasattr)
+             82 LOAD_NAME                3 (sys)
+             84 LOAD_ATTR               13 (stdout)
+             86 LOAD_CONST               4 ('reconfigure')
+             88 CALL_FUNCTION            2
+             90 POP_JUMP_IF_FALSE       54 (to 108)
+
+ 38          92 LOAD_NAME                3 (sys)
+             94 LOAD_ATTR               13 (stdout)
+             96 LOAD_ATTR               14 (reconfigure)
+             98 LOAD_CONST               5 ('utf-8')
+            100 LOAD_CONST               6 ('replace')
+            102 LOAD_CONST               7 (('encoding', 'errors'))
+            104 CALL_FUNCTION_KW         2
+            106 POP_TOP
+
+ 40     >>  108 LOAD_CONST               8 (1)
+            110 LOAD_CONST               9 (('api', 'bridge', 'tunnel'))
+            112 IMPORT_NAME             15
+            114 IMPORT_FROM             16 (api)
+            116 STORE_NAME              16 (api)
+            118 IMPORT_FROM             17 (bridge)
+            120 STORE_NAME              17 (bridge)
+            122 IMPORT_FROM             18 (tunnel)
+            124 STORE_NAME              18 (tunnel)
+            126 POP_TOP
+
+ 43         128 LOAD_NAME               11 (Path)
+            130 LOAD_NAME               19 (__file__)
+            132 CALL_FUNCTION            1
+            134 LOAD_ATTR               20 (parent)
+            136 LOAD_ATTR               20 (parent)
+            138 LOAD_ATTR               20 (parent)
+            140 LOAD_ATTR               20 (parent)
+            142 LOAD_CONST              10 ('scratch')
+            144 BINARY_TRUE_DIVIDE
+            146 LOAD_CONST              11 ('gravity-claw')
+            148 BINARY_TRUE_DIVIDE
+            150 LOAD_CONST              12 ('.env')
+            152 BINARY_TRUE_DIVIDE
+            154 STORE_NAME              21 (ENV_PATH)
+
+ 46         156 LOAD_CONST              13 ('return')
+            158 LOAD_NAME               22 (dict)
+            160 BUILD_TUPLE              2
+            162 LOAD_CONST              14 (<code object _load_env at 0x0000021CBF4B3EC0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 46>)
+            164 LOAD_CONST              15 ('_load_env')
+            166 MAKE_FUNCTION            4 (annotations)
+            168 STORE_NAME              23 (_load_env)
+
+ 59         170 LOAD_NAME               23 (_load_env)
+            172 CALL_FUNCTION            0
+            174 STORE_NAME              24 (_env)
+
+ 60         176 LOAD_NAME               24 (_env)
+            178 LOAD_METHOD             25 (get)
+            180 LOAD_CONST              16 ('CLAUDECLAW_BOT_TOKEN')
+            182 CALL_METHOD              1
+            184 JUMP_IF_TRUE_OR_POP     99 (to 198)
+            186 LOAD_NAME                2 (os)
+            188 LOAD_ATTR               26 (environ)
+            190 LOAD_METHOD             25 (get)
+            192 LOAD_CONST              16 ('CLAUDECLAW_BOT_TOKEN')
+            194 LOAD_CONST              17 ('')
+            196 CALL_METHOD              2
+        >>  198 STORE_NAME              27 (TOKEN)
+
+ 61         200 LOAD_NAME               27 (TOKEN)
+            202 POP_JUMP_IF_TRUE       107 (to 214)
+
+ 62         204 LOAD_NAME                3 (sys)
+            206 LOAD_METHOD             28 (exit)
+            208 LOAD_CONST              18 ('ERROR: CLAUDECLAW_BOT_TOKEN not found in gravity-claw/.env')
+            210 CALL_METHOD              1
+            212 POP_TOP
+
+ 64     >>  214 LOAD_CONST              19 ('https://api.telegram.org/bot')
+            216 LOAD_NAME               27 (TOKEN)
+            218 FORMAT_VALUE             0
+            220 BUILD_STRING             2
+            222 STORE_NAME              29 (BASE)
+
+ 68         224 LOAD_CONST              20 ('method')
+            226 LOAD_NAME               30 (str)
+            228 LOAD_CONST              21 ('payload')
+            230 LOAD_NAME               22 (dict)
+            232 LOAD_CONST              13 ('return')
+            234 LOAD_NAME               22 (dict)
+            236 BUILD_TUPLE              6
+            238 LOAD_CONST              22 (<code object _tg at 0x0000021CBF4B24A0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 68>)
+            240 LOAD_CONST              23 ('_tg')
+            242 MAKE_FUNCTION            4 (annotations)
+            244 STORE_NAME              31 (_tg)
+
+ 80         246 LOAD_CONST              24 ('chat_id')
+            248 LOAD_NAME               30 (str)
+            250 LOAD_CONST              25 ('text')
+            252 LOAD_NAME               30 (str)
+            254 LOAD_CONST              13 ('return')
+            256 LOAD_CONST               2 (None)
+            258 BUILD_TUPLE              6
+            260 LOAD_CONST              26 (<code object send at 0x0000021CBF4B3D60, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 80>)
+            262 LOAD_CONST              27 ('send')
+            264 MAKE_FUNCTION            4 (annotations)
+            266 STORE_NAME              32 (send)
+
+ 86         268 LOAD_CONST              28 ('offset')
+            270 LOAD_NAME               33 (int)
+            272 LOAD_CONST              13 ('return')
+            274 LOAD_NAME               34 (list)
+            276 BUILD_TUPLE              4
+            278 LOAD_CONST              29 (<code object get_updates at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 86>)
+            280 LOAD_CONST              30 ('get_updates')
+            282 MAKE_FUNCTION            4 (annotations)
+            284 STORE_NAME              35 (get_updates)
+
+ 93         286 LOAD_CONST              31 ('🤖 claudeclaw war room — @claudette21bot\n\n/agents             List the 5 role agents\n/war <message>      Route to best role agent\n/war comms: ...     Force role (main/comms/content/ops/research)\n/mem                Memory stats\n/mem pinned         Pinned memories\n/mem insights       Recent insights\n/mem hive [role]    Hive mind (optional role filter)\n/pinmem key=value   Save persistent memory\n/wqueue             Queue stats\n/forget [role]      Reset multi-turn session (role or all)\n/dashboard          Get the war-room dashboard URL\n/pin <code>         Unlock (if PIN set)\n\nTip: any plain message is treated as /war <message>.\nRuns on your Claude Code subscription — no API cost.')
+
+ 92         288 STORE_NAME              36 (HELP_TEXT)
+
+111         290 LOAD_CONST              24 ('chat_id')
+            292 LOAD_NAME               30 (str)
+            294 LOAD_CONST              25 ('text')
+            296 LOAD_NAME               30 (str)
+            298 LOAD_CONST              13 ('return')
+            300 LOAD_CONST               2 (None)
+            302 BUILD_TUPLE              6
+            304 LOAD_CONST              32 (<code object handle at 0x0000021CBF12FCB0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 111>)
+            306 LOAD_CONST              33 ('handle')
+            308 MAKE_FUNCTION            4 (annotations)
+            310 STORE_NAME              37 (handle)
+
+179         312 LOAD_CONST              37 (('return', None))
+            314 LOAD_CONST              34 (<code object main at 0x0000021CBF12FAA0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 179>)
+            316 LOAD_CONST              35 ('main')
+            318 MAKE_FUNCTION            4 (annotations)
+            320 STORE_NAME              38 (main)
+
+217         322 LOAD_NAME               39 (__name__)
+            324 LOAD_CONST              36 ('__main__')
+            326 COMPARE_OP               2 (==)
+            328 POP_JUMP_IF_FALSE      170 (to 340)
+
+218         330 LOAD_NAME               38 (main)
+            332 CALL_FUNCTION            0
+            334 POP_TOP
+            336 LOAD_CONST               2 (None)
+            338 RETURN_VALUE
+
+217     >>  340 LOAD_CONST               2 (None)
+            342 RETURN_VALUE
+
+Disassembly of <code object _load_env at 0x0000021CBF4B3EC0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 46>:
+ 47           0 BUILD_MAP                0
+              2 STORE_FAST               0 (env)
+
+ 48           4 SETUP_FINALLY           49 (to 104)
+
+ 49           6 LOAD_GLOBAL              0 (ENV_PATH)
+              8 LOAD_ATTR                1 (read_text)
+             10 LOAD_CONST               1 ('utf-8')
+             12 LOAD_CONST               2 (('encoding',))
+             14 CALL_FUNCTION_KW         1
+             16 LOAD_METHOD              2 (splitlines)
+             18 CALL_METHOD              0
+             20 GET_ITER
+        >>   22 FOR_ITER                37 (to 98)
+             24 STORE_FAST               1 (line)
+
+ 50          26 LOAD_FAST                1 (line)
+             28 LOAD_METHOD              3 (strip)
+             30 CALL_METHOD              0
+             32 STORE_FAST               1 (line)
+
+ 51          34 LOAD_CONST               3 ('=')
+             36 LOAD_FAST                1 (line)
+             38 CONTAINS_OP              0
+             40 POP_JUMP_IF_FALSE       48 (to 96)
+             42 LOAD_FAST                1 (line)
+             44 LOAD_METHOD              4 (startswith)
+             46 LOAD_CONST               4 ('#')
+             48 CALL_METHOD              1
+             50 POP_JUMP_IF_TRUE        48 (to 96)
+
+ 52          52 LOAD_FAST                1 (line)
+             54 LOAD_METHOD              5 (partition)
+             56 LOAD_CONST               3 ('=')
+             58 CALL_METHOD              1
+             60 UNPACK_SEQUENCE          3
+             62 STORE_FAST               2 (k)
+             64 STORE_FAST               3 (_)
+             66 STORE_FAST               4 (v)
+
+ 53          68 LOAD_FAST                4 (v)
+             70 LOAD_METHOD              3 (strip)
+             72 CALL_METHOD              0
+             74 LOAD_METHOD              3 (strip)
+             76 LOAD_CONST               5 ('"')
+             78 CALL_METHOD              1
+             80 LOAD_METHOD              3 (strip)
+             82 LOAD_CONST               6 ("'")
+             84 CALL_METHOD              1
+             86 LOAD_FAST                0 (env)
+             88 LOAD_FAST                2 (k)
+             90 LOAD_METHOD              3 (strip)
+             92 CALL_METHOD              0
+             94 STORE_SUBSCR
+        >>   96 JUMP_ABSOLUTE           11 (to 22)
+
+ 49     >>   98 POP_BLOCK
+
+ 56         100 LOAD_FAST                0 (env)
+            102 RETURN_VALUE
+
+ 54     >>  104 DUP_TOP
+            106 LOAD_GLOBAL              6 (FileNotFoundError)
+            108 JUMP_IF_NOT_EXC_MATCH    61 (to 122)
+            110 POP_TOP
+            112 POP_TOP
+            114 POP_TOP
+
+ 55         116 POP_EXCEPT
+
+ 56         118 LOAD_FAST                0 (env)
+            120 RETURN_VALUE
+
+ 54     >>  122 RERAISE                  0
+
+Disassembly of <code object _tg at 0x0000021CBF4B24A0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 68>:
+ 69           0 LOAD_GLOBAL              0 (urllib)
+              2 LOAD_ATTR                1 (parse)
+              4 LOAD_METHOD              2 (urlencode)
+              6 LOAD_FAST                1 (payload)
+              8 CALL_METHOD              1
+             10 LOAD_METHOD              3 (encode)
+             12 CALL_METHOD              0
+             14 STORE_FAST               2 (data)
+
+ 70          16 LOAD_GLOBAL              0 (urllib)
+             18 LOAD_ATTR                4 (request)
+             20 LOAD_ATTR                5 (Request)
+             22 LOAD_GLOBAL              6 (BASE)
+             24 FORMAT_VALUE             0
+             26 LOAD_CONST               1 ('/')
+             28 LOAD_FAST                0 (method)
+             30 FORMAT_VALUE             0
+             32 BUILD_STRING             3
+             34 LOAD_FAST                2 (data)
+             36 LOAD_CONST               2 (('data',))
+             38 CALL_FUNCTION_KW         2
+             40 STORE_FAST               3 (req)
+
+ 71          42 SETUP_FINALLY           16 (to 76)
+
+ 72          44 LOAD_GLOBAL              0 (urllib)
+             46 LOAD_ATTR                4 (request)
+             48 LOAD_ATTR                7 (urlopen)
+             50 LOAD_FAST                3 (req)
+             52 LOAD_CONST               3 (35)
+             54 LOAD_CONST               4 (('timeout',))
+             56 CALL_FUNCTION_KW         2
+             58 STORE_FAST               4 (resp)
+
+ 73          60 LOAD_GLOBAL              8 (json)
+             62 LOAD_METHOD              9 (loads)
+             64 LOAD_FAST                4 (resp)
+             66 LOAD_METHOD             10 (read)
+             68 CALL_METHOD              0
+             70 CALL_METHOD              1
+             72 POP_BLOCK
+             74 RETURN_VALUE
+
+ 74     >>   76 DUP_TOP
+             78 LOAD_GLOBAL              0 (urllib)
+             80 LOAD_ATTR               11 (error)
+             82 LOAD_ATTR               12 (HTTPError)
+             84 JUMP_IF_NOT_EXC_MATCH    66 (to 132)
+             86 POP_TOP
+             88 STORE_FAST               5 (e)
+             90 POP_TOP
+             92 SETUP_FINALLY           15 (to 124)
+
+ 75          94 LOAD_CONST               5 (False)
+             96 LOAD_FAST                5 (e)
+             98 LOAD_METHOD             10 (read)
+            100 CALL_METHOD              0
+            102 LOAD_METHOD             13 (decode)
+            104 CALL_METHOD              0
+            106 LOAD_CONST               6 (('ok', 'error'))
+            108 BUILD_CONST_KEY_MAP      2
+            110 POP_BLOCK
+            112 ROT_FOUR
+            114 POP_EXCEPT
+            116 LOAD_CONST               0 (None)
+            118 STORE_FAST               5 (e)
+            120 DELETE_FAST              5 (e)
+            122 RETURN_VALUE
+        >>  124 LOAD_CONST               0 (None)
+            126 STORE_FAST               5 (e)
+            128 DELETE_FAST              5 (e)
+            130 RERAISE                  1
+
+ 76     >>  132 DUP_TOP
+            134 LOAD_GLOBAL             14 (Exception)
+            136 JUMP_IF_NOT_EXC_MATCH    90 (to 180)
+            138 POP_TOP
+            140 STORE_FAST               5 (e)
+            142 POP_TOP
+            144 SETUP_FINALLY           13 (to 172)
+
+ 77         146 LOAD_CONST               5 (False)
+            148 LOAD_GLOBAL             15 (str)
+            150 LOAD_FAST                5 (e)
+            152 CALL_FUNCTION            1
+            154 LOAD_CONST               6 (('ok', 'error'))
+            156 BUILD_CONST_KEY_MAP      2
+            158 POP_BLOCK
+            160 ROT_FOUR
+            162 POP_EXCEPT
+            164 LOAD_CONST               0 (None)
+            166 STORE_FAST               5 (e)
+            168 DELETE_FAST              5 (e)
+            170 RETURN_VALUE
+        >>  172 LOAD_CONST               0 (None)
+            174 STORE_FAST               5 (e)
+            176 DELETE_FAST              5 (e)
+            178 RERAISE                  1
+
+ 76     >>  180 RERAISE                  0
+
+Disassembly of <code object send at 0x0000021CBF4B3D60, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 80>:
+ 81           0 LOAD_FAST                1 (text)
+              2 JUMP_IF_TRUE_OR_POP      3 (to 6)
+              4 LOAD_CONST               1 ('(empty)')
+        >>    6 STORE_FAST               1 (text)
+
+ 82           8 LOAD_GLOBAL              0 (range)
+             10 LOAD_CONST               2 (0)
+             12 LOAD_GLOBAL              1 (max)
+             14 LOAD_GLOBAL              2 (len)
+             16 LOAD_FAST                1 (text)
+             18 CALL_FUNCTION            1
+             20 LOAD_CONST               3 (1)
+             22 CALL_FUNCTION            2
+             24 LOAD_CONST               4 (4096)
+             26 CALL_FUNCTION            3
+             28 GET_ITER
+        >>   30 FOR_ITER                16 (to 64)
+             32 STORE_FAST               2 (i)
+
+ 83          34 LOAD_GLOBAL              3 (_tg)
+             36 LOAD_CONST               5 ('sendMessage')
+             38 LOAD_FAST                0 (chat_id)
+             40 LOAD_FAST                1 (text)
+             42 LOAD_FAST                2 (i)
+             44 LOAD_FAST                2 (i)
+             46 LOAD_CONST               4 (4096)
+             48 BINARY_ADD
+             50 BUILD_SLICE              2
+             52 BINARY_SUBSCR
+             54 LOAD_CONST               6 (('chat_id', 'text'))
+             56 BUILD_CONST_KEY_MAP      2
+             58 CALL_FUNCTION            2
+             60 POP_TOP
+             62 JUMP_ABSOLUTE           15 (to 30)
+
+ 82     >>   64 LOAD_CONST               0 (None)
+             66 RETURN_VALUE
+
+Disassembly of <code object get_updates at 0x0000021CBF4B3890, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 86>:
+ 87           0 LOAD_GLOBAL              0 (_tg)
+              2 LOAD_CONST               1 ('getUpdates')
+              4 LOAD_FAST                0 (offset)
+              6 LOAD_CONST               2 (25)
+              8 LOAD_CONST               3 (10)
+             10 LOAD_CONST               4 (('offset', 'timeout', 'limit'))
+             12 BUILD_CONST_KEY_MAP      3
+             14 CALL_FUNCTION            2
+             16 STORE_FAST               1 (result)
+
+ 88          18 LOAD_FAST                1 (result)
+             20 LOAD_METHOD              1 (get)
+             22 LOAD_CONST               5 ('ok')
+             24 CALL_METHOD              1
+             26 POP_JUMP_IF_FALSE       20 (to 40)
+             28 LOAD_FAST                1 (result)
+             30 LOAD_METHOD              1 (get)
+             32 LOAD_CONST               6 ('result')
+             34 BUILD_LIST               0
+             36 CALL_METHOD              2
+             38 RETURN_VALUE
+        >>   40 BUILD_LIST               0
+             42 RETURN_VALUE
+
+Disassembly of <code object handle at 0x0000021CBF12FCB0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 111>:
+112           0 LOAD_FAST                1 (text)
+              2 LOAD_METHOD              0 (strip)
+              4 CALL_METHOD              0
+              6 STORE_FAST               1 (text)
+
+113           8 LOAD_FAST                1 (text)
+             10 POP_JUMP_IF_FALSE       14 (to 28)
+             12 LOAD_FAST                1 (text)
+             14 LOAD_METHOD              1 (split)
+             16 CALL_METHOD              0
+             18 LOAD_CONST               1 (0)
+             20 BINARY_SUBSCR
+             22 LOAD_METHOD              2 (lower)
+             24 CALL_METHOD              0
+             26 JUMP_FORWARD             1 (to 30)
+        >>   28 LOAD_CONST               2 ('')
+        >>   30 STORE_FAST               2 (first)
+
+115          32 LOAD_FAST                2 (first)
+             34 LOAD_CONST               3 (('/start', '/help'))
+             36 CONTAINS_OP              0
+             38 POP_JUMP_IF_FALSE       27 (to 54)
+
+116          40 LOAD_GLOBAL              3 (send)
+             42 LOAD_FAST                0 (chat_id)
+             44 LOAD_GLOBAL              4 (HELP_TEXT)
+             46 CALL_FUNCTION            2
+             48 POP_TOP
+
+117          50 LOAD_CONST               0 (None)
+             52 RETURN_VALUE
+
+119     >>   54 LOAD_FAST                2 (first)
+             56 LOAD_CONST               4 ('/agents')
+             58 COMPARE_OP               2 (==)
+             60 POP_JUMP_IF_FALSE       41 (to 82)
+
+120          62 LOAD_GLOBAL              3 (send)
+             64 LOAD_FAST                0 (chat_id)
+             66 LOAD_GLOBAL              5 (bridge)
+             68 LOAD_METHOD              6 (handle_agents_command)
+             70 LOAD_FAST                0 (chat_id)
+             72 CALL_METHOD              1
+             74 CALL_FUNCTION            2
+             76 POP_TOP
+
+121          78 LOAD_CONST               0 (None)
+             80 RETURN_VALUE
+
+123     >>   82 LOAD_FAST                2 (first)
+             84 LOAD_CONST               5 ('/mem')
+             86 COMPARE_OP               2 (==)
+             88 POP_JUMP_IF_FALSE       66 (to 132)
+
+124          90 LOAD_FAST                1 (text)
+             92 LOAD_GLOBAL              7 (len)
+             94 LOAD_CONST               5 ('/mem')
+             96 CALL_FUNCTION            1
+             98 LOAD_CONST               0 (None)
+            100 BUILD_SLICE              2
+            102 BINARY_SUBSCR
+            104 LOAD_METHOD              0 (strip)
+            106 CALL_METHOD              0
+            108 STORE_FAST               3 (args)
+
+125         110 LOAD_GLOBAL              3 (send)
+            112 LOAD_FAST                0 (chat_id)
+            114 LOAD_GLOBAL              5 (bridge)
+            116 LOAD_METHOD              8 (handle_mem_command)
+            118 LOAD_FAST                0 (chat_id)
+            120 LOAD_FAST                3 (args)
+            122 CALL_METHOD              2
+            124 CALL_FUNCTION            2
+            126 POP_TOP
+
+126         128 LOAD_CONST               0 (None)
+            130 RETURN_VALUE
+
+128     >>  132 LOAD_FAST                2 (first)
+            134 LOAD_CONST               6 ('/pinmem')
+            136 COMPARE_OP               2 (==)
+            138 POP_JUMP_IF_FALSE       91 (to 182)
+
+129         140 LOAD_FAST                1 (text)
+            142 LOAD_GLOBAL              7 (len)
+            144 LOAD_CONST               6 ('/pinmem')
+            146 CALL_FUNCTION            1
+            148 LOAD_CONST               0 (None)
+            150 BUILD_SLICE              2
+            152 BINARY_SUBSCR
+            154 LOAD_METHOD              0 (strip)
+            156 CALL_METHOD              0
+            158 STORE_FAST               3 (args)
+
+130         160 LOAD_GLOBAL              3 (send)
+            162 LOAD_FAST                0 (chat_id)
+            164 LOAD_GLOBAL              5 (bridge)
+            166 LOAD_METHOD              9 (handle_pin_value_command)
+            168 LOAD_FAST                0 (chat_id)
+            170 LOAD_FAST                3 (args)
+            172 CALL_METHOD              2
+            174 CALL_FUNCTION            2
+            176 POP_TOP
+
+131         178 LOAD_CONST               0 (None)
+            180 RETURN_VALUE
+
+133     >>  182 LOAD_FAST                2 (first)
+            184 LOAD_CONST               7 ('/wqueue')
+            186 COMPARE_OP               2 (==)
+            188 POP_JUMP_IF_FALSE      105 (to 210)
+
+134         190 LOAD_GLOBAL              3 (send)
+            192 LOAD_FAST                0 (chat_id)
+            194 LOAD_GLOBAL              5 (bridge)
+            196 LOAD_METHOD             10 (handle_queue_command)
+            198 LOAD_FAST                0 (chat_id)
+            200 CALL_METHOD              1
+            202 CALL_FUNCTION            2
+            204 POP_TOP
+
+135         206 LOAD_CONST               0 (None)
+            208 RETURN_VALUE
+
+137     >>  210 LOAD_FAST                2 (first)
+            212 LOAD_CONST               8 ('/forget')
+            214 COMPARE_OP               2 (==)
+            216 POP_JUMP_IF_FALSE      130 (to 260)
+
+138         218 LOAD_FAST                1 (text)
+            220 LOAD_GLOBAL              7 (len)
+            222 LOAD_CONST               8 ('/forget')
+            224 CALL_FUNCTION            1
+            226 LOAD_CONST               0 (None)
+            228 BUILD_SLICE              2
+            230 BINARY_SUBSCR
+            232 LOAD_METHOD              0 (strip)
+            234 CALL_METHOD              0
+            236 STORE_FAST               3 (args)
+
+139         238 LOAD_GLOBAL              3 (send)
+            240 LOAD_FAST                0 (chat_id)
+            242 LOAD_GLOBAL              5 (bridge)
+            244 LOAD_METHOD             11 (handle_forget_command)
+            246 LOAD_FAST                0 (chat_id)
+            248 LOAD_FAST                3 (args)
+            250 CALL_METHOD              2
+            252 CALL_FUNCTION            2
+            254 POP_TOP
+
+140         256 LOAD_CONST               0 (None)
+            258 RETURN_VALUE
+
+142     >>  260 LOAD_FAST                2 (first)
+            262 LOAD_CONST               9 ('/dashboard')
+            264 COMPARE_OP               2 (==)
+            266 POP_JUMP_IF_FALSE      183 (to 366)
+
+143         268 LOAD_GLOBAL              5 (bridge)
+            270 LOAD_METHOD             12 (is_allowed)
+            272 LOAD_FAST                0 (chat_id)
+            274 CALL_METHOD              1
+            276 POP_JUMP_IF_TRUE       146 (to 292)
+
+144         278 LOAD_GLOBAL              3 (send)
+            280 LOAD_FAST                0 (chat_id)
+            282 LOAD_CONST              10 ('⛔ Not authorized.')
+            284 CALL_FUNCTION            2
+            286 POP_TOP
+
+145         288 LOAD_CONST               0 (None)
+            290 RETURN_VALUE
+
+146     >>  292 LOAD_GLOBAL             13 (tunnel)
+            294 LOAD_ATTR               14 (current_url)
+            296 LOAD_CONST              11 (3.0)
+            298 LOAD_CONST              12 (('wait_seconds',))
+            300 CALL_FUNCTION_KW         1
+            302 STORE_FAST               4 (url)
+
+147         304 LOAD_FAST                4 (url)
+            306 POP_JUMP_IF_FALSE      165 (to 330)
+
+148         308 LOAD_GLOBAL              3 (send)
+            310 LOAD_FAST                0 (chat_id)
+            312 LOAD_CONST              13 ('🖥 War room dashboard:\n')
+            314 LOAD_FAST                4 (url)
+            316 FORMAT_VALUE             0
+            318 LOAD_CONST              14 ('/war-room\n\n(Quick tunnel — URL changes on restart.)')
+            320 BUILD_STRING             3
+            322 CALL_FUNCTION            2
+            324 POP_TOP
+
+157         326 LOAD_CONST               0 (None)
+            328 RETURN_VALUE
+
+149     >>  330 LOAD_GLOBAL             13 (tunnel)
+            332 LOAD_METHOD             15 (is_running)
+            334 CALL_METHOD              0
+            336 POP_JUMP_IF_FALSE      176 (to 352)
+
+150         338 LOAD_GLOBAL              3 (send)
+            340 LOAD_FAST                0 (chat_id)
+            342 LOAD_CONST              15 ('⏳ Tunnel starting — try again in a few seconds.')
+            344 CALL_FUNCTION            2
+            346 POP_TOP
+
+157         348 LOAD_CONST               0 (None)
+            350 RETURN_VALUE
+
+152     >>  352 LOAD_GLOBAL              3 (send)
+            354 LOAD_FAST                0 (chat_id)
+
+153         356 LOAD_CONST              16 ('❌ Tunnel not running.\nLocal URL: http://localhost:3001/war-room\nInstall: winget install Cloudflare.cloudflared')
+
+152         358 CALL_FUNCTION            2
+            360 POP_TOP
+
+157         362 LOAD_CONST               0 (None)
+            364 RETURN_VALUE
+
+159     >>  366 LOAD_FAST                2 (first)
+            368 LOAD_CONST              17 ('/pin')
+            370 COMPARE_OP               2 (==)
+            372 POP_JUMP_IF_FALSE      198 (to 396)
+
+161         374 LOAD_GLOBAL              3 (send)
+            376 LOAD_FAST                0 (chat_id)
+            378 LOAD_GLOBAL              5 (bridge)
+            380 LOAD_METHOD             16 (handle_war_message)
+            382 LOAD_FAST                0 (chat_id)
+            384 LOAD_FAST                1 (text)
+            386 CALL_METHOD              2
+            388 CALL_FUNCTION            2
+            390 POP_TOP
+
+162         392 LOAD_CONST               0 (None)
+            394 RETURN_VALUE
+
+164     >>  396 LOAD_FAST                2 (first)
+            398 LOAD_CONST              18 ('/war')
+            400 COMPARE_OP               2 (==)
+            402 POP_JUMP_IF_FALSE      237 (to 474)
+
+165         404 LOAD_FAST                1 (text)
+            406 LOAD_GLOBAL              7 (len)
+            408 LOAD_CONST              18 ('/war')
+            410 CALL_FUNCTION            1
+            412 LOAD_CONST               0 (None)
+            414 BUILD_SLICE              2
+            416 BINARY_SUBSCR
+            418 LOAD_METHOD              0 (strip)
+            420 CALL_METHOD              0
+            422 STORE_FAST               5 (msg)
+
+166         424 LOAD_FAST                5 (msg)
+            426 POP_JUMP_IF_TRUE       221 (to 442)
+
+167         428 LOAD_GLOBAL              3 (send)
+            430 LOAD_FAST                0 (chat_id)
+            432 LOAD_CONST              19 ("Usage: /war <message>\nExamples:\n  /war what's on my plate today?\n  /war comms: draft email to Juan\n  /war research: top complaints in Island Arcade reviews")
+            434 CALL_FUNCTION            2
+            436 POP_TOP
+
+168         438 LOAD_CONST               0 (None)
+            440 RETURN_VALUE
+
+169     >>  442 LOAD_GLOBAL              3 (send)
+            444 LOAD_FAST                0 (chat_id)
+            446 LOAD_CONST              20 ('🧠 War room thinking...')
+            448 CALL_FUNCTION            2
+            450 POP_TOP
+
+170         452 LOAD_GLOBAL              3 (send)
+            454 LOAD_FAST                0 (chat_id)
+            456 LOAD_GLOBAL              5 (bridge)
+            458 LOAD_METHOD             16 (handle_war_message)
+            460 LOAD_FAST                0 (chat_id)
+            462 LOAD_FAST                5 (msg)
+            464 CALL_METHOD              2
+            466 CALL_FUNCTION            2
+            468 POP_TOP
+
+171         470 LOAD_CONST               0 (None)
+            472 RETURN_VALUE
+
+174     >>  474 LOAD_GLOBAL              3 (send)
+            476 LOAD_FAST                0 (chat_id)
+            478 LOAD_CONST              20 ('🧠 War room thinking...')
+            480 CALL_FUNCTION            2
+            482 POP_TOP
+
+175         484 LOAD_GLOBAL              3 (send)
+            486 LOAD_FAST                0 (chat_id)
+            488 LOAD_GLOBAL              5 (bridge)
+            490 LOAD_METHOD             16 (handle_war_message)
+            492 LOAD_FAST                0 (chat_id)
+            494 LOAD_FAST                1 (text)
+            496 CALL_METHOD              2
+            498 CALL_FUNCTION            2
+            500 POP_TOP
+            502 LOAD_CONST               0 (None)
+            504 RETURN_VALUE
+
+Disassembly of <code object main at 0x0000021CBF12FAA0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\run.py", line 179>:
+180           0 LOAD_GLOBAL              0 (print)
+              2 LOAD_CONST               1 ('Starting claudeclaw bot (@claudette21bot)...')
+              4 CALL_FUNCTION            1
+              6 POP_TOP
+
+181           8 LOAD_GLOBAL              0 (print)
+             10 LOAD_CONST               2 ('Allowlist: ')
+             12 LOAD_GLOBAL              1 (bridge)
+             14 LOAD_ATTR                2 (ALLOWED_IDS)
+             16 FORMAT_VALUE             0
+             18 BUILD_STRING             2
+             20 CALL_FUNCTION            1
+             22 POP_TOP
+
+182          24 LOAD_GLOBAL              0 (print)
+             26 LOAD_CONST               3 ('PIN gate: ')
+             28 LOAD_GLOBAL              1 (bridge)
+             30 LOAD_ATTR                3 (PIN)
+             32 POP_JUMP_IF_FALSE       19 (to 38)
+             34 LOAD_CONST               4 ('ON')
+             36 JUMP_FORWARD             1 (to 40)
+        >>   38 LOAD_CONST               5 ('OFF')
+        >>   40 FORMAT_VALUE             0
+             42 BUILD_STRING             2
+             44 CALL_FUNCTION            1
+             46 POP_TOP
+
+183          48 LOAD_GLOBAL              4 (api)
+             50 LOAD_METHOD              5 (start)
+             52 CALL_METHOD              0
+             54 POP_TOP
+
+184          56 LOAD_GLOBAL              6 (tunnel)
+             58 LOAD_METHOD              5 (start)
+             60 CALL_METHOD              0
+             62 STORE_FAST               0 (bin_)
+
+185          64 LOAD_FAST                0 (bin_)
+             66 POP_JUMP_IF_FALSE       43 (to 86)
+
+186          68 LOAD_GLOBAL              0 (print)
+             70 LOAD_CONST               6 ('Tunnel starting via ')
+             72 LOAD_FAST                0 (bin_)
+             74 FORMAT_VALUE             0
+             76 LOAD_CONST               7 (' (URL will appear above in ~5s)')
+             78 BUILD_STRING             3
+             80 CALL_FUNCTION            1
+             82 POP_TOP
+             84 JUMP_FORWARD             4 (to 94)
+
+188     >>   86 LOAD_GLOBAL              0 (print)
+             88 LOAD_CONST               8 ('cloudflared not found — dashboard will only be local (http://localhost:3001/war-room)')
+             90 CALL_FUNCTION            1
+             92 POP_TOP
+
+189     >>   94 LOAD_GLOBAL              0 (print)
+             96 LOAD_CONST               9 ('Polling for updates. Ctrl-C to stop.')
+             98 CALL_FUNCTION            1
+            100 POP_TOP
+
+191         102 LOAD_CONST              10 (0)
+            104 STORE_FAST               1 (offset)
+
+192         106 NOP
+
+193     >>  108 SETUP_FINALLY           96 (to 302)
+
+194         110 LOAD_GLOBAL              7 (get_updates)
+            112 LOAD_FAST                1 (offset)
+            114 CALL_FUNCTION            1
+            116 STORE_FAST               2 (updates)
+
+195         118 LOAD_FAST                2 (updates)
+            120 GET_ITER
+        >>  122 FOR_ITER                87 (to 298)
+            124 STORE_FAST               3 (upd)
+
+196         126 LOAD_FAST                3 (upd)
+            128 LOAD_CONST              12 ('update_id')
+            130 BINARY_SUBSCR
+            132 LOAD_CONST              13 (1)
+            134 BINARY_ADD
+            136 STORE_FAST               1 (offset)
+
+197         138 LOAD_FAST                3 (upd)
+            140 LOAD_METHOD              8 (get)
+            142 LOAD_CONST              14 ('message')
+            144 CALL_METHOD              1
+            146 JUMP_IF_TRUE_OR_POP     78 (to 156)
+            148 LOAD_FAST                3 (upd)
+            150 LOAD_METHOD              8 (get)
+            152 LOAD_CONST              15 ('edited_message')
+            154 CALL_METHOD              1
+        >>  156 STORE_FAST               4 (msg)
+
+198         158 LOAD_FAST                4 (msg)
+            160 POP_JUMP_IF_TRUE        82 (to 164)
+
+199         162 JUMP_ABSOLUTE           61 (to 122)
+
+200     >>  164 LOAD_GLOBAL              9 (str)
+            166 LOAD_FAST                4 (msg)
+            168 LOAD_CONST              16 ('chat')
+            170 BINARY_SUBSCR
+            172 LOAD_CONST              17 ('id')
+            174 BINARY_SUBSCR
+            176 CALL_FUNCTION            1
+            178 STORE_FAST               5 (chat_id)
+
+201         180 LOAD_FAST                4 (msg)
+            182 LOAD_METHOD              8 (get)
+            184 LOAD_CONST              18 ('text')
+            186 LOAD_CONST              19 ('')
+            188 CALL_METHOD              2
+            190 STORE_FAST               6 (text)
+
+202         192 LOAD_FAST                6 (text)
+            194 POP_JUMP_IF_TRUE        99 (to 198)
+
+203         196 JUMP_ABSOLUTE           61 (to 122)
+
+204     >>  198 SETUP_FINALLY            7 (to 214)
+
+205         200 LOAD_GLOBAL             10 (handle)
+            202 LOAD_FAST                5 (chat_id)
+            204 LOAD_FAST                6 (text)
+            206 CALL_FUNCTION            2
+            208 POP_TOP
+            210 POP_BLOCK
+            212 JUMP_ABSOLUTE           61 (to 122)
+
+206     >>  214 DUP_TOP
+            216 LOAD_GLOBAL             11 (Exception)
+            218 JUMP_IF_NOT_EXC_MATCH   148 (to 296)
+            220 POP_TOP
+            222 STORE_FAST               7 (e)
+            224 POP_TOP
+            226 SETUP_FINALLY           30 (to 288)
+
+207         228 LOAD_GLOBAL             12 (traceback)
+            230 LOAD_METHOD             13 (print_exc)
+            232 CALL_METHOD              0
+            234 POP_TOP
+
+208         236 LOAD_GLOBAL             14 (send)
+            238 LOAD_FAST                5 (chat_id)
+            240 LOAD_CONST              20 ('❌ Internal error: ')
+            242 LOAD_GLOBAL             15 (type)
+            244 LOAD_FAST                7 (e)
+            246 CALL_FUNCTION            1
+            248 LOAD_ATTR               16 (__name__)
+            250 FORMAT_VALUE             0
+            252 LOAD_CONST              21 (': ')
+            254 LOAD_GLOBAL              9 (str)
+            256 LOAD_FAST                7 (e)
+            258 CALL_FUNCTION            1
+            260 LOAD_CONST               0 (None)
+            262 LOAD_CONST              22 (200)
+            264 BUILD_SLICE              2
+            266 BINARY_SUBSCR
+            268 FORMAT_VALUE             0
+            270 BUILD_STRING             4
+            272 CALL_FUNCTION            2
+            274 POP_TOP
+            276 POP_BLOCK
+            278 POP_EXCEPT
+            280 LOAD_CONST               0 (None)
+            282 STORE_FAST               7 (e)
+            284 DELETE_FAST              7 (e)
+            286 JUMP_ABSOLUTE           61 (to 122)
+        >>  288 LOAD_CONST               0 (None)
+            290 STORE_FAST               7 (e)
+            292 DELETE_FAST              7 (e)
+            294 RERAISE                  1
+
+206     >>  296 RERAISE                  0
+
+195     >>  298 POP_BLOCK
+            300 JUMP_FORWARD            43 (to 388)
+
+209     >>  302 DUP_TOP
+            304 LOAD_GLOBAL             17 (KeyboardInterrupt)
+            306 JUMP_IF_NOT_EXC_MATCH   164 (to 328)
+            308 POP_TOP
+            310 POP_TOP
+            312 POP_TOP
+
+210         314 LOAD_GLOBAL              0 (print)
+            316 LOAD_CONST              23 ('\nStopping.')
+            318 CALL_FUNCTION            1
+            320 POP_TOP
+
+211         322 POP_EXCEPT
+            324 LOAD_CONST               0 (None)
+            326 RETURN_VALUE
+
+212     >>  328 DUP_TOP
+            330 LOAD_GLOBAL             11 (Exception)
+            332 JUMP_IF_NOT_EXC_MATCH   193 (to 386)
+            334 POP_TOP
+            336 STORE_FAST               7 (e)
+            338 POP_TOP
+            340 SETUP_FINALLY           18 (to 378)
+
+213         342 LOAD_GLOBAL              0 (print)
+            344 LOAD_CONST              24 ('Poll error: ')
+            346 LOAD_FAST                7 (e)
+            348 FORMAT_VALUE             0
+            350 BUILD_STRING             2
+            352 CALL_FUNCTION            1
+            354 POP_TOP
+
+214         356 LOAD_GLOBAL             18 (time)
+            358 LOAD_METHOD             19 (sleep)
+            360 LOAD_CONST              25 (3)
+            362 CALL_METHOD              1
+            364 POP_TOP
+            366 POP_BLOCK
+            368 POP_EXCEPT
+            370 LOAD_CONST               0 (None)
+            372 STORE_FAST               7 (e)
+            374 DELETE_FAST              7 (e)
+            376 JUMP_FORWARD             5 (to 388)
+        >>  378 LOAD_CONST               0 (None)
+            380 STORE_FAST               7 (e)
+            382 DELETE_FAST              7 (e)
+            384 RERAISE                  1
+
+212     >>  386 RERAISE                  0
+
+192     >>  388 JUMP_ABSOLUTE           54 (to 108)
+
+
+## NESTED CODE OBJECTS:
+
+### def _load_env()  [argcount=0, locals=('env', 'line', 'k', '_', 'v')]
+# co_consts: ['None', "'utf-8'", "('encoding',)", "'='", "'#'", '\'"\'', '"\'"']
+# co_names:  ('ENV_PATH', 'read_text', 'splitlines', 'strip', 'startswith', 'partition', 'FileNotFoundError')
+ 47           0 BUILD_MAP                0
+              2 STORE_FAST               0 (env)
+
+ 48           4 SETUP_FINALLY           49 (to 104)
+
+ 49           6 LOAD_GLOBAL              0 (ENV_PATH)
+              8 LOAD_ATTR                1 (read_text)
+             10 LOAD_CONST               1 ('utf-8')
+             12 LOAD_CONST               2 (('encoding',))
+             14 CALL_FUNCTION_KW         1
+             16 LOAD_METHOD              2 (splitlines)
+             18 CALL_METHOD              0
+             20 GET_ITER
+        >>   22 FOR_ITER                37 (to 98)
+             24 STORE_FAST               1 (line)
+
+ 50          26 LOAD_FAST                1 (line)
+             28 LOAD_METHOD              3 (strip)
+             30 CALL_METHOD              0
+             32 STORE_FAST               1 (line)
+
+ 51          34 LOAD_CONST               3 ('=')
+             36 LOAD_FAST                1 (line)
+             38 CONTAINS_OP              0
+             40 POP_JUMP_IF_FALSE       48 (to 96)
+             42 LOAD_FAST                1 (line)
+             44 LOAD_METHOD              4 (startswith)
+             46 LOAD_CONST               4 ('#')
+             48 CALL_METHOD              1
+             50 POP_JUMP_IF_TRUE        48 (to 96)
+
+ 52          52 LOAD_FAST                1 (line)
+             54 LOAD_METHOD              5 (partition)
+             56 LOAD_CONST               3 ('=')
+             58 CALL_METHOD              1
+             60 UNPACK_SEQUENCE          3
+             62 STORE_FAST               2 (k)
+             64 STORE_FAST               3 (_)
+             66 STORE_FAST               4 (v)
+
+ 53          68 LOAD_FAST                4 (v)
+             70 LOAD_METHOD              3 (strip)
+             72 CALL_METHOD              0
+             74 LOAD_METHOD              3 (strip)
+             76 LOAD_CONST               5 ('"')
+             78 CALL_METHOD              1
+             80 LOAD_METHOD              3 (strip)
+             82 LOAD_CONST               6 ("'")
+             84 CALL_METHOD              1
+             86 LOAD_FAST                0 (env)
+             88 LOAD_FAST                2 (k)
+             90 LOAD_METHOD              3 (strip)
+             92 CALL_METHOD              0
+             94 STORE_SUBSCR
+        >>   96 JUMP_ABSOLUTE           11 (to 22)
+
+ 49     >>   98 POP_BLOCK
+
+ 56         100 LOAD_FAST                0 (env)
+            102 RETURN_VALUE
+
+ 54     >>  104 DUP_TOP
+            106 LOAD_GLOBAL              6 (FileNotFoundError)
+            108 JUMP_IF_NOT_EXC_MATCH    61 (to 122)
+            110 POP_TOP
+            112 POP_TOP
+            114 POP_TOP
+
+ 55         116 POP_EXCEPT
+
+ 56         118 LOAD_FAST                0 (env)
+            120 RETURN_VALUE
+
+ 54     >>  122 RERAISE                  0
+
+### def _tg(method, payload)  [argcount=2, locals=('method', 'payload', 'data', 'req', 'resp', 'e')]
+# co_consts: ['None', "'/'", "('data',)", '35', "('timeout',)", 'False', "('ok', 'error')"]
+# co_names:  ('urllib', 'parse', 'urlencode', 'encode', 'request', 'Request', 'BASE', 'urlopen', 'json', 'loads', 'read', 'error', 'HTTPError', 'decode', 'Exception', 'str')
+ 69           0 LOAD_GLOBAL              0 (urllib)
+              2 LOAD_ATTR                1 (parse)
+              4 LOAD_METHOD              2 (urlencode)
+              6 LOAD_FAST                1 (payload)
+              8 CALL_METHOD              1
+             10 LOAD_METHOD              3 (encode)
+             12 CALL_METHOD              0
+             14 STORE_FAST               2 (data)
+
+ 70          16 LOAD_GLOBAL              0 (urllib)
+             18 LOAD_ATTR                4 (request)
+             20 LOAD_ATTR                5 (Request)
+             22 LOAD_GLOBAL              6 (BASE)
+             24 FORMAT_VALUE             0
+             26 LOAD_CONST               1 ('/')
+             28 LOAD_FAST                0 (method)
+             30 FORMAT_VALUE             0
+             32 BUILD_STRING             3
+             34 LOAD_FAST                2 (data)
+             36 LOAD_CONST               2 (('data',))
+             38 CALL_FUNCTION_KW         2
+             40 STORE_FAST               3 (req)
+
+ 71          42 SETUP_FINALLY           16 (to 76)
+
+ 72          44 LOAD_GLOBAL              0 (urllib)
+             46 LOAD_ATTR                4 (request)
+             48 LOAD_ATTR                7 (urlopen)
+             50 LOAD_FAST                3 (req)
+             52 LOAD_CONST               3 (35)
+             54 LOAD_CONST               4 (('timeout',))
+             56 CALL_FUNCTION_KW         2
+             58 STORE_FAST               4 (resp)
+
+ 73          60 LOAD_GLOBAL              8 (json)
+             62 LOAD_METHOD              9 (loads)
+             64 LOAD_FAST                4 (resp)
+             66 LOAD_METHOD             10 (read)
+             68 CALL_METHOD              0
+             70 CALL_METHOD              1
+             72 POP_BLOCK
+             74 RETURN_VALUE
+
+ 74     >>   76 DUP_TOP
+             78 LOAD_GLOBAL              0 (urllib)
+             80 LOAD_ATTR               11 (error)
+             82 LOAD_ATTR               12 (HTTPError)
+             84 JUMP_IF_NOT_EXC_MATCH    66 (to 132)
+             86 POP_TOP
+             88 STORE_FAST               5 (e)
+             90 POP_TOP
+             92 SETUP_FINALLY           15 (to 124)
+
+ 75          94 LOAD_CONST               5 (False)
+             96 LOAD_FAST                5 (e)
+             98 LOAD_METHOD             10 (read)
+            100 CALL_METHOD              0
+            102 LOAD_METHOD             13 (decode)
+            104 CALL_METHOD              0
+            106 LOAD_CONST               6 (('ok', 'error'))
+            108 BUILD_CONST_KEY_MAP      2
+            110 POP_BLOCK
+            112 ROT_FOUR
+            114 POP_EXCEPT
+            116 LOAD_CONST               0 (None)
+            118 STORE_FAST               5 (e)
+            120 DELETE_FAST              5 (e)
+            122 RETURN_VALUE
+        >>  124 LOAD_CONST               0 (None)
+            126 STORE_FAST               5 (e)
+            128 DELETE_FAST              5 (e)
+            130 RERAISE                  1
+
+ 76     >>  132 DUP_TOP
+            134 LOAD_GLOBAL             14 (Exception)
+            136 JUMP_IF_NOT_EXC_MATCH    90 (to 180)
+            138 POP_TOP
+            140 STORE_FAST               5 (e)
+            142 POP_TOP
+            144 SETUP_FINALLY           13 (to 172)
+
+ 77         146 LOAD_CONST               5 (False)
+            148 LOAD_GLOBAL             15 (str)
+            150 LOAD_FAST                5 (e)
+            152 CALL_FUNCTION            1
+            154 LOAD_CONST               6 (('ok', 'error'))
+            156 BUILD_CONST_KEY_MAP      2
+            158 POP_BLOCK
+            160 ROT_FOUR
+            162 POP_EXCEPT
+            164 LOAD_CONST               0 (None)
+            166 STORE_FAST               5 (e)
+            168 DELETE_FAST              5 (e)
+            170 RETURN_VALUE
+        >>  172 LOAD_CONST               0 (None)
+            174 STORE_FAST               5 (e)
+            176 DELETE_FAST              5 (e)
+            178 RERAISE                  1
+
+ 76     >>  180 RERAISE                  0
+
+### def send(chat_id, text)  [argcount=2, locals=('chat_id', 'text', 'i')]
+# co_consts: ['None', "'(empty)'", '0', '1', '4096', "'sendMessage'", "('chat_id', 'text')"]
+# co_names:  ('range', 'max', 'len', '_tg')
+ 81           0 LOAD_FAST                1 (text)
+              2 JUMP_IF_TRUE_OR_POP      3 (to 6)
+              4 LOAD_CONST               1 ('(empty)')
+        >>    6 STORE_FAST               1 (text)
+
+ 82           8 LOAD_GLOBAL              0 (range)
+             10 LOAD_CONST               2 (0)
+             12 LOAD_GLOBAL              1 (max)
+             14 LOAD_GLOBAL              2 (len)
+             16 LOAD_FAST                1 (text)
+             18 CALL_FUNCTION            1
+             20 LOAD_CONST               3 (1)
+             22 CALL_FUNCTION            2
+             24 LOAD_CONST               4 (4096)
+             26 CALL_FUNCTION            3
+             28 GET_ITER
+        >>   30 FOR_ITER                16 (to 64)
+             32 STORE_FAST               2 (i)
+
+ 83          34 LOAD_GLOBAL              3 (_tg)
+             36 LOAD_CONST               5 ('sendMessage')
+             38 LOAD_FAST                0 (chat_id)
+             40 LOAD_FAST                1 (text)
+             42 LOAD_FAST                2 (i)
+             44 LOAD_FAST                2 (i)
+             46 LOAD_CONST               4 (4096)
+             48 BINARY_ADD
+             50 BUILD_SLICE              2
+             52 BINARY_SUBSCR
+             54 LOAD_CONST               6 (('chat_id', 'text'))
+             56 BUILD_CONST_KEY_MAP      2
+             58 CALL_FUNCTION            2
+             60 POP_TOP
+             62 JUMP_ABSOLUTE           15 (to 30)
+
+ 82     >>   64 LOAD_CONST               0 (None)
+             66 RETURN_VALUE
+
+### def get_updates(offset)  [argcount=1, locals=('offset', 'result')]
+# co_consts: ['None', "'getUpdates'", '25', '10', "('offset', 'timeout', 'limit')", "'ok'", "'result'"]
+# co_names:  ('_tg', 'get')
+ 87           0 LOAD_GLOBAL              0 (_tg)
+              2 LOAD_CONST               1 ('getUpdates')
+              4 LOAD_FAST                0 (offset)
+              6 LOAD_CONST               2 (25)
+              8 LOAD_CONST               3 (10)
+             10 LOAD_CONST               4 (('offset', 'timeout', 'limit'))
+             12 BUILD_CONST_KEY_MAP      3
+             14 CALL_FUNCTION            2
+             16 STORE_FAST               1 (result)
+
+ 88          18 LOAD_FAST                1 (result)
+             20 LOAD_METHOD              1 (get)
+             22 LOAD_CONST               5 ('ok')
+             24 CALL_METHOD              1
+             26 POP_JUMP_IF_FALSE       20 (to 40)
+             28 LOAD_FAST                1 (result)
+             30 LOAD_METHOD              1 (get)
+             32 LOAD_CONST               6 ('result')
+             34 BUILD_LIST               0
+             36 CALL_METHOD              2
+             38 RETURN_VALUE
+        >>   40 BUILD_LIST               0
+             42 RETURN_VALUE
+
+### def handle(chat_id, text)  [argcount=2, locals=('chat_id', 'text', 'first', 'args', 'url', 'msg')]
+# co_consts: ['None', '0', "''", "('/start', '/help')", "'/agents'", "'/mem'", "'/pinmem'", "'/wqueue'", "'/forget'", "'/dashboard'", "'⛔ Not authorized.'", '3.0', "('wait_seconds',)", "'🖥 War room dashboard:\\n'", "'/war-room\\n\\n(Quick tunnel — URL changes on restart.)'", "'⏳ Tunnel starting — try again in a few seconds.'", "'❌ Tunnel not running.\\nLocal URL: http://localhost:3001/war-room\\nInstall: winget install Cloudflare.cloudflared'", "'/pin'", "'/war'", '"Usage: /war <message>\\nExamples:\\n  /war what\'s on my plate today?\\n  /war comms: draft email to Juan\\n  /war research: top complaints in Island Arcade reviews"', "'🧠 War room thinking...'"]
+# co_names:  ('strip', 'split', 'lower', 'send', 'HELP_TEXT', 'bridge', 'handle_agents_command', 'len', 'handle_mem_command', 'handle_pin_value_command', 'handle_queue_command', 'handle_forget_command', 'is_allowed', 'tunnel', 'current_url', 'is_running', 'handle_war_message')
+112           0 LOAD_FAST                1 (text)
+              2 LOAD_METHOD              0 (strip)
+              4 CALL_METHOD              0
+              6 STORE_FAST               1 (text)
+
+113           8 LOAD_FAST                1 (text)
+             10 POP_JUMP_IF_FALSE       14 (to 28)
+             12 LOAD_FAST                1 (text)
+             14 LOAD_METHOD              1 (split)
+             16 CALL_METHOD              0
+             18 LOAD_CONST               1 (0)
+             20 BINARY_SUBSCR
+             22 LOAD_METHOD              2 (lower)
+             24 CALL_METHOD              0
+             26 JUMP_FORWARD             1 (to 30)
+        >>   28 LOAD_CONST               2 ('')
+        >>   30 STORE_FAST               2 (first)
+
+115          32 LOAD_FAST                2 (first)
+             34 LOAD_CONST               3 (('/start', '/help'))
+             36 CONTAINS_OP              0
+             38 POP_JUMP_IF_FALSE       27 (to 54)
+
+116          40 LOAD_GLOBAL              3 (send)
+             42 LOAD_FAST                0 (chat_id)
+             44 LOAD_GLOBAL              4 (HELP_TEXT)
+             46 CALL_FUNCTION            2
+             48 POP_TOP
+
+117          50 LOAD_CONST               0 (None)
+             52 RETURN_VALUE
+
+119     >>   54 LOAD_FAST                2 (first)
+             56 LOAD_CONST               4 ('/agents')
+             58 COMPARE_OP               2 (==)
+             60 POP_JUMP_IF_FALSE       41 (to 82)
+
+120          62 LOAD_GLOBAL              3 (send)
+             64 LOAD_FAST                0 (chat_id)
+             66 LOAD_GLOBAL              5 (bridge)
+             68 LOAD_METHOD              6 (handle_agents_command)
+             70 LOAD_FAST                0 (chat_id)
+             72 CALL_METHOD              1
+             74 CALL_FUNCTION            2
+             76 POP_TOP
+
+121          78 LOAD_CONST               0 (None)
+             80 RETURN_VALUE
+
+123     >>   82 LOAD_FAST                2 (first)
+             84 LOAD_CONST               5 ('/mem')
+             86 COMPARE_OP               2 (==)
+             88 POP_JUMP_IF_FALSE       66 (to 132)
+
+124          90 LOAD_FAST                1 (text)
+             92 LOAD_GLOBAL              7 (len)
+             94 LOAD_CONST               5 ('/mem')
+             96 CALL_FUNCTION            1
+             98 LOAD_CONST               0 (None)
+            100 BUILD_SLICE              2
+            102 BINARY_SUBSCR
+            104 LOAD_METHOD              0 (strip)
+            106 CALL_METHOD              0
+            108 STORE_FAST               3 (args)
+
+125         110 LOAD_GLOBAL              3 (send)
+            112 LOAD_FAST                0 (chat_id)
+            114 LOAD_GLOBAL              5 (bridge)
+            116 LOAD_METHOD              8 (handle_mem_command)
+            118 LOAD_FAST                0 (chat_id)
+            120 LOAD_FAST                3 (args)
+            122 CALL_METHOD              2
+            124 CALL_FUNCTION            2
+            126 POP_TOP
+
+126         128 LOAD_CONST               0 (None)
+            130 RETURN_VALUE
+
+128     >>  132 LOAD_FAST                2 (first)
+            134 LOAD_CONST               6 ('/pinmem')
+            136 COMPARE_OP               2 (==)
+            138 POP_JUMP_IF_FALSE       91 (to 182)
+
+129         140 LOAD_FAST                1 (text)
+            142 LOAD_GLOBAL              7 (len)
+            144 LOAD_CONST               6 ('/pinmem')
+            146 CALL_FUNCTION            1
+            148 LOAD_CONST               0 (None)
+            150 BUILD_SLICE              2
+            152 BINARY_SUBSCR
+            154 LOAD_METHOD              0 (strip)
+            156 CALL_METHOD              0
+            158 STORE_FAST               3 (args)
+
+130         160 LOAD_GLOBAL              3 (send)
+            162 LOAD_FAST                0 (chat_id)
+            164 LOAD_GLOBAL              5 (bridge)
+            166 LOAD_METHOD              9 (handle_pin_value_command)
+            168 LOAD_FAST                0 (chat_id)
+            170 LOAD_FAST                3 (args)
+            172 CALL_METHOD              2
+            174 CALL_FUNCTION            2
+            176 POP_TOP
+
+131         178 LOAD_CONST               0 (None)
+            180 RETURN_VALUE
+
+133     >>  182 LOAD_FAST                2 (first)
+            184 LOAD_CONST               7 ('/wqueue')
+            186 COMPARE_OP               2 (==)
+            188 POP_JUMP_IF_FALSE      105 (to 210)
+
+134         190 LOAD_GLOBAL              3 (send)
+            192 LOAD_FAST                0 (chat_id)
+            194 LOAD_GLOBAL              5 (bridge)
+            196 LOAD_METHOD             10 (handle_queue_command)
+            198 LOAD_FAST                0 (chat_id)
+            200 CALL_METHOD              1
+            202 CALL_FUNCTION            2
+            204 POP_TOP
+
+135         206 LOAD_CONST               0 (None)
+            208 RETURN_VALUE
+
+137     >>  210 LOAD_FAST                2 (first)
+            212 LOAD_CONST               8 ('/forget')
+            214 COMPARE_OP               2 (==)
+            216 POP_JUMP_IF_FALSE      130 (to 260)
+
+138         218 LOAD_FAST                1 (text)
+            220 LOAD_GLOBAL              7 (len)
+            222 LOAD_CONST               8 ('/forget')
+            224 CALL_FUNCTION            1
+            226 LOAD_CONST               0 (None)
+            228 BUILD_SLICE              2
+            230 BINARY_SUBSCR
+            232 LOAD_METHOD              0 (strip)
+            234 CALL_METHOD              0
+            236 STORE_FAST               3 (args)
+
+139         238 LOAD_GLOBAL              3 (send)
+            240 LOAD_FAST                0 (chat_id)
+            242 LOAD_GLOBAL              5 (bridge)
+            244 LOAD_METHOD             11 (handle_forget_command)
+            246 LOAD_FAST                0 (chat_id)
+            248 LOAD_FAST                3 (args)
+            250 CALL_METHOD              2
+            252 CALL_FUNCTION            2
+            254 POP_TOP
+
+140         256 LOAD_CONST               0 (None)
+            258 RETURN_VALUE
+
+142     >>  260 LOAD_FAST                2 (first)
+            262 LOAD_CONST               9 ('/dashboard')
+            264 COMPARE_OP               2 (==)
+            266 POP_JUMP_IF_FALSE      183 (to 366)
+
+143         268 LOAD_GLOBAL              5 (bridge)
+            270 LOAD_METHOD             12 (is_allowed)
+            272 LOAD_FAST                0 (chat_id)
+            274 CALL_METHOD              1
+            276 POP_JUMP_IF_TRUE       146 (to 292)
+
+144         278 LOAD_GLOBAL              3 (send)
+            280 LOAD_FAST                0 (chat_id)
+            282 LOAD_CONST              10 ('⛔ Not authorized.')
+            284 CALL_FUNCTION            2
+            286 POP_TOP
+
+145         288 LOAD_CONST               0 (None)
+            290 RETURN_VALUE
+
+146     >>  292 LOAD_GLOBAL             13 (tunnel)
+            294 LOAD_ATTR               14 (current_url)
+            296 LOAD_CONST              11 (3.0)
+            298 LOAD_CONST              12 (('wait_seconds',))
+            300 CALL_FUNCTION_KW         1
+            302 STORE_FAST               4 (url)
+
+147         304 LOAD_FAST                4 (url)
+            306 POP_JUMP_IF_FALSE      165 (to 330)
+
+148         308 LOAD_GLOBAL              3 (send)
+            310 LOAD_FAST                0 (chat_id)
+            312 LOAD_CONST              13 ('🖥 War room dashboard:\n')
+            314 LOAD_FAST                4 (url)
+            316 FORMAT_VALUE             0
+            318 LOAD_CONST              14 ('/war-room\n\n(Quick tunnel — URL changes on restart.)')
+            320 BUILD_STRING             3
+            322 CALL_FUNCTION            2
+            324 POP_TOP
+
+157         326 LOAD_CONST               0 (None)
+            328 RETURN_VALUE
+
+149     >>  330 LOAD_GLOBAL             13 (tunnel)
+            332 LOAD_METHOD             15 (is_running)
+            334 CALL_METHOD              0
+            336 POP_JUMP_IF_FALSE      176 (to 352)
+
+150         338 LOAD_GLOBAL              3 (send)
+            340 LOAD_FAST                0 (chat_id)
+            342 LOAD_CONST              15 ('⏳ Tunnel starting — try again in a few seconds.')
+            344 CALL_FUNCTION            2
+            346 POP_TOP
+
+157         348 LOAD_CONST               0 (None)
+            350 RETURN_VALUE
+
+152     >>  352 LOAD_GLOBAL              3 (send)
+            354 LOAD_FAST                0 (chat_id)
+
+153         356 LOAD_CONST              16 ('❌ Tunnel not running.\nLocal URL: http://localhost:3001/war-room\nInstall: winget install Cloudflare.cloudflared')
+
+152         358 CALL_FUNCTION            2
+            360 POP_TOP
+
+157         362 LOAD_CONST               0 (None)
+            364 RETURN_VALUE
+
+159     >>  366 LOAD_FAST                2 (first)
+            368 LOAD_CONST              17 ('/pin')
+            370 COMPARE_OP               2 (==)
+            372 POP_JUMP_IF_FALSE      198 (to 396)
+
+161         374 LOAD_GLOBAL              3 (send)
+            376 LOAD_FAST                0 (chat_id)
+            378 LOAD_GLOBAL              5 (bridge)
+            380 LOAD_METHOD             16 (handle_war_message)
+            382 LOAD_FAST                0 (chat_id)
+            384 LOAD_FAST                1 (text)
+            386 CALL_METHOD              2
+            388 CALL_FUNCTION            2
+            390 POP_TOP
+
+162         392 LOAD_CONST               0 (None)
+            394 RETURN_VALUE
+
+164     >>  396 LOAD_FAST                2 (first)
+            398 LOAD_CONST              18 ('/war')
+            400 COMPARE_OP               2 (==)
+            402 POP_JUMP_IF_FALSE      237 (to 474)
+
+165         404 LOAD_FAST                1 (text)
+            406 LOAD_GLOBAL              7 (len)
+            408 LOAD_CONST              18 ('/war')
+            410 CALL_FUNCTION            1
+            412 LOAD_CONST               0 (None)
+            414 BUILD_SLICE              2
+            416 BINARY_SUBSCR
+            418 LOAD_METHOD              0 (strip)
+            420 CALL_METHOD              0
+            422 STORE_FAST               5 (msg)
+
+166         424 LOAD_FAST                5 (msg)
+            426 POP_JUMP_IF_TRUE       221 (to 442)
+
+167         428 LOAD_GLOBAL              3 (send)
+            430 LOAD_FAST                0 (chat_id)
+            432 LOAD_CONST              19 ("Usage: /war <message>\nExamples:\n  /war what's on my plate today?\n  /war comms: draft email to Juan\n  /war research: top complaints in Island Arcade reviews")
+            434 CALL_FUNCTION            2
+            436 POP_TOP
+
+168         438 LOAD_CONST               0 (None)
+            440 RETURN_VALUE
+
+169     >>  442 LOAD_GLOBAL              3 (send)
+            444 LOAD_FAST                0 (chat_id)
+            446 LOAD_CONST              20 ('🧠 War room thinking...')
+            448 CALL_FUNCTION            2
+            450 POP_TOP
+
+170         452 LOAD_GLOBAL              3 (send)
+            454 LOAD_FAST                0 (chat_id)
+            456 LOAD_GLOBAL              5 (bridge)
+            458 LOAD_METHOD             16 (handle_war_message)
+            460 LOAD_FAST                0 (chat_id)
+            462 LOAD_FAST                5 (msg)
+            464 CALL_METHOD              2
+            466 CALL_FUNCTION            2
+            468 POP_TOP
+
+171         470 LOAD_CONST               0 (None)
+            472 RETURN_VALUE
+
+174     >>  474 LOAD_GLOBAL              3 (send)
+            476 LOAD_FAST                0 (chat_id)
+            478 LOAD_CONST              20 ('🧠 War room thinking...')
+            480 CALL_FUNCTION            2
+            482 POP_TOP
+
+175         484 LOAD_GLOBAL              3 (send)
+            486 LOAD_FAST                0 (chat_id)
+            488 LOAD_GLOBAL              5 (bridge)
+            490 LOAD_METHOD             16 (handle_war_message)
+            492 LOAD_FAST                0 (chat_id)
+            494 LOAD_FAST                1 (text)
+            496 CALL_METHOD              2
+            498 CALL_FUNCTION            2
+            500 POP_TOP
+            502 LOAD_CONST               0 (None)
+            504 RETURN_VALUE
+
+### def main()  [argcount=0, locals=('bin_', 'offset', 'updates', 'upd', 'msg', 'chat_id', 'text', 'e')]
+# co_consts: ['None', "'Starting claudeclaw bot (@claudette21bot)...'", "'Allowlist: '", "'PIN gate: '", "'ON'", "'OFF'", "'Tunnel starting via '", "' (URL will appear above in ~5s)'", "'cloudflared not found — dashboard will only be local (http://localhost:3001/war-room)'", "'Polling for updates. Ctrl-C to stop.'", '0', 'True', "'update_id'", '1', "'message'", "'edited_message'", "'chat'", "'id'", "'text'", "''", "'❌ Internal error: '", "': '", '200', "'\\nStopping.'", "'Poll error: '", '3']
+# co_names:  ('print', 'bridge', 'ALLOWED_IDS', 'PIN', 'api', 'start', 'tunnel', 'get_updates', 'get', 'str', 'handle', 'Exception', 'traceback', 'print_exc', 'send', 'type', '__name__', 'KeyboardInterrupt', 'time', 'sleep')
+180           0 LOAD_GLOBAL              0 (print)
+              2 LOAD_CONST               1 ('Starting claudeclaw bot (@claudette21bot)...')
+              4 CALL_FUNCTION            1
+              6 POP_TOP
+
+181           8 LOAD_GLOBAL              0 (print)
+             10 LOAD_CONST               2 ('Allowlist: ')
+             12 LOAD_GLOBAL              1 (bridge)
+             14 LOAD_ATTR                2 (ALLOWED_IDS)
+             16 FORMAT_VALUE             0
+             18 BUILD_STRING             2
+             20 CALL_FUNCTION            1
+             22 POP_TOP
+
+182          24 LOAD_GLOBAL              0 (print)
+             26 LOAD_CONST               3 ('PIN gate: ')
+             28 LOAD_GLOBAL              1 (bridge)
+             30 LOAD_ATTR                3 (PIN)
+             32 POP_JUMP_IF_FALSE       19 (to 38)
+             34 LOAD_CONST               4 ('ON')
+             36 JUMP_FORWARD             1 (to 40)
+        >>   38 LOAD_CONST               5 ('OFF')
+        >>   40 FORMAT_VALUE             0
+             42 BUILD_STRING             2
+             44 CALL_FUNCTION            1
+             46 POP_TOP
+
+183          48 LOAD_GLOBAL              4 (api)
+             50 LOAD_METHOD              5 (start)
+             52 CALL_METHOD              0
+             54 POP_TOP
+
+184          56 LOAD_GLOBAL              6 (tunnel)
+             58 LOAD_METHOD              5 (start)
+             60 CALL_METHOD              0
+             62 STORE_FAST               0 (bin_)
+
+185          64 LOAD_FAST                0 (bin_)
+             66 POP_JUMP_IF_FALSE       43 (to 86)
+
+186          68 LOAD_GLOBAL              0 (print)
+             70 LOAD_CONST               6 ('Tunnel starting via ')
+             72 LOAD_FAST                0 (bin_)
+             74 FORMAT_VALUE             0
+             76 LOAD_CONST               7 (' (URL will appear above in ~5s)')
+             78 BUILD_STRING             3
+             80 CALL_FUNCTION            1
+             82 POP_TOP
+             84 JUMP_FORWARD             4 (to 94)
+
+188     >>   86 LOAD_GLOBAL              0 (print)
+             88 LOAD_CONST               8 ('cloudflared not found — dashboard will only be local (http://localhost:3001/war-room)')
+             90 CALL_FUNCTION            1
+             92 POP_TOP
+
+189     >>   94 LOAD_GLOBAL              0 (print)
+             96 LOAD_CONST               9 ('Polling for updates. Ctrl-C to stop.')
+             98 CALL_FUNCTION            1
+            100 POP_TOP
+
+191         102 LOAD_CONST              10 (0)
+            104 STORE_FAST               1 (offset)
+
+192         106 NOP
+
+193     >>  108 SETUP_FINALLY           96 (to 302)
+
+194         110 LOAD_GLOBAL              7 (get_updates)
+            112 LOAD_FAST                1 (offset)
+            114 CALL_FUNCTION            1
+            116 STORE_FAST               2 (updates)
+
+195         118 LOAD_FAST                2 (updates)
+            120 GET_ITER
+        >>  122 FOR_ITER                87 (to 298)
+            124 STORE_FAST               3 (upd)
+
+196         126 LOAD_FAST                3 (upd)
+            128 LOAD_CONST              12 ('update_id')
+            130 BINARY_SUBSCR
+            132 LOAD_CONST              13 (1)
+            134 BINARY_ADD
+            136 STORE_FAST               1 (offset)
+
+197         138 LOAD_FAST                3 (upd)
+            140 LOAD_METHOD              8 (get)
+            142 LOAD_CONST              14 ('message')
+            144 CALL_METHOD              1
+            146 JUMP_IF_TRUE_OR_POP     78 (to 156)
+            148 LOAD_FAST                3 (upd)
+            150 LOAD_METHOD              8 (get)
+            152 LOAD_CONST              15 ('edited_message')
+            154 CALL_METHOD              1
+        >>  156 STORE_FAST               4 (msg)
+
+198         158 LOAD_FAST                4 (msg)
+            160 POP_JUMP_IF_TRUE        82 (to 164)
+
+199         162 JUMP_ABSOLUTE           61 (to 122)
+
+200     >>  164 LOAD_GLOBAL              9 (str)
+            166 LOAD_FAST                4 (msg)
+            168 LOAD_CONST              16 ('chat')
+            170 BINARY_SUBSCR
+            172 LOAD_CONST              17 ('id')
+            174 BINARY_SUBSCR
+            176 CALL_FUNCTION            1
+            178 STORE_FAST               5 (chat_id)
+
+201         180 LOAD_FAST                4 (msg)
+            182 LOAD_METHOD              8 (get)
+            184 LOAD_CONST              18 ('text')
+            186 LOAD_CONST              19 ('')
+            188 CALL_METHOD              2
+            190 STORE_FAST               6 (text)
+
+202         192 LOAD_FAST                6 (text)
+            194 POP_JUMP_IF_TRUE        99 (to 198)
+
+203         196 JUMP_ABSOLUTE           61 (to 122)
+
+204     >>  198 SETUP_FINALLY            7 (to 214)
+
+205         200 LOAD_GLOBAL             10 (handle)
+            202 LOAD_FAST                5 (chat_id)
+            204 LOAD_FAST                6 (text)
+            206 CALL_FUNCTION            2
+            208 POP_TOP
+            210 POP_BLOCK
+            212 JUMP_ABSOLUTE           61 (to 122)
+
+206     >>  214 DUP_TOP
+            216 LOAD_GLOBAL             11 (Exception)
+            218 JUMP_IF_NOT_EXC_MATCH   148 (to 296)
+            220 POP_TOP
+            222 STORE_FAST               7 (e)
+            224 POP_TOP
+            226 SETUP_FINALLY           30 (to 288)
+
+207         228 LOAD_GLOBAL             12 (traceback)
+            230 LOAD_METHOD             13 (print_exc)
+            232 CALL_METHOD              0
+            234 POP_TOP
+
+208         236 LOAD_GLOBAL             14 (send)
+            238 LOAD_FAST                5 (chat_id)
+            240 LOAD_CONST              20 ('❌ Internal error: ')
+            242 LOAD_GLOBAL             15 (type)
+            244 LOAD_FAST                7 (e)
+            246 CALL_FUNCTION            1
+            248 LOAD_ATTR               16 (__name__)
+            250 FORMAT_VALUE             0
+            252 LOAD_CONST              21 (': ')
+            254 LOAD_GLOBAL              9 (str)
+            256 LOAD_FAST                7 (e)
+            258 CALL_FUNCTION            1
+            260 LOAD_CONST               0 (None)
+            262 LOAD_CONST              22 (200)
+            264 BUILD_SLICE              2
+            266 BINARY_SUBSCR
+            268 FORMAT_VALUE             0
+            270 BUILD_STRING             4
+            272 CALL_FUNCTION            2
+            274 POP_TOP
+            276 POP_BLOCK
+            278 POP_EXCEPT
+            280 LOAD_CONST               0 (None)
+            282 STORE_FAST               7 (e)
+            284 DELETE_FAST              7 (e)
+            286 JUMP_ABSOLUTE           61 (to 122)
+        >>  288 LOAD_CONST               0 (None)
+            290 STORE_FAST               7 (e)
+            292 DELETE_FAST              7 (e)
+            294 RERAISE                  1
+
+206     >>  296 RERAISE                  0
+
+195     >>  298 POP_BLOCK
+            300 JUMP_FORWARD            43 (to 388)
+
+209     >>  302 DUP_TOP
+            304 LOAD_GLOBAL             17 (KeyboardInterrupt)
+            306 JUMP_IF_NOT_EXC_MATCH   164 (to 328)
+            308 POP_TOP
+            310 POP_TOP
+            312 POP_TOP
+
+210         314 LOAD_GLOBAL              0 (print)
+            316 LOAD_CONST              23 ('\nStopping.')
+            318 CALL_FUNCTION            1
+            320 POP_TOP
+
+211         322 POP_EXCEPT
+            324 LOAD_CONST               0 (None)
+            326 RETURN_VALUE
+
+212     >>  328 DUP_TOP
+            330 LOAD_GLOBAL             11 (Exception)
+            332 JUMP_IF_NOT_EXC_MATCH   193 (to 386)
+            334 POP_TOP
+            336 STORE_FAST               7 (e)
+            338 POP_TOP
+            340 SETUP_FINALLY           18 (to 378)
+
+213         342 LOAD_GLOBAL              0 (print)
+            344 LOAD_CONST              24 ('Poll error: ')
+            346 LOAD_FAST                7 (e)
+            348 FORMAT_VALUE             0
+            350 BUILD_STRING             2
+            352 CALL_FUNCTION            1
+            354 POP_TOP
+
+214         356 LOAD_GLOBAL             18 (time)
+            358 LOAD_METHOD             19 (sleep)
+            360 LOAD_CONST              25 (3)
+            362 CALL_METHOD              1
+            364 POP_TOP
+            366 POP_BLOCK
+            368 POP_EXCEPT
+            370 LOAD_CONST               0 (None)
+            372 STORE_FAST               7 (e)
+            374 DELETE_FAST              7 (e)
+            376 JUMP_FORWARD             5 (to 388)
+        >>  378 LOAD_CONST               0 (None)
+            380 STORE_FAST               7 (e)
+            382 DELETE_FAST              7 (e)
+            384 RERAISE                  1
+
+212     >>  386 RERAISE                  0
+
+192     >>  388 JUMP_ABSOLUTE           54 (to 108)

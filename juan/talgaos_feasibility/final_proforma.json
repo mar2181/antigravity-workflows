@@ -1,0 +1,172 @@
+{
+  "base_case_27_lots": {
+    "lot_count": 27,
+    "land_basis": 425000,
+    "closing_costs": 6375.0,
+    "total_dev_cost": 1112200,
+    "per_lot_dev_cost": 41200,
+    "all_in": 1543575.0,
+    "per_lot_all_in": 57169.444444444445,
+    "lot_retail_assumed": 55000,
+    "gross_revenue": 1485000,
+    "commission_6pct": 89100.0,
+    "marketing_1pct": 14850.0,
+    "net_revenue": 1381050.0,
+    "gross_profit": -162525.0,
+    "gross_margin_pct": -0.11768219832735961,
+    "profit_per_lot": -6019.444444444444,
+    "months_total": 27,
+    "annualized_return_pct": -0.04679612803610666
+  },
+  "scenarios": [
+    {
+      "scenario": "A \u2014 Wholesale finished lots to builder",
+      "revenue": 1039500.0,
+      "all_in_cost": 1585155.0,
+      "gross_profit": -545655.0,
+      "margin_pct": -0.5249206349206349,
+      "months": 14,
+      "strategy_note": "Sell all 27 lots in bulk at ~70% of $55,000 = $38,500/lot"
+    },
+    {
+      "scenario": "B \u2014 Vertical build & sell townhomes (recommended)",
+      "revenue": 5805000,
+      "all_in_cost": 5700900.0,
+      "gross_profit": 104100.0,
+      "margin_pct": 0.0179328165374677,
+      "months": 30,
+      "strategy_note": "Build 27 townhomes @ $140K COGS, sell @ $215K avg"
+    },
+    {
+      "scenario": "C \u2014 Contract flip pre-closing",
+      "revenue": 35000,
+      "all_in_cost": 6000,
+      "gross_profit": 29000,
+      "margin_pct": 0.8285714285714286,
+      "months": 1.5,
+      "strategy_note": "Assign contract for $35K (Stonecrest contingency makes assignee hard to find)"
+    }
+  ],
+  "sensitivity_grid": [
+    {
+      "lot_count": 24,
+      "hard_cost_scenario": "low_-20%",
+      "per_lot_dev": 35520,
+      "total_dev": 852480,
+      "all_in": 1283855,
+      "gross_profit": -56255,
+      "margin_pct": -4.6,
+      "per_lot_all_in": 53494
+    },
+    {
+      "lot_count": 24,
+      "hard_cost_scenario": "mid",
+      "per_lot_dev": 44400,
+      "total_dev": 1065600,
+      "all_in": 1496975,
+      "gross_profit": -269375,
+      "margin_pct": -21.9,
+      "per_lot_all_in": 62374
+    },
+    {
+      "lot_count": 24,
+      "hard_cost_scenario": "high_+20%",
+      "per_lot_dev": 53280,
+      "total_dev": 1278720,
+      "all_in": 1710095,
+      "gross_profit": -482495,
+      "margin_pct": -39.3,
+      "per_lot_all_in": 71254
+    },
+    {
+      "lot_count": 27,
+      "hard_cost_scenario": "low_-20%",
+      "per_lot_dev": 32960,
+      "total_dev": 889920,
+      "all_in": 1321295,
+      "gross_profit": 59755,
+      "margin_pct": 4.3,
+      "per_lot_all_in": 48937
+    },
+    {
+      "lot_count": 27,
+      "hard_cost_scenario": "mid",
+      "per_lot_dev": 41200,
+      "total_dev": 1112400,
+      "all_in": 1543775,
+      "gross_profit": -162725,
+      "margin_pct": -11.8,
+      "per_lot_all_in": 57177
+    },
+    {
+      "lot_count": 27,
+      "hard_cost_scenario": "high_+20%",
+      "per_lot_dev": 49440,
+      "total_dev": 1334880,
+      "all_in": 1766255,
+      "gross_profit": -385205,
+      "margin_pct": -27.9,
+      "per_lot_all_in": 65417
+    },
+    {
+      "lot_count": 28,
+      "hard_cost_scenario": "low_-20%",
+      "per_lot_dev": 32240,
+      "total_dev": 902720,
+      "all_in": 1334095,
+      "gross_profit": 98105,
+      "margin_pct": 6.8,
+      "per_lot_all_in": 47646
+    },
+    {
+      "lot_count": 28,
+      "hard_cost_scenario": "mid",
+      "per_lot_dev": 40300,
+      "total_dev": 1128400,
+      "all_in": 1559775,
+      "gross_profit": -127575,
+      "margin_pct": -8.9,
+      "per_lot_all_in": 55706
+    },
+    {
+      "lot_count": 28,
+      "hard_cost_scenario": "high_+20%",
+      "per_lot_dev": 48360,
+      "total_dev": 1354080,
+      "all_in": 1785455,
+      "gross_profit": -353255,
+      "margin_pct": -24.7,
+      "per_lot_all_in": 63766
+    },
+    {
+      "lot_count": 32,
+      "hard_cost_scenario": "low_-20%",
+      "per_lot_dev": 29760,
+      "total_dev": 952320,
+      "all_in": 1383695,
+      "gross_profit": 253105,
+      "margin_pct": 15.5,
+      "per_lot_all_in": 43240
+    },
+    {
+      "lot_count": 32,
+      "hard_cost_scenario": "mid",
+      "per_lot_dev": 37200,
+      "total_dev": 1190400,
+      "all_in": 1621775,
+      "gross_profit": 15025,
+      "margin_pct": 0.9,
+      "per_lot_all_in": 50680
+    },
+    {
+      "lot_count": 32,
+      "hard_cost_scenario": "high_+20%",
+      "per_lot_dev": 44640,
+      "total_dev": 1428480,
+      "all_in": 1859855,
+      "gross_profit": -223055,
+      "margin_pct": -13.6,
+      "per_lot_all_in": 58120
+    }
+  ]
+}

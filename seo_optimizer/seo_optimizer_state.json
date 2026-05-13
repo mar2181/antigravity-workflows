@@ -1,93 +1,96 @@
 {
   "work_queue": [
     {
-      "client": "sugar_shack",
-      "keyword": "candy shop spi",
+      "client": "island_candy",
+      "keyword": "ice cream south padre island",
       "current_rank": null,
       "search_volume": "medium",
       "opportunity_score": 30.0,
       "status": "EXECUTED",
       "action_type": "gbp_posts",
-      "action_content": "[DRY RUN - not generated]",
+      "action_content": "Looking for the perfect way to cool down after a day in the sun? Island Candy serves up the best ice cream South Padre Island has to offer, right inside Island Arcade! Whether you're craving classic flavors or something fun and tropical, we've got scoops that hit the spot every time.\n\nOur creamy, cold treats are the perfect reward after a beach day, a boardwalk stroll, or anytime you need to beat that South Padre heat. Locals and visitors alike know there's nothing quite like enjoying delicious ice cream on South Padre Island while soaking in those vacation vibes.\n\nSwing by Island Arcade and treat yourself to a scoop (or two!). Your taste buds will thank you!\n\nStop in today and discover your new favorite flavor!",
       "pre_action_rank": null,
       "post_action_rank": null,
       "delta": null,
       "gbp_scores": {
-        "description_score": 45,
-        "posts_score": 30,
-        "qa_score": 40,
+        "description_score": 50,
+        "posts_score": 40,
+        "qa_score": 30,
         "photo_score": 50,
         "weakest_signal": "posts",
-        "reasoning": "DRY RUN - simulated scoring"
+        "reasoning": "Could not parse scores, defaulting to posts as weakest"
       },
-      "created_at": "2026-03-29T17:05:59.583477",
-      "executed_at": "2026-03-29T17:06:02.696901",
+      "created_at": "2026-05-09T17:12:20.446631",
+      "executed_at": "2026-05-09T17:12:53.753787",
       "execution_result": {
         "success": true,
-        "dry_run": true
+        "screenshot": "C:\\Users\\mario\\.gemini\\antigravity\\tools\\execution\\seo_optimizer_reports\\actions\\2026-05-09_171253_island_candy_post_before.png",
+        "message": "GBP post action queued"
       }
     },
     {
-      "client": "sugar_shack",
-      "keyword": "souvenir shop south padre island",
+      "client": "island_candy",
+      "keyword": "sweet treats south padre island",
       "current_rank": null,
       "search_volume": "medium",
       "opportunity_score": 30.0,
       "status": "EXECUTED",
       "action_type": "gbp_posts",
-      "action_content": "[DRY RUN - not generated]",
+      "action_content": "Looking for the best sweet treats South Padre Island has to offer? Cool off with Island Candy, your go-to ice cream destination tucked inside Island Arcade! Whether you're taking a break from the beach or hunting for the perfect dessert after a day in the sun, we've got scoops that hit different. From classic favorites to island-inspired flavors, every cone is packed with pure happiness. Our sweet treats are the perfect way to beat the Texas heat and make your beach day even more memorable. Bring the family, bring your friends, or treat yourself solo — we're serving up smiles one scoop at a time. Stop by Island Arcade today and discover why locals and visitors can't get enough of our ice cream paradise!",
       "pre_action_rank": null,
       "post_action_rank": null,
       "delta": null,
       "gbp_scores": {
-        "description_score": 45,
-        "posts_score": 30,
-        "qa_score": 40,
+        "description_score": 50,
+        "posts_score": 40,
+        "qa_score": 30,
         "photo_score": 50,
         "weakest_signal": "posts",
-        "reasoning": "DRY RUN - simulated scoring"
+        "reasoning": "Could not parse scores, defaulting to posts as weakest"
       },
-      "created_at": "2026-03-29T17:05:59.583477",
-      "executed_at": "2026-03-29T17:06:02.696901",
+      "created_at": "2026-05-09T17:12:20.446631",
+      "executed_at": "2026-05-09T17:12:57.542435",
       "execution_result": {
         "success": true,
-        "dry_run": true
+        "screenshot": "C:\\Users\\mario\\.gemini\\antigravity\\tools\\execution\\seo_optimizer_reports\\actions\\2026-05-09_171257_island_candy_post_before.png",
+        "message": "GBP post action queued"
       }
     },
     {
-      "client": "sugar_shack",
-      "keyword": "gifts south padre island",
+      "client": "island_candy",
+      "keyword": "best ice cream south padre island",
       "current_rank": null,
       "search_volume": "medium",
       "opportunity_score": 30.0,
       "status": "EXECUTED",
       "action_type": "gbp_posts",
-      "action_content": "[DRY RUN - not generated]",
+      "action_content": "Looking for the best ice cream South Padre Island has to offer? Step inside Island Arcade and discover Island Candy, your sweet escape from the Texas heat! We're serving up creamy, dreamy scoops that hit different after a long day at the beach. Whether you're craving classic flavors or something adventurous, our handcrafted ice cream is made to cool you down and sweeten up your island memories. Located conveniently inside Island Arcade, we're the perfect pit stop between arcade games, beach sessions, and sunset strolls. Bring the family, bring your friends, or treat yourself solo—everyone deserves the best ice cream South Padre Island can deliver. Stop by today and taste why locals and visitors keep coming back scoop after scoop! Your perfect island treat is waiting inside.",
       "pre_action_rank": null,
       "post_action_rank": null,
       "delta": null,
       "gbp_scores": {
-        "description_score": 45,
-        "posts_score": 30,
-        "qa_score": 40,
+        "description_score": 50,
+        "posts_score": 40,
+        "qa_score": 30,
         "photo_score": 50,
         "weakest_signal": "posts",
-        "reasoning": "DRY RUN - simulated scoring"
+        "reasoning": "Could not parse scores, defaulting to posts as weakest"
       },
-      "created_at": "2026-03-29T17:05:59.583477",
-      "executed_at": "2026-03-29T17:06:02.696901",
+      "created_at": "2026-05-09T17:12:20.446631",
+      "executed_at": "2026-05-09T17:13:01.327501",
       "execution_result": {
         "success": true,
-        "dry_run": true
+        "screenshot": "C:\\Users\\mario\\.gemini\\antigravity\\tools\\execution\\seo_optimizer_reports\\actions\\2026-05-09_171301_island_candy_post_before.png",
+        "message": "GBP post action queued"
       }
     }
   ],
   "winning_patterns": {},
   "action_history": [],
-  "last_analyzed": "2026-03-29T17:05:59.583477",
-  "last_generated": "2026-03-29T17:06:01.925471",
-  "last_executed": "2026-03-29T17:06:02.696901",
-  "last_tracked": null,
+  "last_analyzed": "2026-05-09T17:12:20.446631",
+  "last_generated": "2026-05-09T17:12:49.243887",
+  "last_executed": "2026-05-09T17:13:01.327501",
+  "last_tracked": "2026-05-09T18:30:14.925721",
   "created_at": "2026-03-29T00:00:00",
-  "dry_run": true
+  "dry_run": false
 }

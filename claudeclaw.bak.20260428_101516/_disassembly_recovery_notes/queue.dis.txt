@@ -1,0 +1,1146 @@
+# === module: queue ===
+# co_names: ('__doc__', 'json', 'queue', '_queue', 'sqlite3', 'threading', 'time', 'concurrent.futures', 'Future', 'dataclasses', 'dataclass', 'pathlib', 'Path', 'typing', 'Callable', 'Optional', '__file__', 'parent', 'DB_PATH', '_SCHEMA', 'connect', '_c', 'executescript', 'Job', 'Queue', '_q', '__annotations__', 'Lock', '_lock', '_worker_started', '_handler', 'str', 'set_handler', '_worker_loop', '_ensure_worker', 'float', 'submit', 'dict', 'queue_stats')
+# co_consts (strs+code):
+#   STR: 'Single-writer queue for the war room.\n\nPrevents the race condition the video describes: a cron job fires a message\nat the same moment you send one, both hit the same agent, one silently drops.\n\nImplementation: a simple threading.Lock + in-memory FIFO backed by SQLite for\ncrash recovery. One worker drains the queue serially. The telegram bot handler\nsubmits jobs and blocks on a Future until the agent reply is ready.\n'
+#   STR: 'claudeclaw.db'
+#   STR: '\nCREATE TABLE IF NOT EXISTS queue_backlog (\n    id          INTEGER PRIMARY KEY AUTOINCREMENT,\n    role        TEXT NOT NULL,\n    user_msg    TEXT NOT NULL,\n    chat_id     TEXT,\n    status      TEXT NOT NULL,     -- pending | running | done | failed\n    created_at  REAL NOT NULL,\n    finished_at REAL\n);\n'
+#   STR: 'Job'
+#   STR: '_queue.Queue[Job]'
+#   STR: '_q'
+#   STR: '_handler'
+#   STR: 'fn'
+#   STR: 'return'
+#   STR: 'set_handler'
+#   STR: '_worker_loop'
+#   STR: '_ensure_worker'
+#   STR: 'role'
+#   STR: 'user_msg'
+#   STR: 'chat_id'
+#   STR: 'timeout'
+#   STR: 'submit'
+#   STR: 'queue_stats'
+
+## TOP-LEVEL DISASSEMBLY:
+  1           0 SETUP_ANNOTATIONS
+              2 LOAD_CONST               0 ('Single-writer queue for the war room.\n\nPrevents the race condition the video describes: a cron job fires a message\nat the same moment you send one, both hit the same agent, one silently drops.\n\nImplementation: a simple threading.Lock + in-memory FIFO backed by SQLite for\ncrash recovery. One worker drains the queue serially. The telegram bot handler\nsubmits jobs and blocks on a Future until the agent reply is ready.\n')
+              4 STORE_NAME               0 (__doc__)
+
+ 11           6 LOAD_CONST               1 (0)
+              8 LOAD_CONST               2 (None)
+             10 IMPORT_NAME              1 (json)
+             12 STORE_NAME               1 (json)
+
+ 12          14 LOAD_CONST               1 (0)
+             16 LOAD_CONST               2 (None)
+             18 IMPORT_NAME              2 (queue)
+             20 STORE_NAME               3 (_queue)
+
+ 13          22 LOAD_CONST               1 (0)
+             24 LOAD_CONST               2 (None)
+             26 IMPORT_NAME              4 (sqlite3)
+             28 STORE_NAME               4 (sqlite3)
+
+ 14          30 LOAD_CONST               1 (0)
+             32 LOAD_CONST               2 (None)
+             34 IMPORT_NAME              5 (threading)
+             36 STORE_NAME               5 (threading)
+
+ 15          38 LOAD_CONST               1 (0)
+             40 LOAD_CONST               2 (None)
+             42 IMPORT_NAME              6 (time)
+             44 STORE_NAME               6 (time)
+
+ 16          46 LOAD_CONST               1 (0)
+             48 LOAD_CONST               3 (('Future',))
+             50 IMPORT_NAME              7 (concurrent.futures)
+             52 IMPORT_FROM              8 (Future)
+             54 STORE_NAME               8 (Future)
+             56 POP_TOP
+
+ 17          58 LOAD_CONST               1 (0)
+             60 LOAD_CONST               4 (('dataclass',))
+             62 IMPORT_NAME              9 (dataclasses)
+             64 IMPORT_FROM             10 (dataclass)
+             66 STORE_NAME              10 (dataclass)
+             68 POP_TOP
+
+ 18          70 LOAD_CONST               1 (0)
+             72 LOAD_CONST               5 (('Path',))
+             74 IMPORT_NAME             11 (pathlib)
+             76 IMPORT_FROM             12 (Path)
+             78 STORE_NAME              12 (Path)
+             80 POP_TOP
+
+ 19          82 LOAD_CONST               1 (0)
+             84 LOAD_CONST               6 (('Callable', 'Optional'))
+             86 IMPORT_NAME             13 (typing)
+             88 IMPORT_FROM             14 (Callable)
+             90 STORE_NAME              14 (Callable)
+             92 IMPORT_FROM             15 (Optional)
+             94 STORE_NAME              15 (Optional)
+             96 POP_TOP
+
+ 21          98 LOAD_NAME               12 (Path)
+            100 LOAD_NAME               16 (__file__)
+            102 CALL_FUNCTION            1
+            104 LOAD_ATTR               17 (parent)
+            106 LOAD_CONST               7 ('claudeclaw.db')
+            108 BINARY_TRUE_DIVIDE
+            110 STORE_NAME              18 (DB_PATH)
+
+ 23         112 LOAD_CONST               8 ('\nCREATE TABLE IF NOT EXISTS queue_backlog (\n    id          INTEGER PRIMARY KEY AUTOINCREMENT,\n    role        TEXT NOT NULL,\n    user_msg    TEXT NOT NULL,\n    chat_id     TEXT,\n    status      TEXT NOT NULL,     -- pending | running | done | failed\n    created_at  REAL NOT NULL,\n    finished_at REAL\n);\n')
+            114 STORE_NAME              19 (_SCHEMA)
+
+ 35         116 LOAD_NAME                4 (sqlite3)
+            118 LOAD_METHOD             20 (connect)
+            120 LOAD_NAME               18 (DB_PATH)
+            122 CALL_METHOD              1
+            124 SETUP_WITH              13 (to 152)
+            126 STORE_NAME              21 (_c)
+
+ 36         128 LOAD_NAME               21 (_c)
+            130 LOAD_METHOD             22 (executescript)
+            132 LOAD_NAME               19 (_SCHEMA)
+            134 CALL_METHOD              1
+            136 POP_TOP
+            138 POP_BLOCK
+
+ 35         140 LOAD_CONST               2 (None)
+            142 DUP_TOP
+            144 DUP_TOP
+            146 CALL_FUNCTION            3
+            148 POP_TOP
+            150 JUMP_FORWARD             8 (to 168)
+        >>  152 WITH_EXCEPT_START
+            154 POP_JUMP_IF_TRUE        79 (to 158)
+            156 RERAISE                  1
+        >>  158 POP_TOP
+            160 POP_TOP
+            162 POP_TOP
+            164 POP_EXCEPT
+            166 POP_TOP
+
+ 39     >>  168 LOAD_NAME               10 (dataclass)
+
+ 40         170 LOAD_BUILD_CLASS
+            172 LOAD_CONST               9 (<code object Job at 0x0000021CBF4B3E10, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 39>)
+            174 LOAD_CONST              10 ('Job')
+            176 MAKE_FUNCTION            0
+            178 LOAD_CONST              10 ('Job')
+            180 CALL_FUNCTION            2
+            182 CALL_FUNCTION            1
+            184 STORE_NAME              23 (Job)
+
+ 48         186 LOAD_NAME                3 (_queue)
+            188 LOAD_METHOD             24 (Queue)
+            190 CALL_METHOD              0
+            192 STORE_NAME              25 (_q)
+            194 LOAD_CONST              11 ('_queue.Queue[Job]')
+            196 LOAD_NAME               26 (__annotations__)
+            198 LOAD_CONST              12 ('_q')
+            200 STORE_SUBSCR
+
+ 49         202 LOAD_NAME                5 (threading)
+            204 LOAD_METHOD             27 (Lock)
+            206 CALL_METHOD              0
+            208 STORE_NAME              28 (_lock)
+
+ 50         210 LOAD_CONST              13 (False)
+            212 STORE_GLOBAL            29 (_worker_started)
+
+ 51         214 LOAD_CONST               2 (None)
+            216 STORE_GLOBAL            30 (_handler)
+            218 LOAD_NAME               15 (Optional)
+            220 LOAD_NAME               14 (Callable)
+            222 LOAD_NAME               31 (str)
+            224 LOAD_NAME               31 (str)
+            226 LOAD_NAME               15 (Optional)
+            228 LOAD_NAME               31 (str)
+            230 BINARY_SUBSCR
+            232 BUILD_LIST               3
+            234 LOAD_NAME               31 (str)
+            236 BUILD_TUPLE              2
+            238 BINARY_SUBSCR
+            240 BINARY_SUBSCR
+            242 LOAD_NAME               26 (__annotations__)
+            244 LOAD_CONST              14 ('_handler')
+            246 STORE_SUBSCR
+
+ 54         248 LOAD_CONST              15 ('fn')
+            250 LOAD_NAME               14 (Callable)
+            252 LOAD_NAME               31 (str)
+            254 LOAD_NAME               31 (str)
+            256 LOAD_NAME               15 (Optional)
+            258 LOAD_NAME               31 (str)
+            260 BINARY_SUBSCR
+            262 BUILD_LIST               3
+            264 LOAD_NAME               31 (str)
+            266 BUILD_TUPLE              2
+            268 BINARY_SUBSCR
+            270 LOAD_CONST              16 ('return')
+            272 LOAD_CONST               2 (None)
+            274 BUILD_TUPLE              4
+            276 LOAD_CONST              17 (<code object set_handler at 0x0000021CBF4B3470, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 54>)
+            278 LOAD_CONST              18 ('set_handler')
+            280 MAKE_FUNCTION            4 (annotations)
+            282 STORE_NAME              32 (set_handler)
+
+ 61         284 LOAD_CONST              32 (('return', None))
+            286 LOAD_CONST              19 (<code object _worker_loop at 0x0000021CBF50C2F0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 61>)
+            288 LOAD_CONST              20 ('_worker_loop')
+            290 MAKE_FUNCTION            4 (annotations)
+            292 STORE_NAME              33 (_worker_loop)
+
+ 85         294 LOAD_CONST              32 (('return', None))
+            296 LOAD_CONST              21 (<code object _ensure_worker at 0x0000021CBF50C3A0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 85>)
+            298 LOAD_CONST              22 ('_ensure_worker')
+            300 MAKE_FUNCTION            4 (annotations)
+            302 STORE_NAME              34 (_ensure_worker)
+
+ 95         304 LOAD_CONST              33 ((None, 120.0))
+            306 LOAD_CONST              24 ('role')
+            308 LOAD_NAME               31 (str)
+            310 LOAD_CONST              25 ('user_msg')
+            312 LOAD_NAME               31 (str)
+            314 LOAD_CONST              26 ('chat_id')
+            316 LOAD_NAME               15 (Optional)
+            318 LOAD_NAME               31 (str)
+            320 BINARY_SUBSCR
+            322 LOAD_CONST              27 ('timeout')
+            324 LOAD_NAME               35 (float)
+            326 LOAD_CONST              16 ('return')
+            328 LOAD_NAME               31 (str)
+            330 BUILD_TUPLE             10
+            332 LOAD_CONST              28 (<code object submit at 0x0000021CBF50C450, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 95>)
+            334 LOAD_CONST              29 ('submit')
+            336 MAKE_FUNCTION            5 (defaults, annotations)
+            338 STORE_NAME              36 (submit)
+
+112         340 LOAD_CONST              16 ('return')
+            342 LOAD_NAME               37 (dict)
+            344 BUILD_TUPLE              2
+            346 LOAD_CONST              30 (<code object queue_stats at 0x0000021CBF50C500, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 112>)
+            348 LOAD_CONST              31 ('queue_stats')
+            350 MAKE_FUNCTION            4 (annotations)
+            352 STORE_NAME              38 (queue_stats)
+            354 LOAD_CONST               2 (None)
+            356 RETURN_VALUE
+
+Disassembly of <code object Job at 0x0000021CBF4B3E10, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 39>:
+ 39           0 LOAD_NAME                0 (__name__)
+              2 STORE_NAME               1 (__module__)
+              4 LOAD_CONST               0 ('Job')
+              6 STORE_NAME               2 (__qualname__)
+              8 SETUP_ANNOTATIONS
+
+ 41          10 LOAD_NAME                3 (str)
+             12 LOAD_NAME                4 (__annotations__)
+             14 LOAD_CONST               1 ('role')
+             16 STORE_SUBSCR
+
+ 42          18 LOAD_NAME                3 (str)
+             20 LOAD_NAME                4 (__annotations__)
+             22 LOAD_CONST               2 ('user_msg')
+             24 STORE_SUBSCR
+
+ 43          26 LOAD_NAME                5 (Optional)
+             28 LOAD_NAME                3 (str)
+             30 BINARY_SUBSCR
+             32 LOAD_NAME                4 (__annotations__)
+             34 LOAD_CONST               3 ('chat_id')
+             36 STORE_SUBSCR
+
+ 44          38 LOAD_NAME                6 (Future)
+             40 LOAD_NAME                4 (__annotations__)
+             42 LOAD_CONST               4 ('future')
+             44 STORE_SUBSCR
+
+ 45          46 LOAD_NAME                7 (int)
+             48 LOAD_NAME                4 (__annotations__)
+             50 LOAD_CONST               5 ('row_id')
+             52 STORE_SUBSCR
+             54 LOAD_CONST               6 (None)
+             56 RETURN_VALUE
+
+Disassembly of <code object set_handler at 0x0000021CBF4B3470, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 54>:
+ 58           0 LOAD_FAST                0 (fn)
+              2 STORE_GLOBAL             0 (_handler)
+              4 LOAD_CONST               1 (None)
+              6 RETURN_VALUE
+
+Disassembly of <code object _worker_loop at 0x0000021CBF50C2F0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 61>:
+ 62           0 NOP
+
+ 63     >>    2 LOAD_GLOBAL              0 (_q)
+              4 LOAD_METHOD              1 (get)
+              6 CALL_METHOD              0
+              8 STORE_FAST               0 (job)
+
+ 64          10 SETUP_FINALLY          145 (to 302)
+             12 SETUP_FINALLY           82 (to 178)
+
+ 65          14 LOAD_GLOBAL              2 (sqlite3)
+             16 LOAD_METHOD              3 (connect)
+             18 LOAD_GLOBAL              4 (DB_PATH)
+             20 CALL_METHOD              1
+             22 SETUP_WITH              16 (to 56)
+             24 STORE_FAST               1 (c)
+
+ 66          26 LOAD_FAST                1 (c)
+             28 LOAD_METHOD              5 (execute)
+             30 LOAD_CONST               2 ("UPDATE queue_backlog SET status='running' WHERE id=?")
+             32 LOAD_FAST                0 (job)
+             34 LOAD_ATTR                6 (row_id)
+             36 BUILD_TUPLE              1
+             38 CALL_METHOD              2
+             40 POP_TOP
+             42 POP_BLOCK
+
+ 65          44 LOAD_CONST               0 (None)
+             46 DUP_TOP
+             48 DUP_TOP
+             50 CALL_FUNCTION            3
+             52 POP_TOP
+             54 JUMP_FORWARD             8 (to 72)
+        >>   56 WITH_EXCEPT_START
+             58 POP_JUMP_IF_TRUE        31 (to 62)
+             60 RERAISE                  1
+        >>   62 POP_TOP
+             64 POP_TOP
+             66 POP_TOP
+             68 POP_EXCEPT
+             70 POP_TOP
+
+ 67     >>   72 LOAD_GLOBAL              7 (_handler)
+             74 POP_JUMP_IF_FALSE       47 (to 94)
+             76 LOAD_GLOBAL              7 (_handler)
+             78 LOAD_FAST                0 (job)
+             80 LOAD_ATTR                8 (role)
+             82 LOAD_FAST                0 (job)
+             84 LOAD_ATTR                9 (user_msg)
+             86 LOAD_FAST                0 (job)
+             88 LOAD_ATTR               10 (chat_id)
+             90 CALL_FUNCTION            3
+             92 JUMP_FORWARD             1 (to 96)
+        >>   94 LOAD_CONST               3 ('[no handler]')
+        >>   96 STORE_FAST               2 (reply)
+
+ 68          98 LOAD_GLOBAL              2 (sqlite3)
+            100 LOAD_METHOD              3 (connect)
+            102 LOAD_GLOBAL              4 (DB_PATH)
+            104 CALL_METHOD              1
+            106 SETUP_WITH              19 (to 146)
+            108 STORE_FAST               1 (c)
+
+ 69         110 LOAD_FAST                1 (c)
+            112 LOAD_METHOD              5 (execute)
+
+ 70         114 LOAD_CONST               4 ("UPDATE queue_backlog SET status='done', finished_at=? WHERE id=?")
+
+ 71         116 LOAD_GLOBAL             11 (time)
+            118 LOAD_METHOD             11 (time)
+            120 CALL_METHOD              0
+            122 LOAD_FAST                0 (job)
+            124 LOAD_ATTR                6 (row_id)
+            126 BUILD_TUPLE              2
+
+ 69         128 CALL_METHOD              2
+            130 POP_TOP
+            132 POP_BLOCK
+
+ 68         134 LOAD_CONST               0 (None)
+            136 DUP_TOP
+            138 DUP_TOP
+            140 CALL_FUNCTION            3
+            142 POP_TOP
+            144 JUMP_FORWARD             8 (to 162)
+        >>  146 WITH_EXCEPT_START
+            148 POP_JUMP_IF_TRUE        76 (to 152)
+            150 RERAISE                  1
+        >>  152 POP_TOP
+            154 POP_TOP
+            156 POP_TOP
+            158 POP_EXCEPT
+            160 POP_TOP
+
+ 73     >>  162 LOAD_FAST                0 (job)
+            164 LOAD_ATTR               12 (future)
+            166 LOAD_METHOD             13 (set_result)
+            168 LOAD_FAST                2 (reply)
+            170 CALL_METHOD              1
+            172 POP_TOP
+            174 POP_BLOCK
+            176 JUMP_FORWARD            56 (to 290)
+
+ 74     >>  178 DUP_TOP
+            180 LOAD_GLOBAL             14 (Exception)
+            182 JUMP_IF_NOT_EXC_MATCH   144 (to 288)
+            184 POP_TOP
+            186 STORE_FAST               3 (e)
+            188 POP_TOP
+            190 SETUP_FINALLY           44 (to 280)
+
+ 75         192 LOAD_GLOBAL              2 (sqlite3)
+            194 LOAD_METHOD              3 (connect)
+            196 LOAD_GLOBAL              4 (DB_PATH)
+            198 CALL_METHOD              1
+            200 SETUP_WITH              19 (to 240)
+            202 STORE_FAST               1 (c)
+
+ 76         204 LOAD_FAST                1 (c)
+            206 LOAD_METHOD              5 (execute)
+
+ 77         208 LOAD_CONST               5 ("UPDATE queue_backlog SET status='failed', finished_at=? WHERE id=?")
+
+ 78         210 LOAD_GLOBAL             11 (time)
+            212 LOAD_METHOD             11 (time)
+            214 CALL_METHOD              0
+            216 LOAD_FAST                0 (job)
+            218 LOAD_ATTR                6 (row_id)
+            220 BUILD_TUPLE              2
+
+ 76         222 CALL_METHOD              2
+            224 POP_TOP
+            226 POP_BLOCK
+
+ 75         228 LOAD_CONST               0 (None)
+            230 DUP_TOP
+            232 DUP_TOP
+            234 CALL_FUNCTION            3
+            236 POP_TOP
+            238 JUMP_FORWARD             8 (to 256)
+        >>  240 WITH_EXCEPT_START
+            242 POP_JUMP_IF_TRUE       123 (to 246)
+            244 RERAISE                  1
+        >>  246 POP_TOP
+            248 POP_TOP
+            250 POP_TOP
+            252 POP_EXCEPT
+            254 POP_TOP
+
+ 80     >>  256 LOAD_FAST                0 (job)
+            258 LOAD_ATTR               12 (future)
+            260 LOAD_METHOD             15 (set_exception)
+            262 LOAD_FAST                3 (e)
+            264 CALL_METHOD              1
+            266 POP_TOP
+            268 POP_BLOCK
+            270 POP_EXCEPT
+            272 LOAD_CONST               0 (None)
+            274 STORE_FAST               3 (e)
+            276 DELETE_FAST              3 (e)
+            278 JUMP_FORWARD             5 (to 290)
+        >>  280 LOAD_CONST               0 (None)
+            282 STORE_FAST               3 (e)
+            284 DELETE_FAST              3 (e)
+            286 RERAISE                  1
+
+ 74     >>  288 RERAISE                  0
+        >>  290 POP_BLOCK
+
+ 82         292 LOAD_GLOBAL              0 (_q)
+            294 LOAD_METHOD             16 (task_done)
+            296 CALL_METHOD              0
+            298 POP_TOP
+            300 JUMP_FORWARD             5 (to 312)
+        >>  302 LOAD_GLOBAL              0 (_q)
+            304 LOAD_METHOD             16 (task_done)
+            306 CALL_METHOD              0
+            308 POP_TOP
+            310 RERAISE                  0
+
+ 62     >>  312 JUMP_ABSOLUTE            1 (to 2)
+
+Disassembly of <code object _ensure_worker at 0x0000021CBF50C3A0, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 85>:
+ 87           0 LOAD_GLOBAL              0 (_lock)
+              2 SETUP_WITH              34 (to 72)
+              4 POP_TOP
+
+ 88           6 LOAD_GLOBAL              1 (_worker_started)
+              8 POP_JUMP_IF_FALSE       14 (to 28)
+
+ 89          10 NOP
+
+ 87          12 POP_BLOCK
+             14 LOAD_CONST               0 (None)
+             16 DUP_TOP
+             18 DUP_TOP
+             20 CALL_FUNCTION            3
+             22 POP_TOP
+             24 LOAD_CONST               0 (None)
+             26 RETURN_VALUE
+
+ 90     >>   28 LOAD_GLOBAL              2 (threading)
+             30 LOAD_ATTR                3 (Thread)
+             32 LOAD_GLOBAL              4 (_worker_loop)
+             34 LOAD_CONST               1 (True)
+             36 LOAD_CONST               2 ('claudeclaw-worker')
+             38 LOAD_CONST               3 (('target', 'daemon', 'name'))
+             40 CALL_FUNCTION_KW         3
+             42 STORE_FAST               0 (t)
+
+ 91          44 LOAD_FAST                0 (t)
+             46 LOAD_METHOD              5 (start)
+             48 CALL_METHOD              0
+             50 POP_TOP
+
+ 92          52 LOAD_CONST               1 (True)
+             54 STORE_GLOBAL             1 (_worker_started)
+             56 POP_BLOCK
+
+ 87          58 LOAD_CONST               0 (None)
+             60 DUP_TOP
+             62 DUP_TOP
+             64 CALL_FUNCTION            3
+             66 POP_TOP
+             68 LOAD_CONST               0 (None)
+             70 RETURN_VALUE
+        >>   72 WITH_EXCEPT_START
+             74 POP_JUMP_IF_TRUE        39 (to 78)
+             76 RERAISE                  1
+        >>   78 POP_TOP
+             80 POP_TOP
+             82 POP_TOP
+             84 POP_EXCEPT
+             86 POP_TOP
+             88 LOAD_CONST               0 (None)
+             90 RETURN_VALUE
+
+Disassembly of <code object submit at 0x0000021CBF50C450, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 95>:
+ 97           0 LOAD_GLOBAL              0 (_ensure_worker)
+              2 CALL_FUNCTION            0
+              4 POP_TOP
+
+ 98           6 LOAD_GLOBAL              1 (sqlite3)
+              8 LOAD_METHOD              2 (connect)
+             10 LOAD_GLOBAL              3 (DB_PATH)
+             12 CALL_METHOD              1
+             14 SETUP_WITH              23 (to 62)
+             16 STORE_FAST               4 (c)
+
+ 99          18 LOAD_FAST                4 (c)
+             20 LOAD_METHOD              4 (execute)
+
+100          22 LOAD_CONST               1 ("INSERT INTO queue_backlog(role, user_msg, chat_id, status, created_at) VALUES(?, ?, ?, 'pending', ?)")
+
+101          24 LOAD_FAST                0 (role)
+             26 LOAD_FAST                1 (user_msg)
+             28 LOAD_FAST                2 (chat_id)
+             30 LOAD_GLOBAL              5 (time)
+             32 LOAD_METHOD              5 (time)
+             34 CALL_METHOD              0
+             36 BUILD_TUPLE              4
+
+ 99          38 CALL_METHOD              2
+             40 STORE_FAST               5 (cur)
+
+103          42 LOAD_FAST                5 (cur)
+             44 LOAD_ATTR                6 (lastrowid)
+             46 STORE_FAST               6 (row_id)
+             48 POP_BLOCK
+
+ 98          50 LOAD_CONST               2 (None)
+             52 DUP_TOP
+             54 DUP_TOP
+             56 CALL_FUNCTION            3
+             58 POP_TOP
+             60 JUMP_FORWARD             8 (to 78)
+        >>   62 WITH_EXCEPT_START
+             64 POP_JUMP_IF_TRUE        34 (to 68)
+             66 RERAISE                  1
+        >>   68 POP_TOP
+             70 POP_TOP
+             72 POP_TOP
+             74 POP_EXCEPT
+             76 POP_TOP
+
+104     >>   78 LOAD_GLOBAL              7 (Future)
+             80 CALL_FUNCTION            0
+             82 STORE_FAST               7 (fut)
+
+105          84 LOAD_GLOBAL              8 (_q)
+             86 LOAD_METHOD              9 (put)
+             88 LOAD_GLOBAL             10 (Job)
+             90 LOAD_FAST                0 (role)
+             92 LOAD_FAST                1 (user_msg)
+             94 LOAD_FAST                2 (chat_id)
+             96 LOAD_FAST                7 (fut)
+             98 LOAD_FAST                6 (row_id)
+            100 LOAD_CONST               3 (('role', 'user_msg', 'chat_id', 'future', 'row_id'))
+            102 CALL_FUNCTION_KW         5
+            104 CALL_METHOD              1
+            106 POP_TOP
+
+106         108 SETUP_FINALLY            7 (to 124)
+
+107         110 LOAD_FAST                7 (fut)
+            112 LOAD_ATTR               11 (result)
+            114 LOAD_FAST                3 (timeout)
+            116 LOAD_CONST               4 (('timeout',))
+            118 CALL_FUNCTION_KW         1
+            120 POP_BLOCK
+            122 RETURN_VALUE
+
+108     >>  124 DUP_TOP
+            126 LOAD_GLOBAL             12 (Exception)
+            128 JUMP_IF_NOT_EXC_MATCH    85 (to 170)
+            130 POP_TOP
+            132 STORE_FAST               8 (e)
+            134 POP_TOP
+            136 SETUP_FINALLY           12 (to 162)
+
+109         138 LOAD_CONST               5 ('[queue error: ')
+            140 LOAD_FAST                8 (e)
+            142 FORMAT_VALUE             0
+            144 LOAD_CONST               6 (']')
+            146 BUILD_STRING             3
+            148 POP_BLOCK
+            150 ROT_FOUR
+            152 POP_EXCEPT
+            154 LOAD_CONST               2 (None)
+            156 STORE_FAST               8 (e)
+            158 DELETE_FAST              8 (e)
+            160 RETURN_VALUE
+        >>  162 LOAD_CONST               2 (None)
+            164 STORE_FAST               8 (e)
+            166 DELETE_FAST              8 (e)
+            168 RERAISE                  1
+
+108     >>  170 RERAISE                  0
+
+Disassembly of <code object queue_stats at 0x0000021CBF50C500, file "C:\Users\mario\.gemini\antigravity\tools\execution\claudeclaw\queue.py", line 112>:
+113           0 LOAD_GLOBAL              0 (sqlite3)
+              2 LOAD_METHOD              1 (connect)
+              4 LOAD_GLOBAL              2 (DB_PATH)
+              6 CALL_METHOD              1
+              8 SETUP_WITH              17 (to 44)
+             10 STORE_FAST               0 (c)
+
+114          12 LOAD_GLOBAL              3 (dict)
+             14 LOAD_FAST                0 (c)
+             16 LOAD_METHOD              4 (execute)
+
+115          18 LOAD_CONST               1 ('SELECT status, COUNT(*) FROM queue_backlog GROUP BY status')
+
+114          20 CALL_METHOD              1
+
+116          22 LOAD_METHOD              5 (fetchall)
+             24 CALL_METHOD              0
+
+114          26 CALL_FUNCTION            1
+             28 STORE_FAST               1 (rows)
+             30 POP_BLOCK
+
+113          32 LOAD_CONST               0 (None)
+             34 DUP_TOP
+             36 DUP_TOP
+             38 CALL_FUNCTION            3
+             40 POP_TOP
+             42 JUMP_FORWARD             8 (to 60)
+        >>   44 WITH_EXCEPT_START
+             46 POP_JUMP_IF_TRUE        25 (to 50)
+             48 RERAISE                  1
+        >>   50 POP_TOP
+             52 POP_TOP
+             54 POP_TOP
+             56 POP_EXCEPT
+             58 POP_TOP
+
+118     >>   60 LOAD_FAST                1 (rows)
+             62 LOAD_METHOD              6 (get)
+             64 LOAD_CONST               2 ('pending')
+             66 LOAD_CONST               3 (0)
+             68 CALL_METHOD              2
+
+119          70 LOAD_FAST                1 (rows)
+             72 LOAD_METHOD              6 (get)
+             74 LOAD_CONST               4 ('running')
+             76 LOAD_CONST               3 (0)
+             78 CALL_METHOD              2
+
+120          80 LOAD_FAST                1 (rows)
+             82 LOAD_METHOD              6 (get)
+             84 LOAD_CONST               5 ('done')
+             86 LOAD_CONST               3 (0)
+             88 CALL_METHOD              2
+
+121          90 LOAD_FAST                1 (rows)
+             92 LOAD_METHOD              6 (get)
+             94 LOAD_CONST               6 ('failed')
+             96 LOAD_CONST               3 (0)
+             98 CALL_METHOD              2
+
+122         100 LOAD_GLOBAL              7 (_q)
+            102 LOAD_METHOD              8 (qsize)
+            104 CALL_METHOD              0
+
+117         106 LOAD_CONST               7 (('pending', 'running', 'done', 'failed', 'in_flight_now'))
+            108 BUILD_CONST_KEY_MAP      5
+            110 RETURN_VALUE
+
+
+## NESTED CODE OBJECTS:
+
+### def Job()  [argcount=0, locals=()]
+# co_consts: ["'Job'", "'role'", "'user_msg'", "'chat_id'", "'future'", "'row_id'", 'None']
+# co_names:  ('__name__', '__module__', '__qualname__', 'str', '__annotations__', 'Optional', 'Future', 'int')
+ 39           0 LOAD_NAME                0 (__name__)
+              2 STORE_NAME               1 (__module__)
+              4 LOAD_CONST               0 ('Job')
+              6 STORE_NAME               2 (__qualname__)
+              8 SETUP_ANNOTATIONS
+
+ 41          10 LOAD_NAME                3 (str)
+             12 LOAD_NAME                4 (__annotations__)
+             14 LOAD_CONST               1 ('role')
+             16 STORE_SUBSCR
+
+ 42          18 LOAD_NAME                3 (str)
+             20 LOAD_NAME                4 (__annotations__)
+             22 LOAD_CONST               2 ('user_msg')
+             24 STORE_SUBSCR
+
+ 43          26 LOAD_NAME                5 (Optional)
+             28 LOAD_NAME                3 (str)
+             30 BINARY_SUBSCR
+             32 LOAD_NAME                4 (__annotations__)
+             34 LOAD_CONST               3 ('chat_id')
+             36 STORE_SUBSCR
+
+ 44          38 LOAD_NAME                6 (Future)
+             40 LOAD_NAME                4 (__annotations__)
+             42 LOAD_CONST               4 ('future')
+             44 STORE_SUBSCR
+
+ 45          46 LOAD_NAME                7 (int)
+             48 LOAD_NAME                4 (__annotations__)
+             50 LOAD_CONST               5 ('row_id')
+             52 STORE_SUBSCR
+             54 LOAD_CONST               6 (None)
+             56 RETURN_VALUE
+
+### def set_handler(fn)  [argcount=1, locals=('fn',)]
+# co_consts: ["'Register the function that actually runs the agent call.\\n    Signature: fn(role, user_msg, chat_id) -> reply_text'", 'None']
+# co_names:  ('_handler',)
+ 58           0 LOAD_FAST                0 (fn)
+              2 STORE_GLOBAL             0 (_handler)
+              4 LOAD_CONST               1 (None)
+              6 RETURN_VALUE
+
+### def _worker_loop()  [argcount=0, locals=('job', 'c', 'reply', 'e')]
+# co_consts: ['None', 'True', '"UPDATE queue_backlog SET status=\'running\' WHERE id=?"', "'[no handler]'", '"UPDATE queue_backlog SET status=\'done\', finished_at=? WHERE id=?"', '"UPDATE queue_backlog SET status=\'failed\', finished_at=? WHERE id=?"']
+# co_names:  ('_q', 'get', 'sqlite3', 'connect', 'DB_PATH', 'execute', 'row_id', '_handler', 'role', 'user_msg', 'chat_id', 'time', 'future', 'set_result', 'Exception', 'set_exception', 'task_done')
+ 62           0 NOP
+
+ 63     >>    2 LOAD_GLOBAL              0 (_q)
+              4 LOAD_METHOD              1 (get)
+              6 CALL_METHOD              0
+              8 STORE_FAST               0 (job)
+
+ 64          10 SETUP_FINALLY          145 (to 302)
+             12 SETUP_FINALLY           82 (to 178)
+
+ 65          14 LOAD_GLOBAL              2 (sqlite3)
+             16 LOAD_METHOD              3 (connect)
+             18 LOAD_GLOBAL              4 (DB_PATH)
+             20 CALL_METHOD              1
+             22 SETUP_WITH              16 (to 56)
+             24 STORE_FAST               1 (c)
+
+ 66          26 LOAD_FAST                1 (c)
+             28 LOAD_METHOD              5 (execute)
+             30 LOAD_CONST               2 ("UPDATE queue_backlog SET status='running' WHERE id=?")
+             32 LOAD_FAST                0 (job)
+             34 LOAD_ATTR                6 (row_id)
+             36 BUILD_TUPLE              1
+             38 CALL_METHOD              2
+             40 POP_TOP
+             42 POP_BLOCK
+
+ 65          44 LOAD_CONST               0 (None)
+             46 DUP_TOP
+             48 DUP_TOP
+             50 CALL_FUNCTION            3
+             52 POP_TOP
+             54 JUMP_FORWARD             8 (to 72)
+        >>   56 WITH_EXCEPT_START
+             58 POP_JUMP_IF_TRUE        31 (to 62)
+             60 RERAISE                  1
+        >>   62 POP_TOP
+             64 POP_TOP
+             66 POP_TOP
+             68 POP_EXCEPT
+             70 POP_TOP
+
+ 67     >>   72 LOAD_GLOBAL              7 (_handler)
+             74 POP_JUMP_IF_FALSE       47 (to 94)
+             76 LOAD_GLOBAL              7 (_handler)
+             78 LOAD_FAST                0 (job)
+             80 LOAD_ATTR                8 (role)
+             82 LOAD_FAST                0 (job)
+             84 LOAD_ATTR                9 (user_msg)
+             86 LOAD_FAST                0 (job)
+             88 LOAD_ATTR               10 (chat_id)
+             90 CALL_FUNCTION            3
+             92 JUMP_FORWARD             1 (to 96)
+        >>   94 LOAD_CONST               3 ('[no handler]')
+        >>   96 STORE_FAST               2 (reply)
+
+ 68          98 LOAD_GLOBAL              2 (sqlite3)
+            100 LOAD_METHOD              3 (connect)
+            102 LOAD_GLOBAL              4 (DB_PATH)
+            104 CALL_METHOD              1
+            106 SETUP_WITH              19 (to 146)
+            108 STORE_FAST               1 (c)
+
+ 69         110 LOAD_FAST                1 (c)
+            112 LOAD_METHOD              5 (execute)
+
+ 70         114 LOAD_CONST               4 ("UPDATE queue_backlog SET status='done', finished_at=? WHERE id=?")
+
+ 71         116 LOAD_GLOBAL             11 (time)
+            118 LOAD_METHOD             11 (time)
+            120 CALL_METHOD              0
+            122 LOAD_FAST                0 (job)
+            124 LOAD_ATTR                6 (row_id)
+            126 BUILD_TUPLE              2
+
+ 69         128 CALL_METHOD              2
+            130 POP_TOP
+            132 POP_BLOCK
+
+ 68         134 LOAD_CONST               0 (None)
+            136 DUP_TOP
+            138 DUP_TOP
+            140 CALL_FUNCTION            3
+            142 POP_TOP
+            144 JUMP_FORWARD             8 (to 162)
+        >>  146 WITH_EXCEPT_START
+            148 POP_JUMP_IF_TRUE        76 (to 152)
+            150 RERAISE                  1
+        >>  152 POP_TOP
+            154 POP_TOP
+            156 POP_TOP
+            158 POP_EXCEPT
+            160 POP_TOP
+
+ 73     >>  162 LOAD_FAST                0 (job)
+            164 LOAD_ATTR               12 (future)
+            166 LOAD_METHOD             13 (set_result)
+            168 LOAD_FAST                2 (reply)
+            170 CALL_METHOD              1
+            172 POP_TOP
+            174 POP_BLOCK
+            176 JUMP_FORWARD            56 (to 290)
+
+ 74     >>  178 DUP_TOP
+            180 LOAD_GLOBAL             14 (Exception)
+            182 JUMP_IF_NOT_EXC_MATCH   144 (to 288)
+            184 POP_TOP
+            186 STORE_FAST               3 (e)
+            188 POP_TOP
+            190 SETUP_FINALLY           44 (to 280)
+
+ 75         192 LOAD_GLOBAL              2 (sqlite3)
+            194 LOAD_METHOD              3 (connect)
+            196 LOAD_GLOBAL              4 (DB_PATH)
+            198 CALL_METHOD              1
+            200 SETUP_WITH              19 (to 240)
+            202 STORE_FAST               1 (c)
+
+ 76         204 LOAD_FAST                1 (c)
+            206 LOAD_METHOD              5 (execute)
+
+ 77         208 LOAD_CONST               5 ("UPDATE queue_backlog SET status='failed', finished_at=? WHERE id=?")
+
+ 78         210 LOAD_GLOBAL             11 (time)
+            212 LOAD_METHOD             11 (time)
+            214 CALL_METHOD              0
+            216 LOAD_FAST                0 (job)
+            218 LOAD_ATTR                6 (row_id)
+            220 BUILD_TUPLE              2
+
+ 76         222 CALL_METHOD              2
+            224 POP_TOP
+            226 POP_BLOCK
+
+ 75         228 LOAD_CONST               0 (None)
+            230 DUP_TOP
+            232 DUP_TOP
+            234 CALL_FUNCTION            3
+            236 POP_TOP
+            238 JUMP_FORWARD             8 (to 256)
+        >>  240 WITH_EXCEPT_START
+            242 POP_JUMP_IF_TRUE       123 (to 246)
+            244 RERAISE                  1
+        >>  246 POP_TOP
+            248 POP_TOP
+            250 POP_TOP
+            252 POP_EXCEPT
+            254 POP_TOP
+
+ 80     >>  256 LOAD_FAST                0 (job)
+            258 LOAD_ATTR               12 (future)
+            260 LOAD_METHOD             15 (set_exception)
+            262 LOAD_FAST                3 (e)
+            264 CALL_METHOD              1
+            266 POP_TOP
+            268 POP_BLOCK
+            270 POP_EXCEPT
+            272 LOAD_CONST               0 (None)
+            274 STORE_FAST               3 (e)
+            276 DELETE_FAST              3 (e)
+            278 JUMP_FORWARD             5 (to 290)
+        >>  280 LOAD_CONST               0 (None)
+            282 STORE_FAST               3 (e)
+            284 DELETE_FAST              3 (e)
+            286 RERAISE                  1
+
+ 74     >>  288 RERAISE                  0
+        >>  290 POP_BLOCK
+
+ 82         292 LOAD_GLOBAL              0 (_q)
+            294 LOAD_METHOD             16 (task_done)
+            296 CALL_METHOD              0
+            298 POP_TOP
+            300 JUMP_FORWARD             5 (to 312)
+        >>  302 LOAD_GLOBAL              0 (_q)
+            304 LOAD_METHOD             16 (task_done)
+            306 CALL_METHOD              0
+            308 POP_TOP
+            310 RERAISE                  0
+
+ 62     >>  312 JUMP_ABSOLUTE            1 (to 2)
+
+### def _ensure_worker()  [argcount=0, locals=('t',)]
+# co_consts: ['None', 'True', "'claudeclaw-worker'", "('target', 'daemon', 'name')"]
+# co_names:  ('_lock', '_worker_started', 'threading', 'Thread', '_worker_loop', 'start')
+ 87           0 LOAD_GLOBAL              0 (_lock)
+              2 SETUP_WITH              34 (to 72)
+              4 POP_TOP
+
+ 88           6 LOAD_GLOBAL              1 (_worker_started)
+              8 POP_JUMP_IF_FALSE       14 (to 28)
+
+ 89          10 NOP
+
+ 87          12 POP_BLOCK
+             14 LOAD_CONST               0 (None)
+             16 DUP_TOP
+             18 DUP_TOP
+             20 CALL_FUNCTION            3
+             22 POP_TOP
+             24 LOAD_CONST               0 (None)
+             26 RETURN_VALUE
+
+ 90     >>   28 LOAD_GLOBAL              2 (threading)
+             30 LOAD_ATTR                3 (Thread)
+             32 LOAD_GLOBAL              4 (_worker_loop)
+             34 LOAD_CONST               1 (True)
+             36 LOAD_CONST               2 ('claudeclaw-worker')
+             38 LOAD_CONST               3 (('target', 'daemon', 'name'))
+             40 CALL_FUNCTION_KW         3
+             42 STORE_FAST               0 (t)
+
+ 91          44 LOAD_FAST                0 (t)
+             46 LOAD_METHOD              5 (start)
+             48 CALL_METHOD              0
+             50 POP_TOP
+
+ 92          52 LOAD_CONST               1 (True)
+             54 STORE_GLOBAL             1 (_worker_started)
+             56 POP_BLOCK
+
+ 87          58 LOAD_CONST               0 (None)
+             60 DUP_TOP
+             62 DUP_TOP
+             64 CALL_FUNCTION            3
+             66 POP_TOP
+             68 LOAD_CONST               0 (None)
+             70 RETURN_VALUE
+        >>   72 WITH_EXCEPT_START
+             74 POP_JUMP_IF_TRUE        39 (to 78)
+             76 RERAISE                  1
+        >>   78 POP_TOP
+             80 POP_TOP
+             82 POP_TOP
+             84 POP_EXCEPT
+             86 POP_TOP
+             88 LOAD_CONST               0 (None)
+             90 RETURN_VALUE
+
+### def submit(role, user_msg, chat_id, timeout)  [argcount=4, locals=('role', 'user_msg', 'chat_id', 'timeout', 'c', 'cur', 'row_id', 'fut', 'e')]
+# co_consts: ["'Enqueue a job and block until the reply is ready (with timeout).'", '"INSERT INTO queue_backlog(role, user_msg, chat_id, status, created_at) VALUES(?, ?, ?, \'pending\', ?)"', 'None', "('role', 'user_msg', 'chat_id', 'future', 'row_id')", "('timeout',)", "'[queue error: '", "']'"]
+# co_names:  ('_ensure_worker', 'sqlite3', 'connect', 'DB_PATH', 'execute', 'time', 'lastrowid', 'Future', '_q', 'put', 'Job', 'result', 'Exception')
+ 97           0 LOAD_GLOBAL              0 (_ensure_worker)
+              2 CALL_FUNCTION            0
+              4 POP_TOP
+
+ 98           6 LOAD_GLOBAL              1 (sqlite3)
+              8 LOAD_METHOD              2 (connect)
+             10 LOAD_GLOBAL              3 (DB_PATH)
+             12 CALL_METHOD              1
+             14 SETUP_WITH              23 (to 62)
+             16 STORE_FAST               4 (c)
+
+ 99          18 LOAD_FAST                4 (c)
+             20 LOAD_METHOD              4 (execute)
+
+100          22 LOAD_CONST               1 ("INSERT INTO queue_backlog(role, user_msg, chat_id, status, created_at) VALUES(?, ?, ?, 'pending', ?)")
+
+101          24 LOAD_FAST                0 (role)
+             26 LOAD_FAST                1 (user_msg)
+             28 LOAD_FAST                2 (chat_id)
+             30 LOAD_GLOBAL              5 (time)
+             32 LOAD_METHOD              5 (time)
+             34 CALL_METHOD              0
+             36 BUILD_TUPLE              4
+
+ 99          38 CALL_METHOD              2
+             40 STORE_FAST               5 (cur)
+
+103          42 LOAD_FAST                5 (cur)
+             44 LOAD_ATTR                6 (lastrowid)
+             46 STORE_FAST               6 (row_id)
+             48 POP_BLOCK
+
+ 98          50 LOAD_CONST               2 (None)
+             52 DUP_TOP
+             54 DUP_TOP
+             56 CALL_FUNCTION            3
+             58 POP_TOP
+             60 JUMP_FORWARD             8 (to 78)
+        >>   62 WITH_EXCEPT_START
+             64 POP_JUMP_IF_TRUE        34 (to 68)
+             66 RERAISE                  1
+        >>   68 POP_TOP
+             70 POP_TOP
+             72 POP_TOP
+             74 POP_EXCEPT
+             76 POP_TOP
+
+104     >>   78 LOAD_GLOBAL              7 (Future)
+             80 CALL_FUNCTION            0
+             82 STORE_FAST               7 (fut)
+
+105          84 LOAD_GLOBAL              8 (_q)
+             86 LOAD_METHOD              9 (put)
+             88 LOAD_GLOBAL             10 (Job)
+             90 LOAD_FAST                0 (role)
+             92 LOAD_FAST                1 (user_msg)
+             94 LOAD_FAST                2 (chat_id)
+             96 LOAD_FAST                7 (fut)
+             98 LOAD_FAST                6 (row_id)
+            100 LOAD_CONST               3 (('role', 'user_msg', 'chat_id', 'future', 'row_id'))
+            102 CALL_FUNCTION_KW         5
+            104 CALL_METHOD              1
+            106 POP_TOP
+
+106         108 SETUP_FINALLY            7 (to 124)
+
+107         110 LOAD_FAST                7 (fut)
+            112 LOAD_ATTR               11 (result)
+            114 LOAD_FAST                3 (timeout)
+            116 LOAD_CONST               4 (('timeout',))
+            118 CALL_FUNCTION_KW         1
+            120 POP_BLOCK
+            122 RETURN_VALUE
+
+108     >>  124 DUP_TOP
+            126 LOAD_GLOBAL             12 (Exception)
+            128 JUMP_IF_NOT_EXC_MATCH    85 (to 170)
+            130 POP_TOP
+            132 STORE_FAST               8 (e)
+            134 POP_TOP
+            136 SETUP_FINALLY           12 (to 162)
+
+109         138 LOAD_CONST               5 ('[queue error: ')
+            140 LOAD_FAST                8 (e)
+            142 FORMAT_VALUE             0
+            144 LOAD_CONST               6 (']')
+            146 BUILD_STRING             3
+            148 POP_BLOCK
+            150 ROT_FOUR
+            152 POP_EXCEPT
+            154 LOAD_CONST               2 (None)
+            156 STORE_FAST               8 (e)
+            158 DELETE_FAST              8 (e)
+            160 RETURN_VALUE
+        >>  162 LOAD_CONST               2 (None)
+            164 STORE_FAST               8 (e)
+            166 DELETE_FAST              8 (e)
+            168 RERAISE                  1
+
+108     >>  170 RERAISE                  0
+
+### def queue_stats()  [argcount=0, locals=('c', 'rows')]
+# co_consts: ['None', "'SELECT status, COUNT(*) FROM queue_backlog GROUP BY status'", "'pending'", '0', "'running'", "'done'", "'failed'", "('pending', 'running', 'done', 'failed', 'in_flight_now')"]
+# co_names:  ('sqlite3', 'connect', 'DB_PATH', 'dict', 'execute', 'fetchall', 'get', '_q', 'qsize')
+113           0 LOAD_GLOBAL              0 (sqlite3)
+              2 LOAD_METHOD              1 (connect)
+              4 LOAD_GLOBAL              2 (DB_PATH)
+              6 CALL_METHOD              1
+              8 SETUP_WITH              17 (to 44)
+             10 STORE_FAST               0 (c)
+
+114          12 LOAD_GLOBAL              3 (dict)
+             14 LOAD_FAST                0 (c)
+             16 LOAD_METHOD              4 (execute)
+
+115          18 LOAD_CONST               1 ('SELECT status, COUNT(*) FROM queue_backlog GROUP BY status')
+
+114          20 CALL_METHOD              1
+
+116          22 LOAD_METHOD              5 (fetchall)
+             24 CALL_METHOD              0
+
+114          26 CALL_FUNCTION            1
+             28 STORE_FAST               1 (rows)
+             30 POP_BLOCK
+
+113          32 LOAD_CONST               0 (None)
+             34 DUP_TOP
+             36 DUP_TOP
+             38 CALL_FUNCTION            3
+             40 POP_TOP
+             42 JUMP_FORWARD             8 (to 60)
+        >>   44 WITH_EXCEPT_START
+             46 POP_JUMP_IF_TRUE        25 (to 50)
+             48 RERAISE                  1
+        >>   50 POP_TOP
+             52 POP_TOP
+             54 POP_TOP
+             56 POP_EXCEPT
+             58 POP_TOP
+
+118     >>   60 LOAD_FAST                1 (rows)
+             62 LOAD_METHOD              6 (get)
+             64 LOAD_CONST               2 ('pending')
+             66 LOAD_CONST               3 (0)
+             68 CALL_METHOD              2
+
+119          70 LOAD_FAST                1 (rows)
+             72 LOAD_METHOD              6 (get)
+             74 LOAD_CONST               4 ('running')
+             76 LOAD_CONST               3 (0)
+             78 CALL_METHOD              2
+
+120          80 LOAD_FAST                1 (rows)
+             82 LOAD_METHOD              6 (get)
+             84 LOAD_CONST               5 ('done')
+             86 LOAD_CONST               3 (0)
+             88 CALL_METHOD              2
+
+121          90 LOAD_FAST                1 (rows)
+             92 LOAD_METHOD              6 (get)
+             94 LOAD_CONST               6 ('failed')
+             96 LOAD_CONST               3 (0)
+             98 CALL_METHOD              2
+
+122         100 LOAD_GLOBAL              7 (_q)
+            102 LOAD_METHOD              8 (qsize)
+            104 CALL_METHOD              0
+
+117         106 LOAD_CONST               7 (('pending', 'running', 'done', 'failed', 'in_flight_now'))
+            108 BUILD_CONST_KEY_MAP      5
+            110 RETURN_VALUE

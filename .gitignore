@@ -90,6 +90,9 @@ Thumbs.db
 desktop.ini
 .DS_Store
 
+# --- GSC / Google Cloud Service Account Keys ---
+gsc_config/
+
 # --- Gravity-Claw MCP (has its own sensitive data) ---
 # Include source but exclude runtime/credentials
 gravity-claw/.env
@@ -105,3 +108,4 @@ gravity-claw/verification.log
 gravity-claw/test_voice.log
 gravity-claw/tsc.log
 gravity-claw/sse_stream.log
+gcp-credentials/

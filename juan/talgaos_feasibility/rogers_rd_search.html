@@ -1,0 +1,2242 @@
+
+
+
+
+
+<html>
+	<head>
+	<link rel=stylesheet href="/act_webdev/hidalgo/hidalgo.css" type="text/css">
+  <LINK rel="stylesheet" type="text/css" href="/act_webdev/hidalgo/site.css" media="screen">
+  <LINK href="/act_webdev/hidalgo/print.css" rel="stylesheet" type="text/css" media="print">
+  <link rel="stylesheet" href="/act_webdev/resource/css/smoothness/jquery-ui-1.10.4.custom.min.jac.css" /><!--jason-->
+  <!-- Site Specific Stylesheet by include-->
+  <LINK rel="stylesheet" type="text/css" href="/act_webdev/hidalgo/siteSpecific.css" media="screen">
+    <style>
+      table.tablesorter thead tr .header {
+        background-image: url("../resource/image/bg.gif");
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        color: #0066CC;
+        font-family: Verdana, Helvetica, sans-serif;
+        font-size: 12px;
+        text-align: left;
+        padding: 5px 8px 27px 6px;
+        height: 59px;
+      }
+      table.tablesorter thead tr .headerSortDown,
+      table.tablesorter thead tr .headerSortUp {
+        color: black;
+      }
+      table.tablesorter thead tr .headerSortDown {
+        background-image: url("../resource/image/asc.gif");
+      }
+      table.tablesorter thead tr .headerSortUp {
+        background-image: url("../resource/image/desc.gif");
+      }
+    </style>
+    <title>Hidalgo County</title>
+    <script type="text/javascript" src="/act_webdev/resource/js/jquery-1.9.1.min.js"></script>
+    <script src="/act_webdev/resource/js/jquery-ui-1.10.4.custom.min.jac.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/act_webdev/resource/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".tablesorter").tablesorter({
+          sortList : [[1, 0]]
+        });
+      });
+    </script>
+	</head>
+
+<body class="docBody" >
+<basefont>
+
+<DIV id="wrapper">
+  <DIV id="container">
+    <DIV id="header"></DIV>
+    <!-- Begin JSP include (pageContent)-->
+    <DIV id="pageContent">
+      <TABLE width="940" border="0" cellpadding="0">
+			<tr> 
+				<td > 
+			<p align="right"><font face="Verdana" size="1" color=navy>
+                    <script language="Javascript">
+
+  var dayName = new Array ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+  var monName = new Array ("January", "February", "March", "April", "May", "June", "July", "August",
+  "September", "October", "November", "December")
+  var now = new Date
+  document.write("" + dayName[now.getDay()] + ", " + monName[now.getMonth()] + " "+now.getDate()+ ", " + " " + now.getFullYear())
+
+										</script>&nbsp;    &nbsp; &nbsp; &nbsp; </font>
+          </p>
+				</td>
+			</tr>
+		</table>
+
+		<table width="98%" style="margin-left:6px;" border="0">
+			<tr> 
+				<td>
+
+
+	<h6 align="center">
+		<br>
+		Your Search Results
+		<br>
+	</h6>
+
+	<h3 align="center">
+		<a class="nobreak" href="index.jsp">Begin a New Search</a>
+		&nbsp; &nbsp;
+		<a class="nobreak" href="portfolio/Login.jsp">Go to Your Portfolio</a>
+	</h3>
+
+
+<!--
+    DN - 12/29/2017 - PRC 195249
+        Removed one '</table' tag to resolve the footer issue on showlist.jsp page
+    DN - 06/03/2018 - PRC 198448
+        Increased the font size and swap the order of sentences
+        Added a "Added Selected Accounts to Shopping Cart" to bottom of table if there are more than 5  matches found
+        Updated style for account number column, it should be shown as hyperlink(blue and underlined)
+-->
+<style>
+#data-block A:link {
+	COLOR: #06c; TEXT-DECORATION: underline
+}
+#data-block A:visited {
+	COLOR: #036; TEXT-DECORATION: none
+}
+#data-block A:hover {
+	COLOR: #009cde; TEXT-DECORATION: underline
+}
+#data-block A:active {
+	COLOR: #036; TEXT-DECORATION: none
+}
+</style>
+	<table border='0' cellspacing='1' cellpadding='6' align="center">
+		<tr width="760" > 
+			<td> 
+				<div align="center"> 
+
+					<h3><b><br><br>The following is the result of your Property Address search for "ROGERS RD"</b></h3>
+					
+						<h3>There are 90 matches. </h3>
+					
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+	
+	  <h3>&nbsp;&nbsp; <a class="nobreak" href="showlistPrint.jsp" target="_blank"><font face="Arial, Helvetica, sans-serif" size="2">[print 
+        version]</font></a> &nbsp; &nbsp;
+<!-- <a class="nobreak" href="showlistExcel.jsp" target="_blank"><font face="Arial, Helvetica, sans-serif" size="2">[Excel&trade; 
+        version]</font></a> --></h3>
+      <h3>When first displayed, the results below are sorted by Owner Name. To 
+        sort by another Account Number, Property Site Address, Legal Description, 
+        or CAD Reference, click the underlined column heading having that label. 
+        (For example, to sort the results by Account Number, click that column 
+        heading.)</h3>
+	
+      <h3>To print this page, click <b>print version</b> above. This will display 
+        the information in a more printer-friendly font.</h3>
+      <!-- <h3>To bring the results below into an Excel spreadsheet, click <b>Excel&trade; 
+        version</b> above and follow the instructions there.</h3>-->
+	 
+
+	<form id="addToCart" action="" method="post">   
+		
+			<h3 style="font-size: 18px;"><b>To view the full record or to make a payment, click on the desired account number.</b></h3> 
+			
+		
+
+
+	<div id="data-block">
+	<table align="center" width="800">
+		<tr> 
+			<td> 
+				<table class="tablesorter" width="100%" cellpadding="4" cellspacing="0" border="1">
+          <thead>
+          <tr bordercolor="#000000"> 
+			
+            <th class="header" width="17%">
+              Account <br>Number
+            </th>
+            <th class="header" width="24%"> 
+              Owner's Name &amp;<br> Address
+            </th>
+            <th class="header" width="24%"> 
+              Property Site <br>Address
+            </th>
+            <th class="header" width="18%"> 
+              Legal <br>Description
+            </th>
+            <th class="header" width="17%"> 
+              CAD Reference <br>No.
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+				<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000300</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000300'> 
+								C010001000000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>ALVARADO ASCENCION SR SR<br>PO BOX 3819<br>EDINBURG, TX  78540<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10615 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO 2.0AC S8.0AC OUT OF<br>10.0AC TRACT LOT 3 2.0AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128926 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000303</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000303'> 
+								C010001000000303
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>ALVARADO ASCENCION SR SR<br>PO BOX 3819<br>EDINBURG, TX  78540<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO S8.0AC-10.0AC TRACT LOT<br>3 EXC 2.0AC FOR IMPS 6.0AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>568065 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000301</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000301'> 
+								C010001000000301
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>ALVARADO MARIA S MORALES<br>PO BOX 3819<br>EDINBURG, TX  78540<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10615 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO N200.69'-EXC<br>N150.66'-W145.35' LOT 3 1.50AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128927 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000235000702</span>
+							<h3> <a href='showdetail2.jsp?can=T210000235000702'> 
+								T210000235000702
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>AREBALO ANNA MARIA<br>4021 W ROGERS RD<br>EDINBURG, TX  78541-2668<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>4021 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY N85'-S331.81' & W34.1<br>8'-E649.9'-S246.36' LOT 7 SEC 235 2.66<br>GR 2.61AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>294856 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000235000712</span>
+							<h3> <a href='showdetail2.jsp?can=T210000235000712'> 
+								T210000235000712
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>AREBALO-PEREZ MAGDALENA<br>1301 XANTHISMA<br>MCALLEN, TX  78504-3547<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY<br>S49'-N988.19'-W229.70'-E284.7' LOT 7<br>SEC 235 0.26AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1312739 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000400</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000400'> 
+								C010001000000400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>ASHABRANNER CHARLES BRANDON & CASSANDRA<br>PO BOX 2596<br>ELSA, TX  78543-2596<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO LOT 4 UNIT 1-10 AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128928 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000244001402</span>
+							<h3> <a href='showdetail2.jsp?can=T210000244001402'> 
+								T210000244001402
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>AZTECA MILLING LP<br>5601 EXECUTIVE DR STE 800<br>IRVING, TX  75038<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W10AC-S20AC LOT 14 SEC<br>244 9.15AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295842 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000247001000</span>
+							<h3> <a href='showdetail2.jsp?can=T210000247001000'> 
+								T210000247001000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>BARBOSA JUAN A MARTINEZ &<br>ARGENTINA ARREGUIN<br>3604 VIRGINIA ST<br>EDINBURG, TX  78542-6031<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S660'-W660' EXC<br>S69'-E640'-LOT 10, BLK 247 10.00AC GR<br>8.72AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296002 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000235000903</span>
+							<h3> <a href='showdetail2.jsp?can=T210000235000903'> 
+								T210000235000903
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>BARRERA EDIEL I & ROSA B<br>3912 LORI MORGAN DR<br>EDINBURG, TX  78541-4853<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 9 W164.70'-E825' BLK<br>235 5.00 AC GR 4.69 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>294872 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000252000820</span>
+							<h3> <a href='showdetail2.jsp?can=T210000252000820'> 
+								T210000252000820
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CANTU GILLERMO<br>C/O JUAN A & BARBARA J GALICIA<br>PO BOX 1025<br>LA BLANCA, TX  78558-1025<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W 132'-E 1056'-N 250'<br>LOT 8 SEC 252 0.75AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296291 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>R053000000000300</span>
+							<h3> <a href='showdetail2.jsp?can=R053000000000300'> 
+								R053000000000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CANTU MIGUEL A<br>6920 ROGERS RD<br>EDINBURG, TX  78542<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>6920 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>RAMBO ESTATES LOT 3<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>265792 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000244000503</span>
+							<h3> <a href='showdetail2.jsp?can=T210000244000503'> 
+								T210000244000503
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CASITA SELF STORAGE LLC<br>724 W MONTE CRISTO RD<br>EDINBURG, TX  78541-6868<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W100' LOT 5 SEC 244<br>3.03AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>685460 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S017300000000100</span>
+							<h3> <a href='showdetail2.jsp?can=S017300000000100'> 
+								S017300000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CENTENO ESPERANZA ALCALA<br>C/O FRANK BRUCE ALCALA & DIONICIO JR<br>4119 N DOOLITTLE RD<br>EDINBURG, TX  78542<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>8602 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SALVADOR ESTATES LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>817835 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>A174100000000100</span>
+							<h3> <a href='showdetail2.jsp?can=A174100000000100'> 
+								A174100000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CHAVIRA DELFINO<br>5202 E ROGERS RD<br>EDINBURG, TX  78542-3079<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>5202 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>ALAMO ACRES LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>561030 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S705700000001300</span>
+							<h3> <a href='showdetail2.jsp?can=S705700000001300'> 
+								S705700000001300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CONTRERAS JOSE & BLANCA NORMA<br>13920 E ROGERS RD<br>EDINBURG, TX  78542-4694<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>13920 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUNFLOWER RIDGE LOT 13<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>618472 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262000800</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262000800'> 
+								T210000262000800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CONTRERAS JUAN ANTONIO & LETICIA ALVAREZ<br>PO BOX 1024<br>LA BLANCA, TX  78558-1024<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>11918 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 12 BLK 262 .68AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296661 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000248000500</span>
+							<h3> <a href='showdetail2.jsp?can=T210000248000500'> 
+								T210000248000500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CREATIVE HOTEL GROUP LLC<br>5807 N 3RD LN<br>MCALLEN, TX  78504-2863<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY ALL LT 5 EXC 11.40AC &<br>EXC 2AC TR BK 248 26.59AC GR 25.458AC<br>NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296008 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C953000000000300</span>
+							<h3> <a href='showdetail2.jsp?can=C953000000000300'> 
+								C953000000000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CRUZ FIDEL & BERTA<br>9220 E ROGERS RD<br>EDINBURG, TX  78542-4154<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>9222 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CRUZ LOT 3<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>20831075 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C953000000000400</span>
+							<h3> <a href='showdetail2.jsp?can=C953000000000400'> 
+								C953000000000400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>CRUZ MOISES<br>9226 E ROGERS RD<br>EDINBURG, TX  78542-4154<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>9226 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CRUZ LOT 4<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>20831076 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000932</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000932'> 
+								T210000243000932
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>DE LA ROSA CRISTELLA<br>1502 MARAVILLA DR<br>EDINBURG, TX  78539-0035<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E5AC-W10AC-E35AC LOT 9<br>BLK 243<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>500819 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000935</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000935'> 
+								T210000243000935
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>DE LA ROSA CRISTELLA<br>2108 E ROGERS RD<br>EDINBURG, TX  78542-6157<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S792'-W165'-E1155'- LOT<br>9 SEC 243 3.00AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>677897 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>M716000000000100</span>
+							<h3> <a href='showdetail2.jsp?can=M716000000000100'> 
+								M716000000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>DE LEON ARISTEO JR & LIBIA B CANTU<br>1915 SUAZE ST<br>EDINBURG, TX  78541-6580<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>MURILLO AT ROGERS LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1126111 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262002800</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262002800'> 
+								T210000262002800
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>DIAZ NOEMI P<br>PO BOX 762<br>EDCOUCH, TX  78538<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10524 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 28 EXC N2AC-SEC 262<br>& 263 2.80AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>500074 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000517</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000517'> 
+								T210000243000517
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>DUFFEY MICHAEL ALLEN<br>2900 N ROEGIERS RD<br>EDINBURG, TX  78541<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S350'-E140.52'-W551.56'<br>LOT 5 SEC 243 1.13AC GR 1.0AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>627267 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000506</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000506'> 
+								T210000243000506
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>DUFFEY SHELLY LAVONNE<br>915 E ROGERS RD<br>EDINBURG, TX  78541-8620<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>915 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E140'-W321.04'-S350' LOT<br>5 BLK 243 1.13AC GR 1.0AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295722 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000500</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000500'> 
+								T210000243000500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>DUFFEY SHELLY LAVONNE<br>915 E ROGERS RD<br>EDINBURG, TX  78541-8620<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY<br>S315.18'-E356.7'-W908.26' LOT 5 SEC 243<br>2.18AC GR 1.75AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295716 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000247001100</span>
+							<h3> <a href='showdetail2.jsp?can=T210000247001100'> 
+								T210000247001100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>EDINBURG CONSOLIDATED ISD<br>411 N 8TH AVE<br>EDINBURG, TX  78541-3309<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 11 - ALL 40.03 AC.<br>BLK 247 37.82 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296003 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210095239000702</span>
+							<h3> <a href='showdetail2.jsp?can=T210095239000702'> 
+								T210095239000702
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>ELIZONDO JAVIER<br>PO BOX 944<br>EDINBURG, TX  78540-0944<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1406 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY,<br>N8.0AC-W10AC-S132'-E232.5'W330' EXC<br>3AC, LOT 7 BLK 239, IMPS ONLY-NEW FOR<br>1988<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>297822 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000240001101</span>
+							<h3> <a href='showdetail2.jsp?can=T210000240001101'> 
+								T210000240001101
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>FECUNDA LLC<br>16192 COASTAL HWY<br>LEWES, DE  19958-3608<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>2926 ROGERS RD & W OF MCCOLL RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT<br>11-W118'/N369.15'/E424' BLK 240 .95 AC<br>NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295419 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S644700000000000</span>
+							<h3> <a href='showdetail2.jsp?can=S644700000000000'> 
+								S644700000000000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>FIRST NATIONAL BANK<br>PO BOX 810<br>EDINBURG, TX  78540-0810<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>STONECREST (R/S LTS 11 & 12) AN<br>UNNUMBERED LOT EAST LOTS 8-17<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>645048 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000252001105</span>
+							<h3> <a href='showdetail2.jsp?can=T210000252001105'> 
+								T210000252001105
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>FLORES ANTONIO CANTU<br>309 S 29TH ST<br>EDINBURG, TX  78542-5009<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E132'-W528'-N660' LOT 11<br>BLK 252 2.00AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296307 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210099262002600</span>
+							<h3> <a href='showdetail2.jsp?can=T210099262002600'> 
+								T210099262002600
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GABINOS PAINTING SERVICE<br>10614 ROGERS RD<br>EDCOUCH, TX  78538-2510<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10614 ROGERS RD (HOME BUSINESS)  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUPPLIES FURNITURE FIXTURES EQUIPMENT &<br>VEHICLES AT 10614 ROGERS RD/NEW ACCT<br>2021<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1312416 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262001001</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262001001'> 
+								T210000262001001
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GARCIA GABRIEL & MARIA T<br>PO BOX 913<br>LA BLANCA, TX  78558-0913<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>12032 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 10 BLK 262 1.69AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>553885 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000239000721</span>
+							<h3> <a href='showdetail2.jsp?can=T210000239000721'> 
+								T210000239000721
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GARZA JORGE N & MARGIE<br>610 E LOVETT ST<br>EDINBURG, TX  78541-2606<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W165'-E660' LOT 7 SEC<br>239 5.00AC GR 4.84AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>528592 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000252000802</span>
+							<h3> <a href='showdetail2.jsp?can=T210000252000802'> 
+								T210000252000802
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GOMEZ HERMENEJILDO<br>PO BOX 1228<br>LA BLANCA, TX  78558-1228<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>6715 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 8-E10 AC BLK 252<br>7.25 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296280 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262000805</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262000805'> 
+								T210000262000805
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GOMEZ SAMUEL A<br>5313 S ALAMO RD<br>EDINBURG, TX  78542-8054<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 8, SEC 262 2.16AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>695824 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210098252000803</span>
+							<h3> <a href='showdetail2.jsp?can=T210098252000803'> 
+								T210098252000803
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GONZALEZ JUAN M<br>6523 E ROGERS RD<br>EDINBURG, TX  78542-1854<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY, 0.50AC-W4.0AC LOT 8 BLK<br>252, IMPS ONLY-NEW FOR 1989<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>298060 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000239001026</span>
+							<h3> <a href='showdetail2.jsp?can=T210000239001026'> 
+								T210000239001026
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GONZALEZ PABLO & DIANA<br>1410 W ROGERS RD<br>EDINBURG, TX  78541-8858<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E324.75'-W992.50' EXC<br>E223'-N485' LOT 10 SEC 239 6.99 AC GR<br>6.83 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1070384 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C005000000000504</span>
+							<h3> <a href='showdetail2.jsp?can=C005000000000504'> 
+								C005000000000504
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>GONZALEZ RICHARD H<br>PO BOX 334<br>EDCOUCH, TX  78538-0334<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10411 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CH & G LAND CO UT NO. 1<br>W161.54'-N340.725' LOT 5 1.26AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>342111 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000604</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000604'> 
+								T210000243000604
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>HICKS LAUREN TRUSTEE<br>ROGERS FAMILY TRUST<br>1601 GLENVALLEY DR<br>AUSTIN, TX  78723-1115<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E240'-W660'-S200' LOT 6<br>SEC 243 1.10AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295729 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000203</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000203'> 
+								C010001000000203
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>HIDALGO CO DRAIN DIST #1<br>902 N DOOLITTLE RD<br>EDINBURG, TX  78542-7470<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO S140'-LOT 2 1.39AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128925 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000239001006</span>
+							<h3> <a href='showdetail2.jsp?can=T210000239001006'> 
+								T210000239001006
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>HIDALGO CO DRAINAGE DIST #1<br>10124 GLASSCOCK RD<br>MISSION, TX  78573-5910<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S50' DRAINAGE R/O/W<br>1.51AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>502906 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000235000726</span>
+							<h3> <a href='showdetail2.jsp?can=T210000235000726'> 
+								T210000235000726
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>HIDALGO CO DRAINAGE DIST #1<br>10124 GLASSCOCK RD<br>MISSION, TX  78573-5910<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 7 SEC 235 E55.77'<br>BEING E1.70 AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>294864 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000247000501</span>
+							<h3> <a href='showdetail2.jsp?can=T210000247000501'> 
+								T210000247000501
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>JOYCE SOULEK LIVING TRUST<br>38001 295TH ST<br>LAKE ANDES, SD  57356-6850<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E619.20'- LOT 5 & ALL OF<br>LOT 6 - SEC 247 56.92 GR 55.47AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295993 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C005000000000601</span>
+							<h3> <a href='showdetail2.jsp?can=C005000000000601'> 
+								C005000000000601
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>JUAN CARLOS SAENZ ET AL<br>C/O SAENZ SANTOS ANAYA & JUANA MARIA<br>10229 ROGERS RD<br>EDCOUCH, TX  78538<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10229 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CH & G LAND CO UT NO. 1<br>W141.82'-S316.99'-N360.97' LOT 6 1.03AC<br>NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128844 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000252001113</span>
+							<h3> <a href='showdetail2.jsp?can=T210000252001113'> 
+								T210000252001113
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>LOPEZ GUADALUPE & SERGIO SAENZ<br>5948 E MILE 18 RD<br>EDINBURG, TX  78542-4830<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>6000 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W66'-E330'-N660' LOT 11<br>SEC 252 1.00 AC GROSS 0.97 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296315 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262000900</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262000900'> 
+								T210000262000900
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>LUCERO JORGE<br>20241 CENIZO<br>EDINBURG, TX  78542-3155<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>12200 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 9 BLK 262<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>657118 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C005000000000501</span>
+							<h3> <a href='showdetail2.jsp?can=C005000000000501'> 
+								C005000000000501
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>MARQUEZ ARTURO F & CATALINA<br>10329 ROGERS RD<br>EDCOUCH, TX  78538-2536<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10329 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>CH & G LAND CO UT NO. 1 LOT 5-E<br>276.71'-N 364.8' 2.31 AC GROSS 2.03 AC<br>NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128840 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E640000263003103</span>
+							<h3> <a href='showdetail2.jsp?can=E640000263003103'> 
+								E640000263003103
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>MARTINEZ MATTHEW<br>PO BOX 1376<br>ELSA, TX  78543-1376<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10220 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>J.C. ENGELMAN BLK 262-263 LT 31 W 60'-E<br>180-S 1.21 AC A/K/A ENGELMAN TRIANGLE<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>170718 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S192000000000100</span>
+							<h3> <a href='showdetail2.jsp?can=S192000000000100'> 
+								S192000000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>MENDOZA VERONICA<br>5861 TULLY CROSS DR<br>GALLOWAY, OH  43119-9813<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SANTOS ESTATES LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>550105 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>M564500000000100</span>
+							<h3> <a href='showdetail2.jsp?can=M564500000000100'> 
+								M564500000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>MOLINA'S CONSTRUCTION INC<br>2704 N M RD<br>EDINBURG, TX  78542-6316<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>MOLINA APARTMENTS LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1235474 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S705700000001100</span>
+							<h3> <a href='showdetail2.jsp?can=S705700000001100'> 
+								S705700000001100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>MONTANEZ SAUL & SAUL JR<br>1322 LILA ST<br>SAN JUAN, TX  78589-3944<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>14012 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUNFLOWER RIDGE LOT 11<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>618470 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>R053000000000100</span>
+							<h3> <a href='showdetail2.jsp?can=R053000000000100'> 
+								R053000000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>MONTANO RAQUEL R<br>6904 E ROGERS RD<br>EDINBURG, TX  78541<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>6904 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>RAMBO ESTATES LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>265790 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000302</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000302'> 
+								C010001000000302
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>OLIVA ANNABELL A & RUBEN MANCIAS<br>821 SANTA ANNA DRIVE<br>ALAMO, TX  78516-2579<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10611 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO N150.66'-W145.35' LOT 3<br>0.50AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>538810 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000100</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000100'> 
+								C010001000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>PENA JESUS M<br>PO BOX 705<br>EDCOUCH, TX  78538-0705<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO LOT 1 UNIT 1 W 20 ACS<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128921 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000101</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000101'> 
+								C010001000000101
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>PENA JESUS M<br>PO BOX 705<br>EDCOUCH, TX  78538-0705<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO LOT 1 UNIT 1, E 20ACS<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128922 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000244000813</span>
+							<h3> <a href='showdetail2.jsp?can=T210000244000813'> 
+								T210000244000813
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>PENA MAYRA Y<br>719 ROYAL ST<br>EDINBURG, TX  78539-6367<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S165'-N474.87' LOT 8 BLK<br>244 5AC GR 4.92AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>561689 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000252000907</span>
+							<h3> <a href='showdetail2.jsp?can=T210000252000907'> 
+								T210000252000907
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>PEREZ HECTOR SR<br>2507 N SHARP RD<br>EDINBURG, TX  78542-0162<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY N406'-W660' LOT 9 SEC<br>252 6.15AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>620143 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262001101</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262001101'> 
+								T210000262001101
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>PINA MA HILDA<br>PO BOX 253<br>LA BLANCA, TX  78558-0253<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>12000 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 11 BLK 262 1.37AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>674014 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000702</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000702'> 
+								T210000243000702
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>RAZO RODOLFO JR & CYNTHIA E<br>PO BOX 1708<br>EDINBURG, TX  78540-1708<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S872.04'-W437.77' LOT 7<br>SEC 243 8.76AC GR 8.16AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>346560 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243001003</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243001003'> 
+								T210000243001003
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>REJG LTD<br>5107 S MCCOLL<br>EDINBURG, TX  78539-8278<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY N494.5' LOT 10 SEC 243<br>14.13 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295754 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000247000500</span>
+							<h3> <a href='showdetail2.jsp?can=T210000247000500'> 
+								T210000247000500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>REYNA ELIBERTO JR<br>3707 E ROGERS RD<br>EDINBURG, TX  78542-9658<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY N8.0AC-W<br>18.78AC-E35.64AC OF LOT 5 BLK 247 6.56<br>AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295992 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E640098263003100</span>
+							<h3> <a href='showdetail2.jsp?can=E640098263003100'> 
+								E640098263003100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>REYNA MARCELO JR<br>PO BOX 2222<br>ELSA, TX  78543-2222<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1032 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>J.C. ENGELMAN BLK 262-263 S PT OF LOT<br>31, IMPS ONLY-NEW FOR 1991 A/K/A<br>ENGELMAN TRIANGLE<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>502459 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000247000503</span>
+							<h3> <a href='showdetail2.jsp?can=T210000247000503'> 
+								T210000247000503
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>REYNA OSCAR J & MARIA E<br>3703 E ROGERS RD<br>EDINBURG, TX  78542-9658<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY S<br>10.78AC-W18.78-E35.64AC EXC 0.70AC LOT<br>5 BLK 247 9.90 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295995 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000252000818</span>
+							<h3> <a href='showdetail2.jsp?can=T210000252000818'> 
+								T210000252000818
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>RIVERA RODRIGO<br>13150 DALE LN LOT 8<br>FOLEY, AL  36535-1501<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W 132'-E 1056'-N 100'-S<br>1070' LOT 8 SEC 252 0.30AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296290 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000236000913</span>
+							<h3> <a href='showdetail2.jsp?can=T210000236000913'> 
+								T210000236000913
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>RIVERSIDE DEVELOPMENT SERVICES LLC<br>2606 ZINNIA AVE<br>MCALLEN, TX  78504-4801<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W20AC-LOT 9 BLK 236<br>20.0AC GR 18.76AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>294988 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E640000263003104</span>
+							<h3> <a href='showdetail2.jsp?can=E640000263003104'> 
+								E640000263003104
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>RODRIGUEZ TERESA MENDEZ<br>PO BOX 2222<br>ELSA, TX  78543-2222<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>J.C. ENGELMAN BLK 262-263 LT 31 W 210'<br>- S 1.21 AC A/K/A ENGELMAN TRIANGLE<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>170719 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000243000600</span>
+							<h3> <a href='showdetail2.jsp?can=T210000243000600'> 
+								T210000243000600
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>ROGERS PAUL<br>1311 E ROGERS RD<br>EDINBURG, TX  78542-8619<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>1311 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E240'-W660'-N240'-S440<br>LOT 6 SEC 243 1.32AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295725 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000251000502</span>
+							<h3> <a href='showdetail2.jsp?can=T210000251000502'> 
+								T210000251000502
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAAVEDRA JOSE & NEREIDA<br>4540 E HIGHWAY 67<br>RAINBOW, TX  76077-2949<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E10AC-LOT 5 SEC 251<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>502622 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262000600</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262000600'> 
+								T210000262000600
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SALAZAR EDUARDO DAVID<br>602 E STUBBS ST<br>EDINBURG, TX  78539-4752<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>12600 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 6 BLK 262 1.17AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296660 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262000500</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262000500'> 
+								T210000262000500
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SALAZAR EUGENIO A ETAL<br>803 EMERALD DR APT B<br>PHARR, TX  78577-8326<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY N100' LOTS 4 & 5 & SE<br>0.37AC BLK 262-263 1.72AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296657 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S192000000000300</span>
+							<h3> <a href='showdetail2.jsp?can=S192000000000300'> 
+								S192000000000300
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SALINAS MARTIN<br>10604 ROGERS RD<br>EDCOUCH, TX  78538-2510<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10604 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SANTOS ESTATES LOT 3<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>550107 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>C010001000000200</span>
+							<h3> <a href='showdetail2.jsp?can=C010001000000200'> 
+								C010001000000200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SAN MIGUEL ISAIAS JR ETAL<br>PO BOX 577<br>ELSA, TX  78543-0577<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10805 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>C H & G LAND CO N870.69' LOT 2 UT 1<br>8.61 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>128923 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E640000263003015</span>
+							<h3> <a href='showdetail2.jsp?can=E640000263003015'> 
+								E640000263003015
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ GUADALUPE JR<br>PO BOX 2761<br>ELSA, TX  78543-2761<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>10330 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>J.C ENGELMAN W130.18'-S345.76' IRR TR -<br>BLK 262-263 LOT 30 1.0AC A/K/A ENGELMAN<br>TRIANGLE<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>538855 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E640000263003020</span>
+							<h3> <a href='showdetail2.jsp?can=E640000263003020'> 
+								E640000263003020
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SANCHEZ PEDRO<br>PO BOX 908<br>ELSA, TX  78543-0908<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>J.C. ENGELMAN W139.82'-S323.49' IRR TR-<br>BLK 262-263 LOT 30 1.0AC A/K/A ENGELMAN<br>TRIANGLE<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>538856 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>E772000000000100</span>
+							<h3> <a href='showdetail2.jsp?can=E772000000000100'> 
+								E772000000000100
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SOLIS JESUS A & MARIA L<br>7222 E MILE 18 RD<br>EDINBURG, TX  78542-2998<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>EURESTE ESTATES LOT 1<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>570303 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000248000501</span>
+							<h3> <a href='showdetail2.jsp?can=T210000248000501'> 
+								T210000248000501
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>SORRENTO ESTATES LLC<br>1013 CIMARRON DR<br>MISSION, TX  78572<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E728'-W768'-N646.5' LOT<br>5 BLK 248 10.81AC GR 10.51AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296009 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000244000810</span>
+							<h3> <a href='showdetail2.jsp?can=T210000244000810'> 
+								T210000244000810
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>STEWART CHARLES W & MARIA DEL LOURDES<br>PO BOX 3598<br>MCALLEN, TX  78502-3598<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>507 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E264'-W441'-S660' LOT 8<br>BLK 244 4.0AC GR 3.84 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295818 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S705700000001400</span>
+							<h3> <a href='showdetail2.jsp?can=S705700000001400'> 
+								S705700000001400
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>TREVINO FELIX A<br>C/O JUDITH E PEREZ ALMENDAREZ & FELIX A<br>13910 E ROGERS RD<br>EDINBURG, TX  78542<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>13910 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUNFLOWER RIDGE LOT 14<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>618473 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000244000808</span>
+							<h3> <a href='showdetail2.jsp?can=T210000244000808'> 
+								T210000244000808
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>TURQUESA CONSTRUCTION LLC<br>1300 N 10TH ST STE 330 N<br>MCALLEN, TX  78501-2680<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 8 - W 177' - S 660'<br>BLK 244 2.69 AC 2.00 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>295816 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000247000903</span>
+							<h3> <a href='showdetail2.jsp?can=T210000247000903'> 
+								T210000247000903
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>UNION DESIGN DEVELOPERS LP<br>4314 S CONWAY AVE<br>MISSION, TX  78572-0034<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY N610'-W660' LOT 9 &<br>E660' LOT 10 SEC 247 39.39AC GR 37.06AC<br>NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296001 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000239001119</span>
+							<h3> <a href='showdetail2.jsp?can=T210000239001119'> 
+								T210000239001119
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>URBIETA JUAN DAVID QUIROZ<br>418 S 22ND AVE<br>EDINBURG, TX  78539-4923<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY<br>W132.03'-E528.10'-N165.06' LOT 11 SEC<br>239 0.50AC GR 0.38AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>1238579 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>S705700000001200</span>
+							<h3> <a href='showdetail2.jsp?can=S705700000001200'> 
+								S705700000001200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>VELA JESUS M & GLORIA<br>PO BOX 3804<br>EDINBURG, TX  78540-3804<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>14002 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>SUNFLOWER RIDGE LOT 12<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>618471 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000262000504</span>
+							<h3> <a href='showdetail2.jsp?can=T210000262000504'> 
+								T210000262000504
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>VENEGAS JOSE<br>13024 E ROGERS RD<br>EDINBURG, TX  78542-2278<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY E100'-W247.2'-S208.23'<br>LOT 5 SEC 262-263 0.475AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>454273 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000244000812</span>
+							<h3> <a href='showdetail2.jsp?can=T210000244000812'> 
+								T210000244000812
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>VENSER CONTRACTORS LLC<br>1935 PALM VISTA DR NO 77<br>HARLINGEN, TX  78552<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>3307 ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY N309.87' LOT 8 BLK 244<br>9.39AC GR 9.25AC<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>561690 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000236001201</span>
+							<h3> <a href='showdetail2.jsp?can=T210000236001201'> 
+								T210000236001201
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>VILLANUEVA PROPERTIES & INVESTMENTS LLC<br>4740 S JACKSON RD STE 1<br>EDINBURG, TX  78539<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 12 E181'-W997'<br>5.85AC GR 5.77AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>294997 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000251000506</span>
+							<h3> <a href='showdetail2.jsp?can=T210000251000506'> 
+								T210000251000506
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>VILLARREAL MARIA DOLORES<br>7209 E ROGERS RD<br>EDINBURG, TX  78542<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W55'-E440' LOT 5 BLK 251<br>1.66AC GR 1.62AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>584806 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000251000505</span>
+							<h3> <a href='showdetail2.jsp?can=T210000251000505'> 
+								T210000251000505
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>VILLARREAL MARIA DOLORES<br>7209 E ROGERS RD<br>EDINBURG, TX  78542<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY W55'-E495' LOT 5 BLK 251<br>1.66AC GR 1.62AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>584805 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000248000602</span>
+							<h3> <a href='showdetail2.jsp?can=T210000248000602'> 
+								T210000248000602
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>VILLESCAS JUAN F SR.<br>7010 N FM 493<br>DONNA, TX  78537-5047<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 6 - E20 AC. BLK 248,<br>19.1 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296013 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>T210000247001200</span>
+							<h3> <a href='showdetail2.jsp?can=T210000247001200'> 
+								T210000247001200
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>WYATT AGRI PRODUCTS CORPORATION LLC<br>PO DRAWER 10<br>REALITOS, TX  78376<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>ROGERS RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>TEX-MEX SURVEY LOT 12, ALL 40.33 AC.<br>BLK 247 31.81 AC NET<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>296004 &nbsp;</h3></td>
+					</tr>
+				<caption align="right">&nbsp; &nbsp;</caption>
+
+			    </tbody>
+			  </table>
+			</td>
+		</tr>
+	</table>
+    
+    
+        <h3><input type="submit" id="add-to-cart-button" value="Add Selected Accounts to Shopping Cart"></h3>
+    
+	</form>
+	
+
+
+
+
+		</td>
+	</tr>
+<tr> 
+  <td> <br>
+    <hr width="100%">
+	<div> 
+		<a style="font-size:10px;margin-left: 10px;" href="/act_webdev/hidalgo/terms.jsp">Terms of Use</a>
+		<a style="font-size:10px;margin-left: 10px; " href="/act_webdev/hidalgo/privacypolicy.jsp">Privacy Policy</a></li>
+	</div><br>
+  </td>
+</tr>
+
+<tr>
+<TD><font face="Arial" size="1" color="#000000">
+The Tax Office makes no representations as to the accuracy or reliability of any information accessed from its computer data base.  The Tax Office, its officers, agents, employees and representatives shall not be liable for the information posted on the Tax Office Website in connection with any actions losses, damages, claims or liability in any way related to use of, distribution of or reliance upon such information.<br></FONT>
+</td>
+</tr>
+<tr> 
+  <td> 
+    <hr width="100%">
+  </td>
+</tr>
+<tr> 
+  <td> 
+    <table width="100%">
+      <tr> 
+        <td> <font face="Arial" size="2" color=#000000> 
+          HIDALGO COUNTY TAX OFFICE<br>
+          PO BOX 178<br>
+          EDINBURG, TEXAS 78540<br>
+          (956) 318-2157<br>
+          You may also <a href="/act_webdev/hidalgo/Question.jsp">e-mail</a> the office.
+		</font></td>
+        <td valign="top"> 
+          <div align="right"><font face="Arial" size="1" color=navy><i>
+		<br>
+		<br>
+		<br>
+		<br>
+            &copy;Appraisal &amp; Collection Technologies. 
+            All rights reserved.</i></font></div>
+        </td>
+      </tr>
+        
+          
+
+    </table>
+<!--
+  <table><tr>
+                     <td><div>
+                  <font face="Arial, Helvetica, sans-serif" size="1" color="#000000"><i> Terms of Use:
+                     This webpage is designed for individual taxpayers to research and pay their property taxes.  ACT depends upon its own and third party computer systems to provide timely property tax information. As a condition of your use of this webpage and/or by submitting a query on this webpage, you agree and warrant to ACT that you will not use this webpage for any purpose that is unlawful or prohibited by these terms.  You may not use this  webpage in any manner which could damage, disable, overburden, or impair this webpage or interfere with any other party's use and enjoyment of this webpage.  Occasionally, these computer systems are subjected to exceptional volumes of incoming data, service requests, processes, and electronic mail messages that result in significant degradation of system processing and response time. Regardless of the reason, in those instances when there is system performance degradation, ACT reserves the right, in its sole discretion, to filter or block electronic messages, data and/or processes originating from or traveling to the identified sources of the high volume, automated, electronic  traffic.  ACT further reserves the right to permanently filter or block repeated sources of high volume, automated, electronic traffic.    The unauthorized use of this webpage may give rise to a claim for damages and/or injunctive relief. 
+                  </i></font></div>
+                      </td>
+                    </tr>
+</table>
+-->
+  </td>
+</tr></table>
+
+</body>
+</html>
+
+
+

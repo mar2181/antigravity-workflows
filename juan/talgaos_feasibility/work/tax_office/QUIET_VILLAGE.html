@@ -1,0 +1,348 @@
+
+
+
+
+
+<html>
+	<head>
+	<link rel=stylesheet href="/act_webdev/hidalgo/hidalgo.css" type="text/css">
+  <LINK rel="stylesheet" type="text/css" href="/act_webdev/hidalgo/site.css" media="screen">
+  <LINK href="/act_webdev/hidalgo/print.css" rel="stylesheet" type="text/css" media="print">
+  <link rel="stylesheet" href="/act_webdev/resource/css/smoothness/jquery-ui-1.10.4.custom.min.jac.css" /><!--jason-->
+  <!-- Site Specific Stylesheet by include-->
+  <LINK rel="stylesheet" type="text/css" href="/act_webdev/hidalgo/siteSpecific.css" media="screen">
+    <style>
+      table.tablesorter thead tr .header {
+        background-image: url("../resource/image/bg.gif");
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        color: #0066CC;
+        font-family: Verdana, Helvetica, sans-serif;
+        font-size: 12px;
+        text-align: left;
+        padding: 5px 8px 27px 6px;
+        height: 59px;
+      }
+      table.tablesorter thead tr .headerSortDown,
+      table.tablesorter thead tr .headerSortUp {
+        color: black;
+      }
+      table.tablesorter thead tr .headerSortDown {
+        background-image: url("../resource/image/asc.gif");
+      }
+      table.tablesorter thead tr .headerSortUp {
+        background-image: url("../resource/image/desc.gif");
+      }
+    </style>
+    <title>Hidalgo County</title>
+    <script type="text/javascript" src="/act_webdev/resource/js/jquery-1.9.1.min.js"></script>
+    <script src="/act_webdev/resource/js/jquery-ui-1.10.4.custom.min.jac.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/act_webdev/resource/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".tablesorter").tablesorter({
+          sortList : [[1, 0]]
+        });
+      });
+    </script>
+	</head>
+
+<body class="docBody" >
+<basefont>
+
+<DIV id="wrapper">
+  <DIV id="container">
+    <DIV id="header"></DIV>
+    <!-- Begin JSP include (pageContent)-->
+    <DIV id="pageContent">
+      <TABLE width="940" border="0" cellpadding="0">
+			<tr> 
+				<td > 
+			<p align="right"><font face="Verdana" size="1" color=navy>
+                    <script language="Javascript">
+
+  var dayName = new Array ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+  var monName = new Array ("January", "February", "March", "April", "May", "June", "July", "August",
+  "September", "October", "November", "December")
+  var now = new Date
+  document.write("" + dayName[now.getDay()] + ", " + monName[now.getMonth()] + " "+now.getDate()+ ", " + " " + now.getFullYear())
+
+										</script>&nbsp;    &nbsp; &nbsp; &nbsp; </font>
+          </p>
+				</td>
+			</tr>
+		</table>
+
+		<table width="98%" style="margin-left:6px;" border="0">
+			<tr> 
+				<td>
+
+
+	<h6 align="center">
+		<br>
+		Your Search Results
+		<br>
+	</h6>
+
+	<h3 align="center">
+		<a class="nobreak" href="index.jsp">Begin a New Search</a>
+		&nbsp; &nbsp;
+		<a class="nobreak" href="portfolio/Login.jsp">Go to Your Portfolio</a>
+	</h3>
+
+
+<!--
+    DN - 12/29/2017 - PRC 195249
+        Removed one '</table' tag to resolve the footer issue on showlist.jsp page
+    DN - 06/03/2018 - PRC 198448
+        Increased the font size and swap the order of sentences
+        Added a "Added Selected Accounts to Shopping Cart" to bottom of table if there are more than 5  matches found
+        Updated style for account number column, it should be shown as hyperlink(blue and underlined)
+-->
+<style>
+#data-block A:link {
+	COLOR: #06c; TEXT-DECORATION: underline
+}
+#data-block A:visited {
+	COLOR: #036; TEXT-DECORATION: none
+}
+#data-block A:hover {
+	COLOR: #009cde; TEXT-DECORATION: underline
+}
+#data-block A:active {
+	COLOR: #036; TEXT-DECORATION: none
+}
+</style>
+	<table border='0' cellspacing='1' cellpadding='6' align="center">
+		<tr width="760" > 
+			<td> 
+				<div align="center"> 
+
+					<h3><b><br><br>The following is the result of your Owner Name search for "QUIET VILLAGE"</b></h3>
+					
+						<h3>There are 4 matches. </h3>
+					
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+	
+	  <h3>&nbsp;&nbsp; <a class="nobreak" href="showlistPrint.jsp" target="_blank"><font face="Arial, Helvetica, sans-serif" size="2">[print 
+        version]</font></a> &nbsp; &nbsp;
+<!-- <a class="nobreak" href="showlistExcel.jsp" target="_blank"><font face="Arial, Helvetica, sans-serif" size="2">[Excel&trade; 
+        version]</font></a> --></h3>
+      <h3>When first displayed, the results below are sorted by Owner Name. To 
+        sort by another Account Number, Property Site Address, Legal Description, 
+        or CAD Reference, click the underlined column heading having that label. 
+        (For example, to sort the results by Account Number, click that column 
+        heading.)</h3>
+	
+      <h3>To print this page, click <b>print version</b> above. This will display 
+        the information in a more printer-friendly font.</h3>
+      <!-- <h3>To bring the results below into an Excel spreadsheet, click <b>Excel&trade; 
+        version</b> above and follow the instructions there.</h3>-->
+	 
+
+	<form id="addToCart" action="" method="post">   
+		
+			<h3 style="font-size: 18px;"><b>To view the full record or to make a payment, click on the desired account number.</b></h3> 
+			
+		
+
+
+	<div id="data-block">
+	<table align="center" width="800">
+		<tr> 
+			<td> 
+				<table class="tablesorter" width="100%" cellpadding="4" cellspacing="0" border="1">
+          <thead>
+          <tr bordercolor="#000000"> 
+			
+            <th class="header" width="17%">
+              Account <br>Number
+            </th>
+            <th class="header" width="24%"> 
+              Owner's Name &amp;<br> Address
+            </th>
+            <th class="header" width="24%"> 
+              Property Site <br>Address
+            </th>
+            <th class="header" width="18%"> 
+              Legal <br>Description
+            </th>
+            <th class="header" width="17%"> 
+              CAD Reference <br>No.
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+				<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>Q401002001000000</span>
+							<h3> <a href='showdetail2.jsp?can=Q401002001000000'> 
+								Q401002001000000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>QUIET VILLAGE II ASSOC IN TRST<br>C/O OWNERS COMMITTEE<br>215 S VALLEY VIEW RD LOT 190<br>DONNA, TX  78537-7249<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>215 S VALLEY VIEW RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>QUIET VILLAGE II SEC I PRIVATE ROADWAYS<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>450195 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>Q401002002000000</span>
+							<h3> <a href='showdetail2.jsp?can=Q401002002000000'> 
+								Q401002002000000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>QUIET VILLAGE II ASSOC IN TRST<br>C/O OWNERS COMMITTEE<br>215 S VALLEY VIEW RD LOT 190<br>DONNA, TX  78537-7249<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>215 N VALLEY VIEW RD LN  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>QUIET VILLAGE II SEC 2 PRIVATE ROADWAYS<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>450210 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>Q401002003000000</span>
+							<h3> <a href='showdetail2.jsp?can=Q401002003000000'> 
+								Q401002003000000
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>QUIET VILLAGE II ASSOC IN TRST<br>C/O OWNERS COMMITTEE<br>215 S VALLEY VIEW RD LOT 190<br>DONNA, TX  78537-7249<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>QUIET VILLAGE LN  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>QUIET VILLAGE II SEC 3 PRIVATE ROADWAYS<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>450252 &nbsp;</h3></td>
+					</tr>
+					<tr onMouseOver="this.className='hover'" onMouseOut="this.className='normal'" valign="top"> 
+						
+						<td width="17%"><span style='display:none;'>Q401002003018900</span>
+							<h3> <a href='showdetail2.jsp?can=Q401002003018900'> 
+								Q401002003018900
+								</a> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Owner -->
+							<h3>QUIET VILLAGE II ASSOCIATION<br>215 S VALLEY VIEW RD LOT 190<br>DONNA, TX  78537-7249<br> &nbsp;
+							</h3>
+						</td>
+						<td width="24%"><!-- Property -->
+							<h3>215 N VALLEY VIEW RD  &nbsp;
+							</h3>
+						</td>
+						<td width="19%"><!-- Legal -->
+							<h3>QUIET VILLAGE II SEC 3 LOT 189 & 190 &<br>191<br><br> &nbsp;
+							</h3>
+						</td>
+						<td width="16%"><h3>450121 &nbsp;</h3></td>
+					</tr>
+				<caption align="right">&nbsp; &nbsp;</caption>
+
+			    </tbody>
+			  </table>
+			</td>
+		</tr>
+	</table>
+    
+    
+	</form>
+	
+
+
+
+
+		</td>
+	</tr>
+<tr> 
+  <td> <br>
+    <hr width="100%">
+	<div> 
+		<a style="font-size:10px;margin-left: 10px;" href="/act_webdev/hidalgo/terms.jsp">Terms of Use</a>
+		<a style="font-size:10px;margin-left: 10px; " href="/act_webdev/hidalgo/privacypolicy.jsp">Privacy Policy</a></li>
+	</div><br>
+  </td>
+</tr>
+
+<tr>
+<TD><font face="Arial" size="1" color="#000000">
+The Tax Office makes no representations as to the accuracy or reliability of any information accessed from its computer data base.  The Tax Office, its officers, agents, employees and representatives shall not be liable for the information posted on the Tax Office Website in connection with any actions losses, damages, claims or liability in any way related to use of, distribution of or reliance upon such information.<br></FONT>
+</td>
+</tr>
+<tr> 
+  <td> 
+    <hr width="100%">
+  </td>
+</tr>
+<tr> 
+  <td> 
+    <table width="100%">
+      <tr> 
+        <td> <font face="Arial" size="2" color=#000000> 
+          HIDALGO COUNTY TAX OFFICE<br>
+          PO BOX 178<br>
+          EDINBURG, TEXAS 78540<br>
+          (956) 318-2157<br>
+          You may also <a href="/act_webdev/hidalgo/Question.jsp">e-mail</a> the office.
+		</font></td>
+        <td valign="top"> 
+          <div align="right"><font face="Arial" size="1" color=navy><i>
+		<br>
+		<br>
+		<br>
+		<br>
+            &copy;Appraisal &amp; Collection Technologies. 
+            All rights reserved.</i></font></div>
+        </td>
+      </tr>
+        
+          
+
+    </table>
+<!--
+  <table><tr>
+                     <td><div>
+                  <font face="Arial, Helvetica, sans-serif" size="1" color="#000000"><i> Terms of Use:
+                     This webpage is designed for individual taxpayers to research and pay their property taxes.  ACT depends upon its own and third party computer systems to provide timely property tax information. As a condition of your use of this webpage and/or by submitting a query on this webpage, you agree and warrant to ACT that you will not use this webpage for any purpose that is unlawful or prohibited by these terms.  You may not use this  webpage in any manner which could damage, disable, overburden, or impair this webpage or interfere with any other party's use and enjoyment of this webpage.  Occasionally, these computer systems are subjected to exceptional volumes of incoming data, service requests, processes, and electronic mail messages that result in significant degradation of system processing and response time. Regardless of the reason, in those instances when there is system performance degradation, ACT reserves the right, in its sole discretion, to filter or block electronic messages, data and/or processes originating from or traveling to the identified sources of the high volume, automated, electronic  traffic.  ACT further reserves the right to permanently filter or block repeated sources of high volume, automated, electronic traffic.    The unauthorized use of this webpage may give rise to a claim for damages and/or injunctive relief. 
+                  </i></font></div>
+                      </td>
+                    </tr>
+</table>
+-->
+  </td>
+</tr></table>
+
+</body>
+</html>
+
+
+

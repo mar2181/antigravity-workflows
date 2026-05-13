@@ -1,0 +1,53 @@
+{
+  "stale_threshold_commits": 3,
+  "include_drafts_in_pr_count": true,
+  "telegram": {
+    "env_file": "C:/Users/mario/.gemini/antigravity/scratch/gravity-claw/.env"
+  },
+  "repos": [
+    {
+      "label": "Mission Control",
+      "repo": "mar2181/missioncontrol"
+    },
+    {
+      "label": "Mission Control Editor",
+      "repo": "mar2181/missioncontrol",
+      "_note": "Duplicate of Mission Control repo. Set 'skip': true or remove if not a separate repo."
+    },
+    {
+      "label": "H.S. Reels",
+      "repo": "mar2181/openreel-video",
+      "_note": "Best guess. Change if H.S. Reels lives elsewhere."
+    },
+    {
+      "label": "Lovable Clone Worker",
+      "repo": "mar2181/lovable-clone"
+    },
+    {
+      "label": "Lovable MCP",
+      "repo": "mar2181/lovable-mcp"
+    },
+    {
+      "label": "Twenty CRM",
+      "repo": "twentyhq/twenty",
+      "skip": true,
+      "_note": "Upstream — has hundreds of branches, monitoring is noisy. Set skip:false or swap in your own fork (mar2181/twenty doesn't exist yet) to enable."
+    },
+    {
+      "label": "H.S. Admin CRM",
+      "repo": "mar2181/hs-solutions-allinone-tool",
+      "_note": "Best guess #1. Compare to HS-APP-BUILDER below — pick the right one and skip the other."
+    },
+    {
+      "label": "H.S. App Builder",
+      "repo": "mar2181/HS-APP-BUILDER",
+      "skip": true,
+      "_note": "Alternative candidate for 'H.S. Admin CRM'. Set skip:false if this is the right one."
+    },
+    {
+      "label": "War Room (claudeclaw)",
+      "repo": "mar2181/claudeclaw",
+      "_note": "Added because the morning brief gets routed through this bot — useful to know if it's behind."
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "scraper_used": "manual_webfetch_prodigycad_api",
+  "scraper_attempted": "county_records_scraper_v4.HidalgoCountyScraper",
+  "scraper_outcome": "FAILED \u2014 selectors found grid but search returned 'No Rows To Show'; fell back to direct API",
+  "fallback_chain": [
+    "attempt_1:fulltext_STONECREST -> only returns 12 numbered residential lots, target NOT in result set",
+    "  fulltext_count=12",
+    "attempt_2:asCode=S644700 (STONECREST subdivision)",
+    "  asCode_count=84",
+    "  exact_match_candidates=1",
+    "chosen_pid:645048 legal:STONECREST (R/S LTS 11 & 12) AN UNNUMBERED LOT EAST LOTS 8-17 acres:None"
+  ],
+  "source_query": "legal=STONECREST UNNUMBERED EAST LOTS 8-17",
+  "scraped_at_utc": "2026-04-26T22:10:12.901176Z",
+  "source_endpoint": "https://prod-container.trueprodigyapi.com/public/property/search",
+  "data_source_site": "https://hidalgo.prodigycad.com (Hidalgo CAD official portal, True Prodigy backend)",
+  "county": "Hidalgo",
+  "parcel_number": 645048,
+  "account_number": 7469043,
+  "geo_id": "S6447-00-000-0000-00",
+  "tax_office_ref": "S6447-00-000-0000-00",
+  "ref_id": "R645048",
+  "property_address": "ROGERS RD, TX",
+  "city": "EDINBURG",
+  "zip_code": "78540-0810",
+  "owner_name": "FIRST NATIONAL BANK",
+  "owner_address": "PO BOX 810",
+  "owner_city": "EDINBURG",
+  "owner_state": "TX",
+  "owner_zip": "78540-0810",
+  "legal_description": "STONECREST (R/S LTS 11 & 12) AN UNNUMBERED LOT EAST LOTS 8-17",
+  "legal_acreage": null,
+  "lot_size_sqft": null,
+  "block": null,
+  "lot": "79",
+  "tract": null,
+  "map_id": "CEB VOL 39 PG 7-8",
+  "zoning": "RS",
+  "state_code": "S644700",
+  "property_type": "R",
+  "land_value": 10915,
+  "improvement_value": 0,
+  "market_value": 10915,
+  "appraised_value": 10915,
+  "assessed_value": 10915,
+  "exemptions": null,
+  "homestead_exemption": 0,
+  "tax_year": 2026,
+  "active": "Yes",
+  "arb_hearing": "No",
+  "latitude": 26.3304666825,
+  "longitude": -98.1533334894,
+  "last_sale_price": null,
+  "last_sale_date": null,
+  "last_sale_grantor": null,
+  "last_sale_grantee": null,
+  "last_sale_instrument": null,
+  "last_sale_deed_type": null,
+  "deed_book": null,
+  "deed_page": null,
+  "deed_volume": null,
+  "deed_history": [],
+  "encumbrances_note": "Hidalgo CAD public portal does NOT publish: (a) HCID No. 1 irrigation district assessment status, (b) liens or special assessments, (c) FEMA flood zone. These must be pulled from: HCID No. 1 directly (956-787-6471), Hidalgo County Clerk for liens (956-318-2100), and FEMA Map Service Center for flood zone.",
+  "fema_flood_zone": null,
+  "hcid_assessment": null,
+  "liens_special_assessments": null,
+  "raw_record": {
+    "pid": 645048,
+    "pYear": "2026",
+    "pVersion": 0,
+    "pRollCorr": 0,
+    "propType": "R",
+    "pAccountID": 7469043,
+    "latitude": "26.3304666825",
+    "longitude": "-98.1533334894",
+    "asCode": "S644700",
+    "block": null,
+    "tract": null,
+    "lot": "79",
+    "mhSpaceNum": null,
+    "condoUnit": null,
+    "additionalLegal": null,
+    "legalAcreage": null,
+    "autoBuildLegal": 0,
+    "geoID": "S6447-00-000-0000-00",
+    "simpleGeo": "S644700000000000",
+    "refID1": "450922",
+    "refID2": "R645048",
+    "massCreatedFrom": null,
+    "templateProperty": null,
+    "templateDesc": null,
+    "dba": null,
+    "altDBA": null,
+    "mortgageCoID": null,
+    "mortgageCoAcctID": null,
+    "effectiveSizeAcres": null,
+    "legalDescription": "STONECREST (R/S LTS 11 & 12) AN UNNUMBERED LOT EAST LOTS 8-17",
+    "mapID": "CEB VOL 39 PG 7-8",
+    "mapsco": null,
+    "propReference": 0,
+    "referenceDesc": null,
+    "active": "Yes",
+    "inactive": 0,
+    "inactiveDt": null,
+    "propCreateDt": "2004-11-20 12:09:49",
+    "apprCompanyID": null,
+    "marketArea": null,
+    "useCd": null,
+    "zoning": "RS",
+    "sicCd": null,
+    "landValue": 10915,
+    "improvementValue": 0,
+    "marketValue": 10915,
+    "landHomesitePct": "0.00",
+    "structureHomesitePct": "0.00",
+    "appraisedValue": 10915,
+    "ownerID": 326740,
+    "ownerPct": "100.000000",
+    "name": "FIRST NATIONAL BANK",
+    "displayName": "FIRST NATIONAL BANK",
+    "nameSecondary": "",
+    "firstName": null,
+    "lastName": "FIRST NATIONAL BANK",
+    "spouseFirstName": null,
+    "spouseLastName": null,
+    "confidentialName": null,
+    "addrDeliveryLine": "PO BOX 810",
+    "addrUnitDesignator": null,
+    "addrCity": "EDINBURG",
+    "addrZip": "78540-0810",
+    "addrState": "TX",
+    "webSuppression": 0,
+    "primarySitus": 1,
+    "streetNum": null,
+    "streetName": "ROGERS RD",
+    "streetPrimary": " ROGERS RD",
+    "fullSitus": " ROGERS RD, TX",
+    "streetPrefix": null,
+    "streetSuffix": null,
+    "streetSecondary": null,
+    "city": null,
+    "state": "TX",
+    "zip": null,
+    "country": null,
+    "international": null,
+    "valueReady": 1,
+    "taxOfficeRef": "S6447-00-000-0000-00",
+    "confidential": 0,
+    "arbHearing": "No",
+    "deedDt": null
+  },
+  "raw_deeds": null,
+  "raw_parcel_shape": {
+    "feature": {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -98.153330482,
+                26.329526711
+              ],
+              [
+                -98.153338159,
+                26.329483555
+              ],
+              [
+                -98.153670036,
+                26.329531486
+              ],
+              [
+                -98.153662365,
+                26.329574643
+              ],
+              [
+                -98.153370459,
+                26.33121574
+              ],
+              [
+                -98.153038743,
+                26.331166833
+              ],
+              [
+                -98.153287824,
+                26.329766532
+              ],
+              [
+                -98.153330482,
+                26.329526711
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "pid": 645048
+      }
+    },
+    "note": "GeoJSON Feature in EPSG:4326 (WGS84 lon/lat). Pulled from /gama/parcelshapes endpoint."
+  },
+  "search_candidates_considered": [
+    {
+      "pid": 645048,
+      "legal": "STONECREST (R/S LTS 11 & 12) AN UNNUMBERED LOT EAST LOTS 8-17",
+      "acres": null,
+      "owner": "FIRST NATIONAL BANK"
+    }
+  ],
+  "parcel_bbox": {
+    "min_lon": -98.153670036,
+    "max_lon": -98.153038743,
+    "min_lat": 26.329483555,
+    "max_lat": 26.33121574,
+    "width_m_approx": 60,
+    "height_m_approx": 192
+  },
+  "centroid": {
+    "lon": -98.15337856875,
+    "lat": 26.329974026375
+  }
+}
