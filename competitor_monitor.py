@@ -72,6 +72,12 @@ COMPETITORS = {
                 "fb_url": "https://www.facebook.com/p/Turtle-Island-South-Padre-100085620042509/",
                 "note": "Souvenir-heavy with candy — we beat with candy-first positioning",
             },
+            {
+                "name": "Davey Jones Ice Cream Locker",
+                "google_q": "Davey Jones Ice Cream Locker South Padre Island TX candy",
+                "fb_url": None,
+                "note": "Candy + fudge + taffy + shaved ice multi-category hybrid — listed in sugar_shack/program.md; beat with focused candy identity",
+            },
         ],
     },
     "island_arcade": {
@@ -123,6 +129,12 @@ COMPETITORS = {
                 "google_q": "Cafe Karma South Padre Island TX ice cream coffee",
                 "fb_url": "https://www.facebook.com/cafekarmaSPI/",
                 "note": "Ice cream + coffee + breakfast all-day cafe hybrid — we beat with pure dessert/candy focus",
+            },
+            {
+                "name": "Davey Jones Ice Cream Locker",
+                "google_q": "Davey Jones Ice Cream Locker South Padre Island TX ice cream",
+                "fb_url": None,
+                "note": "Candy store + ice cream hybrid — listed in island_candy/program.md; beat with dedicated ice cream identity + arcade fun",
             },
         ],
     },
