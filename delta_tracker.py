@@ -91,6 +91,12 @@ def compute_keyword_movements(rankings_state: dict) -> list:
         biz_name = BUSINESS_NAMES.get(biz_key, biz_key)
 
         for kw_text, date_history in keywords.items():
+            # Defensive: some businesses have a malformed "rankings" pseudo-key
+            # whose value is a flat {keyword: int} map instead of {date: dict}.
+            # Skip anything that doesn't match the expected shape.
+            if not isinstance(date_history, dict):
+                continue
+
             dates = sorted(date_history.keys())  # ascending
             if len(dates) < 2:
                 continue  # need at least 2 data points
@@ -100,6 +106,9 @@ def compute_keyword_movements(rankings_state: dict) -> list:
 
             prev = date_history[prev_date]
             curr = date_history[curr_date]
+
+            if not isinstance(prev, dict) or not isinstance(curr, dict):
+                continue  # malformed entry (scalar instead of position-dict)
 
             if prev.get("error") or curr.get("error"):
                 continue
