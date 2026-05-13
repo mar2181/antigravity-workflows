@@ -314,6 +314,21 @@ COMPETITORS = {
             },
         ],
     },
+    "clearcross_progreso": {
+        "our_name": "ClearCross Progreso (Medical Tourism Directory)",
+        # TODO Mario: populate competitors. Three categories to consider:
+        #   1. Self-marketing Nuevo Progreso clinics that bypass directories
+        #      (e.g. high-traffic dental clinics on Av. Benito Juárez)
+        #   2. Competing tourism directories targeting US patients
+        #      (Dental Departures, Medical Departures, PlacidWay, MyMedicalVacations)
+        #   3. Border-city competing dental clinics in McAllen/Brownsville
+        #      that pull from the same patient pool
+        # Leave empty for now — nightly run will produce no rows for clearcross_progreso
+        # until this list is filled. Once populated, all 4 nightly scripts
+        # (competitor_monitor, competitor_fb_adlibrary, competitor_review_miner,
+        # competitor_facebook_monitor) need matching entries.
+        "competitors": [],
+    },
 }
 
 # ─── State ────────────────────────────────────────────────────────────────────
