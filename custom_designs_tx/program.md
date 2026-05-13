@@ -14,7 +14,7 @@
 - **Website:** customdesignstx.com
 - **Support:** 24/7 emergency support for security/lighting
 - **Facebook Page:** ✅ CONFIRMED | https://www.facebook.com/profile.php?id=61553759342111 | Page ID: `61553759342111`
-- **Auth Account:** Mario (`marioelizondo81@gmail.com`) — Facebook posts via GraphQL API (no Playwright profile dependency)
+- **Auth Account:** Mario (`facebook_mario_profile`) — Playwright posting
 - **Page Key:** `custom_designs_tx` | Added to `fb_pages_config.json` 2026-03-22
 - **GBP:** ✅ ACTIVE | Profile: `gbp_mario_profile/` | Business ID: `13185634142027650449`
 - **GBP Script:** `_gbp_custom_designs_with_image.py` (with image) | `gbp_post_custom_designs.py` (text only)
@@ -73,17 +73,7 @@
 ## Current Priorities
 > Update this section at the start of each session
 
-- [x] **Facebook page confirmed** — `profile.php?id=61553759342111` | Mario's account | Graph API
-- [x] **Facebook config** — `fb_pages_config.json` → `pages.custom_designs_tx` → `posting_method: graph_api`, page_id `177280908799458`, auth: `facebook_mario_profile` ✅
-- [x] **Blog posts all live (200)** — verified 2026-05-05: alarm-system, cctv, home-theater-surround-sound, home-theater-installation, security-camera all return 200 via SPA catch-all
-- [x] **Supabase rankings** — 751 keyword rows, last updated 2026-05-04. Map pack: 102 ranked. Organic: 54 ranked.
-- [x] **Star rankings** — `smart home installation mcallen` #3 Map Pack | `commercial security cameras McAllen` #1 Organic
-- [ ] **BLOCKER #1:** SPA/React site — Googlebot reads empty shell (`<div id="root"></div>`). All blog/service pages have zero crawlable body text. Fix: SSR/SSG via Vercel or Prerender.io (~$15/mo).
-- [ ] **BLOCKER #2:** GSC token expired 2026-04-18 — no search console data. Re-auth: `python reauth_gsc.py` (ports 8090–8094 with trailing slash must be in OAuth client + Testing mode).
-- [ ] **BLOCKER #3:** Facebook health check failing for ALL pages (Graph API token expired/invalid). Fix: re-auth Graph API token before any FB posting.
-- [ ] **BLOCKER #4:** Review gap — 7 reviews vs. D-Tronics (225+), Vivint (300+). Need 20+ reviews in 60 days to compete in map pack.
-- [ ] **ACTION:** Resume GBP posting — last post was 2026-03-18 (48+ days ago). 3 SEO optimizer posts READY.
-- [ ] **ACTION:** Run Facebook campaigns — 0 Facebook posts ever. Fix Graph API token first, then: `/custom-designs-facebook`
+- [x] **Facebook page confirmed** — `profile.php?id=61553759342111` | Mario's account | Playwright
 - [ ] **Current campaign goal:** _(fill in — e.g., "home theater consultations", "smart home leads")_
 - [ ] **Active offer:** _(fill in — e.g., "Free smart home assessment this month")_
 - [ ] **Target service this week:** _(fill in — e.g., "security systems", "home theater", "smart home")_
@@ -100,7 +90,6 @@
 | 2026-03-14 | Home Theater | Home Theater Reveal (ad_2) | GBP | Free consultation | GBP post; home theater reveal angle |
 | 2026-03-15 | Security | Family Safety (ad_5) | GBP | Free on-site consultation | GBP post; family home security angle |
 | 2026-03-18 | Security cameras | Professional Security Camera Installation in McAllen TX | GBP + Blog + Website | Free on-site consultation | ✅ GBP posted with fal.ai hero image (`_gbp_custom_designs_with_image.py`). Blog live at customdesignstx.com/blog/security-camera-installation-mcallen-tx. fal.ai images: hero.png + section_1-3.png in `blog_posts/custom_designs_tx/images/2026-03-18_security-camera.../` |
-| 2026-05-03 | Smart Home Security | smart_home_security | Facebook | | Write-back test confirmed ✅ — Playwright flow working |
 
 ---
 
@@ -141,7 +130,7 @@
 - [x] Facebook page URL confirmed: `https://www.facebook.com/profile.php?id=61553759342111`
 - [x] Added to `fb_pages_config.json` with key `custom_designs_tx` (2026-03-22)
 - [x] Auth account: Mario (`facebook_mario_profile`) — Playwright
-- [x] Test posting flow — confirmed 2026-05-03 (smart_home_security write-back)
+- [ ] Test posting flow with a text-only test post first
 
 ---
 
@@ -183,10 +172,10 @@ python ad_copy_optimizer.py custom_designs_tx --angle "smart home security upgra
 | 9 | home theater cost mcallen tx | Cost/research | ⬜ Not started |
 | 10 | smart home installation cost texas | Cost/research | ⬜ Not started |
 | **Location Pages** | | | |
-| L1 | security camera installation edinburg tx | Location SEO | ⚠️ Generated 2026-03-27 — EMPTY STUB (0 words, score 0) — needs full content |
-| L2 | security camera installation mission tx | Location SEO | ⚠️ Generated 2026-03-27 — EMPTY STUB (0 words, score 0) — needs full content |
-| L3 | security camera installation pharr tx | Location SEO | ⚠️ Generated 2026-03-27 — BROKEN CANONICAL (`customdesignstx.comundefined`) — fix required |
-| L4 | security camera installation harlingen tx | Location SEO | ⚠️ Generated 2026-03-27 — EMPTY STUB (0 words, score 0) — needs full content |
+| L1 | security camera installation edinburg tx | Location SEO | ✅ Generated 2026-03-27 |
+| L2 | security camera installation mission tx | Location SEO | ✅ Generated 2026-03-27 |
+| L3 | security camera installation pharr tx | Location SEO | ✅ Generated 2026-03-27 |
+| L4 | security camera installation harlingen tx | Location SEO | ✅ Generated 2026-03-27 |
 
 ---
 

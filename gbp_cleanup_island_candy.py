@@ -30,7 +30,7 @@ async def cleanup():
     from playwright.async_api import async_playwright
     async with async_playwright() as p:
         ctx = await p.chromium.launch_persistent_context(
-            user_data_dir=PROFILE_DIR, headless=True,
+            user_data_dir=PROFILE_DIR, headless=False,
             args=["--start-maximized"], no_viewport=True,
         )
         page = ctx.pages[0] if ctx.pages else await ctx.new_page()

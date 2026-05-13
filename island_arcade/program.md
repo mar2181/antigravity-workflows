@@ -10,9 +10,9 @@
 - **Location:** South Padre Island, TX
 - **Season:** Peak = spring break (Feb–Apr), summer families, rainy beach days
 - **Facebook Page:** https://www.facebook.com/profile.php?id=100090911360621
-- **Auth Account:** Mario (`marioelizondo81@gmail.com`) — Facebook posts via GraphQL API (no profile dependency)
+- **Auth Account:** Yehuda (`quepadre@live.com`) → profile: `facebook_sniffer_profile/`
 - **Page Key:** `island_arcade`
-- **GBP:** 🔴 NOT ACTIVE — duplicate listing issue unresolved. Do NOT run GBP posts.
+- **GBP:** ⚠️ Duplicate listing issue (do not post until resolved)
 - **Note:** Island Candy (ice cream) is physically inside Island Arcade — coordinate offers
 
 ---

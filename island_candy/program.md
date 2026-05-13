@@ -9,8 +9,8 @@
 - **Business:** Island Candy (ice cream, inside Island Arcade)
 - **Location:** South Padre Island, TX (inside Island Arcade)
 - **Season:** Peak = spring break, summer heat, beach days
-- **Facebook Page:** https://www.facebook.com/profile.php?id=100090560413893 _(⚠️ ID conflict: program.md says `100090560413893`, clients.md says `115476118159874` — verify with Mario before posting)_
-- **Auth Account:** Mario (`marioelizondo81@gmail.com`) — Facebook posts via GraphQL API (no Playwright profile dependency)
+- **Facebook Page:** https://www.facebook.com/profile.php?id=100090560413893
+- **Auth Account:** Mario (`marioelizondo81@gmail.com`) → profile: `facebook_mario_profile/`
 - **Page Key:** `island_candy`
 - **GBP:** ✅ Active | Profile: `gbp_sniffer_profile/`
 - **Note:** Physically inside Island Arcade — coordinate offers and posting schedule with island_arcade

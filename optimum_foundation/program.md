@@ -3,8 +3,6 @@
 > For full campaign pipeline SOP, use skill: `optimum-foundation-facebook`
 > ⚠️ NEVER mix with optimum_clinic — different entity, different CTA, different tone.
 
-> 🔴 **STATUS: ON HOLD as of 2026-04-02.** Do NOT post, do NOT run campaigns, do NOT create content until Mario explicitly lifts the hold. Reason: pending Facebook page confirmation + program direction from owner.
-
 ---
 
 ## Organization Identity

@@ -10,9 +10,9 @@
 - **Location:** South Padre Island, TX
 - **Season:** Peak = spring break (Feb–Apr), summer families, holiday weekends
 - **Facebook Page:** https://www.facebook.com/profile.php?id=61557735298128
-- **Auth Account:** Mario (`marioelizondo81@gmail.com`) — Facebook posts via GraphQL API (no Playwright profile dependency)
+- **Auth Account:** Yehuda (`quepadre@live.com`) → profile: `facebook_sniffer_profile/`
 - **Page Key:** `sugar_shack`
-- **GBP:** ✅ Active | Profile: `gbp_mario_profile/` | Script: `gbp_post_sugar_shack.py` _(Mario's GBP account handles: custom_designs_tx, optimum_clinic, juan, sugar_shack, spi_fun_rentals)_
+- **GBP:** ✅ Active | Profile: `gbp_sniffer_profile/` | Script: `gbp_post_sugar_shack.py`
 
 ---
 

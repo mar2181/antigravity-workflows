@@ -16,7 +16,7 @@
 - **Service Area:** Pharr, McAllen, Edinburg, Mission, Weslaco — entire RGV
 - **Language:** Fully bilingual (English / Spanish)
 - **Facebook Page:** https://www.facebook.com/profile.php?id=61588407637377
-- **Auth Account:** Mario (`marioelizondo81@gmail.com`) — Facebook posts via GraphQL API (no Playwright profile dependency)
+- **Auth Account:** Mario (`marioelizondo81@gmail.com`) → profile: `facebook_mario_profile/`
 - **Page Key:** `optimum_clinic` (in fb_pages_config.json)
 - **GBP:** ✅ VERIFIED | Profile: `gbp_mario_profile/` | Business ID: `16753182239006365635` | Listed as: "Optimum Health & Wellness Clinic (Cash Night Clinic)"
 - **GBP Duplicate:** ⚠️ Old listing `04197370477183326124` still exists — delete it from GBP dashboard
@@ -36,17 +36,15 @@
 
 ## Services & Pricing Reference
 
-> ⚠️ **AD COPY RULE (rules.md hard rule):** In ALL ad copy, ONLY use **$75** for sick visits. Never show ranges, never show other prices. The table below is internal reference only — it never appears in ads.
-
-| Service | Internal Price Range | What to Say in Ads |
-|---------|---------------------|-------------------|
-| Medical Consultation / Sick Visit | $75 – $100 | **"$75 sick visit"** — always |
-| Medication Refill | $50 – $75 | Do not advertise price |
-| Rapid Flu / COVID / Strep Test | $25 – $35 | Do not advertise price |
-| Injections (B12, steroid, etc.) | $25 – $50 | Do not advertise price |
-| Wound Care | $50 – $100 | Do not advertise price |
-| Urinalysis | $10 – $25 | Do not advertise price |
-| Ear Lavage | $50 – $75 | Do not advertise price |
+| Service | Price |
+|---------|-------|
+| Medical Consultation / Sick Visit | $75 – $100 |
+| Medication Refill | $50 – $75 |
+| Rapid Flu / COVID / Strep Test | $25 – $35 |
+| Injections (B12, steroid, etc.) | $25 – $50 |
+| Wound Care | $50 – $100 |
+| Urinalysis | $10 – $25 |
+| Ear Lavage | $50 – $75 |
 
 ---
 
@@ -54,7 +52,7 @@
 
 - **No treatment guarantees or cure claims** — never promise outcomes
 - **No absolute superlatives** without documentation ("best," "only") — use "one of the few"
-- **Always use "$75" for sick visit ads** — hard rule (rules.md). Do NOT use ranges in copy. Internal ranges are reference only.
+- **Always use price ranges** — "$75 – $100" not "$75" (use "starting at $75" if single)
 - **Testimonials:** Variant B only — aspirational language ("Families across the RGV trust...")
 - **Core offer must appear in every ad:** "Walk in tonight — no appointment, no insurance needed"
 - Max 300 words | Max 3 hashtags | No text overlays in images

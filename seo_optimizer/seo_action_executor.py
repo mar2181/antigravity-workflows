@@ -29,7 +29,6 @@ Reports: seo_optimizer_reports/actions/YYYY-MM-DD_*.png
 """
 
 import json
-import os
 import sys
 import argparse
 import time
@@ -44,21 +43,6 @@ try:
 except ImportError:
     print("❌ Playwright required: pip install playwright && playwright install")
     sys.exit(1)
-
-# ─── Headless detection ────────────────────────────────────────────────────────
-# When launched from Task Scheduler or any non-interactive session (no desktop),
-# headless=False crashes immediately because Chrome can't render a visible window.
-# Set CRON_MODE=1 in the bat file, or pass --headless on the CLI, to run headless.
-IS_CRON = os.environ.get("CRON_MODE", "0") == "1"
-
-# Chrome flags that ensure stability in both interactive and non-interactive sessions
-_CHROME_STABILITY_ARGS = [
-    "--disable-blink-features=AutomationControlled",
-    "--no-sandbox",
-    "--disable-dev-shm-usage",
-    "--disable-gpu",
-    "--window-size=1920,1080",
-]
 
 # ─── Paths ───────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent.parent
@@ -193,62 +177,40 @@ def execute_action(action_item, dry_run=False):
         print(f"    [DRY RUN] Would execute {action_type} for {keyword}")
         return {"success": True, "dry_run": True}
 
-    run_headless = IS_CRON  # True when CRON_MODE=1 or --headless passed
-    mode_label = "headless" if run_headless else "headed"
-    print(f"    Launching Chrome ({mode_label})...", end=" ", flush=True)
+    try:
+        with sync_playwright() as p:
+            # Use existing profile for authentication
+            context = p.chromium.launch_persistent_context(
+                str(profile_path),
+                headless=False,
+                args=["--disable-blink-features=AutomationControlled"],
+            )
 
-    for attempt in range(1, 3):  # up to 2 attempts
-        try:
-            with sync_playwright() as p:
-                context = p.chromium.launch_persistent_context(
-                    str(profile_path),
-                    headless=run_headless,
-                    args=_CHROME_STABILITY_ARGS,
-                    timeout=30000,
-                )
+            page = context.new_page()
 
-                page = context.new_page()
-                page.set_default_timeout(30000)
-
-                # Normalize action type — generator outputs "gbp_posts"/"gbp_photo",
-                # executor uses "gbp_post"/"gbp_description"/"gbp_qa"
-                normalized_type = action_type.replace("gbp_posts", "gbp_post").replace("gbp_photo", "gbp_post")
-
-                if normalized_type == "gbp_post":
-                    result = execute_gbp_post(page, action_content, client, keyword)
-                elif normalized_type == "gbp_qa":
-                    result = execute_gbp_qa(page, action_content, client, keyword)
-                elif normalized_type == "gbp_description":
-                    result = execute_gbp_description(page, action_content, client, keyword)
-                else:
-                    result = {"success": False, "error": f"Unknown action type: {action_type} (normalized: {normalized_type})"}
-
-                context.close()
-                return result
-
-        except Exception as e:
-            err_msg = str(e)
-            short_err = err_msg[:200]
-            if attempt < 2:
-                print(f"\n    ⚠️  Attempt {attempt} failed ({short_err[:80]}...). Retrying in 5s...")
-                # On retry, force headless to avoid non-interactive session issues
-                run_headless = True
-                time.sleep(5)
+            # Execute based on action type
+            if action_type == "gbp_post":
+                result = execute_gbp_post(page, action_content, client, keyword)
+            elif action_type == "gbp_qa":
+                result = execute_gbp_qa(page, action_content, client, keyword)
+            elif action_type == "gbp_description":
+                result = execute_gbp_description(page, action_content, client, keyword)
             else:
-                print(f"    ❌ Error after {attempt} attempt(s): {short_err}")
-                return {"success": False, "error": err_msg}
+                result = {"success": False, "error": f"Unknown action type: {action_type}"}
+
+            context.close()
+
+            return result
+
+    except Exception as e:
+        print(f"    ❌ Error: {str(e)}")
+        return {"success": False, "error": str(e)}
 
 def main():
     parser = argparse.ArgumentParser(description="Execute SEO actions via GBP")
     parser.add_argument("--dry-run", action="store_true", help="Preview only, no actual posts")
     parser.add_argument("--client", help="Single client to process")
-    parser.add_argument("--headless", action="store_true", help="Run Chrome headless (forced on when CRON_MODE=1)")
     args = parser.parse_args()
-
-    # CLI --headless flag supplements the CRON_MODE env var
-    global IS_CRON
-    if args.headless:
-        IS_CRON = True
 
     print("🚀 SEO Action Executor — Applying actions via GBP...")
 

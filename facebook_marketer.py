@@ -1171,77 +1171,12 @@ class FacebookMarketer:
             return False
 
 
-def update_program_md_log(biz_key: str, channel: str, angle: str = "", copy_text: str = "", image_path: str = "") -> bool:
-    """
-    Append one row to the ## Posting Log table in the client's program.md.
-    Called automatically after every successful Facebook post so the log never goes stale.
-    """
-    import re as _re
-
-    execution_dir = Path(__file__).parent
-    program_path = execution_dir / biz_key / "program.md"
-
-    if not program_path.exists():
-        print(f"  [LOG] program.md not found for {biz_key} — log skipped")
-        return False
-
-    text = program_path.read_text(encoding="utf-8")
-    date_str = time.strftime("%Y-%m-%d")
-
-    # Build a human-readable service label from the angle slug
-    service = angle.replace("_", " ").title() if angle else "Post"
-
-    # Build notes: copy preview + image name
-    notes_parts = ["Auto-logged by facebook_marketer"]
-    if image_path:
-        notes_parts.append(f"img: {Path(image_path).name}")
-    if copy_text:
-        preview = copy_text[:70].replace("|", "/").replace("\n", " ")
-        notes_parts.append(f'copy: "{preview}..."')
-    notes = "; ".join(notes_parts)
-
-    new_row = f"| {date_str} | {service} | {angle or 'ad'} | {channel} | | {notes} |"
-
-    # Locate the ## Posting Log section
-    section_match = _re.search(r"## Posting Log", text)
-    if not section_match:
-        print(f"  [LOG] No '## Posting Log' section in {biz_key}/program.md — skipped")
-        return False
-
-    section_start = section_match.start()
-    next_section = _re.search(r"\n## ", text[section_start + 1:])
-    section_end = (section_start + 1 + next_section.start()) if next_section else len(text)
-    section_text = text[section_start:section_end]
-
-    # Find all table rows (lines that start with |)
-    table_row_matches = list(_re.finditer(r"^\|.+\|[ \t]*$", section_text, _re.MULTILINE))
-
-    if table_row_matches:
-        last_match = table_row_matches[-1]
-        insert_pos = section_start + last_match.end()
-        new_text = text[:insert_pos] + "\n" + new_row + text[insert_pos:]
-    else:
-        # No table rows yet — create the table after the directive line (or section header)
-        directive_match = _re.search(r"^>.*$", section_text, _re.MULTILINE)
-        if directive_match:
-            insert_pos = section_start + directive_match.end()
-        else:
-            insert_pos = section_start + section_text.find("\n") + 1
-        header = "\n| Date | Service | Ad Angle | Channel | Offer | Notes |\n|------|---------|----------|---------|-------|-------|\n"
-        new_text = text[:insert_pos] + header + new_row + "\n" + text[insert_pos:]
-
-    program_path.write_text(new_text, encoding="utf-8")
-    print(f"  [LOG] Posting log updated -> {biz_key}/program.md")
-    return True
-
-
 def main():
     parser = argparse.ArgumentParser(description="Facebook Marketing Automation Suite")
     parser.add_argument("--action", required=True,
                        choices=["text", "image", "video", "schedule", "list-scheduled", "reply", "insights", "find_optimum"],
                        help="Action to perform")
     parser.add_argument("--page", default="juan", help="Page key: 'juan' or 'optimum'")
-    parser.add_argument("--angle", default="", help="Ad angle/service label for posting log (e.g. home_theater)")
     parser.add_argument("--message", help="Post message or reply text")
     parser.add_argument("--media", help="Path to image or video file")
     parser.add_argument("--schedule", help="Schedule datetime (format: '2026-03-09 10:00')")
@@ -1284,25 +1219,19 @@ def main():
             if not args.message:
                 print("[ERROR] --message required for text posts")
                 return
-            ok = marketer.post_text(args.page, args.message)
-            if ok:
-                update_program_md_log(args.page, "Facebook", args.angle, args.message, "")
+            marketer.post_text(args.page, args.message)
 
         elif args.action == "image":
             if not args.message or not args.media:
                 print("[ERROR] --message and --media required for image posts")
                 return
-            ok = marketer.post_image(args.page, args.message, args.media)
-            if ok:
-                update_program_md_log(args.page, "Facebook", args.angle, args.message, args.media)
+            marketer.post_image(args.page, args.message, args.media)
 
         elif args.action == "video":
             if not args.message or not args.media:
                 print("[ERROR] --message and --media required for video posts")
                 return
-            ok = marketer.post_video(args.page, args.message, args.media)
-            if ok:
-                update_program_md_log(args.page, "Facebook", args.angle, args.message, args.media)
+            marketer.post_video(args.page, args.message, args.media)
 
         elif args.action == "schedule":
             if not args.message or not args.schedule:
@@ -1315,15 +1244,11 @@ def main():
                     print(f"[ERROR] {e}")
                     return
                 if args.media:
-                    ok = marketer._graph_post_image(args.page, args.message, args.media, schedule_time=ts)
+                    marketer._graph_post_image(args.page, args.message, args.media, schedule_time=ts)
                 else:
-                    ok = marketer._graph_post_text(args.page, args.message, schedule_time=ts)
-                if ok:
-                    update_program_md_log(args.page, "Facebook (scheduled)", args.angle, args.message, args.media or "")
+                    marketer._graph_post_text(args.page, args.message, schedule_time=ts)
             else:
-                ok = marketer.schedule_post(args.page, args.message, args.schedule, args.media)
-                if ok:
-                    update_program_md_log(args.page, "Facebook (scheduled)", args.angle, args.message, args.media or "")
+                marketer.schedule_post(args.page, args.message, args.schedule, args.media)
 
         elif args.action == "list-scheduled":
             if posting_method == "graph_api":

@@ -132,7 +132,7 @@ async def post_to_gbp(post: dict) -> bool:
     async with async_playwright() as p:
         context = await p.chromium.launch_persistent_context(
             user_data_dir=PROFILE_DIR,
-            headless=True,
+            headless=False,
             args=["--start-maximized"],
             no_viewport=True,
         )
