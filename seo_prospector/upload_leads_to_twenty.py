@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Upload RGV rank-5-to-10 ATTORNEY leads to Twenty CRM at localhost:3000.
+Upload RGV rank-5-to-10 leads for ANY profession to Twenty CRM at localhost:3000.
 
-Reads the per-city attorney CSVs produced by rank_prospector.py
-(output/attorney_<City>_*.csv -- latest file per city) and creates one
-company per firm, named:
+Profession-driven. Reads the per-city CSVs produced by rank_prospector.py
+(output/<profession-slug>_<City>_*.csv -- latest file per city) and creates
+one company per firm, named:
 
-    ATTORNEY LEADS | <City> | R<rank> | <firm name>
+    <PROFESSION> LEADS | <City> | R<rank> | <firm name>
 
-The "ATTORNEY LEADS |" prefix keeps this batch as its own distinct list,
-separate from the general "SEO |" rank-5-10 prospects and the "HS |"
-no-website leads. Search / filter "ATTORNEY LEADS |" in Twenty to see
-only this group.
+e.g.  ATTORNEY LEADS | McAllen | R5 | Patino Law Firm
+      DENTIST LEADS | Harlingen | R7 | Valley Smiles
+
+The "<PROFESSION> LEADS |" prefix keeps each batch as its own distinct group,
+separate from the general "SEO |" rank-5-10 prospects and the "HS |" no-website
+leads. Search / filter that prefix in Twenty to see only that profession.
 
 Field mapping:
   website  -> domainName.primaryLinkUrl
@@ -24,14 +26,15 @@ Field mapping:
 A firm that ranks 5-10 in more than one city is uploaded once, under its
 best (lowest) rank, with every city it ranks in listed in the name.
 
-If the Twenty instance rejects the secondaryLinks composite, the create
-is retried with a plain body so the company still lands (email/facebook
-then simply absent on that record).
+If the Twenty instance rejects the secondaryLinks composite, the create is
+retried with a plain body so the company still lands (email/facebook then
+simply absent on that record).
 
 Usage:
-    python upload_attorneys_to_twenty.py            # latest attorney CSVs
-    python upload_attorneys_to_twenty.py --dry-run  # preview, no writes
-    python upload_attorneys_to_twenty.py --csv output/attorney_McAllen_2026-05-21_2237.csv
+    python upload_leads_to_twenty.py --profession "attorney"
+    python upload_leads_to_twenty.py --profession "dentist" --dry-run
+    python upload_leads_to_twenty.py --profession "attorney" \\
+        --csv output/attorney_McAllen_2026-05-21_2237.csv
 """
 
 import argparse
@@ -53,7 +56,14 @@ EXECUTION_DIR = SCRIPT_DIR.parent
 OUTPUT_DIR = SCRIPT_DIR / "output"
 
 API_URL = "http://localhost:3000/rest/companies"
-PREFIX = "ATTORNEY LEADS |"
+
+# Set in main() from --profession. The CRM group name.
+PREFIX = ""
+
+
+def slugify(profession: str) -> str:
+    """Match rank_prospector.py's filename slug: spaces -> '-', lowercased."""
+    return profession.strip().replace(" ", "-").lower()
 
 
 def load_env() -> dict:
@@ -68,13 +78,14 @@ def load_env() -> dict:
     return env
 
 
-def latest_city_csvs() -> list[Path]:
-    """Newest attorney_<City>_*.csv per city."""
+def latest_city_csvs(slug: str) -> list[Path]:
+    """Newest <slug>_<City>_*.csv per city."""
     if not OUTPUT_DIR.exists():
         return []
+    pat = re.compile(rf"{re.escape(slug)}_(.+?)_\d{{4}}-\d{{2}}-\d{{2}}_\d+\.csv$")
     by_city: dict[str, Path] = {}
-    for p in OUTPUT_DIR.glob("attorney_*.csv"):
-        m = re.match(r"attorney_(.+?)_\d{4}-\d{2}-\d{2}_\d+\.csv$", p.name)
+    for p in OUTPUT_DIR.glob(f"{slug}_*.csv"):
+        m = pat.match(p.name)
         if not m:
             continue
         city = m.group(1)
@@ -179,7 +190,7 @@ def create_company(rec: dict, headers: dict) -> tuple[bool, str, bool]:
 
 
 def fetch_existing_names(headers: dict) -> set:
-    """Names already starting with the ATTORNEY LEADS prefix (server-side filter)."""
+    """Names already starting with the profession prefix (server-side filter)."""
     existing = set()
     flt = urllib.parse.quote(f"name[ilike]:%{PREFIX}%")
     page = 1
@@ -201,7 +212,7 @@ def fetch_existing_names(headers: dict) -> set:
             page += 1
             time.sleep(0.6)
         except Exception as e:
-            print(f"  Warning: could not fetch existing attorney leads: {e}")
+            print(f"  Warning: could not fetch existing leads: {e}")
             break
     return existing
 
@@ -251,22 +262,30 @@ def load_records(csv_paths: list[Path]) -> list[dict]:
 
 
 def main():
+    global PREFIX
     parser = argparse.ArgumentParser(
-        description="Upload rank-5-10 attorney leads to Twenty CRM")
+        description="Upload rank-5-10 leads for any profession to Twenty CRM")
+    parser.add_argument("--profession", required=True,
+                        help='Trade to upload, e.g. "attorney", "dentist". '
+                             "Drives the CSV glob and the CRM group name.")
     parser.add_argument("--csv", action="append", default=[],
                         help="Specific CSV(s); repeatable. Default: latest per city.")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show what would upload, no writes")
     args = parser.parse_args()
 
+    slug = slugify(args.profession)
+    PREFIX = f"{args.profession.strip().upper()} LEADS |"
+
     if args.csv:
         csv_paths = [Path(c) for c in args.csv]
     else:
-        csv_paths = latest_city_csvs()
+        csv_paths = latest_city_csvs(slug)
     csv_paths = [p for p in csv_paths if p.exists()]
     if not csv_paths:
-        print("[FATAL] No attorney CSVs found in output/. Run rank_prospector.py "
-              "with --category attorney --separate-by-city first.", file=sys.stderr)
+        print(f"[FATAL] No '{slug}_*.csv' files found in output/. Run "
+              f'rank_prospector.py --category "{args.profession}" '
+              "--separate-by-city first.", file=sys.stderr)
         sys.exit(2)
 
     records = load_records(csv_paths)
@@ -306,7 +325,7 @@ def main():
     headers = {"Content-Type": "application/json",
                "Authorization": f"Bearer {api_key}"}
 
-    print("Checking for existing attorney leads in Twenty...")
+    print(f"Checking for existing '{PREFIX}' leads in Twenty...")
     existing = fetch_existing_names(headers)
     print(f"  Found {len(existing)} existing '{PREFIX}' companies")
 

@@ -13,12 +13,54 @@ of website status (website yes/no is recorded as a column).
 
 ---
 
+## One command — `prospect_pipeline.py`
+
+For most runs, don't call the scripts separately. The pipeline wraps both
+steps; **swap the profession and the city, nothing else changes.**
+
+```bash
+cd "C:/Users/mario/.gemini/antigravity/tools/execution/seo_prospector"
+
+# Attorneys across 3 cities → CSVs → Twenty CRM "ATTORNEY LEADS |" group
+python prospect_pipeline.py --profession "attorney" --cities "Harlingen,McAllen,Mission"
+
+# Same machine, different trade — just change --profession
+python prospect_pipeline.py --profession "dentist" --city "McAllen"
+python prospect_pipeline.py --profession "roofing contractor" --cities "Brownsville,Edinburg"
+
+# Preview the CRM upload (scrape runs for real; no CRM writes)
+python prospect_pipeline.py --profession "chiropractor" --city "Pharr" --dry-run
+
+# Stop at the CSVs — leave Twenty CRM untouched
+python prospect_pipeline.py --profession "plumber" --city "Weslaco" --no-upload
+```
+
+Each profession lands in Twenty CRM as its own group, named
+`<PROFESSION> LEADS | <City> | R<rank> | <firm>` — search that prefix to see
+only that trade, separate from `HS |` and `SEO |` leads.
+
+| Pipeline flag | Effect |
+|---|---|
+| `--profession NAME` | **(required)** trade to prospect — drives the search term, CSV name, and CRM group. |
+| `--city` / `--cities "A,B,C"` | one of these is required. |
+| `--no-enrich` | skip the email/Facebook enrichment step. |
+| `--rank-min` / `--rank-max` | rank band (default 5-10). |
+| `--no-upload` | stop after the CSVs. |
+| `--dry-run` | preview the upload instead of writing to the CRM. |
+
+The two underlying scripts (`rank_prospector.py`, `upload_leads_to_twenty.py`)
+can still be run directly — see below.
+
+---
+
 ## Files
 
 | File | Purpose |
 |---|---|
+| `prospect_pipeline.py` | **One-command entry point.** Runs the scrape then the upload for any profession. Swap `--profession` + city; the rest is automatic. |
 | `rank_prospector.py` | Scraper. Places API text search per category × city, slices rank 5-10, enriches with phone / website / email / Facebook, scores, writes CSV (combined or one per city). |
-| `upload_to_twenty.py` | Uploads the latest CSV into Twenty CRM as `SEO \| R<rank> \| <category> \| <name>` companies. |
+| `upload_leads_to_twenty.py` | Profession-driven uploader. CSV → Twenty CRM as `<PROFESSION> LEADS \| <City> \| R<rank> \| <name>` companies. Cross-city dedupe; safe to re-run. |
+| `upload_to_twenty.py` | Older SEO-prospect uploader — `SEO \| R<rank> \| <category> \| <name>` format, no per-city grouping. Kept for the general all-categories sweep. |
 | `output/` | CSV output (auto-created). |
 
 Categories (41) and cities (16) are imported from `../lead_gen/config.py` — edit
@@ -92,9 +134,15 @@ python rank_prospector.py --city "McAllen"
 # Full RGV sweep (41 categories × 16 cities)
 python rank_prospector.py
 
-# Optional: upload the latest CSV to Twenty CRM
+# Upload per-city CSVs to Twenty CRM as a profession group
+python upload_leads_to_twenty.py --profession "attorney"             # add --dry-run to preview first
+
+# Upload a general all-categories sweep (SEO | format)
 python upload_to_twenty.py            # add --dry-run to preview names first
 ```
+
+For a single profession, prefer `prospect_pipeline.py` (above) — it runs both
+steps in one command.
 
 ### Flags
 
@@ -136,11 +184,26 @@ A mid-page business worth pitching is established and close to breaking the top 
 
 ## Twenty CRM
 
+**`upload_leads_to_twenty.py` (profession groups — recommended):**
+
+- Company name: `<PROFESSION> LEADS | <City> | R<rank> | <firm name>`
+  (e.g. `ATTORNEY LEADS | McAllen | R5 | Patino Law Firm`).
+- Each profession is its own group — search the `<PROFESSION> LEADS |` prefix
+  in Twenty to see only that trade. Separate from `HS |` (no-website leads)
+  and `SEO |` (general sweep).
+- A firm ranking 5-10 in more than one city is uploaded **once**, under its
+  best (lowest) rank, with every city listed (`McAllen+Mission`).
+- `website` → `domainName.primaryLinkUrl`; `facebook` + `email` →
+  `domainName.secondaryLinks`; `phone` → `phoneNumber`; `address` parsed into
+  the address composite.
+- Paginates existing companies and skips any name already present — safe to
+  re-run (no duplicates).
+
+**`upload_to_twenty.py` (general SEO sweep):**
+
 - Company name: `SEO | R{rank} | {category} | {business name}`
   (e.g. `SEO | R7 | plumber | Trevino Plumbing`).
-- The `SEO |` prefix keeps these separate from the `HS |` no-website leads.
-- The uploader paginates existing companies and skips any `SEO |` name already
-  present, so re-running it is safe (no duplicates).
+- Use this for the all-categories combined-CSV sweep, not single-profession runs.
 
 ---
 
