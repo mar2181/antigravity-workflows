@@ -96,6 +96,18 @@ def build_row(client_key, keyword, date_str, data):
     }
 
 
+def write_heartbeat(supabase_url, headers, source, payload):
+    """Upsert cron_heartbeats — fire-and-forget; never raise."""
+    try:
+        now_iso = datetime.now(timezone.utc).isoformat()
+        row = {"source": source, "last_run_at": now_iso, "payload": payload, "updated_at": now_iso}
+        url = f"{supabase_url}/rest/v1/cron_heartbeats?on_conflict=source"
+        hb_headers = {**headers, "Prefer": "return=minimal,resolution=merge-duplicates"}
+        return supabase_request("POST", url, hb_headers, [row])
+    except Exception as exc:
+        return {"ok": False, "status": 0, "body": str(exc)}
+
+
 def upsert_batch(supabase_url, headers, rows):
     """
     Atomic batch UPSERT via Supabase REST. Requires the UNIQUE index on
@@ -184,10 +196,24 @@ def main():
         expected_keywords_by_date: dict[str, set[str]] = {}
 
         for keyword, date_data in kw_data.items():
+            if not isinstance(date_data, dict):
+                # Defensive: some legacy state files carry aggregate keys like
+                # "rankings" -> {kw: int} at the keyword level. Skip — those
+                # aren't per-date keyword entries.
+                print(f"  [SKIP] {keyword!r} -- not a dict (legacy aggregate key)")
+                continue
             if not date_data:
                 print(f"  [SKIP] {keyword!r} -- no date entries")
                 continue
-            dates_to_push = sorted(date_data.keys()) if args.all_dates else [max(date_data.keys())]
+            # Only consider real ISO-date keys (YYYY-MM-DD); other strings are
+            # historical pollution from earlier schema versions.
+            valid_dates = [k for k, v in date_data.items()
+                           if isinstance(k, str) and len(k) == 10 and k[4] == '-' and k[7] == '-'
+                           and isinstance(v, dict)]
+            if not valid_dates:
+                print(f"  [SKIP] {keyword!r} -- no valid date entries")
+                continue
+            dates_to_push = sorted(valid_dates) if args.all_dates else [max(valid_dates)]
             for date_str in dates_to_push:
                 row = build_row(client_key, keyword, date_str, date_data[date_str])
                 rows_by_date.setdefault(date_str, []).append(row)
@@ -224,6 +250,13 @@ def main():
                 mismatches.append(msg)
             else:
                 print(f"    [OK] verified {remote_count} rows in Supabase (>= expected {expected})")
+
+    # Heartbeat — only on real runs that pushed something successfully
+    if not args.dry_run and pushed_ok > 0 and pushed_err == 0:
+        hb = write_heartbeat(supabase_url, headers, "keyword_rank_tracker",
+                             {"pushed": pushed_ok, "clients": len(clients_to_push)})
+        if hb.get("ok"):
+            print("[heartbeat] keyword_rank_tracker updated")
 
     label = "[DRY RUN] " if args.dry_run else ""
     print(f"\n{label}Done -- {pushed_ok} pushed OK, {pushed_err} errors")

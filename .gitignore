@@ -7,12 +7,16 @@
 # --- Credentials & Secrets ---
 .env
 *.env
+.env.local
+*.env.local
 *credentials*.json
 *token*.json
 *secret*
 fb_api_credentials.json
 token_mario_gbp.json
 client_contacts.json
+logs/
+deduplicate_images.py
 
 # --- Browser Session Profiles (personal login state) ---
 facebook_sniffer_profile/
@@ -22,6 +26,7 @@ gbp_sniffer_profile/
 
 # --- Generated Output (regenerated daily) ---
 blog_posts/
+seo_prospector/output/
 competitor_reports/
 morning_briefs/
 screenpipe_reports/
