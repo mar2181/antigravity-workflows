@@ -9,7 +9,7 @@ This is the counterpart to `../lead_gen/` — that tool finds **no-website**
 businesses in the **top 3**; this one finds **rank-5-10** businesses regardless
 of website status (website yes/no is recorded as a column).
 
-**Pattern:** Places text search → slice rank band → enrich → score → CSV → Twenty CRM
+**Pattern:** Places text search → slice rank 5-10 → enrich (phone, website, email, Facebook) → score → CSV (per city) → Twenty CRM (optional)
 
 ---
 
@@ -17,7 +17,7 @@ of website status (website yes/no is recorded as a column).
 
 | File | Purpose |
 |---|---|
-| `rank_prospector.py` | Scraper. Places API text search per category × city, slices rank 5-10, enriches with phone/website, scores, writes CSV. |
+| `rank_prospector.py` | Scraper. Places API text search per category × city, slices rank 5-10, enriches with phone / website / email / Facebook, scores, writes CSV (combined or one per city). |
 | `upload_to_twenty.py` | Uploads the latest CSV into Twenty CRM as `SEO \| R<rank> \| <category> \| <name>` companies. |
 | `output/` | CSV output (auto-created). |
 
@@ -43,12 +43,32 @@ Places API over raw HTTP (same approach as `lead_prospector.py`).
 
 ---
 
+## Contact enrichment
+
+For each rank-band business, the tool visits the firm's own website
+(homepage + `/contact`, `/contact-us`, `/about`, `/about-us`) and extracts:
+
+- **email** — every address found in `mailto:` links and page text, junk
+  filtered (asset files, placeholders, vendor addresses).
+- **facebook** — the firm's Facebook page URL. If the website doesn't link
+  one, a Bright Data Google search (`"{name}" {city} TX facebook`) is the
+  fallback.
+
+Both land in their own CSV columns. **Email coverage is partial** — many
+businesses publish only a contact form, with no address to scrape. A blank
+cell means none was found; nothing is ever fabricated. Skip this step with
+`--no-enrich`.
+
+---
+
 ## Prerequisites
 
-- **`GOOGLE_PLACES_API_KEY`** in `../.env.local` (the execution-dir env file).
-  Already set — the Google Maps Platform key with legacy Places API enabled.
-- **`TWENTY_API_KEY`** in `../.env.local` (already set).
-- **Twenty CRM** running at `localhost:3000` (only needed for the upload step).
+- **`GOOGLE_PLACES_API_KEY`** in `../.env.local` — the Google Maps Platform key
+  with legacy Places API enabled (already set).
+- **`BRIGHT_DATA_KEY`** in `../.env.local` — used only for the Facebook-search
+  fallback during enrichment (already set).
+- **`TWENTY_API_KEY`** in `../.env.local` + **Twenty CRM** at `localhost:3000` —
+  only for the optional upload step.
 
 ---
 
@@ -57,25 +77,40 @@ Places API over raw HTTP (same approach as `lead_prospector.py`).
 ```bash
 cd "C:/Users/mario/.gemini/antigravity/tools/execution/seo_prospector"
 
-# 1. Dry run — search plan + cost estimate, no API calls
+# Dry run — search plan + cost estimate, no API calls
 python rank_prospector.py --dry-run
 
-# 2. Single-city test (recommended first)
-python rank_prospector.py --category "plumber" --city "McAllen"
+# Single-city test (recommended first)
+python rank_prospector.py --category "attorney" --city "McAllen"
 
-# 3. All categories, one city
+# Attorneys across 3 cities, one CSV per city
+python rank_prospector.py --category "attorney" --cities "Harlingen,McAllen,Mission" --separate-by-city
+
+# All categories, one city
 python rank_prospector.py --city "McAllen"
 
-# 4. Full RGV sweep (41 categories × 16 cities)
+# Full RGV sweep (41 categories × 16 cities)
 python rank_prospector.py
 
-# Flags: --rank-min 5  --rank-max 10  --limit N  --output name.csv
-
-# 5. Upload the latest CSV to Twenty CRM
+# Optional: upload the latest CSV to Twenty CRM
 python upload_to_twenty.py            # add --dry-run to preview names first
 ```
 
-Then open `http://localhost:3000/objects/companies` and search `SEO |`.
+### Flags
+
+| Flag | Effect |
+|---|---|
+| `--category NAME` | Single category — free text (e.g. `"attorney"`). |
+| `--city NAME` | Single city. |
+| `--cities "A,B,C"` | Comma-separated list of cities. |
+| `--separate-by-city` | Write one CSV per city instead of one combined file. |
+| `--no-enrich` | Skip the email/Facebook enrichment step (faster). |
+| `--rank-min N` / `--rank-max N` | Rank band to keep (default 5-10). |
+| `--limit N` | Cap categories (testing). |
+| `--output NAME` | Custom CSV name (combined mode only). |
+
+Output files: `output/{category}_{City}_{date}.csv` per city, or
+`output/rgv_rank5to10_{date}.csv` combined.
 
 ---
 
