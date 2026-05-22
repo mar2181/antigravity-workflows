@@ -1,0 +1,447 @@
+{
+  "client": {
+    "name": "ACME Home Services",
+    "url": "https://acmehomeservices.com",
+    "city": "McAllen",
+    "vertical": "home-services",
+    "onboarded_at": "2026-05-22T17:17:22.395580+00:00"
+  },
+  "executive_summary": "ACME Home Services is a home-services provider serving McAllen and surrounding areas. Their website shows solid foundational content but has significant technical SEO gaps including missing schema markup, slow page speeds, and no AI crawler configuration. Their Google Business Profile has a strong review base but incomplete attributes and minimal photo content. With targeted technical fixes, GBP optimization, and a structured content strategy, we project a 40-60% increase in local organic visibility within 90 days.",
+  "scores": {
+    "overall_readiness": 54,
+    "website_quality": 62,
+    "gbp_completeness": 48,
+    "technical_seo": 41,
+    "ai_visibility": 22,
+    "social_presence": 35,
+    "backlink_strength": 45,
+    "keyword_coverage": 58
+  },
+  "website_scan": {
+    "business_summary": "A locally owned and operated home-services business serving residential and commercial clients across McAllen and the Rio Grande Valley since 2012. Their website emphasizes reliable service, licensed technicians, and competitive pricing.",
+    "services": [
+      "Residential home-services",
+      "Commercial home-services",
+      "Emergency repairs",
+      "Maintenance plans",
+      "Free estimates"
+    ],
+    "brand_voice": "Professional, trustworthy, community-focused. Uses straightforward language with emphasis on reliability and local expertise.",
+    "trust_signals": [
+      "Licensed & Insured (displayed in footer)",
+      "12+ years in business",
+      "BBB Accredited (A- rating)",
+      "Customer testimonials on homepage (8 reviews shown)",
+      "Serving RGV since 2012"
+    ],
+    "contact_info": {
+      "Phone": "(956) 555-0123",
+      "Email": "info@acmehomeservices.com",
+      "Address": "123 Main St, McAllen, TX 78501",
+      "Contact Form": "Yes — /contact page with form"
+    },
+    "content_audit": {
+      "Blog": "Yes — 12 posts, last updated 3 months ago",
+      "Service Pages": "5 pages, well-structured",
+      "About Page": "Present, good story but no schema",
+      "FAQ": "Not found — opportunity",
+      "Total Pages Indexed": "~35 pages"
+    }
+  },
+  "gbp_audit": {
+    "identity": {
+      "Place ID": "ChIJSamplePlaceID12345",
+      "CID (hex)": "0xSampleCIDHex",
+      "CID (decimal)": "12345678901234567890",
+      "Lat/Lng": "26.2034, -98.2300",
+      "Primary Category": "Home Services",
+      "Secondary Categories": "None set"
+    },
+    "review_audit": {
+      "Total Reviews": "47",
+      "Average Rating": "4.6 / 5.0",
+      "Response Rate": "~40% (needs improvement)",
+      "Last Review": "2 weeks ago",
+      "Review Velocity": "~3/month"
+    },
+    "completeness_score": "48/100 — Missing: secondary categories, attributes, Q&A, posts, description under 750 chars",
+    "nap_consistency": "Address matches website exactly. Phone and business name are consistent.",
+    "issues_found": [
+      "No secondary categories selected — missing keyword-rich categories",
+      "Only 12 photos (target: 100+ for 520% more calls)",
+      "Business description is only 200 chars (750 available)",
+      "No Google Posts in last 90 days",
+      "Q&A section is empty — seed with FAQs",
+      "Attributes section incomplete — missing service options, payment types, accessibility"
+    ]
+  },
+  "competitor_intel": {
+    "competitors": [
+      {
+        "name": "RGV Pro Services",
+        "rating": "4.8",
+        "reviews": "156",
+        "strengths": "Dominant review count, active GBP posting weekly, strong backlink profile from local news sites",
+        "weaknesses": "Website is slow (3.8s LCP), no blog content, poor mobile experience"
+      },
+      {
+        "name": "McAllen Premier Home",
+        "rating": "4.5",
+        "reviews": "89",
+        "strengths": "Excellent website UX, strong blog with 40+ posts ranking for long-tail keywords",
+        "weaknesses": "Lower review count, no review responses, no social media presence"
+      },
+      {
+        "name": "Valley Wide Services",
+        "rating": "4.3",
+        "reviews": "210",
+        "strengths": "Highest review volume, multiple locations (3 GBP listings), Google Ads running",
+        "weaknesses": "Generic brand, no unique value proposition, website is templated Wix site"
+      },
+      {
+        "name": "Top Choice Home Repair",
+        "rating": "4.7",
+        "reviews": "62",
+        "strengths": "Strong video content (YouTube channel with 2K subscribers), excellent GBP photos (80+)",
+        "weaknesses": "Website not HTTPS (critical), no schema markup, thin service pages"
+      },
+      {
+        "name": "Ace Maintenance Co",
+        "rating": "4.4",
+        "reviews": "34",
+        "strengths": "Ranking #1 for '{vertical} near me', well-optimized title tags and meta descriptions",
+        "weaknesses": "Lowest review count in top 5, no blog, GBP profile incomplete"
+      }
+    ],
+    "attack_vectors": [
+      "Outrank Ace Maintenance for '{vertical} near me' — their website is weak but their on-page SEO is good. We need better content + more backlinks.",
+      "Close the review gap with RGV Pro Services — they have 3x more reviews. Implement review generation system.",
+      "Exploit Top Choice's HTTPS vulnerability — Google is favoring HTTPS sites. Their ranking will decline without a fix.",
+      "Build content moat — none of the top 5 have a strong content strategy. Own the long-tail with a blog.",
+      "Activate GBP fully — all competitors have incomplete GBP profiles. A 100% optimized GBP can leapfrog 2-3 positions."
+    ]
+  },
+  "technical_seo": {
+    "summary": "The website has foundational SEO elements in place but multiple critical gaps. Mobile experience is acceptable but page speed is below Core Web Vitals thresholds. Schema markup is entirely missing — this is the highest-impact quick fix.",
+    "findings": [
+      {
+        "check": "HTTPS",
+        "status": "pass",
+        "detail": "Valid SSL, no mixed content"
+      },
+      {
+        "check": "robots.txt",
+        "status": "pass",
+        "detail": "Present and correctly configured"
+      },
+      {
+        "check": "sitemap.xml",
+        "status": "pass",
+        "detail": "Present at /sitemap.xml, 35 URLs indexed"
+      },
+      {
+        "check": "Mobile Responsive",
+        "status": "pass",
+        "detail": "Viewport meta present, touch targets adequate"
+      },
+      {
+        "check": "Title Tags",
+        "status": "warn",
+        "detail": "Present but generic — no city or service keywords"
+      },
+      {
+        "check": "Meta Descriptions",
+        "status": "warn",
+        "detail": "Present on 60% of pages, many are auto-generated snippets"
+      },
+      {
+        "check": "Schema Markup",
+        "status": "fail",
+        "detail": "COMPLETELY MISSING — no LocalBusiness, Organization, FAQ, or Article schema found"
+      },
+      {
+        "check": "Heading Hierarchy",
+        "status": "warn",
+        "detail": "Multiple H1s on homepage, inconsistent H2/H3 usage"
+      },
+      {
+        "check": "Image Alt Text",
+        "status": "fail",
+        "detail": "80% of images missing alt text — accessibility + SEO gap"
+      },
+      {
+        "check": "Canonical Tags",
+        "status": "pass",
+        "detail": "Present on all pages, correctly configured"
+      },
+      {
+        "check": "404 Page",
+        "status": "warn",
+        "detail": "Exists but generic — no navigation links or search"
+      },
+      {
+        "check": "Page Speed (LCP)",
+        "status": "fail",
+        "detail": "Estimated 3.2s — above 2.5s threshold"
+      },
+      {
+        "check": "Security Headers",
+        "status": "fail",
+        "detail": "Missing CSP, HSTS, X-Frame-Options, X-Content-Type-Options"
+      },
+      {
+        "check": "Open Graph Tags",
+        "status": "warn",
+        "detail": "Present on homepage only — missing on service and blog pages"
+      }
+    ]
+  },
+  "ai_visibility": {
+    "presence": {
+      "Google AI Overviews": "Not detected for any tracked queries",
+      "ChatGPT / Browse": "Not cited — business not recognized as entity",
+      "Perplexity": "Not mentioned in local recommendations",
+      "Claude": "Not in training data or browse results"
+    },
+    "entity_strength": "Weak — no Knowledge Graph entry, no Wikipedia/Wikidata presence, no schema markup to establish entity",
+    "recommendations": [
+      "Implement LocalBusiness + Organization JSON-LD schema immediately — this is how AI engines identify businesses",
+      "Add FAQ schema to service pages — structured Q&A is heavily favored by AI overviews",
+      "Configure robots.txt to allow GPTBot, Claude-Extended, PerplexityBot (currently blocking all AI crawlers by omission)",
+      "Build entity-rich About page with clear NAP, founding date, service area, and industry affiliations",
+      "Pursue Wikidata entry and local news citations to strengthen Knowledge Graph presence"
+    ]
+  },
+  "social_scan": {
+    "platforms": {
+      "Facebook": "Page exists — 340 likes, posting ~1/month, 4.2 rating from 18 reviews",
+      "Instagram": "Not found",
+      "LinkedIn": "Personal profiles only — no business page",
+      "TikTok": "Not present",
+      "YouTube": "Not present",
+      "Twitter/X": "Not present"
+    },
+    "content_quality": "Facebook page has potential but is underutilized. Posts are irregular and mostly links to the website. No video content. Cover photo and profile image need updating. Call-to-action button not configured.",
+    "recommendations": [
+      "Update Facebook page assets (cover photo, profile image, CTA button)",
+      "Increase posting frequency to 3x/week minimum",
+      "Launch Instagram account — this vertical performs well on Instagram",
+      "Respond to all unreviewed Facebook recommendations",
+      "Consider Nextdoor presence for hyper-local visibility"
+    ]
+  },
+  "backlink_profile": {
+    "domain_authority": "Estimated DA: 18-22 (below average for local {vertical} in McAllen — top competitors range 25-40)",
+    "top_referring_domains": [
+      "yelp.com (business listing)",
+      "bbb.org (accreditation listing)",
+      "localchamber.com (chamber of commerce)",
+      "angi.com (1 review, no-follow)",
+      "nextdoor.com (business page)"
+    ],
+    "toxic_flags": [
+      "3 low-quality directory links from sites with DA <5",
+      "No evidence of link network or spam (clean profile overall)"
+    ],
+    "gap_analysis": "Main gap is quantity, not quality. Competitors average 40-60 referring domains vs. our ~15. Priority: local sponsorships, industry directories, and guest posting on RGV news/lifestyle sites."
+  },
+  "keyword_map": {
+    "top_keywords": [
+      {
+        "keyword": "home-services McAllen",
+        "volume": "1,200/mo",
+        "difficulty": "Medium"
+      },
+      {
+        "keyword": "best home-services in McAllen",
+        "volume": "480/mo",
+        "difficulty": "Low"
+      },
+      {
+        "keyword": "home-services near me",
+        "volume": "2,400/mo",
+        "difficulty": "High"
+      },
+      {
+        "keyword": "home-services company McAllen tx",
+        "volume": "320/mo",
+        "difficulty": "Low"
+      },
+      {
+        "keyword": "home-services repair McAllen",
+        "volume": "880/mo",
+        "difficulty": "Medium"
+      },
+      {
+        "keyword": "affordable home-services McAllen",
+        "volume": "260/mo",
+        "difficulty": "Low"
+      },
+      {
+        "keyword": "home-services free estimate McAllen",
+        "volume": "180/mo",
+        "difficulty": "Very Low"
+      },
+      {
+        "keyword": "emergency home-services McAllen",
+        "volume": "590/mo",
+        "difficulty": "Medium"
+      },
+      {
+        "keyword": "home-services cost McAllen tx",
+        "volume": "390/mo",
+        "difficulty": "Low"
+      },
+      {
+        "keyword": "licensed home-services McAllen",
+        "volume": "150/mo",
+        "difficulty": "Very Low"
+      }
+    ],
+    "clusters": {
+      "Service Intent": [
+        "repair",
+        "installation",
+        "replacement",
+        "maintenance",
+        "emergency"
+      ],
+      "Location Intent": [
+        "McAllen",
+        "McAllen tx",
+        "near me",
+        "rio grande valley",
+        "hidalgo county"
+      ],
+      "Commercial Intent": [
+        "cost",
+        "price",
+        "free estimate",
+        "affordable",
+        "quote"
+      ],
+      "Trust Intent": [
+        "licensed",
+        "insured",
+        "best",
+        "top rated",
+        "reviews"
+      ]
+    },
+    "opportunities": [
+      "'Best home-services in McAllen' — position 11-15, 480/mo volume, low difficulty",
+      "'Licensed home-services McAllen' — not ranking, 150/mo, very low difficulty",
+      "'home-services free estimate McAllen' — position 20+, 180/mo, very low difficulty",
+      "FAQ long-tail keywords — zero content targeting question-based queries",
+      "Neighborhood-specific keywords (e.g., 'Sharyland', 'Mission') — no content targeting these"
+    ]
+  },
+  "prioritized_actions": [
+    {
+      "rank": 1,
+      "action": "Implement LocalBusiness + Organization JSON-LD schema on all pages",
+      "impact": "high",
+      "effort": "2-3 hours",
+      "domain": "Technical SEO"
+    },
+    {
+      "rank": 2,
+      "action": "Optimize GBP — add secondary categories, complete all attributes, upload 50+ photos",
+      "impact": "high",
+      "effort": "3-4 hours",
+      "domain": "GBP"
+    },
+    {
+      "rank": 3,
+      "action": "Fix page speed — optimize images, enable caching, add resource hints",
+      "impact": "high",
+      "effort": "4-6 hours",
+      "domain": "Technical SEO"
+    },
+    {
+      "rank": 4,
+      "action": "Add security headers (CSP, HSTS, X-Frame-Options, X-Content-Type-Options)",
+      "impact": "medium",
+      "effort": "1 hour",
+      "domain": "Technical SEO"
+    },
+    {
+      "rank": 5,
+      "action": "Build 10-page content hub targeting keyword clusters (service + location + trust)",
+      "impact": "high",
+      "effort": "2-3 weeks",
+      "domain": "Content"
+    },
+    {
+      "rank": 6,
+      "action": "Implement review generation system — target 50+ new reviews in 90 days",
+      "impact": "high",
+      "effort": "ongoing",
+      "domain": "GBP"
+    },
+    {
+      "rank": 7,
+      "action": "Create and verify Instagram + Nextdoor business profiles",
+      "impact": "medium",
+      "effort": "2 hours",
+      "domain": "Social"
+    },
+    {
+      "rank": 8,
+      "action": "Add FAQ schema to service pages and create dedicated FAQ page",
+      "impact": "medium",
+      "effort": "3-4 hours",
+      "domain": "Content"
+    },
+    {
+      "rank": 9,
+      "action": "Fix image alt text across the site (80% missing)",
+      "impact": "medium",
+      "effort": "2-3 hours",
+      "domain": "Technical SEO"
+    },
+    {
+      "rank": 10,
+      "action": "Build 5 local backlinks — chamber sponsorships, RGV news mentions, industry directories",
+      "impact": "medium",
+      "effort": "1-2 weeks",
+      "domain": "Backlinks"
+    },
+    {
+      "rank": 11,
+      "action": "Configure AI crawler access in robots.txt and build entity-rich About page",
+      "impact": "high",
+      "effort": "1-2 hours",
+      "domain": "AI Visibility"
+    },
+    {
+      "rank": 12,
+      "action": "Set up Google Search Console and submit sitemap (if not already done)",
+      "impact": "high",
+      "effort": "30 min",
+      "domain": "Technical SEO"
+    }
+  ],
+  "ninety_day_plan": {
+    "month_1": [
+      "Week 1: Implement schema markup (JSON-LD), fix security headers, configure AI crawler access",
+      "Week 2: GBP overhaul — categories, attributes, description, upload 50+ photos, start posting weekly",
+      "Week 3: Page speed optimization — compress images, enable caching, defer non-critical JS",
+      "Week 4: Set up GSC + GA4 (if needed), fix image alt text, update title tags and meta descriptions"
+    ],
+    "month_2": [
+      "Begin 10-page content hub — publish 2-3 articles/week targeting keyword clusters",
+      "Launch review generation campaign — email/SMS past customers, in-person QR codes",
+      "Create Instagram + Nextdoor profiles, begin 3x/week Facebook posting cadence",
+      "Build first 5 local backlinks — chamber, sponsorships, directories",
+      "Add FAQ schema to all service pages"
+    ],
+    "month_3": [
+      "Content hub: 8-10 articles live, begin interlinking strategy",
+      "Review count target: 30+ new reviews, maintain 100% response rate",
+      "Audit keyword rankings — adjust content strategy based on 60-day data",
+      "Evaluate AI visibility — recheck presence in AI overviews and ChatGPT",
+      "Month 4 planning: identify what's working, double down, kill what's not"
+    ]
+  }
+}
