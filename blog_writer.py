@@ -36,6 +36,13 @@ if hasattr(sys.stderr, "reconfigure"):
 
 import anthropic
 
+# Mission Control fal.ai generation logger (fire-and-forget)
+try:
+    from fal_log_helper import log_fal as _log_fal
+except Exception:  # pragma: no cover — never block the pipeline
+    def _log_fal(*_args, **_kwargs):
+        return None
+
 # ── Paths ──────────────────────────────────────────────────────────────────────
 EXECUTION_DIR = Path(__file__).parent
 BLOG_DIR      = EXECUTION_DIR / "blog_posts"
@@ -643,6 +650,8 @@ def generate_blog_images(image_prompts: dict, out_dir: Path, biz_key: str = "") 
 
         print(f"  🖼  Generating {key}...", end=" ", flush=True)
         try:
+            import time as _t
+            _t0 = _t.perf_counter()
             handler = fal_client.submit(
                 "fal-ai/flux-pro/v1.1-ultra",
                 arguments={
@@ -655,6 +664,16 @@ def generate_blog_images(image_prompts: dict, out_dir: Path, biz_key: str = "") 
             img_url = result["images"][0]["url"]
             _urlreq.urlretrieve(img_url, str(fpath))
             results[key] = fpath
+            try:
+                _log_fal(
+                    model="fal-ai/flux-pro/v1.1-ultra",
+                    prompt=prompt,
+                    output_url=img_url,
+                    duration_ms=int((_t.perf_counter() - _t0) * 1000),
+                    source="blog_writer",
+                )
+            except Exception:
+                pass
             print(f"✅")
         except Exception as e:
             print(f"⚠️  {e}")

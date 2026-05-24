@@ -3,7 +3,7 @@
 """
 Regenerate Island Arcade image — Street Fighter vs Special Ops concept.
 """
-import os, sys, urllib.request, base64, http.server, threading, webbrowser
+import os, sys, time, urllib.request, base64, http.server, threading, webbrowser
 from pathlib import Path
 
 if sys.platform == "win32":
@@ -15,6 +15,14 @@ try:
 except ImportError:
     os.system(f"{sys.executable} -m pip install fal_client -q")
     import fal_client
+
+# Mission Control fal.ai generation logger (fire-and-forget)
+try:
+    sys.path.insert(0, str(Path(__file__).parent))
+    from fal_log_helper import log_fal as _log_fal
+except Exception:
+    def _log_fal(*_a, **_k):
+        return None
 
 os.environ["FAL_KEY"] = "39cee61b-1fb5-40ca-b489-7ff6bcec01ad:e223d38f3f0f8df11bff0b49cc46a73f"
 
@@ -47,12 +55,23 @@ def generate():
     os.makedirs(OUT_DIR, exist_ok=True)
     filepath = os.path.join(OUT_DIR, FILENAME)
     print("[GEN] Island Arcade — Street Fighter vs Special Ops...")
+    _t0 = time.perf_counter()
     handler = fal_client.submit(
         "fal-ai/flux-pro/v1.1-ultra",
         arguments={"prompt": PROMPT, "image_size": "landscape_16_9", "num_images": 1},
     )
     result = handler.get()
     url = result["images"][0]["url"]
+    try:
+        _log_fal(
+            model="fal-ai/flux-pro/v1.1-ultra",
+            prompt=PROMPT,
+            output_url=url,
+            duration_ms=int((time.perf_counter() - _t0) * 1000),
+            source="regen_arcade_image",
+        )
+    except Exception:
+        pass
     print("      Downloading...")
     urllib.request.urlretrieve(url, filepath)
     size = os.path.getsize(filepath) / (1024*1024)
