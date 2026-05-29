@@ -1,0 +1,5 @@
+# Local render artifacts + Python caches — never commit these.
+out/
+__pycache__/
+*.pyc
+*.props.json
