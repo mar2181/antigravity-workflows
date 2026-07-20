@@ -322,38 +322,54 @@ def _matches(text: str, match_names: list, match_domains: list) -> bool:
 
 
 # ── Serper.dev provider ────────────────────────────────────────────────────────
-def _check_keyword_serper(keyword: str, match_names: list, match_domains: list, result: dict) -> dict:
-    """
-    One Serper.dev call fills the same result dict the Bright Data path builds:
-    `places[]` → local pack (map_pack / all_maps_entries), `organic[]` → organic.
-    Errors are recorded in result["error"] with the provider named, so the
-    fail-loud gate's Telegram alert says exactly which provider died.
-    """
+def _serper_post(endpoint: str, payload: dict) -> dict:
+    """POST to a serper.dev endpoint, count the credit, return parsed JSON."""
     global _SERPER_CALLS
+    req = _ureq.Request(
+        f"https://google.serper.dev/{endpoint}",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"X-API-KEY": _SERPER_KEY, "Content-Type": "application/json"},
+        method="POST",
+    )
+    with _ureq.urlopen(req, timeout=30) as r:
+        data = json.loads(r.read().decode("utf-8", errors="replace"))
+    _SERPER_CALLS += 1
+    return data
+
+
+def _check_keyword_serper(keyword: str, match_names: list, match_domains: list,
+                          result: dict, fetch_places: bool = True) -> dict:
+    """
+    Serper.dev fills the same result dict the Bright Data path builds.
+    /search → organic; /places (2nd credit, local businesses only — verified
+    2026-07-19 that /search returns NO `places` block even with a location
+    param) → local pack (map_pack / all_maps_entries). Errors are recorded in
+    result["error"] with the provider named, so the fail-loud gate's Telegram
+    alert says exactly which provider died.
+    """
     try:
-        payload = json.dumps({"q": keyword, "gl": "us", "hl": "en", "num": 20}).encode("utf-8")
-        req = _ureq.Request(
-            "https://google.serper.dev/search",
-            data=payload,
-            headers={"X-API-KEY": _SERPER_KEY, "Content-Type": "application/json"},
-            method="POST",
-        )
-        with _ureq.urlopen(req, timeout=30) as r:
-            data = json.loads(r.read().decode("utf-8", errors="replace"))
-        _SERPER_CALLS += 1
+        data = _serper_post("search", {"q": keyword, "gl": "us", "hl": "en", "num": 20})
     except Exception as e:
         code = getattr(e, "code", None)
         result["error"] = f"serper HTTP {code}" if code else f"serper: {e}"
         return result
 
-    # ── Local pack (serper "places") ──
+    # ── Local pack: dedicated /places call (skipped for national businesses) ──
+    places = []
+    if fetch_places:
+        try:
+            pdata = _serper_post("places", {"q": keyword, "gl": "us", "hl": "en"})
+            places = pdata.get("places") or []
+        except Exception as e:
+            # organic still counts — record a soft note, not a fatal error
+            print(f"[places {getattr(e, 'code', e)}]", end=" ")
     local_entries = [
         {
             "name":    pl.get("title", ""),
             "rating":  str(pl.get("rating", "") or ""),
             "reviews": str(pl.get("ratingCount", "") or ""),
         }
-        for pl in (data.get("places") or [])
+        for pl in places
     ]
     result["all_maps_entries"] = local_entries[:20]
     for i, entry in enumerate(local_entries[:3]):
@@ -393,7 +409,8 @@ def _check_keyword_serper(keyword: str, match_names: list, match_domains: list, 
 
 
 # ── Core scraper ───────────────────────────────────────────────────────────────
-async def check_keyword(page, keyword: str, match_names: list, match_domains: list) -> dict:
+async def check_keyword(page, keyword: str, match_names: list, match_domains: list,
+                        fetch_places: bool = True) -> dict:
     """
     Search Google for keyword. Returns:
     {
@@ -417,7 +434,8 @@ async def check_keyword(page, keyword: str, match_names: list, match_domains: li
     }
 
     if _SERP_PROVIDER == "serper":
-        return _check_keyword_serper(keyword, match_names, match_domains, result)
+        return _check_keyword_serper(keyword, match_names, match_domains, result,
+                                     fetch_places=fetch_places)
 
     try:
         # ── Single Bright Data call: plain Google SERP, raw HTML ──
@@ -752,7 +770,8 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
                 print(f"    [{biz_cfg['name']}] {keyword} ... (already done today, skipping)")
                 continue
             print(f"    [{biz_cfg['name']}] {keyword} ...", end=" ", flush=True)
-            result = await check_keyword(page, keyword, match_names, match_domains)
+            result = await check_keyword(page, keyword, match_names, match_domains,
+                                         fetch_places=biz_cfg.get("local", True))
 
             map_pos = result["our_map_pack_position"]
             org_pos = result["our_organic_position"]

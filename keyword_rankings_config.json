@@ -426,7 +426,7 @@
     },
     "petbuddy": {
       "name": "Pet Buddy Concierge",
-      "_mode": "NATIONAL — no geo terms in keywords; matching is domain-first (see match_names note)",
+      "_mode": "NATIONAL — no geo keywords, local:false skips the /places call (no map pack for a SaaS)",
       "match_names": [
         "petbuddyconcierge",
         "pet buddy concierge",
@@ -493,7 +493,8 @@
         "ai seo automation for small business",
         "ai blog writer that publishes automatically",
         "ai agent that builds website pages"
-      ]
+      ],
+      "local": false
     }
   }
 }
