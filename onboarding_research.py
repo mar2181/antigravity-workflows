@@ -3,10 +3,16 @@
 Onboarding Research Engine — Antigravity Digital
 ==================================================
 Gathers real research data for client onboarding:
-  - Website deep scan via Bright Data Scraping Browser (full JS rendering for Next.js/Vercel sites)
-  - Google SERP research via Bright Data Web Unlocker (raw HTML)
+  - Website deep scan: Firecrawl /scrape (JS rendering) when FIRECRAWL_API_KEY is set,
+    else legacy Bright Data Scraping Browser, else plain fetch
+  - Google SERP research: Serper.dev JSON API when SERPER_API_KEY is set (organic +
+    People-Also-Ask + related searches — no HTML parsing), else legacy Bright Data
   - Technical SEO sweep (plain Python requests)
   - Outputs a research_bundle.json for onboard_client.py
+
+Keys live in Mission Control's .env.local (C:/Users/mario/missioncontrol/dashboard/
+.env.local) — the loader reads the local .env.local first, then falls back to MC's.
+Bright Data is fully optional (account hl_b6130486 suspended 2026-07; kept as fallback only).
 
 Usage:
     python onboarding_research.py --name "Custom Designs TX" --url "https://customdesignstx.com" --city "McAllen" --vertical "Low Voltage & Security"
@@ -35,31 +41,79 @@ ONBOARDING_DIR = SCRIPT_DIR / "onboarding_reports"
 _ENV = {}
 _ENV_LOADED = False
 
+_MC_ENV_PATH = Path("C:/Users/mario/missioncontrol/dashboard/.env.local")
+
 def _load_env() -> dict:
     global _ENV, _ENV_LOADED
     if _ENV_LOADED:
         return _ENV
-    env_path = SCRIPT_DIR / ".env.local"
-    if env_path.exists():
-        for line in env_path.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                key, _, val = line.partition("=")
-                _ENV[key.strip()] = val.strip().strip('"').strip("'")
+    # Local .env.local wins; MC dashboard .env.local fills in anything missing
+    # (SERPER_API_KEY / FIRECRAWL_API_KEY live there — one canonical key location).
+    for env_path in (SCRIPT_DIR / ".env.local", _MC_ENV_PATH):
+        if env_path.exists():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, _, val = line.partition("=")
+                    _ENV.setdefault(key.strip(), val.strip().strip('"').strip("'"))
     _ENV_LOADED = True
     return _ENV
 
-# ── Bright Data Web Unlocker (raw HTML — for SERP scraping) ─────────────
+# ── Serper.dev (SERP JSON — primary) + Firecrawl (JS page render — primary) ─
+
+def _serper_key() -> str:
+    return _load_env().get("SERPER_API_KEY") or os.environ.get("SERPER_API_KEY", "")
+
+def _firecrawl_key() -> str:
+    return _load_env().get("FIRECRAWL_API_KEY") or os.environ.get("FIRECRAWL_API_KEY", "")
+
+def serper_search(query: str, num: int = 20, timeout: int = 20) -> dict | None:
+    """Google SERP via Serper.dev — returns the parsed JSON, or None on failure."""
+    key = _serper_key()
+    if not key:
+        return None
+    try:
+        req = _ureq.Request(
+            "https://google.serper.dev/search",
+            data=json.dumps({"q": query, "gl": "us", "hl": "en", "num": num}).encode("utf-8"),
+            headers={"X-API-KEY": key, "Content-Type": "application/json"},
+        )
+        with _ureq.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8", errors="replace"))
+    except Exception as e:
+        print(f"  [WARN] Serper search failed for '{query}': {e}", file=sys.stderr)
+        return None
+
+def firecrawl_fetch(url: str, timeout: int = 60) -> str | None:
+    """Fetch a URL through Firecrawl /scrape (full JS rendering). Returns raw HTML or None."""
+    key = _firecrawl_key()
+    if not key:
+        return None
+    try:
+        req = _ureq.Request(
+            "https://api.firecrawl.dev/v1/scrape",
+            data=json.dumps({"url": url, "formats": ["rawHtml"]}).encode("utf-8"),
+            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        )
+        with _ureq.urlopen(req, timeout=timeout) as resp:
+            payload = json.loads(resp.read().decode("utf-8", errors="replace"))
+        html = (payload.get("data") or {}).get("rawHtml") or (payload.get("data") or {}).get("html")
+        if html and len(html) > 100:
+            return html
+        print(f"  [WARN] Firecrawl returned empty content for {url}", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"  [WARN] Firecrawl fetch failed for {url}: {e}", file=sys.stderr)
+        return None
+
+
+# ── Bright Data Web Unlocker (LEGACY fallback — account suspended 2026-07) ──
 
 _BD_URL = "https://api.brightdata.com/request"
 
 def _wb_token() -> str:
     env = _load_env()
-    token = env.get("BRIGHTDATA_WEB_UNLOCKER_API") or env.get("BRIGHT_DATA_KEY") or os.environ.get("BRIGHT_DATA_KEY", "")
-    if not token:
-        print("[FATAL] No Bright Data Web Unlocker token found in .env.local.", file=sys.stderr)
-        sys.exit(2)
-    return token
+    return env.get("BRIGHTDATA_WEB_UNLOCKER_API") or env.get("BRIGHT_DATA_KEY") or os.environ.get("BRIGHT_DATA_KEY", "")
 
 def _bd_auth_header(token: str) -> str:
     if ":" in token:
@@ -67,8 +121,10 @@ def _bd_auth_header(token: str) -> str:
     return f"Bearer {token}"
 
 def bright_fetch(url: str, timeout: int = 30) -> str | None:
-    """Fetch a URL through Bright Data Web Unlocker (raw HTML, no JS). For SERPs and static pages."""
+    """Fetch a URL through Bright Data Web Unlocker (raw HTML, no JS). LEGACY fallback."""
     token = _wb_token()
+    if not token:
+        return None
     try:
         req = _ureq.Request(
             _BD_URL,
@@ -182,9 +238,9 @@ def extract_text_from_html(html: str) -> str:
 # ── Website Deep Scan ───────────────────────────────────────────────────
 
 def scan_website(url: str, name: str) -> dict:
-    """Scrape homepage + key pages using Bright Data Scraping Browser for full JS rendering."""
+    """Scrape homepage + key pages. Firecrawl (JS render) first, then legacy BD, then plain."""
     print(f"  [1/3] Fetching homepage (browser render): {url}")
-    html = bright_browser_fetch(url) or bright_fetch(url) or plain_fetch(url)[2]
+    html = firecrawl_fetch(url) or bright_browser_fetch(url) or bright_fetch(url) or plain_fetch(url)[2]
 
     if not html or len(html) < 100:
         return {"error": f"Could not fetch {url}", "business_summary": "", "services": [], "trust_signals": [], "contact_info": {}, "content_audit": {}, "brand_voice": ""}
@@ -252,7 +308,7 @@ def scan_website(url: str, name: str) -> dict:
     about_html = None
     for about_path in ['/about', '/about-us', '/our-company']:
         about_url = url.rstrip('/') + about_path
-        about_html = bright_browser_fetch(about_url, wait_ms=2000) or bright_fetch(about_url)
+        about_html = firecrawl_fetch(about_url) or bright_browser_fetch(about_url, wait_ms=2000) or bright_fetch(about_url)
         if about_html and len(about_html) > 100:
             break
 
@@ -435,10 +491,43 @@ def scan_technical_seo(url: str) -> dict:
     }
 
 
-# ── Google SERP Research (Bright Data) ──────────────────────────────────
+# ── Google SERP Research (Serper.dev primary, Bright Data legacy fallback) ──
+
+_SKIP_DOMAINS = ('google.com', 'youtube.com', 'yelp.com', 'facebook.com')
+
+def _serp_research_serper(queries: list[str]) -> tuple[list, list]:
+    """Competitor + keyword intel from Serper.dev structured JSON. No HTML parsing."""
+    competitors, top_keywords = [], []
+    for query in queries:
+        data = serper_search(query)
+        if not data:
+            continue
+        for entry in (data.get("organic") or [])[:20]:
+            link = entry.get("link") or ""
+            domain = re.sub(r'https?://(www\.)?', '', link).split('/')[0]
+            if not domain or any(domain.endswith(sd) for sd in _SKIP_DOMAINS):
+                continue
+            competitors.append({
+                "name": (entry.get("title") or domain.split('.')[0].replace('-', ' ').title())[:100],
+                "domain": domain,
+                "url": link,
+                "rating": str(entry.get("rating") or ""),
+                "reviews": str(entry.get("ratingCount") or ""),
+                "found_for": query,
+            })
+        for paa in (data.get("peopleAlsoAsk") or [])[:10]:
+            q = (paa.get("question") or "").strip()
+            if len(q) > 10:
+                top_keywords.append({"keyword": q, "source": "People Also Ask"})
+        for rel in (data.get("relatedSearches") or [])[:10]:
+            q = (rel.get("query") or "").strip()
+            if len(q) > 5:
+                top_keywords.append({"keyword": q, "source": "Related Search"})
+    return competitors, top_keywords
+
 
 def serp_research(name: str, city: str, vertical: str) -> dict:
-    """Search Google SERPs via Bright Data for competitor and keyword intelligence."""
+    """Search Google SERPs for competitor and keyword intelligence."""
     print(f"  [3/3] SERP research: '{vertical} in {city}'")
 
     competitors = []
@@ -450,6 +539,11 @@ def serp_research(name: str, city: str, vertical: str) -> dict:
         f"best {vertical} {city}",
         f"top {vertical} companies {city} tx",
     ]
+
+    if _serper_key():
+        print("      [Serper.dev SERP API]")
+        competitors, top_keywords = _serp_research_serper(queries)
+        return _serp_compile(competitors, top_keywords, queries)
 
     for query in queries:
         search_url = f"https://www.google.com/search?q={query.replace(' ', '+')}&hl=en"
@@ -500,6 +594,10 @@ def serp_research(name: str, city: str, vertical: str) -> dict:
             if r_clean and len(r_clean) > 5:
                 top_keywords.append({"keyword": r_clean, "source": "Related Search"})
 
+    return _serp_compile(competitors, top_keywords, queries)
+
+
+def _serp_compile(competitors: list, top_keywords: list, queries: list) -> dict:
     # Deduplicate competitors by domain
     seen = set()
     unique_competitors = []
