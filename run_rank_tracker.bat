@@ -20,6 +20,14 @@ python -u keyword_rank_tracker.py >> "%LOG_FILE%" 2>&1
 set SCRAPE_EXIT=%ERRORLEVEL%
 echo === keyword_rank_tracker.py exit=%SCRAPE_EXIT% at %time% === >> "%LOG_FILE%"
 
+:: 2026-07-19: exit 3 = fail-loud gate (>=50%% of snapshots errored, e.g. Bright
+:: Data suspended). Do NOT push a failed scrape — it upserts null-position rows
+:: over the dashboard and the day reads as "not ranking" instead of "no data".
+if not "%SCRAPE_EXIT%"=="0" (
+  echo === scrape FAILED, skipping push === >> "%LOG_FILE%"
+  exit /b %SCRAPE_EXIT%
+)
+
 python -u push_rankings_to_supabase.py >> "%LOG_FILE%" 2>&1
 set PUSH_EXIT=%ERRORLEVEL%
 echo === push_rankings_to_supabase.py exit=%PUSH_EXIT% at %time% === >> "%LOG_FILE%"
