@@ -62,9 +62,19 @@ _BD_SB_WS = _load_env_value("BRIGHTDATA_SCRAPING_BROWSER_WS")
 
 # Web Unlocker proxy creds (fallback)
 _BD_TOKEN = _load_env_value("BRIGHT_DATA_KEY", "BD_TOKEN", "BRIGHTDATA_WEB_UNLOCKER_API")
-if not _BD_TOKEN and not _BD_SB_WS:
-    print("[FATAL] No Bright Data credentials found in env or .env.local — cannot scrape SERPs.", file=sys.stderr)
-    import sys; sys.exit(2)
+
+# ── Serper.dev — PRIMARY SERP provider since 2026-07-19 ───────────────────────
+# One JSON call returns organic results AND the local "places" pack. No browser,
+# no CAPTCHA surface, prepaid credits (no account-suspension class). Bright Data
+# (account hl_b6130486, SUSPENDED 2026-07) stays as the fallback path only.
+# Override with SERP_PROVIDER=brightdata to force the old path.
+_SERPER_KEY    = _load_env_value("SERPER_API_KEY")
+_SERP_PROVIDER = (_load_env_value("SERP_PROVIDER") or ("serper" if _SERPER_KEY else "brightdata")).lower()
+_SERPER_CALLS  = 0  # per-run query counter (cost visibility)
+
+if _SERP_PROVIDER != "serper" and not _BD_TOKEN and not _BD_SB_WS:
+    print("[FATAL] No SERP provider configured — need SERPER_API_KEY (preferred) or Bright Data creds in env/.env.local.", file=sys.stderr)
+    sys.exit(2)
 
 _BD_URL   = "https://api.brightdata.com/request"
 
@@ -311,6 +321,77 @@ def _matches(text: str, match_names: list, match_domains: list) -> bool:
     return False
 
 
+# ── Serper.dev provider ────────────────────────────────────────────────────────
+def _check_keyword_serper(keyword: str, match_names: list, match_domains: list, result: dict) -> dict:
+    """
+    One Serper.dev call fills the same result dict the Bright Data path builds:
+    `places[]` → local pack (map_pack / all_maps_entries), `organic[]` → organic.
+    Errors are recorded in result["error"] with the provider named, so the
+    fail-loud gate's Telegram alert says exactly which provider died.
+    """
+    global _SERPER_CALLS
+    try:
+        payload = json.dumps({"q": keyword, "gl": "us", "hl": "en", "num": 20}).encode("utf-8")
+        req = _ureq.Request(
+            "https://google.serper.dev/search",
+            data=payload,
+            headers={"X-API-KEY": _SERPER_KEY, "Content-Type": "application/json"},
+            method="POST",
+        )
+        with _ureq.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read().decode("utf-8", errors="replace"))
+        _SERPER_CALLS += 1
+    except Exception as e:
+        code = getattr(e, "code", None)
+        result["error"] = f"serper HTTP {code}" if code else f"serper: {e}"
+        return result
+
+    # ── Local pack (serper "places") ──
+    local_entries = [
+        {
+            "name":    pl.get("title", ""),
+            "rating":  str(pl.get("rating", "") or ""),
+            "reviews": str(pl.get("ratingCount", "") or ""),
+        }
+        for pl in (data.get("places") or [])
+    ]
+    result["all_maps_entries"] = local_entries[:20]
+    for i, entry in enumerate(local_entries[:3]):
+        entry["is_ours"] = _matches(entry.get("name", ""), match_names, match_domains)
+        if entry["is_ours"] and result["our_map_pack_position"] is None:
+            result["our_map_pack_position"] = i + 1
+    result["map_pack"] = [
+        {"name": e.get("name", ""), "rating": e.get("rating", ""),
+         "is_ours": e.get("is_ours", False)}
+        for e in local_entries[:3]
+    ]
+    for i, entry in enumerate(local_entries[:20]):
+        if _matches(entry.get("name", ""), match_names, match_domains):
+            result["our_maps_position"] = i + 1
+            break
+
+    # ── Organic ──
+    organic_entries = []
+    for o in (data.get("organic") or []):
+        link = o.get("link", "")
+        organic_entries.append({
+            "title":  o.get("title", ""),
+            "url":    link,
+            "domain": urllib.parse.urlparse(link).netloc if link else "",
+        })
+    for i, entry in enumerate(organic_entries):
+        check_text = f"{entry['title']} {entry['domain']} {entry['url']}"
+        if _matches(check_text, match_names, match_domains):
+            result["our_organic_position"] = i + 1
+            break
+    result["organic"] = [
+        {"title": e["title"], "url": e["url"],
+         "is_ours": _matches(f"{e['title']} {e['domain']}", match_names, match_domains)}
+        for e in organic_entries[:10]
+    ]
+    return result
+
+
 # ── Core scraper ───────────────────────────────────────────────────────────────
 async def check_keyword(page, keyword: str, match_names: list, match_domains: list) -> dict:
     """
@@ -334,6 +415,9 @@ async def check_keyword(page, keyword: str, match_names: list, match_domains: li
         "all_maps_entries":      [],
         "error": None,
     }
+
+    if _SERP_PROVIDER == "serper":
+        return _check_keyword_serper(keyword, match_names, match_domains, result)
 
     try:
         # ── Single Bright Data call: plain Google SERP, raw HTML ──
@@ -633,8 +717,6 @@ def _parse_organic_serp(body: str) -> list:
 async def run_business(biz_key: str, biz_cfg: dict, state: dict,
                         target_keyword: str = None) -> dict:
     """Check all keywords for one business. Returns updated state slice."""
-    from playwright.async_api import async_playwright
-
     today_str     = date.today().isoformat()
     match_names   = biz_cfg.get("match_names", [])
     match_domains = biz_cfg.get("match_domains", [])
@@ -659,6 +741,88 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
         except Exception:
             pass
 
+    async def _sweep(page):
+        """Run every keyword through check_keyword — shared by both providers."""
+        for keyword in keywords:
+            # Skip keywords already checked today (incremental resume) — but
+            # RETRY ones whose today-snapshot is an error, so a same-day rerun
+            # after fixing the provider (key added / account restored) recovers.
+            _prior = biz_state.get(keyword, {}).get(today_str)
+            if _prior and not _prior.get("error"):
+                print(f"    [{biz_cfg['name']}] {keyword} ... (already done today, skipping)")
+                continue
+            print(f"    [{biz_cfg['name']}] {keyword} ...", end=" ", flush=True)
+            result = await check_keyword(page, keyword, match_names, match_domains)
+
+            map_pos = result["our_map_pack_position"]
+            org_pos = result["our_organic_position"]
+            maps_pos = result["our_maps_position"]
+            if map_pos:
+                status = f"3-pack #{map_pos}"
+            elif maps_pos:
+                status = f"maps #{maps_pos}"
+            elif org_pos:
+                status = f"organic #{org_pos}"
+            else:
+                status = "not found"
+            print(status)
+
+            if result["error"]:
+                print(f"      ERROR: {result['error']}")
+
+            # Build snapshot
+            snapshot = {
+                "map_pack_position": map_pos,
+                "maps_position":     maps_pos,
+                "organic_position":  org_pos,
+                "top3_map_pack": [
+                    {"name": e.get("name", ""), "rating": e.get("rating", ""), "is_ours": e.get("is_ours", False)}
+                    for e in result["map_pack"][:3]
+                ],
+                "top3_maps_entries": [
+                    {"name": e.get("name", ""), "rating": e.get("rating", ""), "reviews": e.get("reviews", "")}
+                    for e in result["all_maps_entries"][:3]
+                ],
+                "top3_organic": [
+                    {"title": e.get("title", ""), "url": e.get("url", ""), "is_ours": e.get("is_ours", False)}
+                    for e in result["organic"][:3]
+                ],
+                "error": result["error"],
+            }
+
+            # Preserve history — store by date
+            kw_history = biz_state.get(keyword, {})
+            kw_history[today_str] = snapshot
+            # Keep only last 30 days
+            dates_sorted = sorted(kw_history.keys())
+            if len(dates_sorted) > 30:
+                for old in dates_sorted[:-30]:
+                    del kw_history[old]
+            biz_state[keyword] = kw_history
+            # Incremental save to biz-specific file (avoids race with other trackers)
+            try:
+                state[biz_key] = biz_state
+                _biz_path = str(STATE_PATH).replace('.json', f'_{biz_key}_today.json')
+                with open(_biz_path, 'w', encoding='utf-8') as _f:
+                    import json as _json
+                    _json.dump({biz_key: biz_state}, _f, indent=2, ensure_ascii=False)
+            except Exception as _e:
+                pass  # non-fatal, main save happens at end
+
+            # Throttle: serper = polite 0.5s (no Google exposure); browser = 0.8-1.5s
+            if page is None:
+                await asyncio.sleep(0.5)
+            else:
+                await page.wait_for_timeout(random.randint(800, 1500))
+
+    # ── Serper path: pure JSON API, no browser needed ──
+    if _SERP_PROVIDER == "serper":
+        print(f"  [Serper.dev SERP API — no browser]")
+        await _sweep(None)
+        state[biz_key] = biz_state
+        return state
+
+    from playwright.async_api import async_playwright
     async with async_playwright() as p:
         # ── Browser strategy ──────────────────────────────────────────────────
         # Priority:
@@ -741,71 +905,7 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
         # Block images/fonts to speed up
         await page.route("**/*.{png,jpg,jpeg,gif,webp,svg,woff,woff2,ttf}", lambda r: r.abort())
 
-        for keyword in keywords:
-            # Skip keywords already checked today (incremental resume)
-            if today_str in biz_state.get(keyword, {}):
-                print(f"    [{biz_cfg['name']}] {keyword} ... (already done today, skipping)")
-                continue
-            print(f"    [{biz_cfg['name']}] {keyword} ...", end=" ", flush=True)
-            result = await check_keyword(page, keyword, match_names, match_domains)
-
-            map_pos = result["our_map_pack_position"]
-            org_pos = result["our_organic_position"]
-            maps_pos = result["our_maps_position"]
-            if map_pos:
-                status = f"3-pack #{map_pos}"
-            elif maps_pos:
-                status = f"maps #{maps_pos}"
-            elif org_pos:
-                status = f"organic #{org_pos}"
-            else:
-                status = "not found"
-            print(status)
-
-            if result["error"]:
-                print(f"      ERROR: {result['error']}")
-
-            # Build snapshot
-            snapshot = {
-                "map_pack_position": map_pos,
-                "maps_position":     maps_pos,
-                "organic_position":  org_pos,
-                "top3_map_pack": [
-                    {"name": e.get("name", ""), "rating": e.get("rating", ""), "is_ours": e.get("is_ours", False)}
-                    for e in result["map_pack"][:3]
-                ],
-                "top3_maps_entries": [
-                    {"name": e.get("name", ""), "rating": e.get("rating", ""), "reviews": e.get("reviews", "")}
-                    for e in result["all_maps_entries"][:3]
-                ],
-                "top3_organic": [
-                    {"title": e.get("title", ""), "url": e.get("url", ""), "is_ours": e.get("is_ours", False)}
-                    for e in result["organic"][:3]
-                ],
-                "error": result["error"],
-            }
-
-            # Preserve history — store by date
-            kw_history = biz_state.get(keyword, {})
-            kw_history[today_str] = snapshot
-            # Keep only last 30 days
-            dates_sorted = sorted(kw_history.keys())
-            if len(dates_sorted) > 30:
-                for old in dates_sorted[:-30]:
-                    del kw_history[old]
-            biz_state[keyword] = kw_history
-            # Incremental save to biz-specific file (avoids race with other trackers)
-            try:
-                state[biz_key] = biz_state
-                _biz_path = str(STATE_PATH).replace('.json', f'_{biz_key}_today.json')
-                with open(_biz_path, 'w', encoding='utf-8') as _f:
-                    import json as _json
-                    _json.dump({biz_key: biz_state}, _f, indent=2, ensure_ascii=False)
-            except Exception as _e:
-                pass  # non-fatal, main save happens at end
-
-            # Throttle between searches (3–6 seconds)
-            await page.wait_for_timeout(random.randint(800, 1500))
+        await _sweep(page)
 
         await page.close()
         if not using_cdp:
@@ -893,13 +993,16 @@ async def main_async(businesses: list, target_keyword: str = None, limit: int = 
         save_state(state)
         print(f"  Saved.")
         # Cool-down between businesses to avoid Google rate-limiting / CAPTCHA
+        # (serper = JSON API, no Google exposure — token pause only)
         remaining = [b for b in businesses if b != biz_key]
         if remaining:
-            delay = random.randint(45, 60)
+            delay = 2 if _SERP_PROVIDER == "serper" else random.randint(45, 60)
             print(f"  Cooling down {delay}s before next business...")
             await asyncio.sleep(delay)
 
     print(f"\nDone. State: {STATE_PATH}")
+    if _SERP_PROVIDER == "serper":
+        print(f"[serper] {_SERPER_CALLS} queries this run (~${_SERPER_CALLS * 0.0003:.2f}-${_SERPER_CALLS * 0.001:.2f} at $0.30-1.00/1k)")
 
     # ── Fail-loud gate: a run whose snapshots are mostly errors is a FAILED run ──
     # 2026-07-19: Bright Data account suspension made every scrape return empty →
