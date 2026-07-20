@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACME Home Services — Onboarding Report | Antigravity Digital</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: rgba(18, 18, 30, 0.85);
+    --surface-raised: rgba(25, 25, 42, 0.9);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-active: rgba(99, 102, 241, 0.35);
+    --text-primary: #e4e4ec;
+    --text-secondary: #9494a8;
+    --text-muted: #5e5e78;
+    --accent: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Subtle grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ambient glow orbs */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -30%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(99, 102, 241, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ── */
+  .header {
+    padding: 64px 0 48px;
+    text-align: center;
+    position: relative;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .header-badge .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 8px var(--success);
+  }
+
+  .header h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--text-primary) 0%, #a5a5c8 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .header .url {
+    font-size: 16px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .header .url:hover { opacity: 0.8; }
+
+  .header .meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .header .meta span {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .header .meta .sep {
+    color: var(--text-muted);
+  }
+
+  /* ── Overall Score ── */
+  .overall-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    padding: 48px 0;
+    flex-wrap: wrap;
+  }
+
+  .score-ring {
+    position: relative;
+    width: 180px;
+    height: 180px;
+  }
+
+  .score-ring svg {
+    transform: rotate(-90deg);
+  }
+
+  .score-ring .value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-ring .value .number {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .score-ring .value .label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .score-breakdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    border-radius: var(--radius-xs);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    min-width: 200px;
+  }
+
+  .score-item .domain {
+    flex: 1;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .score-item .val {
+    font-size: 18px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .score-item .bar-bg {
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+
+  .score-item .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+  }
+
+  /* ── Executive Summary ── */
+  .exec-summary {
+    padding: 36px 40px;
+    margin: 0 0 48px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border-active);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exec-summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .exec-summary h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .exec-summary p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  /* ── Section Cards ── */
+  .section {
+    margin-bottom: 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-header .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .section-header h3 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .section-header .badge {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .card {
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .card-body {
+    padding: 28px 32px;
+  }
+
+  .card-body h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 20px 0 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .card-body h4:first-child {
+    margin-top: 0;
+  }
+
+  .card-body p, .card-body li {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .card-body ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card-body ul li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+  }
+
+  .card-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  /* ── Stat Grid ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .stat-card .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .stat-card .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Competitor Table ── */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .comp-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comp-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+  }
+
+  .comp-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comp-table .rank {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+
+  .comp-table .rank-1 { color: #fbbf24; }
+  .comp-table .rank-2 { color: #94a3b8; }
+  .comp-table .rank-3 { color: #cd7b47; }
+
+  /* ── Action Items ── */
+  .action-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .action-item:last-child {
+    border-bottom: none;
+  }
+
+  .action-rank {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+  }
+
+  .action-rank.p1 { border-color: var(--danger); color: var(--danger); }
+  .action-rank.p2 { border-color: var(--warning); color: var(--warning); }
+  .action-rank.p3 { border-color: var(--accent); color: var(--accent); }
+
+  .action-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+
+  .action-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .action-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .tag-impact-high { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+  .tag-impact-medium { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+  .tag-impact-low { background: rgba(59, 130, 246, 0.2); color: var(--info); }
+
+  /* ── 90-Day Plan ── */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .timeline-month {
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timeline-month::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+  }
+
+  .timeline-month.m1::before { background: var(--accent); }
+  .timeline-month.m2::before { background: var(--purple); }
+  .timeline-month.m3::before { background: var(--success); }
+
+  .timeline-month h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-month .month-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+
+  .timeline-month ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .timeline-month ul li {
+    padding: 8px 0 8px 18px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .timeline-month ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .timeline-month.m1 ul li::before { background: var(--accent); }
+  .timeline-month.m2 ul li::before { background: var(--purple); }
+  .timeline-month.m3 ul li::before { background: var(--success); }
+
+  /* ── Findings Grid ── */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .finding {
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .finding .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  .finding.pass { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.15); }
+  .finding.pass .indicator { background: var(--success); box-shadow: 0 0 6px var(--success); }
+
+  .finding.warn { background: rgba(245,158,11,0.06); border-color: rgba(245,158,11,0.15); }
+  .finding.warn .indicator { background: var(--warning); box-shadow: 0 0 6px var(--warning); }
+
+  .finding.fail { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.15); }
+  .finding.fail .indicator { background: var(--danger); box-shadow: 0 0 6px var(--danger); }
+
+  .finding .finding-text strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .finding .finding-text span {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 64px 0 48px;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  .footer .brand {
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+  }
+
+  .footer .brand span {
+    color: var(--accent);
+  }
+
+  /* ── Print Styles ── */
+  @media print {
+    body { background: #fff; color: #111; }
+    body::before, body::after { display: none; }
+    .card, .exec-summary, .timeline-month, .stat-card, .finding, .score-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    .header h1 { -webkit-text-fill-color: #111; }
+    .section-header h3, .exec-summary h2 { color: #111; }
+    .card-body p, .card-body li, .score-item .domain { color: #444; }
+    .stat-card .stat-label, .header .meta span { color: #666; }
+    .timeline-month.m1::before, .timeline-month.m2::before, .timeline-month.m3::before {
+      background: #333;
+    }
+    .container { max-width: 100%; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .header h1 { font-size: 28px; }
+    .overall-score { flex-direction: column; gap: 32px; }
+    .score-breakdown { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .comp-table { font-size: 12px; }
+    .comp-table th, .comp-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-badge">
+      <span class="dot"></span> Onboarding Report &middot; 2026-05-22
+    </div>
+    <h1>ACME Home Services</h1>
+    <a href="https://acmehomeservices.com" class="url" target="_blank" rel="noopener">https://acmehomeservices.com</a>
+    <div class="meta">
+      <span>&#9673; home-services</span>
+      <span class="sep">&middot;</span>
+      <span>&#9961; McAllen</span>
+      <span class="sep">&middot;</span>
+      <span>Antigravity Digital</span>
+    </div>
+  </header>
+
+  <!-- Overall Score -->
+  <div class="overall-score">
+    <div class="score-ring">
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        <circle cx="90" cy="90" r="80" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+        <circle cx="90" cy="90" r="80" fill="none"
+          stroke="#ef4444"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-dasharray="271.43100000000004 502.65"
+          style="filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.2));"/>
+      </svg>
+      <div class="value">
+        <span class="number" style="color:#ef4444">54</span>
+        <span class="label">Fair</span>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <div class="score-item">
+          <span class="domain">Website Quality</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:62%;background:#f59e0b;box-shadow:0 0 8px rgba(245, 158, 11, 0.2);"></div></div>
+          <span class="val" style="color:#f59e0b">62</span>
+        </div>
+<div class="score-item">
+          <span class="domain">GBP Completeness</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:48%;background:#ef4444;box-shadow:0 0 8px rgba(239, 68, 68, 0.2);"></div></div>
+          <span class="val" style="color:#ef4444">48</span>
+        </div>
+<div class="score-item">
+          <span class="domain">Technical SEO</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:41%;background:#ef4444;box-shadow:0 0 8px rgba(239, 68, 68, 0.2);"></div></div>
+          <span class="val" style="color:#ef4444">41</span>
+        </div>
+<div class="score-item">
+          <span class="domain">AI Visibility</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:22%;background:#ef4444;box-shadow:0 0 8px rgba(239, 68, 68, 0.2);"></div></div>
+          <span class="val" style="color:#ef4444">22</span>
+        </div>
+<div class="score-item">
+          <span class="domain">Social Presence</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:35%;background:#ef4444;box-shadow:0 0 8px rgba(239, 68, 68, 0.2);"></div></div>
+          <span class="val" style="color:#ef4444">35</span>
+        </div>
+<div class="score-item">
+          <span class="domain">Backlink Strength</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:45%;background:#ef4444;box-shadow:0 0 8px rgba(239, 68, 68, 0.2);"></div></div>
+          <span class="val" style="color:#ef4444">45</span>
+        </div>
+<div class="score-item">
+          <span class="domain">Keyword Coverage</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:58%;background:#ef4444;box-shadow:0 0 8px rgba(239, 68, 68, 0.2);"></div></div>
+          <span class="val" style="color:#ef4444">58</span>
+        </div>
+    </div>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="exec-summary">
+    <h2>Executive Summary</h2>
+    <p>ACME Home Services is a home-services provider serving McAllen and surrounding areas. Their website shows solid foundational content but has significant technical SEO gaps including missing schema markup, slow page speeds, and no AI crawler configuration. Their Google Business Profile has a strong review base but incomplete attributes and minimal photo content. With targeted technical fixes, GBP optimization, and a structured content strategy, we project a 40-60% increase in local organic visibility within 90 days.</p>
+  </div>
+
+  <!-- Website Scan -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(99,102,241,0.12);">&#127760;</div>
+      <h3>Website Deep Scan</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <p>A locally owned and operated home-services business serving residential and commercial clients across McAllen and the Rio Grande Valley since 2012. Their website emphasizes reliable service, licensed technicians, and competitive pricing.</p><h4>Services Offered</h4><ul><li>Residential home-services</li><li>Commercial home-services</li><li>Emergency repairs</li><li>Maintenance plans</li><li>Free estimates</li></ul><h4>Brand Voice</h4><p>Professional, trustworthy, community-focused. Uses straightforward language with emphasis on reliability and local expertise.</p><h4>Trust Signals</h4><ul><li>Licensed &amp; Insured (displayed in footer)</li><li>12+ years in business</li><li>BBB Accredited (A- rating)</li><li>Customer testimonials on homepage (8 reviews shown)</li><li>Serving RGV since 2012</li></ul><h4>Contact Information</h4><ul><li><strong>Phone:</strong> (956) 555-0123</li><li><strong>Email:</strong> info@acmehomeservices.com</li><li><strong>Address:</strong> 123 Main St, McAllen, TX 78501</li><li><strong>Contact Form:</strong> Yes — /contact page with form</li></ul><h4>Content Audit</h4><p><strong>Blog:</strong> Yes — 12 posts, last updated 3 months ago</p><p><strong>Service Pages:</strong> 5 pages, well-structured</p><p><strong>About Page:</strong> Present, good story but no schema</p><p><strong>FAQ:</strong> Not found — opportunity</p><p><strong>Total Pages Indexed:</strong> ~35 pages</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GBP Audit -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(34,197,94,0.12);">&#127969;</div>
+      <h3>Google Business Profile Audit</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>GBP Identity</h4><ul><li><strong>Place ID:</strong> ChIJSamplePlaceID12345</li><li><strong>CID (hex):</strong> 0xSampleCIDHex</li><li><strong>CID (decimal):</strong> 12345678901234567890</li><li><strong>Lat/Lng:</strong> 26.2034, -98.2300</li><li><strong>Primary Category:</strong> Home Services</li><li><strong>Secondary Categories:</strong> None set</li></ul><h4>Review Audit</h4><ul><li><strong>Total Reviews:</strong> 47</li><li><strong>Average Rating:</strong> 4.6 / 5.0</li><li><strong>Response Rate:</strong> ~40% (needs improvement)</li><li><strong>Last Review:</strong> 2 weeks ago</li><li><strong>Review Velocity:</strong> ~3/month</li></ul><h4>Completeness Score</h4><p>48/100 — Missing: secondary categories, attributes, Q&amp;A, posts, description under 750 chars</p><h4>NAP Consistency</h4><p>Address matches website exactly. Phone and business name are consistent.</p><h4>Issues Found</h4><ul><li>No secondary categories selected — missing keyword-rich categories</li><li>Only 12 photos (target: 100+ for 520% more calls)</li><li>Business description is only 200 chars (750 available)</li><li>No Google Posts in last 90 days</li><li>Q&amp;A section is empty — seed with FAQs</li><li>Attributes section incomplete — missing service options, payment types, accessibility</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Competitor Intelligence -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(239,68,68,0.12);">&#9878;</div>
+      <h3>Competitor Intelligence</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <table class="comp-table">
+          <thead><tr><th>#</th><th>Business</th><th>Rating</th><th>Reviews</th><th>Strengths</th><th>Weaknesses</th></tr></thead>
+          <tbody><tr>
+              <td class="rank rank-1">1</td>
+              <td><strong>RGV Pro Services</strong></td>
+              <td>4.8</td>
+              <td>156</td>
+              <td>Dominant review count, active GBP posting weekly, strong backlink profile from local news sites</td>
+              <td>Website is slow (3.8s LCP), no blog content, poor mobile experience</td>
+            </tr><tr>
+              <td class="rank rank-2">2</td>
+              <td><strong>McAllen Premier Home</strong></td>
+              <td>4.5</td>
+              <td>89</td>
+              <td>Excellent website UX, strong blog with 40+ posts ranking for long-tail keywords</td>
+              <td>Lower review count, no review responses, no social media presence</td>
+            </tr><tr>
+              <td class="rank rank-3">3</td>
+              <td><strong>Valley Wide Services</strong></td>
+              <td>4.3</td>
+              <td>210</td>
+              <td>Highest review volume, multiple locations (3 GBP listings), Google Ads running</td>
+              <td>Generic brand, no unique value proposition, website is templated Wix site</td>
+            </tr><tr>
+              <td class="rank ">4</td>
+              <td><strong>Top Choice Home Repair</strong></td>
+              <td>4.7</td>
+              <td>62</td>
+              <td>Strong video content (YouTube channel with 2K subscribers), excellent GBP photos (80+)</td>
+              <td>Website not HTTPS (critical), no schema markup, thin service pages</td>
+            </tr><tr>
+              <td class="rank ">5</td>
+              <td><strong>Ace Maintenance Co</strong></td>
+              <td>4.4</td>
+              <td>34</td>
+              <td>Ranking #1 for &#39;{vertical} near me&#39;, well-optimized title tags and meta descriptions</td>
+              <td>Lowest review count in top 5, no blog, GBP profile incomplete</td>
+            </tr></tbody></table><h4>Attack Vectors</h4><ul><li>Outrank Ace Maintenance for &#39;{vertical} near me&#39; — their website is weak but their on-page SEO is good. We need better content + more backlinks.</li><li>Close the review gap with RGV Pro Services — they have 3x more reviews. Implement review generation system.</li><li>Exploit Top Choice&#39;s HTTPS vulnerability — Google is favoring HTTPS sites. Their ranking will decline without a fix.</li><li>Build content moat — none of the top 5 have a strong content strategy. Own the long-tail with a blog.</li><li>Activate GBP fully — all competitors have incomplete GBP profiles. A 100% optimized GBP can leapfrog 2-3 positions.</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical SEO -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(59,130,246,0.12);">&#9881;</div>
+      <h3>Technical SEO Sweep</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <p>The website has foundational SEO elements in place but multiple critical gaps. Mobile experience is acceptable but page speed is below Core Web Vitals thresholds. Schema markup is entirely missing — this is the highest-impact quick fix.</p><div class="findings-grid"><div class="finding pass">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>HTTPS</strong>
+                <span>Valid SSL, no mixed content</span>
+              </div>
+            </div><div class="finding pass">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>robots.txt</strong>
+                <span>Present and correctly configured</span>
+              </div>
+            </div><div class="finding pass">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>sitemap.xml</strong>
+                <span>Present at /sitemap.xml, 35 URLs indexed</span>
+              </div>
+            </div><div class="finding pass">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Mobile Responsive</strong>
+                <span>Viewport meta present, touch targets adequate</span>
+              </div>
+            </div><div class="finding warn">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Title Tags</strong>
+                <span>Present but generic — no city or service keywords</span>
+              </div>
+            </div><div class="finding warn">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Meta Descriptions</strong>
+                <span>Present on 60% of pages, many are auto-generated snippets</span>
+              </div>
+            </div><div class="finding fail">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Schema Markup</strong>
+                <span>COMPLETELY MISSING — no LocalBusiness, Organization, FAQ, or Article schema found</span>
+              </div>
+            </div><div class="finding warn">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Heading Hierarchy</strong>
+                <span>Multiple H1s on homepage, inconsistent H2/H3 usage</span>
+              </div>
+            </div><div class="finding fail">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Image Alt Text</strong>
+                <span>80% of images missing alt text — accessibility + SEO gap</span>
+              </div>
+            </div><div class="finding pass">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Canonical Tags</strong>
+                <span>Present on all pages, correctly configured</span>
+              </div>
+            </div><div class="finding warn">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>404 Page</strong>
+                <span>Exists but generic — no navigation links or search</span>
+              </div>
+            </div><div class="finding fail">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Page Speed (LCP)</strong>
+                <span>Estimated 3.2s — above 2.5s threshold</span>
+              </div>
+            </div><div class="finding fail">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Security Headers</strong>
+                <span>Missing CSP, HSTS, X-Frame-Options, X-Content-Type-Options</span>
+              </div>
+            </div><div class="finding warn">
+              <div class="indicator"></div>
+              <div class="finding-text">
+                <strong>Open Graph Tags</strong>
+                <span>Present on homepage only — missing on service and blog pages</span>
+              </div>
+            </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Visibility -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(168,85,247,0.12);">&#10025;</div>
+      <h3>AI Visibility Assessment</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>Platform Presence</h4><ul><li><strong>Google AI Overviews:</strong> Not detected for any tracked queries</li><li><strong>ChatGPT / Browse:</strong> Not cited — business not recognized as entity</li><li><strong>Perplexity:</strong> Not mentioned in local recommendations</li><li><strong>Claude:</strong> Not in training data or browse results</li></ul><h4>Entity Strength</h4><p>Weak — no Knowledge Graph entry, no Wikipedia/Wikidata presence, no schema markup to establish entity</p><h4>Recommendations</h4><ul><li>Implement LocalBusiness + Organization JSON-LD schema immediately — this is how AI engines identify businesses</li><li>Add FAQ schema to service pages — structured Q&amp;A is heavily favored by AI overviews</li><li>Configure robots.txt to allow GPTBot, Claude-Extended, PerplexityBot (currently blocking all AI crawlers by omission)</li><li>Build entity-rich About page with clear NAP, founding date, service area, and industry affiliations</li><li>Pursue Wikidata entry and local news citations to strengthen Knowledge Graph presence</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Media -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(6,182,212,0.12);">&#128247;</div>
+      <h3>Social Media Scan</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>Social Presence</h4><ul><li><strong>Facebook:</strong> Page exists — 340 likes, posting ~1/month, 4.2 rating from 18 reviews</li><li><strong>Instagram:</strong> Not found</li><li><strong>LinkedIn:</strong> Personal profiles only — no business page</li><li><strong>TikTok:</strong> Not present</li><li><strong>YouTube:</strong> Not present</li><li><strong>Twitter/X:</strong> Not present</li></ul><h4>Content Quality</h4><p>Facebook page has potential but is underutilized. Posts are irregular and mostly links to the website. No video content. Cover photo and profile image need updating. Call-to-action button not configured.</p><h4>Recommendations</h4><ul><li>Update Facebook page assets (cover photo, profile image, CTA button)</li><li>Increase posting frequency to 3x/week minimum</li><li>Launch Instagram account — this vertical performs well on Instagram</li><li>Respond to all unreviewed Facebook recommendations</li><li>Consider Nextdoor presence for hyper-local visibility</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Backlink Profile -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(245,158,11,0.12);">&#128279;</div>
+      <h3>Backlink Profile</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>Domain Authority</h4><p>Estimated DA: 18-22 (below average for local {vertical} in McAllen — top competitors range 25-40)</p><h4>Top Referring Domains</h4><ul><li>yelp.com (business listing)</li><li>bbb.org (accreditation listing)</li><li>localchamber.com (chamber of commerce)</li><li>angi.com (1 review, no-follow)</li><li>nextdoor.com (business page)</li></ul><h4>Toxic Link Flags</h4><ul><li>3 low-quality directory links from sites with DA &lt;5</li><li>No evidence of link network or spam (clean profile overall)</li></ul><h4>Competitor Gap Analysis</h4><p>Main gap is quantity, not quality. Competitors average 40-60 referring domains vs. our ~15. Priority: local sponsorships, industry directories, and guest posting on RGV news/lifestyle sites.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyword Map -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(34,197,94,0.12);">&#128270;</div>
+      <h3>Keyword Opportunity Map</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>Top Keyword Opportunities</h4><ul><li><strong>home-services McAllen</strong> — Vol: 1,200/mo, Difficulty: Medium</li><li><strong>best home-services in McAllen</strong> — Vol: 480/mo, Difficulty: Low</li><li><strong>home-services near me</strong> — Vol: 2,400/mo, Difficulty: High</li><li><strong>home-services company McAllen tx</strong> — Vol: 320/mo, Difficulty: Low</li><li><strong>home-services repair McAllen</strong> — Vol: 880/mo, Difficulty: Medium</li><li><strong>affordable home-services McAllen</strong> — Vol: 260/mo, Difficulty: Low</li><li><strong>home-services free estimate McAllen</strong> — Vol: 180/mo, Difficulty: Very Low</li><li><strong>emergency home-services McAllen</strong> — Vol: 590/mo, Difficulty: Medium</li><li><strong>home-services cost McAllen tx</strong> — Vol: 390/mo, Difficulty: Low</li><li><strong>licensed home-services McAllen</strong> — Vol: 150/mo, Difficulty: Very Low</li></ul><h4>Keyword Clusters</h4><p><strong>Service Intent:</strong> repair, installation, replacement, maintenance, emergency</p><p><strong>Location Intent:</strong> McAllen, McAllen tx, near me, rio grande valley, hidalgo county</p><p><strong>Commercial Intent:</strong> cost, price, free estimate, affordable, quote</p><p><strong>Trust Intent:</strong> licensed, insured, best, top rated, reviews</p><h4>Low-Hanging Fruit</h4><ul><li>&#39;Best home-services in McAllen&#39; — position 11-15, 480/mo volume, low difficulty</li><li>&#39;Licensed home-services McAllen&#39; — not ranking, 150/mo, very low difficulty</li><li>&#39;home-services free estimate McAllen&#39; — position 20+, 180/mo, very low difficulty</li><li>FAQ long-tail keywords — zero content targeting question-based queries</li><li>Neighborhood-specific keywords (e.g., &#39;Sharyland&#39;, &#39;Mission&#39;) — no content targeting these</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prioritized Actions -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(239,68,68,0.12);">&#9878;</div>
+      <h3>Prioritized Action Items</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <ul class="action-list"><li class="action-item">
+          <div class="action-rank p1">1</div>
+          <div class="action-content">
+            <h4>Implement LocalBusiness + Organization JSON-LD schema on all pages</h4>
+            <p>Technical SEO &middot; Est. effort: 2-3 hours</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-high">HIGH IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p1">2</div>
+          <div class="action-content">
+            <h4>Optimize GBP — add secondary categories, complete all attributes, upload 50+ photos</h4>
+            <p>GBP &middot; Est. effort: 3-4 hours</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-high">HIGH IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p1">3</div>
+          <div class="action-content">
+            <h4>Fix page speed — optimize images, enable caching, add resource hints</h4>
+            <p>Technical SEO &middot; Est. effort: 4-6 hours</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-high">HIGH IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p2">4</div>
+          <div class="action-content">
+            <h4>Add security headers (CSP, HSTS, X-Frame-Options, X-Content-Type-Options)</h4>
+            <p>Technical SEO &middot; Est. effort: 1 hour</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-medium">MEDIUM IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p2">5</div>
+          <div class="action-content">
+            <h4>Build 10-page content hub targeting keyword clusters (service + location + trust)</h4>
+            <p>Content &middot; Est. effort: 2-3 weeks</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-high">HIGH IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p2">6</div>
+          <div class="action-content">
+            <h4>Implement review generation system — target 50+ new reviews in 90 days</h4>
+            <p>GBP &middot; Est. effort: ongoing</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-high">HIGH IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p3">7</div>
+          <div class="action-content">
+            <h4>Create and verify Instagram + Nextdoor business profiles</h4>
+            <p>Social &middot; Est. effort: 2 hours</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-medium">MEDIUM IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p3">8</div>
+          <div class="action-content">
+            <h4>Add FAQ schema to service pages and create dedicated FAQ page</h4>
+            <p>Content &middot; Est. effort: 3-4 hours</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-medium">MEDIUM IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p3">9</div>
+          <div class="action-content">
+            <h4>Fix image alt text across the site (80% missing)</h4>
+            <p>Technical SEO &middot; Est. effort: 2-3 hours</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-medium">MEDIUM IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p3">10</div>
+          <div class="action-content">
+            <h4>Build 5 local backlinks — chamber sponsorships, RGV news mentions, industry directories</h4>
+            <p>Backlinks &middot; Est. effort: 1-2 weeks</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-medium">MEDIUM IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p3">11</div>
+          <div class="action-content">
+            <h4>Configure AI crawler access in robots.txt and build entity-rich About page</h4>
+            <p>AI Visibility &middot; Est. effort: 1-2 hours</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-high">HIGH IMPACT</span>
+            </div>
+          </div>
+        </li><li class="action-item">
+          <div class="action-rank p3">12</div>
+          <div class="action-content">
+            <h4>Set up Google Search Console and submit sitemap (if not already done)</h4>
+            <p>Technical SEO &middot; Est. effort: 30 min</p>
+            <div class="action-tags">
+              <span class="tag tag-impact-high">HIGH IMPACT</span>
+            </div>
+          </div>
+        </li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 90-Day Plan -->
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(99,102,241,0.12);">&#128197;</div>
+      <h3>90-Day Acceleration Plan</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="timeline"><div class="timeline-month m1"><h4>Month 1</h4><div class="month-label">Focus Phase</div><ul><li>Week 1: Implement schema markup (JSON-LD), fix security headers, configure AI crawler access</li><li>Week 2: GBP overhaul — categories, attributes, description, upload 50+ photos, start posting weekly</li><li>Week 3: Page speed optimization — compress images, enable caching, defer non-critical JS</li><li>Week 4: Set up GSC + GA4 (if needed), fix image alt text, update title tags and meta descriptions</li></ul></div><div class="timeline-month m2"><h4>Month 2</h4><div class="month-label">Focus Phase</div><ul><li>Begin 10-page content hub — publish 2-3 articles/week targeting keyword clusters</li><li>Launch review generation campaign — email/SMS past customers, in-person QR codes</li><li>Create Instagram + Nextdoor profiles, begin 3x/week Facebook posting cadence</li><li>Build first 5 local backlinks — chamber, sponsorships, directories</li><li>Add FAQ schema to all service pages</li></ul></div><div class="timeline-month m3"><h4>Month 3</h4><div class="month-label">Focus Phase</div><ul><li>Content hub: 8-10 articles live, begin interlinking strategy</li><li>Review count target: 30+ new reviews, maintain 100% response rate</li><li>Audit keyword rankings — adjust content strategy based on 60-day data</li><li>Evaluate AI visibility — recheck presence in AI overviews and ChatGPT</li><li>Month 4 planning: identify what&#39;s working, double down, kill what&#39;s not</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="brand">Antigravity<span>Digital</span></div>
+    <div style="margin-top:8px;">Generated 2026-05-22T17:17:22 &middot; Onboarding Orchestrator v1.0</div>
+    <div style="margin-top:4px;">Confidential — Prepared for ACME Home Services</div>
+  </footer>
+
+</div>
+
+</body>
+</html>

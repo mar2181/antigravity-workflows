@@ -7,6 +7,13 @@ Bypasses Anthropic API by using pre-written copy passed via JSON.
 import json, os, sys, time, urllib.request, urllib.parse
 from pathlib import Path
 
+# Mission Control fal.ai generation logger (fire-and-forget)
+try:
+    from fal_log_helper import log_fal as _log_fal
+except Exception:
+    def _log_fal(*_a, **_k):
+        return None
+
 BASE = Path(__file__).parent
 ENV_PATH = BASE.parent.parent / "scratch" / "gravity-claw" / ".env"
 
@@ -104,6 +111,7 @@ def generate_image(prompt: str, out_path: str, size: str = "landscape_16_9") -> 
         import fal_client
 
     try:
+        _t0 = time.perf_counter()
         handler = fal_client.submit(
             "fal-ai/flux-pro/v1.1-ultra",
             arguments={
@@ -115,6 +123,16 @@ def generate_image(prompt: str, out_path: str, size: str = "landscape_16_9") -> 
         result = handler.get()
         img_url = result["images"][0]["url"]
         urllib.request.urlretrieve(img_url, out_path)
+        try:
+            _log_fal(
+                model="fal-ai/flux-pro/v1.1-ultra",
+                prompt=prompt,
+                output_url=img_url,
+                duration_ms=int((time.perf_counter() - _t0) * 1000),
+                source="daily_content_blast",
+            )
+        except Exception:
+            pass
         return True
     except Exception as e:
         print(f"  ⚠️  fal.ai error: {e}")

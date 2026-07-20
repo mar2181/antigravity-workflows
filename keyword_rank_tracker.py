@@ -901,6 +901,48 @@ async def main_async(businesses: list, target_keyword: str = None, limit: int = 
 
     print(f"\nDone. State: {STATE_PATH}")
 
+    # ── Fail-loud gate: a run whose snapshots are mostly errors is a FAILED run ──
+    # 2026-07-19: Bright Data account suspension made every scrape return empty →
+    # every snapshot errored ("CAPTCHA — IP rate-limited") for 3+ days, yet this
+    # script exited 0 and the push step upserted null rows and reported success.
+    # Never again: if ≥50% of today's snapshots errored, exit 3 + Telegram Mario.
+    today = date.today().isoformat()
+    total = errs = 0
+    for biz_key in businesses:
+        for kw_hist in state.get(biz_key, {}).values():
+            snap = kw_hist.get(today)
+            if isinstance(snap, dict):
+                total += 1
+                if snap.get("error"):
+                    errs += 1
+    if total and errs / total >= 0.5:
+        print("\n" + "!" * 70)
+        print(f"!! SCRAPE FAILED: {errs}/{total} snapshots errored today.")
+        print("!! Likely Bright Data account/zone problem. Check:")
+        print("!!   curl -H 'Authorization: Bearer <BD key>' https://api.brightdata.com/status")
+        print("!!   ('suspended' = billing — only Mario can fix at brightdata.com)")
+        print("!! NOT pushing this as a healthy run. Exit code 3.")
+        print("!" * 70)
+        try:
+            import urllib.parse
+            env = {}
+            for line in Path("C:/Users/mario/.gemini/antigravity/scratch/gravity-claw/.env").read_text().splitlines():
+                if "=" in line and not line.startswith("#"):
+                    k, _, v = line.partition("=")
+                    env[k.strip()] = v.strip().strip('"').strip("'")
+            tok, chat = env.get("TELEGRAM_BOT_TOKEN", ""), env.get("TELEGRAM_USER_ID", "")
+            if tok and chat:
+                msg = (f"🚨 Rank tracker FAILED: {errs}/{total} keyword scrapes errored "
+                       f"({today}). Bright Data likely suspended/out of credit — "
+                       f"check brightdata.com billing. Rankings are NOT updating.")
+                data = urllib.parse.urlencode({"chat_id": chat, "text": msg}).encode()
+                _ureq.urlopen(_ureq.Request(f"https://api.telegram.org/bot{tok}/sendMessage", data=data), timeout=10)
+                print("[alert] Telegram sent to Mario")
+        except Exception as e:
+            print(f"[alert] Telegram notify failed: {e}")
+        return 3
+    return 0
+
 
 def main():
     parser = argparse.ArgumentParser(description="Keyword rank tracker for all client businesses")
@@ -922,7 +964,8 @@ def main():
                 print(f"    • {kw}")
         return
 
-    asyncio.run(main_async(businesses, args.keyword, limit=args.limit))
+    rc = asyncio.run(main_async(businesses, args.keyword, limit=args.limit))
+    sys.exit(rc or 0)
 
 
 if __name__ == "__main__":

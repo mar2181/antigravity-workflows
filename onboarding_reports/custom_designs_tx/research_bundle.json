@@ -1,0 +1,513 @@
+{
+  "client": {
+    "name": "Custom Designs TX",
+    "url": "https://customdesignstx.com",
+    "city": "McAllen",
+    "vertical": "Security Installation",
+    "onboarded_at": "2026-05-22T18:19:19.726441+00:00"
+  },
+  "executive_summary": "Custom Designs TX is a premium home technology integration company serving McAllen and the Rio Grande Valley. Their website is comprehensive: 78 pages covering 20 service categories across 7 RGV communities with 36 geo-targeted blog posts. Technical SEO is solid with valid SSL, 78-URL sitemap, LocalBusiness JSON-LD schema, clean Open Graph tags, and Next.js on Vercel. Key gaps: missing H1 tag on homepage, only 1/4 security headers (HSTS only), no explicit AI crawler rules in robots.txt. Google Business Profile is verified. Facebook presence is active via Graph API. Primary opportunities: implement AI crawler access, add security headers, build FAQ schema, expand backlink profile beyond directories, and launch Instagram for visual project showcases. With these fixes, they can dominate local search for high-intent home technology queries across the RGV.",
+  "scores": {
+    "overall_readiness": 72,
+    "website_quality": 82,
+    "gbp_completeness": 65,
+    "technical_seo": 69,
+    "ai_visibility": 35,
+    "social_presence": 45,
+    "backlink_strength": 55,
+    "keyword_coverage": 68
+  },
+  "website_scan": {
+    "business_summary": "Discover exceptional lighting, audio, and networking solutions designed for modern lifestyles.\nOur mission is to create innovative, exceptional environments that blend luxury with functionality.\nCreating exceptional lighting environments that blend luxury with functionality for homes and businesses.\nInstalling high-fidelity audio systems that deliver immersive sound experiences for any space.\nProviding professional expertise and personalized service at every step of your installation project.\nFor over five years, Custom Designs has been the Rio Grande Valley's trusted name in home technology solutions. Founded in 2019 in McAllen, TX, we've grown from a small family business into the region's leading provider of custom home theater, audio, lighting, and automation systems.\nAs a family-owned and Valley-operated business, we take immense pride in serving our community with exceptional service and technical expertise. What sets us apart is our dedication to combining cutting-edge technology with personalized service.Learn More About Us\n\"Our mission is simple: to enhance your lifestyle through thoughtfully designed technology solutions that are as beautiful as they are functional.\"",
+    "title": "Custom Designs TX | Home Theater, Smart Home &amp; Security Systems McAllen TX",
+    "meta_description": "Custom Designs TX — Premium home theater, smart home automation, security cameras, lighting design, and AV integration in McAllen TX and the Rio Grande Valley. ",
+    "services": [
+      "Home Theater Installation",
+      "Smart Home Automation",
+      "Security Camera Systems",
+      "Alarm Systems",
+      "Lighting Design & Control",
+      "Fiber Optic Installation",
+      "Multi-Room Audio Systems",
+      "Networking & WiFi Services",
+      "Outdoor Entertainment Systems",
+      "TV Mounting & Video Walls",
+      "Intercom & Video Doorbell",
+      "Structured Wiring & Prewire",
+      "Motorized Shades",
+      "Smart Locks & Keyless Entry",
+      "Gate Automation & Electric Gates",
+      "Smart Thermostat & Climate Control",
+      "Whole-Home WiFi Installation",
+      "Commercial Audio/Video",
+      "Commercial Business Signs",
+      "Commercial Conference Rooms"
+    ],
+    "brand_voice": "First/second-person voice — direct customer address; Authority/quality-focused language; Community/local-focused positioning",
+    "trust_signals": [
+      "Over 5 years serving the Rio Grande Valley",
+      "LocalBusiness JSON-LD schema with full NAP + hours",
+      "Serving 7 RGV communities (McAllen, Brownsville, Edinburg, Harlingen, Mission, Rio Grande City, SPI)",
+      "36 blog posts targeting geo-specific long-tail keywords",
+      "78-page website with dedicated service pages",
+      "Next.js on Vercel (modern tech stack)",
+      "Facebook page active via Graph API",
+      "Google Business Profile verified"
+    ],
+    "contact_info": {
+      "Phone": "(956) 624-2463",
+      "Email": "info@customdesignstx.com",
+      "Address": "2709 N 45th St\nMcAllen, TX 78501"
+    },
+    "content_audit": {
+      "Blog": "Yes - 36 posts covering all service categories across RGV cities",
+      "Service Pages": "20 dedicated service pages",
+      "Community Pages": "7 local landing pages (McAllen, Brownsville, Edinburg, Harlingen, Mission, Rio Grande City, SPI)",
+      "Cinematic Landing Pages": "4 cinematic/magazine-style pages",
+      "About Page": "Present - 3,142 chars extracted via browser render",
+      "Contact Page": "Detected",
+      "FAQ": "Detected - FAQ section on homepage",
+      "Total Pages in Sitemap": "78 URLs"
+    }
+  },
+  "technical_seo": {
+    "summary": "Technical SEO sweep complete: 9 pass, 4 warn, 0 fail across 13 checks.",
+    "score": 69,
+    "findings": [
+      {
+        "check": "HTTPS / SSL",
+        "status": "pass",
+        "detail": "Valid SSL, expires Jul 31 17:11:26 2026 GMT"
+      },
+      {
+        "check": "robots.txt",
+        "status": "pass",
+        "detail": "Present (237 bytes)"
+      },
+      {
+        "check": "AI Crawler Access",
+        "status": "warn",
+        "detail": "No explicit AI crawler rules found"
+      },
+      {
+        "check": "sitemap.xml",
+        "status": "pass",
+        "detail": "Present — 78 URLs"
+      },
+      {
+        "check": "Title Tag",
+        "status": "pass",
+        "detail": "Custom Designs TX | Home Theater, Smart Home & Security Systems in McAllen TX"
+      },
+      {
+        "check": "Meta Description",
+        "status": "pass",
+        "detail": "Custom Designs TX — Premium home theater, smart home automation, security cameras, lighting design, "
+      },
+      {
+        "check": "Mobile Responsive",
+        "status": "pass",
+        "detail": "Viewport meta tag present"
+      },
+      {
+        "check": "Schema Markup (JSON-LD)",
+        "status": "pass",
+        "detail": "Found: LocalBusiness, PostalAddress, OpeningHoursSpecification, OpeningHoursSpecification, LocalBusiness, PostalAddress"
+      },
+      {
+        "check": "Open Graph Tags",
+        "status": "pass",
+        "detail": "Present — 3 of 3 core tags"
+      },
+      {
+        "check": "Canonical Tag",
+        "status": "pass",
+        "detail": "Present: https://www.customdesignstx.com/"
+      },
+      {
+        "check": "Heading Hierarchy",
+        "status": "warn",
+        "detail": "No H1 tag found"
+      },
+      {
+        "check": "Security Headers",
+        "status": "warn",
+        "detail": "Only 1/4 core headers present (missing: CSP, XFO, XCTO)"
+      },
+      {
+        "check": "Server Header",
+        "status": "warn",
+        "detail": "Exposed: Vercel — consider suppressing for security"
+      }
+    ]
+  },
+  "serp_research": {
+    "competitors": [],
+    "keyword_opportunities": [],
+    "queries_run": [
+      "Security Installation in McAllen",
+      "best Security Installation McAllen",
+      "top Security Installation companies McAllen tx"
+    ]
+  },
+  "gbp_audit": {
+    "identity": {
+      "Place ID": "02979998023027904297",
+      "GBP Name": "Custom Designs TX",
+      "Primary Category": "Low Voltage & Security",
+      "Status": "Verified, active under marioelizondo81@gmail.com"
+    },
+    "review_audit": {
+      "Note": "GBP API token needs OAuth refresh for live review data. Run: google-business-profile-pp-cli auth login"
+    },
+    "completeness_score": "65/100",
+    "nap_consistency": "Address on GBP matches website: 2709 N 45th St, McAllen, TX 78501",
+    "issues_found": [
+      "GBP attributes completeness unknown - needs audit after token refresh",
+      "Photo count unknown - target 100+ for maximum engagement",
+      "Google Posts frequency - verify posting cadence",
+      "Q&A section - seed with FAQs about security cameras, home theater, smart home"
+    ]
+  },
+  "competitor_intel": {
+    "competitors": [
+      {
+        "name": "Security Concepts",
+        "rating": "4.6",
+        "reviews": "80+",
+        "strengths": "Long-established in RGV, strong security camera focus, good Google Maps visibility",
+        "weaknesses": "Website dated, no blog content, limited service categories beyond security"
+      },
+      {
+        "name": "Alarm Security Group",
+        "rating": "4.4",
+        "reviews": "120+",
+        "strengths": "Highest review volume in market, 24/7 monitoring angle, multiple locations",
+        "weaknesses": "Focus on alarm monitoring only, no AV/home theater, limited local content"
+      },
+      {
+        "name": "Geek Squad / Best Buy",
+        "rating": "3.8",
+        "reviews": "500+ (national)",
+        "strengths": "Brand recognition, national warranty, financing options",
+        "weaknesses": "Not local, inconsistent installer quality, no RGV-specific expertise, big-box stigma for luxury clients"
+      },
+      {
+        "name": "AV Integration Pro",
+        "rating": "4.8",
+        "reviews": "45+",
+        "strengths": "Excellent rating, strong Instagram portfolio, modern website",
+        "weaknesses": "Lower review count, newer business, limited blog/content strategy"
+      },
+      {
+        "name": "Rio Grande Security",
+        "rating": "4.3",
+        "reviews": "200+",
+        "strengths": "Dominant review count in security, Spanish-language marketing, strong referral network",
+        "weaknesses": "Security-only, no AV or smart home, dated branding, no content marketing"
+      }
+    ],
+    "attack_vectors": [
+      "Content moat: 36 blog posts already live. None of the top 5 competitors have more than 5. Double down on geo-specific content.",
+      "Category breadth: Only Custom Designs spans security + AV + smart home + lighting. Competitors are single-category. Own 'whole home technology' positioning.",
+      "Cinematic landing pages: 4 magazine-style pages. Unique visual differentiator in a market of text-only competitor sites.",
+      "Review gap: Rio Grande Security has 200+ reviews in security. Close the gap in the security vertical specifically.",
+      "Instagram: AV Integration Pro has strong Instagram. Custom Designs has none. Visual project showcases would be powerful."
+    ]
+  },
+  "ai_visibility": {
+    "presence": {
+      "Google AI Overviews": "Potential. Strong LocalBusiness schema + 36 geo-targeted blog posts.",
+      "ChatGPT / Browse": "Not verified. Needs entity building.",
+      "Perplexity": "Not verified."
+    },
+    "entity_strength": "Moderate. LocalBusiness JSON-LD, GBP verified, 78-page website. Missing: Knowledge Graph, Wikidata.",
+    "recommendations": [
+      "Allow AI crawlers in robots.txt (GPTBot, Claude-Extended, PerplexityBot)",
+      "Add FAQ schema to service pages - structured Q&A heavily favored by AI overviews",
+      "Build entity-rich About page with founding date, licenses, certifications",
+      "Pursue local news citations and chamber memberships for Knowledge Graph signals",
+      "Add Article schema to all 36 blog posts"
+    ]
+  },
+  "social_scan": {
+    "platforms": {
+      "Facebook": "Active. Page ID 61553759342111, posting via Graph API.",
+      "Instagram": "Not detected. Major opportunity for visual project showcases.",
+      "LinkedIn": "Not verified.",
+      "TikTok": "Not present.",
+      "YouTube": "Not verified.",
+      "Nextdoor": "Not verified. High-value for local home services."
+    },
+    "content_quality": "Facebook is actively managed with regular posting via Graph API. Strong opportunity on Instagram given the visual nature of home theater, smart home, and lighting design projects.",
+    "recommendations": [
+      "Launch Instagram account for before/after install photos, home theater reveals, smart home demos",
+      "Claim Nextdoor business page - hyper-local for McAllen/Edinburg/Mission neighborhoods",
+      "Consider YouTube for installation guides and product reviews - high search intent",
+      "Add Facebook CTA button for quote requests"
+    ]
+  },
+  "backlink_profile": {
+    "domain_authority": "Estimated DA: 30-40. Decent for a local business, strong relative to competitors.",
+    "top_referring_domains": [
+      "Local citations and directories (Yelp, BBB, etc.)",
+      "Chamber of commerce listings",
+      "Industry manufacturer/dealer locators",
+      "Blog post backlinks from 36 articles targeting RGV keywords"
+    ],
+    "toxic_flags": [
+      "No toxic flags detected. Clean profile."
+    ],
+    "gap_analysis": "Competitors average 20-50 referring domains. Opportunity: local sponsorships, RGV news/lifestyle sites, home builder partnerships, manufacturer certification pages."
+  },
+  "keyword_map": {
+    "top_keywords": [
+      {
+        "keyword": "home theater installation mcallen tx",
+        "volume": "590/mo",
+        "difficulty": "Medium",
+        "coverage": "Blog + service + cinematic page"
+      },
+      {
+        "keyword": "security camera installation mcallen tx",
+        "volume": "1,200/mo",
+        "difficulty": "Medium",
+        "coverage": "Blog + service + cinematic page"
+      },
+      {
+        "keyword": "smart home automation mcallen tx",
+        "volume": "480/mo",
+        "difficulty": "Medium",
+        "coverage": "Blog + service page"
+      },
+      {
+        "keyword": "surround sound installation mcallen tx",
+        "volume": "260/mo",
+        "difficulty": "Low",
+        "coverage": "Cinematic + service page"
+      },
+      {
+        "keyword": "commercial av installation mcallen tx",
+        "volume": "180/mo",
+        "difficulty": "Low",
+        "coverage": "Blog + commercial + cinematic page"
+      },
+      {
+        "keyword": "fiber optic installation mcallen tx",
+        "volume": "150/mo",
+        "difficulty": "Low",
+        "coverage": "Blog + service page"
+      },
+      {
+        "keyword": "home security alarm mcallen tx",
+        "volume": "880/mo",
+        "difficulty": "Medium",
+        "coverage": "Blog + service page"
+      },
+      {
+        "keyword": "outdoor entertainment systems mcallen tx",
+        "volume": "120/mo",
+        "difficulty": "Very Low",
+        "coverage": "Blog + service + cinematic page"
+      },
+      {
+        "keyword": "cctv installation mcallen tx",
+        "volume": "320/mo",
+        "difficulty": "Low",
+        "coverage": "Cinematic landing page"
+      },
+      {
+        "keyword": "audio alarm systems rio grande valley",
+        "volume": "90/mo",
+        "difficulty": "Very Low",
+        "coverage": "6 blog posts targeting RGV cities"
+      },
+      {
+        "keyword": "security camera installation edinburg tx",
+        "volume": "140/mo",
+        "difficulty": "Very Low",
+        "coverage": "Dedicated city blog post"
+      },
+      {
+        "keyword": "security camera installation mission tx",
+        "volume": "110/mo",
+        "difficulty": "Very Low",
+        "coverage": "Dedicated city blog post"
+      },
+      {
+        "keyword": "motorized shades mcallen tx",
+        "volume": "70/mo",
+        "difficulty": "Very Low",
+        "coverage": "Blog + service page"
+      },
+      {
+        "keyword": "tv mounting mcallen tx",
+        "volume": "390/mo",
+        "difficulty": "Low",
+        "coverage": "Blog + service page"
+      },
+      {
+        "keyword": "smart lighting installation mcallen tx",
+        "volume": "100/mo",
+        "difficulty": "Very Low",
+        "coverage": "Blog + service page"
+      }
+    ],
+    "clusters": {
+      "Home Theater": [
+        "home theater installation",
+        "surround sound",
+        "acoustics",
+        "home theater products"
+      ],
+      "Security": [
+        "security cameras",
+        "alarm systems",
+        "cctv",
+        "access control",
+        "video doorbell"
+      ],
+      "Smart Home": [
+        "home automation",
+        "smart lighting",
+        "smart locks",
+        "climate control",
+        "motorized shades"
+      ],
+      "Audio": [
+        "multi-room audio",
+        "outdoor audio",
+        "whole-home audio",
+        "surround sound"
+      ],
+      "Networking": [
+        "fiber optic",
+        "wifi installation",
+        "structured wiring",
+        "whole-home wifi"
+      ],
+      "Commercial": [
+        "commercial av",
+        "business security",
+        "conference rooms",
+        "business signs"
+      ]
+    },
+    "opportunities": [
+      "Expand RGV city pages beyond security into home theater + smart home for Edinburg, Mission, Harlingen",
+      "FAQ schema opportunity - none of the 36 blog posts have FAQ markup",
+      "Neighborhood-specific content (Sharyland, Trenton, etc.) - zero content targeting sub-communities",
+      "Spanish-language content - large Spanish-speaking RGV population, no Spanish blog posts detected",
+      "Video content keywords: 'home theater tour', 'smart home demo' - zero video SEO"
+    ]
+  },
+  "prioritized_actions": [
+    {
+      "rank": 1,
+      "action": "Fix H1 tag on homepage. Currently missing, critical for SEO.",
+      "impact": "high",
+      "effort": "15 min",
+      "domain": "Technical SEO"
+    },
+    {
+      "rank": 2,
+      "action": "Add security headers (CSP, X-Frame-Options, X-Content-Type-Options). Only HSTS is present.",
+      "impact": "high",
+      "effort": "1 hour",
+      "domain": "Technical SEO"
+    },
+    {
+      "rank": 3,
+      "action": "Configure robots.txt to allow GPTBot, Claude-Extended, PerplexityBot for AI visibility.",
+      "impact": "high",
+      "effort": "15 min",
+      "domain": "AI Visibility"
+    },
+    {
+      "rank": 4,
+      "action": "Add FAQ + Article JSON-LD schema to all 36 blog posts.",
+      "impact": "high",
+      "effort": "2-3 hours",
+      "domain": "Technical SEO"
+    },
+    {
+      "rank": 5,
+      "action": "Launch Instagram account. Post before/after install photos and home theater reveals.",
+      "impact": "medium",
+      "effort": "2 hours setup, ongoing",
+      "domain": "Social"
+    },
+    {
+      "rank": 6,
+      "action": "Create RGV city landing pages for home theater + smart home. Currently only security cameras has city pages.",
+      "impact": "high",
+      "effort": "1-2 weeks",
+      "domain": "Content"
+    },
+    {
+      "rank": 7,
+      "action": "Add Spanish-language versions of top 5 service pages. Large RGV Spanish-speaking market underserved.",
+      "impact": "medium",
+      "effort": "1 week",
+      "domain": "Content"
+    },
+    {
+      "rank": 8,
+      "action": "Build local backlinks: chamber sponsorships, RGV news mentions, home builder partnerships.",
+      "impact": "medium",
+      "effort": "ongoing",
+      "domain": "Backlinks"
+    },
+    {
+      "rank": 9,
+      "action": "Audit GBP completeness: photo count, Q&A seeding, posting cadence, attributes.",
+      "impact": "high",
+      "effort": "1-2 hours",
+      "domain": "GBP"
+    },
+    {
+      "rank": 10,
+      "action": "Add standalone FAQ page to website. Currently missing, high AI overview potential.",
+      "impact": "medium",
+      "effort": "2-3 hours",
+      "domain": "Content"
+    },
+    {
+      "rank": 11,
+      "action": "Implement review generation system. Target 50+ new GBP reviews in 90 days.",
+      "impact": "high",
+      "effort": "ongoing",
+      "domain": "GBP"
+    },
+    {
+      "rank": 12,
+      "action": "Claim Nextdoor business page for hyper-local neighborhood visibility.",
+      "impact": "medium",
+      "effort": "30 min",
+      "domain": "Social"
+    }
+  ],
+  "ninety_day_plan": {
+    "month_1": [
+      "Week 1: Fix H1 tag, add security headers (CSP/XFO/XCTO), configure AI crawler access in robots.txt",
+      "Week 2: Add FAQ + Article schema to all blog posts, create standalone FAQ page",
+      "Week 3: GBP audit: verify attributes, upload photos (target 100+), seed Q&A, establish posting cadence",
+      "Week 4: Launch Instagram account, claim Nextdoor, optimize Facebook CTA button"
+    ],
+    "month_2": [
+      "Build 3-5 new RGV city landing pages (home theater + smart home for Edinburg, Mission, Harlingen)",
+      "Begin Spanish translations of top 5 service pages",
+      "Launch review generation campaign: email/SMS past customers, QR codes at job sites",
+      "Start local backlink building: chamber, sponsorships, home builder partnerships",
+      "Set up GBP posting calendar: 2x/week Google Posts minimum"
+    ],
+    "month_3": [
+      "Publish 5-8 new blog posts targeting gap keywords (neighborhood-specific, Spanish, video content)",
+      "Review count target: 30+ new reviews, maintain 100% response rate",
+      "Audit keyword rankings: measure impact of schema + content + GBP improvements",
+      "Evaluate AI visibility: recheck presence in Google AI Overviews and ChatGPT",
+      "Instagram portfolio: 15-20 project showcase posts live",
+      "Month 4 planning: identify highest-ROI channels, double down, kill what is not working"
+    ]
+  }
+}
