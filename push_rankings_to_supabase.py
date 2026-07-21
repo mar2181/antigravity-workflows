@@ -71,6 +71,8 @@ def build_row(client_key, keyword, date_str, data):
     organic_pos  = data.get("organic_position")
     top3_raw     = data.get("top3_map_pack") or data.get("top3_maps_entries") or []
     top3_organic = data.get("top3_organic") or []
+    full_organic = data.get("full_organic") or []   # top-10 organic — competitor intel
+    full_maps    = data.get("full_maps") or []       # top-20 maps — competitor intel
 
     # checked_at is a DATE column in Supabase — emit a plain YYYY-MM-DD string
     # so PostgREST stores/compares the value without an implicit timestamp cast.
@@ -92,6 +94,8 @@ def build_row(client_key, keyword, date_str, data):
         "organic_position":  organic_pos,
         "top3":              top3_raw,
         "top3_organic":      top3_organic,
+        "full_organic":      full_organic,
+        "full_maps":         full_maps,
         "checked_at":        checked_at,
     }
 

@@ -806,6 +806,23 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
                     {"title": e.get("title", ""), "url": e.get("url", ""), "is_ours": e.get("is_ours", False)}
                     for e in result["organic"][:3]
                 ],
+                # ── Competitor intelligence (additive, 2026-07-21) ──────────────
+                # The serper fetch already pulls the top-10 organic + top-20 maps
+                # results; we used to keep only [:3] and DISCARD the rest. Persist
+                # the full lists so the strategist can see WHO is beating us on
+                # WHICH keywords (share-of-voice + content-gap radar). Costs zero
+                # extra serper credits — it is data we already fetched.
+                "full_organic": [
+                    {"title": e.get("title", ""), "url": e.get("url", ""),
+                     "position": i + 1, "is_ours": e.get("is_ours", False)}
+                    for i, e in enumerate(result["organic"][:10])
+                ],
+                "full_maps": [
+                    {"name": e.get("name", ""), "rating": e.get("rating", ""),
+                     "reviews": e.get("reviews", ""), "position": i + 1,
+                     "is_ours": e.get("is_ours", False)}
+                    for i, e in enumerate(result["all_maps_entries"][:20])
+                ],
                 "error": result["error"],
             }
 
@@ -988,6 +1005,8 @@ def load_rankings_summary(target_date: str = None) -> dict:
                 "top3_map_pack":     snap.get("top3_map_pack", []),
                 "top3_maps_entries": snap.get("top3_maps_entries", []),
                 "top3_organic":      snap.get("top3_organic", []),
+                "full_organic":      snap.get("full_organic", []),
+                "full_maps":         snap.get("full_maps", []),
                 "date":              use_date,
             }
         if biz_summary:
