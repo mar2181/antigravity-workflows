@@ -435,6 +435,34 @@
       "match_domains": [
         "petbuddyconcierge.com"
       ],
+      "_competitors_note": "Top 5 tracked weekly. Position is read out of the SAME top-10 organic the run already fetches, so this costs ZERO extra serper credits. Matched on the result's own host (or a subdomain), never the title — a 'Chatbase alternatives' article is somebody outranking Chatbase, not Chatbase ranking. null = did not appear in the top 10, which is itself a measurement. Monthly/quarterly tiers live in docs/COMPETITIVE_INTEL_2026-08-06.md.",
+      "competitors": [
+        {
+          "label": "AnveVoice",
+          "domains": ["anvevoice.app"],
+          "why": "Sells our exact differentiator (agentic DOM actions) at $0/$39/$129. Pre-traction (<10 WP installs, 0 reviews) but wins SEARCH via a programmatic-SEO farm."
+        },
+        {
+          "label": "Chatbase",
+          "domains": ["chatbase.co"],
+          "why": "Category leader for 'AI chatbot for website'. $40-500/mo. The default answer a buyer finds before us."
+        },
+        {
+          "label": "Tidio",
+          "domains": ["tidio.com"],
+          "why": "SMB helpdesk + Lyro AI at $49. Largest SEO footprint in our buyer's search path."
+        },
+        {
+          "label": "SiteGPT",
+          "domains": ["sitegpt.ai"],
+          "why": "Direct 'AI agent trained on your website' positioning — closest wording to ours."
+        },
+        {
+          "label": "ElevenLabs",
+          "domains": ["elevenlabs.io"],
+          "why": "Voice-agent lane leader and the price benchmark buyers compare us to ($0.08/min flat)."
+        }
+      ],
       "keywords": [
         "pet buddy concierge",
         "petbuddy concierge",
