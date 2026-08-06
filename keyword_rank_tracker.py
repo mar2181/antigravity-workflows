@@ -48,13 +48,23 @@ def _load_env_value(*keys) -> str | None:
     if not env_path.exists():
         env_path = Path("/mnt/c/Users/mario/missioncontrol/dashboard/.env.local")
     if env_path.exists():
+        # ⛔ Honour the CALLER'S key order, not the file's line order. This used
+        # to return the first line whose key was in `keys`, so a stale earlier
+        # entry silently beat the preferred later one — which selected a Bright
+        # Data zone that does not exist on the current account and fails as
+        # HTTP 200 + empty body, i.e. indistinguishable from a suspension.
+        found = {}
         for line in env_path.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if not line or line.startswith("#") or "=" not in line:
                 continue
             k2, _, v2 = line.partition("=")
-            if k2.strip() in keys:
-                return v2.strip().strip('"').strip("'")
+            k2 = k2.strip()
+            if k2 in keys and k2 not in found:
+                found[k2] = v2.strip().strip('"').strip("'")
+        for k in keys:                      # caller preference order
+            if found.get(k):
+                return found[k]
     return None
 
 # Scraping Browser WS endpoint — full cloud browser, handles CAPTCHAs automatically
@@ -77,6 +87,10 @@ if _SERP_PROVIDER != "serper" and not _BD_TOKEN and not _BD_SB_WS:
     sys.exit(2)
 
 _BD_URL   = "https://api.brightdata.com/request"
+# Per-account zone name. Default is the historical hardcoded value so an
+# existing account behaves identically; override when the account names it
+# differently (⛔ a wrong zone returns HTTP 200 + EMPTY body, not an error).
+_BD_ZONE  = _load_env_value("BRIGHTDATA_UNLOCKER_ZONE", "BRIGHTDATA_SERP_ZONE") or "web_unlocker1"
 
 def _bd_auth_header(token: str) -> str:
     """
@@ -104,7 +118,13 @@ async def _fetch_via_brightdata(url: str, return_html: bool = False) -> str | No
     """
     try:
         payload = json.dumps({
-            "zone": "web_unlocker1",
+            # Zone name is per-ACCOUNT. It was hardcoded to 'web_unlocker1',
+            # which is only the default name on the account it was written for —
+            # a new account (or a renamed zone) silently returns an EMPTY body
+            # with HTTP 200, indistinguishable from a suspension. Read it from
+            # env, keeping the old value as the default so nothing changes for
+            # an account that does use that name.
+            "zone": _BD_ZONE,
             "url": url,
             "format": "raw",
         }).encode("utf-8")
@@ -330,12 +350,29 @@ def _owns_result(url: str, domain: str) -> bool:
     substring of 'chatbase.com', and 'sitegpt.ai' of 'mysitegpt.ai.example' —
     a substring match would silently credit a competitor with a rank belonging
     to someone else, which is worse than no measurement at all.
+
+    ⛔ MUST handle BOTH provider shapes. Serper returns a real absolute URL
+    ('https://www.chatbase.co/pricing'), but the Bright Data path stores the raw
+    Google BREADCRUMB line (_parse_organic_serp line ~781: url = the display
+    line, e.g. 'chatbase.co › pricing' or 'www.tidio.com'). urlparse() on a
+    string with no scheme returns an EMPTY netloc — so a naive urlparse-only
+    test scores every competitor None on the Bright Data path, which renders as
+    "did not appear in the top 10". That is a confident WRONG measurement, not a
+    visible failure, and it would only appear when the provider is switched.
     """
     if not url or not domain:
         return False
     try:
         host = urllib.parse.urlparse(url).netloc.lower()
     except Exception:
+        return False
+    if not host:
+        # No scheme => Google breadcrumb / bare host. Take the leading token up
+        # to the first path, space or breadcrumb separator, then re-validate it
+        # looks like a host so a title line can never be read as a domain.
+        head = re.split(r"[\s/›>]", url.strip(), 1)[0].lower()
+        host = head if re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,24}", head) else ""
+    if not host:
         return False
     host = host.split(":")[0]           # strip any :port
     d = domain.lower().lstrip(".")
@@ -368,7 +405,11 @@ def _competitor_positions(organic: list, competitors: list) -> dict:
             continue
         pos = None
         for i, entry in enumerate(organic or []):
-            if any(_owns_result(entry.get("url", ""), d) for d in domains):
+            # Prefer the already-parsed `domain` when the provider supplies one
+            # (the Bright Data path regex-extracts it and it is cleaner than the
+            # breadcrumb); fall back to the url for providers that don't.
+            cand = entry.get("domain") or entry.get("url", "")
+            if any(_owns_result(cand, d) for d in domains):
                 pos = i + 1
                 break
         out[label] = pos
@@ -555,7 +596,12 @@ async def check_keyword(page, keyword: str, match_names: list, match_domains: li
                 break
 
         result["organic"] = [
+            # `domain` is carried through deliberately: _parse_organic_serp has
+            # already regex-extracted a clean host, while `url` here is the raw
+            # Google breadcrumb ('tidio.com › blog'). Dropping it forced every
+            # downstream consumer to re-parse the messier of the two values.
             {"title": e.get("title", ""), "url": e.get("url", ""),
+             "domain": e.get("domain", ""),
              "is_ours": _matches(
                  f"{e.get('title', '')} {e.get('domain', '')}",
                  match_names, match_domains)}
