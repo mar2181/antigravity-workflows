@@ -180,6 +180,63 @@ def upsert_batch(supabase_url, headers, rows):
     return supabase_request("POST", url, headers, rows)
 
 
+# ── Schema compatibility ──────────────────────────────────────────────────────
+# Columns the pusher will SEND ONLY IF THE TABLE HAS THEM. These carry competitor
+# intel; the client's own ranking is in the core columns and must never be held
+# hostage to them.
+#
+# ⛔ THIS EXISTS BECAUSE IT ALREADY HAPPENED, AND IT COST 16 DAYS OF CLIENT DATA.
+# 2026-07-21, commit e23d97b added `full_organic` and `full_maps` to build_row()
+# for competitor intel. The Supabase migration was never applied. PostgREST
+# rejects the WHOLE batch on an unknown column:
+#     400 PGRST204 "Could not find the 'full_maps' column of 'keyword_rankings'"
+# so every push failed 529/529 from that day. The newest row in the table was
+# 2026-07-20 -- the last day before the commit.
+#
+# ⛔ AND THE SECOND FAILURE HID THE FIRST. On 2026-07-26 Bright Data died, so the
+# gate in run_rank_tracker.bat began refusing to push at all -- which meant the
+# 400 STOPPED APPEARING IN THE LOGS. From then on the only visible symptom was
+# "the scraper is failing", a complete and plausible explanation that was wrong.
+# Fixing the scraper would have restored nothing.
+#
+# So: probe the schema once, drop what the table cannot store, push the rankings
+# anyway, and SAY SO LOUDLY. Silence here would be the same class of bug -- the
+# intel would quietly stop being collected. The moment the migration lands, the
+# probe sees the columns and they start flowing again with no code change.
+OPTIONAL_COLUMNS = ("full_organic", "full_maps")
+
+
+def detect_missing_columns(supabase_url, headers):
+    """
+    Return the subset of OPTIONAL_COLUMNS the live table does NOT have.
+
+    Probes one real row rather than trusting a migration file on disk -- the
+    file being present says nothing about whether it was ever applied, which is
+    exactly the gap that caused this. On any probe failure returns () so a
+    transient network blip degrades to "send everything" (today's behaviour)
+    rather than silently stripping columns that do exist.
+    """
+    url = f"{supabase_url}/rest/v1/keyword_rankings?select=*&limit=1"
+    try:
+        req = urllib.request.Request(url, headers=headers, method="GET")
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            rows = json.loads(resp.read().decode("utf-8"))
+    except Exception as exc:
+        print(f"[WARN] Could not probe table schema ({exc}) -- sending all columns.")
+        return ()
+    if not rows:
+        return ()          # empty table tells us nothing; send everything
+    present = set(rows[0].keys())
+    return tuple(c for c in OPTIONAL_COLUMNS if c not in present)
+
+
+def strip_columns(rows, cols):
+    """Remove `cols` from every row. No-op when cols is empty."""
+    if not cols:
+        return rows
+    return [{k: v for k, v in r.items() if k not in cols} for r in rows]
+
+
 def count_remote_rows(supabase_url, headers, client_key, checked_at):
     """Return the row count for one (client_key, checked_at) tuple, or None on failure."""
     url = (
@@ -225,6 +282,15 @@ def main():
         state = json.load(f)
 
     headers = build_headers(service_key)
+
+    # Probe the live schema ONCE, before any write. See OPTIONAL_COLUMNS.
+    missing_cols = detect_missing_columns(supabase_url, headers)
+    if missing_cols:
+        print(f"[SCHEMA] This table has no {', '.join(missing_cols)} column(s). "
+              f"Rankings WILL be pushed; competitor-intel payload will NOT be stored.")
+        print(f"[SCHEMA] To store it, apply:  ALTER TABLE keyword_rankings")
+        for c in missing_cols:
+            print(f"[SCHEMA]     ADD COLUMN IF NOT EXISTS {c} jsonb;")
 
     clients_to_push = list(state.keys())
     if args.business:
@@ -314,7 +380,8 @@ def main():
                 pushed_ok += len(rows)
                 continue
 
-            result = upsert_batch(supabase_url, headers, rows)
+            result = upsert_batch(supabase_url, headers,
+                                  strip_columns(rows, missing_cols))
             if not result["ok"]:
                 print(f"    [ERROR] UPSERT failed ({result['status']}): {result['body']}")
                 pushed_err += len(rows)

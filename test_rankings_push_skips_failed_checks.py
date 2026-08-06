@@ -249,6 +249,64 @@ def test_against_live_state(m):
               "old bug today; test_red_proof() carries that proof on fixtures")
 
 
+def test_optional_columns(m):
+    """
+    A missing OPTIONAL column must never block the client's own ranking.
+
+    2026-07-21 -> 2026-08-06: commit e23d97b added `full_organic`/`full_maps` to
+    build_row() for competitor intel and the Supabase migration was never
+    applied. PostgREST rejects the ENTIRE batch on an unknown column, so every
+    push failed 529/529 for 16 days. The newest row in the table was 2026-07-20,
+    the last day before that commit.
+
+    ⛔ The second failure HID the first: when Bright Data died on 07-26 the .bat
+    gate stopped attempting the push, so the 400 vanished from the logs and the
+    only visible symptom became "the scraper is failing" -- a complete,
+    plausible, WRONG explanation. Fixing the scraper would have restored nothing.
+    """
+    print("\n[6] an optional column the table lacks must not block the rankings")
+    core = {"client_key": "acme", "keyword": "kw", "checked_at": "2026-08-06",
+            "map_pack_position": 2, "top3": [{"a": 1}],
+            "full_organic": [{"x": 1}], "full_maps": [{"y": 2}]}
+    stripped = m.strip_columns([core], ("full_organic", "full_maps"))[0]
+    check("optional columns are removed when the table lacks them",
+          "full_organic" not in stripped and "full_maps" not in stripped, str(stripped))
+    # ⛔ .get(), not [] -- a strip that ate a core column used to kill this file
+    # with a raw KeyError, which reports the crash instead of the defect. A guard
+    # must NAME what broke; "KeyError: 'map_pack_position'" makes the reader
+    # debug the test rather than read the finding.
+    check("THE RANKING SURVIVES the strip (this is the whole point)",
+          stripped.get("map_pack_position") == 2 and stripped.get("top3") == [{"a": 1}],
+          f"lost the ranking -> {stripped}")
+    missing_core = [k for k in ("client_key", "keyword", "checked_at",
+                                "map_pack_position", "top3") if k not in stripped]
+    check("every core column survives", not missing_core, f"dropped {missing_core}")
+    check("strip is a no-op when nothing is missing",
+          m.strip_columns([core], ())[0] == core)
+    # ⛔ Both optional columns must be DECLARED optional. If a future column is
+    # added to build_row() and not listed here, it reintroduces the exact 400
+    # that cost 16 days -- the list is the contract, not the strip function.
+    check("full_organic and full_maps are declared OPTIONAL_COLUMNS",
+          set(("full_organic", "full_maps")) <= set(m.OPTIONAL_COLUMNS),
+          str(m.OPTIONAL_COLUMNS))
+    # A probe that cannot reach the table must NOT strip: an outage would
+    # silently stop storing intel that the table can perfectly well hold.
+    old = m.urllib.request.urlopen
+    try:
+        def boom(*a, **k):
+            raise OSError("network down")
+        m.urllib.request.urlopen = boom
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            missing = m.detect_missing_columns("https://x.invalid", {})
+        check("a FAILED schema probe strips nothing (degrades to today's behaviour)",
+              missing == (), str(missing))
+        check("and it says so rather than failing silently",
+              "WARN" in buf.getvalue(), buf.getvalue())
+    finally:
+        m.urllib.request.urlopen = old
+
+
 def main():
     m = load_module()
     print("Guard: the rankings pusher never writes a failed check as a ranking")
@@ -256,6 +314,7 @@ def main():
     test_selection(m)
     test_all_frozen_exits_nonzero(m)
     test_red_proof(m)
+    test_optional_columns(m)
     test_against_live_state(m)
     print(f"\n{len(PASS)} passed, {len(FAIL)} failed")
     if FAIL:
