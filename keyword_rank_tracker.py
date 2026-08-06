@@ -321,6 +321,60 @@ def _matches(text: str, match_names: list, match_domains: list) -> bool:
     return False
 
 
+# ── Competitor positions (additive, 2026-08-06) ────────────────────────────────
+def _owns_result(url: str, domain: str) -> bool:
+    """
+    True if `url` is served BY `domain` (or a subdomain of it).
+
+    Deliberately a host-boundary test, not a substring test: 'chatbase.co' is a
+    substring of 'chatbase.com', and 'sitegpt.ai' of 'mysitegpt.ai.example' —
+    a substring match would silently credit a competitor with a rank belonging
+    to someone else, which is worse than no measurement at all.
+    """
+    if not url or not domain:
+        return False
+    try:
+        host = urllib.parse.urlparse(url).netloc.lower()
+    except Exception:
+        return False
+    host = host.split(":")[0]           # strip any :port
+    d = domain.lower().lstrip(".")
+    return host == d or host.endswith("." + d)
+
+
+def _competitor_positions(organic: list, competitors: list) -> dict:
+    """
+    Where each tracked competitor sits in the top-10 organic results.
+
+    Costs ZERO extra API credits: `organic` is the same top-10 the fetch already
+    returned and `full_organic` already persists — we simply never read anyone
+    else's position out of it.
+
+    Matches on the RESULT'S OWN DOMAIN only, never the title. A page titled
+    "Chatbase alternatives" on a review site is somebody else outranking
+    Chatbase, not Chatbase ranking; conflating the two inverts the reading.
+
+    Returns {label: position (1-based) or None}. A competitor absent from the
+    top 10 is recorded explicitly as None rather than omitted — downstream,
+    a missing key because the competitor did not rank and a missing key because
+    the config changed are indistinguishable, and "not in the top 10" is itself
+    a real, reportable measurement.
+    """
+    out = {}
+    for comp in competitors or []:
+        label   = comp.get("label") or comp.get("domain") or ""
+        domains = comp.get("domains") or ([comp["domain"]] if comp.get("domain") else [])
+        if not label:
+            continue
+        pos = None
+        for i, entry in enumerate(organic or []):
+            if any(_owns_result(entry.get("url", ""), d) for d in domains):
+                pos = i + 1
+                break
+        out[label] = pos
+    return out
+
+
 # ── Serper.dev provider ────────────────────────────────────────────────────────
 def _serper_post(endpoint: str, payload: dict) -> dict:
     """POST to a serper.dev endpoint, count the credit, return parsed JSON."""
@@ -738,6 +792,7 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
     today_str     = date.today().isoformat()
     match_names   = biz_cfg.get("match_names", [])
     match_domains = biz_cfg.get("match_domains", [])
+    competitors   = biz_cfg.get("competitors", [])
     keywords      = biz_cfg.get("keywords", [])
 
     if target_keyword:
@@ -823,6 +878,10 @@ async def run_business(biz_key: str, biz_cfg: dict, state: dict,
                      "is_ours": e.get("is_ours", False)}
                     for i, e in enumerate(result["all_maps_entries"][:20])
                 ],
+                # Named competitors' organic positions, computed from the SAME
+                # top-10 above. Zero extra credits. Absent from config => {}.
+                "competitor_positions": _competitor_positions(
+                    result["organic"], competitors),
                 "error": result["error"],
             }
 
