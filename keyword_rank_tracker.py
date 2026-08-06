@@ -91,6 +91,11 @@ _BD_URL   = "https://api.brightdata.com/request"
 # existing account behaves identically; override when the account names it
 # differently (⛔ a wrong zone returns HTTP 200 + EMPTY body, not an error).
 _BD_ZONE  = _load_env_value("BRIGHTDATA_UNLOCKER_ZONE", "BRIGHTDATA_SERP_ZONE") or "web_unlocker1"
+# ⛔ 16, not 15. Bright Data's own message says "a minimum of 15 seconds", and a
+# minimum is exactly the wrong number to send back — measured, a 1s retry loop
+# got 1/5 usable while spaced attempts got 2/3. Attempt N waits N*16s.
+_BD_COOLDOWN_S = 16
+_BD_MAX_TRIES  = 3      # 1 try + 2 retries => ~96% per keyword at a 1/3 blip rate
 
 def _bd_auth_header(token: str) -> str:
     """
@@ -115,7 +120,35 @@ async def _fetch_via_brightdata(url: str, return_html: bool = False) -> str | No
     URLs (selector "#main" not found) and on `/maps/search/...` URLs
     (endpoint disabled). Always pass plain `/search?q=...` URLs and parse
     the inline local pack from the returned HTML.
+
+    ⛔ RETRIES ARE NOT OPTIONAL, and the delay is not a guess. Measured
+    2026-08-06: roughly ONE IN THREE requests returns HTTP 200 with an EMPTY
+    body — intermittent, not account-level. Worse, Bright Data then puts that
+    exact query in a COOLDOWN and answers subsequent attempts with a 209-byte
+    body reading "This query recently failed and cannot be attempted at this
+    time. Please try again later, after a minimum of 15 seconds." So an
+    immediate retry is not merely useless, it EXTENDS the outage — a 1s retry
+    loop measured 1/5 usable where spaced single attempts measured 2/3.
+
+    Without this loop the caller falls straight through to unproxied real
+    Chrome, which hits Google directly and gets a genuine CAPTCHA — so the
+    logged error names CAPTCHA while the actual cause was a Bright Data blip,
+    and a third of a 414-keyword sweep lands as bad rows.
     """
+    for _attempt in range(1, _BD_MAX_TRIES + 1):
+        raw = await _bd_once(url, _attempt)
+        if raw is not None:
+            return _bd_finish(raw, return_html)
+        if _attempt < _BD_MAX_TRIES:
+            # BD states a 15s MINIMUM before a failed query may be retried.
+            wait = _BD_COOLDOWN_S * _attempt
+            print(f"      [BD: retry {_attempt}/{_BD_MAX_TRIES - 1} in {wait}s]")
+            await asyncio.sleep(wait)
+    return None
+
+
+async def _bd_once(url: str, attempt: int) -> str | None:
+    """One Bright Data request. Returns the RAW body, or None if unusable."""
     try:
         payload = json.dumps({
             # Zone name is per-ACCOUNT. It was hardcoded to 'web_unlocker1',
@@ -137,13 +170,28 @@ async def _fetch_via_brightdata(url: str, return_html: bool = False) -> str | No
             },
             method="POST",
         )
-        with _ureq.urlopen(req, timeout=30) as r:
+        with _ureq.urlopen(req, timeout=90) as r:
             raw = r.read().decode("utf-8", errors="replace")
 
         if not raw or len(raw) < 500:
-            print(f"      [BD: empty/short body, len={len(raw) if raw else 0}]")
+            # ⛔ Print BD's OWN words, not just a length. A short body is not
+            # blank: the cooldown response is a 209-byte sentence naming the
+            # exact cause and the exact wait. Reporting only "empty/short body,
+            # len=209" throws away the one diagnostic that explains the failure
+            # and makes a cooldown look identical to a dead account.
+            note = " ".join((raw or "").split())[:110]
+            print(f"      [BD try{attempt}: unusable, len={len(raw) if raw else 0}"
+                  + (f" — {note}]" if note else "]"))
             return None
+        return raw
+    except Exception as _bd_err:
+        print(f"      [BD try{attempt} failed: {type(_bd_err).__name__}: {_bd_err}]")
+        return None
 
+
+def _bd_finish(raw: str, return_html: bool) -> str | None:
+    """Post-process a good Bright Data body: raw HTML, or stripped plain text."""
+    try:
         if return_html:
             return raw
 
