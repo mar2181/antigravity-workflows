@@ -49,10 +49,7 @@ EXECUTION_DIR = SCRIPT_DIR
 # Client program files
 CLIENT_DIRS = {
     "sugar_shack": SCRIPT_DIR / "sugar_shack",
-    "island_arcade": SCRIPT_DIR / "island_arcade",
-    "island_candy": SCRIPT_DIR / "island_candy",
     "juan": SCRIPT_DIR / "juan",
-    "spi_fun_rentals": SCRIPT_DIR / "spi_fun_rentals",
     "custom_designs_tx": SCRIPT_DIR / "custom_designs_tx",
     "optimum_clinic": SCRIPT_DIR / "optimum_clinic",
     "optimum_foundation": SCRIPT_DIR / "optimum_foundation",

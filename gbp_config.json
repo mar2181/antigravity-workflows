@@ -11,40 +11,6 @@
       "phone": "+19565248009",
       "access": true
     },
-    "island_candy": {
-      "name": "Island Candy",
-      "expected_name": "Island Candy",
-      "business_id": "4798477906868509722",
-      "chrome_port": 9223,
-      "search_query": "Island Candy South Padre Island TX arcade",
-      "places_query": "Island Candy South Padre Island TX",
-      "phone": "+19564335599",
-      "address": "2311 Padre Blvd, South Padre Island, TX 78597",
-      "hours": "Closes 10 PM",
-      "access": true
-    },
-    "island_arcade": {
-      "name": "Island Arcade SPI",
-      "expected_name": "Island Arcade",
-      "business_id": null,
-      "chrome_port": 9223,
-      "search_query": "Island Arcade SPI South Padre Island TX",
-      "places_query": "Island Arcade SPI South Padre Island TX",
-      "phone": "+19564335549",
-      "access": false,
-      "note": "DUPLICATE on Yehuda account — GBP management blocked"
-    },
-    "spi_fun_rentals": {
-      "name": "SPI Fun Rental & Island Surf Rental",
-      "expected_name": "SPI Fun Rentals",
-      "business_id": "4078292116476913317",
-      "chrome_port": 9224,
-      "search_query": "SPI Fun Rentals South Padre Island TX",
-      "places_query": "SPI Fun Rentals South Padre Island TX",
-      "phone": null,
-      "access": false,
-      "note": "DUPLICATE — needs resolution before posting"
-    },
     "custom_designs": {
       "name": "Custom Designs TX",
       "expected_name": "Custom Designs",
@@ -78,7 +44,13 @@
       "access": false,
       "note": "DUPLICATE — needs resolution before posting"
     },
-    "optimum_foundation": { "name": "Optimum Foundation", "expected_name": "Optimum Foundation", "places_query": null, "access": false, "note": "Not yet mapped" }
+    "optimum_foundation": {
+      "name": "Optimum Foundation",
+      "expected_name": "Optimum Foundation",
+      "places_query": null,
+      "access": false,
+      "note": "Not yet mapped"
+    }
   },
   "chrome_profiles": {
     "9223": "Yehuda account — Sugar Shack, Island Candy (both verified)",

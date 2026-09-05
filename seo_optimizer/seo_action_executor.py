@@ -58,9 +58,6 @@ CLIENT_TO_PROFILE = {
     "optimum_clinic": GBP_PROFILE_MARIO,
     "juan": GBP_PROFILE_MARIO,
     "sugar_shack": GBP_PROFILE_YEHUDA,
-    "island_arcade": GBP_PROFILE_YEHUDA,
-    "island_candy": GBP_PROFILE_YEHUDA,
-    "spi_fun_rentals": GBP_PROFILE_YEHUDA,
     "optimum_foundation": GBP_PROFILE_YEHUDA,
 }
 

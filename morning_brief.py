@@ -112,10 +112,7 @@ COMPETITOR_STATE = COMPETITOR_REPORTS_DIR / "state.json"
 
 BUSINESS_DIRS = {
     "sugar_shack":      EXECUTION_DIR / "sugar_shack",
-    "island_arcade":    EXECUTION_DIR / "island_arcade",
-    "island_candy":     EXECUTION_DIR / "island_candy",
     "juan":             EXECUTION_DIR / "juan",
-    "spi_fun_rentals":  EXECUTION_DIR / "spi_fun_rentals",
     "custom_designs_tx": EXECUTION_DIR / "custom_designs_tx",
     "optimum_clinic":   EXECUTION_DIR / "optimum_clinic",
     "optimum_foundation": EXECUTION_DIR / "optimum_foundation",
@@ -601,12 +598,34 @@ def load_delta_report() -> dict:
     for path in candidates:
         if path.exists():
             try:
-                return json.loads(path.read_text(encoding="utf-8"))
+                return _drop_inactive(json.loads(path.read_text(encoding="utf-8")))
             except Exception:
                 pass
     return {}
 
 
+
+
+def _drop_inactive(delta: dict) -> dict:
+    """Keep only businesses we still work for.
+
+    The delta file is built from the ranking/competitor HISTORY, which we keep on
+    purpose when a client leaves -- so without this the brief goes on reporting
+    map-pack movements for businesses nobody is being paid to work on. Filtering
+    here, at the one point both the markdown and HTML renderers load through,
+    means one filter rather than two that can drift apart.
+
+    It reads BUSINESS_DIRS live rather than carrying its own copy of the client
+    list, so dropping a client from that dict is all it takes -- there is no
+    second list to remember to update.
+    """
+    active = set(BUSINESS_DIRS)
+    for section in ("keyword_movements", "competitor_rating_changes", "ad_activity_changes"):
+        rows = delta.get(section)
+        if isinstance(rows, list):
+            delta[section] = [r for r in rows
+                              if not isinstance(r, dict) or r.get("business", "") in active]
+    return delta
 def render_movements_html(delta: dict) -> str:
     """
     Render the 'Movements Since Yesterday' card for the morning brief HTML.
@@ -1195,10 +1214,7 @@ def _check_image_buckets() -> dict:
     home = Path.home()
     folder_map = {
         "sugar_shack": home / "sugar_shack_ad_images",
-        "island_arcade": home / "island_arcade_ad_images",
-        "island_candy": home / "island_candy_ad_images",
         "juan": home / "juan_remax_ad_images",
-        "spi_fun_rentals": home / "spi_fun_rentals_ad_images",
         "custom_designs_tx": home / "custom_designs_ad_images",
         "optimum_clinic": home / "optimum_clinic_ad_images",
         "optimum_foundation": home / "optimum_foundation_ad_images",
